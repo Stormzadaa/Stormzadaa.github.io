@@ -1,4 +1,9 @@
-z.home-contact-go-to {
+html, body {
+    margin: 0;
+    padding: 0;
+  }  
+  
+  .home-contact-go-to {
     background-color: #fcf9f7;
     display: flex;
     flex-direction: row;
