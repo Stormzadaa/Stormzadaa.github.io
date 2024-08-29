@@ -1065,6 +1065,7 @@ z.home-contact-go-to {
     top: 126px;
     left: 1029px;
     background-color: #b7b7b7;
+
   }
   
   .home-contact-go-to .frame-7 {
@@ -1220,7 +1221,6 @@ z.home-contact-go-to {
     height: 398px;
     top: 74px;
     left: 17px;
-    background-color: var(--foundation-brownnormal);
     overflow: hidden;
     transform: rotate(-6deg);
   }
