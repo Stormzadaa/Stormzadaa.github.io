@@ -1612,6 +1612,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
   .home-contact-go-to .group-20 {
@@ -1949,7 +1950,7 @@ html, body {
     width: 865px;
     top: 578px;
     left: 776px;
-    transform: rotate(-180deg);
+    transform: rotate(0deg);
     color: var(--foundation-brownlight);
     font-size: 4px;
     line-height: 4.8px;
@@ -1958,6 +1959,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
   .home-contact-go-to .frame-11 {
@@ -2100,6 +2102,7 @@ html, body {
     letter-spacing: var(--h1-letter-spacing);
     white-space: nowrap;
     font-style: var(--h1-font-style);
+    margin: 0;
   }
   
   .home-contact-go-to .group-26 {
