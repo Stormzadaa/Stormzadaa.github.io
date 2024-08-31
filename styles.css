@@ -1594,8 +1594,8 @@ html, body {
     position: absolute;
     width: 4px;
     height: 4px;
-    /* top: -44px; */
-    /* left: 7px; */
+    top: -44px;
+    left: 7px;
     transform: rotate(6deg);
   }
   
