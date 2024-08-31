@@ -1594,8 +1594,8 @@ html, body {
     position: absolute;
     width: 4px;
     height: 4px;
-    top: -44px;
-    left: 7px;
+    /* top: -44px; */
+    /* left: 7px; */
     transform: rotate(6deg);
   }
   
@@ -2137,6 +2137,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
   .home-contact-go-to .polygon-92 {
@@ -2168,6 +2169,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
   .home-contact-go-to .polygon-93 {
@@ -2207,6 +2209,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
   .home-contact-go-to .group-30 {
@@ -2230,6 +2233,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
   .home-contact-go-to .polygon-95 {
@@ -2269,6 +2273,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
   .home-contact-go-to .group-32 {
@@ -2292,6 +2297,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
   .home-contact-go-to .group-33 {
@@ -2323,5 +2329,6 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
+    margin: 0;
   }
   
