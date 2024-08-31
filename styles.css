@@ -94,19 +94,19 @@ html, body {
     position: absolute;
     width: 191px;
     height: 191px;
-    top: 207px;
-    left: 34px;
-    transform: rotate(28.74deg);
+    top: 0px;
+    left: 10px;
+    transform: rotate(0deg);
     opacity: 0.2;
   }
   
-  .home-contact-go-to .overlap-2 {
+  /* .home-contact-go-to .overlap-2 {
     position: relative;
     width: 190px;
     height: 213px;
     top: -11px;
     left: 12px;
-  }
+  } */
   
   .home-contact-go-to .polygon-4 {
     position: absolute;
@@ -114,16 +114,16 @@ html, body {
     height: 73px;
     top: 33px;
     left: 95px;
-    transform: rotate(-28.74deg);
+    transform: rotate(28.74deg);
   }
   
-  .home-contact-go-to .overlap-3 {
+  /* .home-contact-go-to .overlap-3 {
     position: absolute;
     width: 98px;
     height: 163px;
     top: 0;
     left: 0;
-  }
+  } */
   
   .home-contact-go-to .polygon-5 {
     position: absolute;
@@ -131,16 +131,16 @@ html, body {
     height: 83px;
     top: 11px;
     left: 16px;
-    transform: rotate(-28.74deg);
+    transform: rotate(28.74deg);
   }
   
   .home-contact-go-to .polygon-6 {
     position: absolute;
-    width: 15px;
+    width: 65px;
     height: 73px;
-    top: 91px;
-    left: 53px;
-    transform: rotate(-28.74deg);
+    top: 71px;
+    left: 43px;
+    transform: rotate(28.74deg);
   }
   
   .home-contact-go-to .polygon-7 {
@@ -149,7 +149,7 @@ html, body {
     height: 83px;
     top: 118px;
     left: 85px;
-    transform: rotate(-28.74deg);
+    transform: rotate(28.74deg);
   }
   
   .home-contact-go-to .group-2 {
