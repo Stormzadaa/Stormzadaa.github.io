@@ -7,7 +7,7 @@ html, body {
     background-color: #fcf9f7;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: left;
     width: 100%;
   }
   
@@ -18,31 +18,33 @@ html, body {
     height: 1834px;
     position: relative;
   }
-  
+
+  .home-contact-go-to .control-projects {
+    position: absolute;
+    top: 0;
+    left: -140px;
+  }
   .home-contact-go-to .overlap {
     position: absolute;
-    width: 2011px;
-    height: 1705px;
+    width: 1440px;
+    height: 1430px;
     top: 404px;
-    left: -287px;
+    /* left: -140px; */
   }
   
   .home-contact-go-to .frame {
     position: absolute;
     width: 1440px;
     height: 1430px;
-    top: 0;
-    left: 287px;
     background-color: #ffffff;
     overflow: hidden;
   }
   
   .home-contact-go-to .simbolos {
     position: relative;
-    width: 1708px;
-    height: 2314px;
-    top: 8px;
-    left: -92px;
+    left: 146px;
+    width: 1440px;
+    height: 1430px;
   }
   
   .home-contact-go-to .group {
@@ -94,7 +96,7 @@ html, body {
   .home-contact-go-to .group-1 {
     position: absolute;
     top: 1080px;
-    left: 600px;
+    left: 00px;
     opacity: 0.2;
     rotate: 50;
     scale: 1.2;
@@ -192,7 +194,7 @@ html, body {
   .home-contact-go-to .group-1 {
     position: absolute;
     top: 1118px;
-    left: 1045px;
+    left: 645px;
     transform: rotate(60deg);
     transform: scale();
     opacity: 0.2;
@@ -201,7 +203,7 @@ html, body {
   .home-contact-go-to .group-2 {
     position: absolute;
     top: 10px;
-    left: 800px;
+    left: 1px;
     opacity: 0.2;
     rotate: 30deg;
     scale: 0.8;
@@ -747,11 +749,11 @@ html, body {
   
   .home-contact-go-to .group-11 {
     position: absolute;
-    top: 200px;
+    top: 340px;
     left: 1150px;
     opacity: 0.2;
     rotate: 155deg;
-    scale: 0.3;
+    scale: 2;
   }
   
   .home-contact-go-to .polygon-47 {
@@ -1043,8 +1045,8 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 584px;
-    left: 409px;
+    top: 118px;
+    left: 246px;
     background-color: #b7b7b7;
   }
   
@@ -1052,8 +1054,8 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     object-fit: cover;
   }
   
@@ -1061,8 +1063,8 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 584px;
-    left: 718px;
+    top: 118px;
+    left: 555px;
     background-color: #b7b7b7;
   }
   
@@ -1070,8 +1072,8 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 584px;
-    left: 1029px;
+    top: 118px;
+    left: 864px;
     background-color: #b7b7b7;
   }
   
@@ -1079,8 +1081,8 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 584px;
-    left: 1336px;
+    top: 118px;
+    left: 1173px;
     background-color: #b7b7b7;
   }
   
@@ -1088,8 +1090,8 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 126px;
-    left: 409px;
+    top: 576px;
+    left: 246px;
     background-color: #b7b7b7;
   }
   
@@ -1097,8 +1099,8 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 126px;
-    left: 718px;
+    top: 576px;
+    left: 555px;
     background-color: #b7b7b7;
   }
   
@@ -1106,8 +1108,8 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 126px;
-    left: 1029px;
+    top: 576px;
+    left: 864px;
     background-color: #b7b7b7;
 
   }
@@ -1116,16 +1118,16 @@ html, body {
     position: absolute;
     width: 269px;
     height: 381px;
-    top: 126px;
-    left: 1336px;
+    top: 576px;
+    left: 1173px;
     background-color: #b7b7b7;
   }
   
   .home-contact-go-to .text-wrapper {
     position: absolute;
     width: 228px;
-    top: 520px;
-    left: 409px;
+    top: 970px;
+    left: 246px;
     font-family: var(--h5-font-family);
     font-weight: var(--h5-font-weight);
     color: var(--foundation-greydarker);
@@ -1137,8 +1139,8 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-2 {
-    top: 978px;
-    left: 409px;
+    top: 970px;
+    left: 555px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1152,8 +1154,8 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-3 {
-    top: 978px;
-    left: 718px;
+    top: 970px;
+    left: 864px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1167,8 +1169,8 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-4 {
-    top: 978px;
-    left: 1029px;
+    top: 512px;
+    left: 246px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1182,8 +1184,8 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-5 {
-    top: 978px;
-    left: 1336px;
+    top: 512px;
+    left: 555px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1197,8 +1199,8 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-6 {
-    top: 520px;
-    left: 718px;
+    top: 512px;
+    left: 864px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1212,8 +1214,8 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-7 {
-    top: 520px;
-    left: 1027px;
+    top: 512px;
+    left: 1173px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1227,8 +1229,8 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-8 {
-    top: 520px;
-    left: 1336px;
+    top: 970px;
+    left: 1173px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1245,8 +1247,8 @@ html, body {
     position: absolute;
     width: 1970px;
     height: 495px;
-    top: 1521.11px;
-    left: -235.5px;
+    top: 1109px;
+    left: -235px;
     background-color: var(--foundation-brownnormal);
     transform: rotate(6deg);
   }
@@ -1659,7 +1661,7 @@ html, body {
     width: 257px;
     height: 248px;
     top: 187px;
-    left: 680px;
+    left: 646px;
   }
   
   .home-contact-go-to .text-wrapper-9 {
@@ -1778,7 +1780,7 @@ html, body {
     width: 210px;
     height: 209px;
     top: 244px;
-    left: 135px;
+    left: 103px;
   }
   
   .home-contact-go-to .text-wrapper-15 {
