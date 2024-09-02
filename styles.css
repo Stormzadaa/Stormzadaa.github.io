@@ -7,7 +7,7 @@ html, body {
     background-color: #fcf9f7;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     width: 100%;
   }
   
@@ -24,7 +24,15 @@ html, body {
     top: 0;
     left: -140px;
   }
-  .home-contact-go-to .overlap {
+  .home-contact-go-to .overlapPolygons {
+    position: absolute;
+    width: 1440px;
+    height: 1430px;
+    top: 404px;
+    /* left: -140px; */
+  }
+
+  .home-contact-go-to .overlapBottomBar {
     position: absolute;
     width: 1440px;
     height: 1430px;
@@ -1830,14 +1838,22 @@ html, body {
     font-style: var(--h2-font-style);
   }
   
-  .home-contact-go-to .overlap-39 {
+  .home-contact-go-to .caixaNavBar {
+    position: absolute;
+    width: 2984px;
+    height: 480px;
+    top: -353px;
+    left: -869px;
+  }
+
+  .home-contact-go-to .overlapTitulo {
     position: absolute;
     width: 2984px;
     height: 554px;
     top: -353px;
     left: -869px;
   }
-  
+
   .home-contact-go-to .overlap-40 {
     position: absolute;
     width: 2984px;
@@ -1846,7 +1862,7 @@ html, body {
     left: 0;
   }
   
-  .home-contact-go-to .frame-9 {
+  .home-contact-go-to .headerEsquerdo {
     position: absolute;
     width: 2137px;
     height: 321px;
@@ -1857,20 +1873,12 @@ html, body {
     transform: rotate(-6deg);
   }
   
-  .home-contact-go-to .overlap-41 {
+  .home-contact-go-to .contentHE {
     position: relative;
     width: 2163px;
     height: 752px;
     top: -263px;
     left: -128px;
-  }
-  
-  .home-contact-go-to .overlap-42 {
-    position: absolute;
-    width: 2163px;
-    height: 752px;
-    top: 0;
-    left: 0;
   }
   
   .home-contact-go-to .frame-10 {
@@ -1885,11 +1893,8 @@ html, body {
   
   .home-contact-go-to .LOGO {
     position: absolute;
-    width: 40px;
-    height: 42px;
     top: 518px;
     left: 1096px;
-    transform: rotate(6deg);
   }
   
   .home-contact-go-to .overlap-43 {
@@ -1990,7 +1995,7 @@ html, body {
     -webkit-box-orient: vertical;
   } */
   
-  .home-contact-go-to .text-wrapper-17 {
+  .home-contact-go-to .textoAnimadoHE {
     width: 865px;
     top: 578px;
     left: 776px;
@@ -2006,7 +2011,7 @@ html, body {
     margin: 0;
   }
   
-  .home-contact-go-to .frame-11 {
+  .home-contact-go-to .headerDireito {
     position: absolute;
     width: 2137px;
     height: 316px;
@@ -2017,7 +2022,7 @@ html, body {
     transform: rotate(6deg);
   }
   
-  .home-contact-go-to .overlap-44 {
+  .home-contact-go-to .caixaBotoes {
     position: relative;
     width: 1357px;
     height: 280px;
@@ -2025,7 +2030,7 @@ html, body {
     left: 701px;
   }
   
-  .home-contact-go-to .text-wrapper-18 {
+  .home-contact-go-to .contato {
     position: absolute;
     width: 77px;
     top: 81px;
@@ -2051,7 +2056,7 @@ html, body {
     object-fit: cover;
   }
   
-  .home-contact-go-to .text-wrapper-19 {
+  .home-contact-go-to .sobre {
     position: absolute;
     width: 56px;
     top: 92px;
@@ -2067,7 +2072,7 @@ html, body {
     font-style: var(--h7-font-style);
   }
   
-  .home-contact-go-to .text-wrapper-20 {
+  .home-contact-go-to .trabalhos {
     position: absolute;
     width: 49px;
     top: 102px;
@@ -2133,7 +2138,7 @@ html, body {
     left: 485px;
   }
   
-  .home-contact-go-to .text-wrapper-21 {
+  .home-contact-go-to .Titulo {
     width: 786px;
     top: 489px;
     left: 1196px;
