@@ -44,13 +44,13 @@ html, body {
     position: absolute;
     width: 1440px;
     height: 1430px;
+    left: 0px;
     background-color: #ffffff;
     overflow: hidden;
   }
   
   .home-contact-go-to .simbolos {
-    position: relative;
-    left: 146px;
+    position: absolute;
     width: 1440px;
     height: 1430px;
   }
@@ -63,10 +63,10 @@ html, body {
     left: 126px;
   }
   
-  .home-contact-go-to .overlap-group {
+  /* .home-contact-go-to .overlap-group {
     position: relative;
     height: 2px;
-  }
+  } */
   
   .home-contact-go-to .polygon {
     position: absolute;
@@ -102,15 +102,6 @@ html, body {
   
   /* grupo base para poligonos */
 
-  .home-contact-go-to .group-1 {
-    position: absolute;
-    top: 1080px;
-    left: 00px;
-    opacity: 0.2;
-    rotate: 50;
-    scale: 1.2;
-  }
-  
   .home-contact-go-to .overlap-2 {
     position: relative;
     width: 190px;
@@ -203,7 +194,7 @@ html, body {
   .home-contact-go-to .group-1 {
     position: absolute;
     top: 1118px;
-    left: 645px;
+    left: 705px;
     transform: rotate(60deg);
     transform: scale();
     opacity: 0.2;
@@ -212,7 +203,7 @@ html, body {
   .home-contact-go-to .group-2 {
     position: absolute;
     top: 10px;
-    left: 1px;
+    left: 200px;
     opacity: 0.2;
     rotate: 30deg;
     scale: 0.8;
@@ -220,8 +211,8 @@ html, body {
   
   .home-contact-go-to .group-3 {
     position: absolute;
-    top: 400px;
-    left: 200px;
+    top: 510px;
+    left: 100px;
     opacity: 0.2;
     rotate: 240deg;
     scale: 0.5;
@@ -230,7 +221,7 @@ html, body {
   .home-contact-go-to .group-4 {
     position: absolute;
     top: 124px;
-    left: 400px;
+    left: 600px;
     opacity: 0.2;
     rotate: 240deg;
     scale: 0.3;
@@ -288,7 +279,7 @@ html, body {
   .home-contact-go-to .group-10 {
     position: absolute;
     top: 450px;
-    left: 650px;
+    left: 800px;
     opacity: 0.2;
     rotate: 155deg;
     scale: 0.7;
@@ -297,7 +288,7 @@ html, body {
   .home-contact-go-to .group-11 {
     position: absolute;
     top: 340px;
-    left: 1150px;
+    left: 1450px;
     opacity: 0.2;
     rotate: 155deg;
     scale: 2;
@@ -305,8 +296,8 @@ html, body {
 
   .home-contact-go-to .group-12 {
     position: absolute;
-    top: 610px;
-    left: 1200px;
+    top: 810px;
+    left: 1300px;
     opacity: 0.2;
     rotate: 120deg;
     scale: 1.2;
@@ -314,8 +305,8 @@ html, body {
 
   .home-contact-go-to .group-13 {
     position: absolute;
-    top: 1050px;
-    left: 1100px;
+    top: 1250px;
+    left: 1320px;
     opacity: 0.2;
     rotate: 120deg;
     scale: 0.6;
@@ -432,15 +423,6 @@ html, body {
     opacity: 0.2;
     rotate: 240deg;
     scale: 0.5;
-  }
-  
-  .home-contact-go-to .group-4 {
-    position: absolute;
-    top: 124px;
-    left: 400px;
-    opacity: 0.2;
-    rotate: 240deg;
-    scale: 0.3;
   }
   
   .home-contact-go-to .polygon-16 {
