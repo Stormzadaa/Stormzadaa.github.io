@@ -32,7 +32,7 @@ html, body {
     /* left: -140px; */
   }
 
-  .home-contact-go-to .overlapBottomBar {
+  .home-contact-go-to .overlapContactBar {
     position: absolute;
     width: 1440px;
     height: 1430px;
@@ -49,11 +49,11 @@ html, body {
     overflow: hidden;
   }
   
-  .home-contact-go-to .simbolos {
+  /* .home-contact-go-to .simbolos {
     position: absolute;
     width: 1440px;
     height: 1430px;
-  }
+  } */
   
   .home-contact-go-to .group {
     position: absolute;
@@ -1249,7 +1249,7 @@ html, body {
     font-style: var(--h5-font-style);
   }
   
-  .home-contact-go-to .frame-8 {
+  .home-contact-go-to .frameContactBar {
     position: absolute;
     width: 1970px;
     height: 495px;
@@ -1259,7 +1259,7 @@ html, body {
     transform: rotate(6deg);
   }
   
-  .home-contact-go-to .overlap-20 {
+  .home-contact-go-to .overlapContactText {
     position: relative;
     width: 1520px;
     height: 546px;
@@ -1267,7 +1267,7 @@ html, body {
     left: 237px;
   }
   
-  .home-contact-go-to .simbolos-wrapper {
+  .home-contact-go-to .wrapperContactSymbols {
     position: absolute;
     width: 1440px;
     height: 398px;
