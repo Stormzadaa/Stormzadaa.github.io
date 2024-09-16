@@ -202,19 +202,17 @@ html, body {
 
   .home-contact-go-to .group-2 {
     position: absolute;
-    top: 10px;
-    left: 200px;
+    top: 100px;
+    left: 100px;
     opacity: 0.2;
-    rotate: 30deg;
     scale: 0.8;
   }
   
   .home-contact-go-to .group-3 {
     position: absolute;
-    top: 510px;
-    left: 100px;
+    top: 1200px;
+    left: 600px;
     opacity: 0.2;
-    rotate: 240deg;
     scale: 0.5;
   }
 
@@ -247,7 +245,7 @@ html, body {
     opacity: 0.2;
   }
   
-  .home-contact-go-to .group-7 {
+  /* .home-contact-go-to .group-7 {
     position: absolute;
     width: 107px;
     height: 107px;
@@ -265,7 +263,7 @@ html, body {
     left: 899px;
     transform: rotate(110.16deg);
     opacity: 0.2;
-  }
+  } */
 
   .home-contact-go-to .group-9 {
     position: absolute;
@@ -287,7 +285,7 @@ html, body {
 
   .home-contact-go-to .group-11 {
     position: absolute;
-    top: 340px;
+    top: 350px;
     left: 1450px;
     opacity: 0.2;
     rotate: 155deg;
@@ -342,41 +340,98 @@ html, body {
     opacity: 0.2;
   } */
 
-  .home-contact-go-to .polygon-8 {
+  .home-contact-go-to .grupoPoligonoContact {
     position: absolute;
+    left: 201px;
+    top: 0px;
     width: 81px;
     height: 79px;
-    top: 7px;
-    left: 112px;
-    transform: rotate(137.09deg);
+    opacity: 0.2;
+    scale: 0.5;
   }
   
-  .home-contact-go-to .polygon-9 {
+  .home-contact-go-to .grupoPoligonoContact2 {
+    position: absolute;
+    left: 300px;
+    top: 250px;
+    width: 81px;
+    height: 79px;
+    opacity: 0.2;
+    scale: 1;
+    rotate: 20deg;
+  }
+  
+  .home-contact-go-to .grupoPoligonoContact3 {
+    position: absolute;
+    left: 1500px;
+    top: 100px;
+    width: 81px;
+    height: 79px;
+    opacity: 0.2;
+    scale: 2;
+    rotate: 70deg;
+  }
+
+  .home-contact-go-to .grupoPoligonoContact4 {
+    position: absolute;
+    left: 1050px;
+    top: 0px;
+    width: 81px;
+    height: 79px;
+    opacity: 0.2;
+    scale: 3;
+    rotate: 20deg;
+    display: flex;
+  }
+
+  .home-contact-go-to .grupoPoligonoContact5 {
+    position: absolute;
+    left: 720px;
+    top: 230px;
+    width: 81px;
+    height: 79px;
+    opacity: 0.2;
+    scale: 1.5;
+    rotate: 20deg;
+  }
+
+  .home-contact-go-to .grupoPoligonoContact6 {
+    position: absolute;
+    left: 500px;
+    top: -20px;
+    width: 81px;
+    height: 79px;
+    opacity: 0.2;
+    scale: 2;
+    rotate: 20deg;
+  }
+
+  /* .home-contact-go-to .polygon-9 {
     position: absolute;
     width: 79px;
     height: 81px;
     top: -1px;
     left: 7px;
     transform: rotate(137.09deg);
-  }
+  } */
   
-  .home-contact-go-to .polygon-10 {
+  /* .home-contact-go-to .polygon-10 {
     position: absolute;
     width: 81px;
     height: 79px;
     top: 105px;
     left: -1px;
     transform: rotate(137.09deg);
-  }
+  } */
   
-  .home-contact-go-to .polygon-11 {
+  /* .home-contact-go-to .polygon-11 {
     position: absolute;
     width: 79px;
     height: 81px;
     top: 112px;
     left: 105px;
     transform: rotate(137.09deg);
-  }
+  } */
   
 
   
@@ -913,7 +968,7 @@ html, body {
     transform: rotate(-4.92deg);
   }
   
-  .home-contact-go-to .group-16 {
+  /* .home-contact-go-to .group-16 {
     position: absolute;
     width: 43px;
     height: 43px;
@@ -921,7 +976,7 @@ html, body {
     left: 1500px;
     transform: rotate(4.92deg);
     opacity: 0.2;
-  }
+  } */
   
   .home-contact-go-to .polygon-58 {
     position: absolute;
@@ -941,7 +996,7 @@ html, body {
     transform: rotate(-4.92deg);
   }
   
-  .home-contact-go-to .group-17 {
+  /* .home-contact-go-to .group-17 {
     position: absolute;
     width: 43px;
     height: 43px;
@@ -949,7 +1004,7 @@ html, body {
     left: 77px;
     transform: rotate(32.66deg);
     opacity: 0.2;
-  }
+  } */
   
   .home-contact-go-to .overlap-17 {
     position: relative;
@@ -1002,7 +1057,7 @@ html, body {
     transform: rotate(-32.66deg);
   }
   
-  .home-contact-go-to .group-18 {
+  /* .home-contact-go-to .group-18 {
     position: absolute;
     width: 107px;
     height: 107px;
@@ -1010,7 +1065,7 @@ html, body {
     left: 1460px;
     transform: rotate(71.33deg);
     opacity: 0.2;
-  }
+  } */
   
   .home-contact-go-to .overlap-19 {
     position: absolute;
@@ -1257,6 +1312,7 @@ html, body {
     left: -235px;
     background-color: var(--foundation-brownnormal);
     transform: rotate(6deg);
+    overflow: hidden;
   }
   
   .home-contact-go-to .overlapContactText {
@@ -1277,41 +1333,33 @@ html, body {
     transform: rotate(-6deg);
   }
   
-  .home-contact-go-to .overlap-21 {
+  /* .home-contact-go-to .overlap-21 {
     position: relative;
     width: 190px;
     height: 198px;
     top: -11px;
     left: 12px;
-  }
+  } */
   
-  .home-contact-go-to .polygon-67 {
+  /* .home-contact-go-to .polygon-67 {
     position: absolute;
     width: 73px;
     height: 65px;
     top: 119px;
     left: 81px;
     transform: rotate(-28.74deg);
-  }
+  } */
   
-  .home-contact-go-to .overlap-22 {
+  /* .home-contact-go-to .overlap-22 {
     position: relative;
     width: 217px;
     height: 217px;
     top: 2059px;
     left: -1547px;
-  }
+  } */
   
-  .home-contact-go-to .polygon-68 {
-    position: absolute;
-    width: 96px;
-    height: 96px;
-    top: 13px;
-    left: 109px;
-    transform: rotate(-70.9deg);
-  }
   
-  .home-contact-go-to .polygon-69 {
+  /* .home-contact-go-to .polygon-69 {
     position: absolute;
     width: 96px;
     height: 96px;
@@ -1335,9 +1383,9 @@ html, body {
     top: 13px;
     left: 13px;
     transform: rotate(-70.9deg);
-  }
+  } */
   
-  .home-contact-go-to .overlap-24 {
+  /* .home-contact-go-to .overlap-24 {
     position: relative;
     width: 211px;
     height: 211px;
@@ -1591,9 +1639,9 @@ html, body {
     height: 51px;
     top: 720px;
     left: -2545px;
-  }
+  } */
   
-  .home-contact-go-to .polygon-87 {
+  /* .home-contact-go-to .polygon-87 {
     position: absolute;
     width: 21px;
     height: 21px;
@@ -1626,7 +1674,7 @@ html, body {
     top: 4px;
     left: 4px;
     transform: rotate(-32.66deg);
-  }
+  } */
   
   .home-contact-go-to .group-19 {
     position: absolute;
