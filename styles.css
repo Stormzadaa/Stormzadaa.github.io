@@ -29,7 +29,7 @@ html, body {
     width: 1440px;
     height: 1430px;
     top: 404px;
-    /* left: -140px; */
+    left: 0px;
   }
 
   .home-contact-go-to .overlapContactBar {
@@ -41,6 +41,15 @@ html, body {
   }
   
   .home-contact-go-to .frame {
+    position: absolute;
+    width: 1440px;
+    height: 1430px;
+    left: 0px;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+
+  .home-contact-go-to .grupoProjetos {
     position: absolute;
     width: 1440px;
     height: 1430px;
@@ -1710,7 +1719,7 @@ html, body {
     margin: 0;
   }
 
-  .home-contact-go-to .textoAnimadoHD2 {
+  /* .home-contact-go-to .textoAnimadoHD2 {
     width: 865px;
     top: 45px;
     left: 2px;
@@ -1724,7 +1733,7 @@ html, body {
     letter-spacing: 0;
     white-space: nowrap;
     margin: 0;
-  }
+  } */
 
   .home-contact-go-to .textoAnimadoBB {
     width: 865px;
@@ -1926,10 +1935,10 @@ html, body {
 
   .home-contact-go-to .overlapTitulo {
     position: absolute;
-    width: 2984px;
-    height: 554px;
-    top: -353px;
-    left: -869px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
   }
 
   .home-contact-go-to .overlap-40 {
@@ -1950,7 +1959,7 @@ html, body {
     overflow: hidden;
     transform: rotate(-6deg);
   }
-  
+
   .home-contact-go-to .contentHE {
     position: relative;
     width: 2163px;
@@ -1968,11 +1977,12 @@ html, body {
     background-color: var(--foundation-browndark);
     transform: rotate(12deg);
   }
-  
+
   .home-contact-go-to .LOGO {
     position: absolute;
-    top: 518px;
-    left: 1096px;
+    top: 20px;
+    left: 122px;
+    z-index: 1;
   }
   
   .home-contact-go-to .overlap-43 {
@@ -2100,7 +2110,7 @@ html, body {
     transform: rotate(6deg);
   }
   
-  .home-contact-go-to .caixaBotoes {
+  .home-contact-go-to .caixaHeader {
     position: relative;
     width: 1357px;
     height: 280px;
@@ -2108,12 +2118,16 @@ html, body {
     left: 701px;
   }
   
+  .home-contact-go-to .caixaBotoes {
+    position: absolute;
+    width: 100% ;
+    z-index: 1;
+  }
+
   .home-contact-go-to .contato {
     position: absolute;
-    width: 77px;
-    top: 81px;
-    left: 584px;
-    transform: rotate(-6deg);
+    right: 122px;
+    top: 35px;
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-brownlight);
@@ -2124,22 +2138,19 @@ html, body {
     font-style: var(--h7-font-style);
   }
   
-  .home-contact-go-to .line {
-    width: 77px;
-    top: 100px;
-    left: 585px;
+  .home-contact-go-to .line1 {
     position: absolute;
-    height: 1px;
-    transform: rotate(-6deg);
+    right: 338px;
+    top: 55px;
+    height: 1.5px;
     object-fit: cover;
+    width: 49px;
   }
   
   .home-contact-go-to .sobre {
     position: absolute;
-    width: 56px;
-    top: 92px;
-    left: 488px;
-    transform: rotate(-6deg);
+    right: 240px;
+    top: 35px;
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-brownlight);
@@ -2152,10 +2163,8 @@ html, body {
   
   .home-contact-go-to .trabalhos {
     position: absolute;
-    width: 49px;
-    top: 102px;
-    left: 397px;
-    transform: rotate(-6deg);
+    right: 338px;
+    top: 35px;
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-brownlight);
@@ -2208,18 +2217,16 @@ html, body {
     transform: rotate(6deg);
   }
   
-  .home-contact-go-to .poTextoAnimadoHD2{
+  /* .home-contact-go-to .poTextoAnimadoHD2{
     position: absolute;
     width: 866px;
     height: 95px;
     top: 44px;
     left: 485px;
-  }
+  } */
   
   .home-contact-go-to .Titulo {
-    width: 786px;
-    top: 489px;
-    left: 1196px;
+    top: 137px;
     color: var(--foundation-greydarker);
     font-size: var(--h1-font-size);
     line-height: var(--h1-line-height);
@@ -2234,8 +2241,7 @@ html, body {
   
   .home-contact-go-to .caixaTextoCorrenteGeral{
     position: absolute;
-    width: 8327px;
-    height: 150px;
+    display: flex;
     top: 243px;
     left: -3400px;
   }
