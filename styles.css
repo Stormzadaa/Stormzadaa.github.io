@@ -19,11 +19,6 @@ html, body {
     position: relative;
   }
 
-  .home-contact-go-to .control-projects {
-    position: absolute;
-    top: 0;
-    left: -140px;
-  }
   .home-contact-go-to .overlapPolygons {
     position: absolute;
     width: 1440px;
@@ -1110,94 +1105,45 @@ html, body {
     left: 6px;
     transform: rotate(-71.33deg);
   }
-  
-  .home-contact-go-to .image-wrapper {
-    position: absolute;
-    width: 269px;
-    height: 381px;
-    top: 118px;
-    left: 246px;
-    background-color: #b7b7b7;
-  }
-  
-  .home-contact-go-to .image {
-    position: absolute;
-    width: 269px;
-    height: 381px;
-    top: 0px;
-    left: 0px;
-    object-fit: cover;
-  }
-  
-  .home-contact-go-to .img-wrapper {
-    position: absolute;
-    width: 269px;
-    height: 381px;
-    top: 118px;
-    left: 555px;
-    background-color: #b7b7b7;
-  }
-  
-  .home-contact-go-to .frame-2 {
-    position: absolute;
-    width: 269px;
-    height: 381px;
-    top: 118px;
-    left: 864px;
-    background-color: #b7b7b7;
-  }
-  
-  .home-contact-go-to .frame-3 {
-    position: absolute;
-    width: 269px;
-    height: 381px;
-    top: 118px;
-    left: 1173px;
-    background-color: #b7b7b7;
-  }
-  
-  .home-contact-go-to .frame-4 {
-    position: absolute;
-    width: 269px;
-    height: 381px;
-    top: 576px;
-    left: 246px;
-    background-color: #b7b7b7;
-  }
-  
-  .home-contact-go-to .frame-5 {
-    position: absolute;
-    width: 269px;
-    height: 381px;
-    top: 576px;
-    left: 555px;
-    background-color: #b7b7b7;
-  }
-  
-  .home-contact-go-to .frame-6 {
-    position: absolute;
-    width: 269px;
-    height: 381px;
-    top: 576px;
-    left: 864px;
-    background-color: #b7b7b7;
 
-  }
-  
-  .home-contact-go-to .frame-7 {
+  .home-contact-go-to .control-projects {
     position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-contact-go-to .distribuirProjetos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 126px;
+    gap: 0px;
+    width: 1196px;
+    height: 876px;
+  }
+
+  .home-contact-go-to .linha {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .home-contact-go-to .projeto {
+    flex: 1;
+
+
+    text-align: center;
     width: 269px;
     height: 381px;
-    top: 576px;
-    left: 1173px;
     background-color: #b7b7b7;
   }
-  
+
   .home-contact-go-to .text-wrapper {
-    position: absolute;
-    width: 228px;
-    top: 970px;
-    left: 246px;
+    flex: 1;
+    text-align: center;
+    padding-top: 14px;
     font-family: var(--h5-font-family);
     font-weight: var(--h5-font-weight);
     color: var(--foundation-greydarker);
@@ -1207,10 +1153,75 @@ html, body {
     white-space: nowrap;
     font-style: var(--h5-font-style);
   }
+
+  /* .home-contact-go-to .image-wrapper {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    background-color: #b7b7b7;
+  } */
   
-  .home-contact-go-to .text-wrapper-2 {
-    top: 970px;
-    left: 555px;
+  /* .home-contact-go-to .image {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    top: 0px;
+    left: 0px;
+    object-fit: cover;
+  } */
+  
+  /* .home-contact-go-to .img-wrapper {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    background-color: #b7b7b7;
+  }
+  
+  .home-contact-go-to .frame-2 {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    background-color: #b7b7b7;
+  }
+  
+  .home-contact-go-to .frame-3 {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    background-color: #b7b7b7;
+  }
+  
+  .home-contact-go-to .frame-4 {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    background-color: #b7b7b7;
+  }
+  
+  .home-contact-go-to .frame-5 {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    background-color: #b7b7b7;
+  }
+  
+  .home-contact-go-to .frame-6 {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    background-color: #b7b7b7;
+
+  }
+  
+  .home-contact-go-to .frame-7 {
+    position: absolute;
+    width: 269px;
+    height: 381px;
+    background-color: #b7b7b7;
+  } */
+  
+  
+  /* .home-contact-go-to .text-wrapper-2 {
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1224,8 +1235,6 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-3 {
-    top: 970px;
-    left: 864px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1239,8 +1248,6 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-4 {
-    top: 512px;
-    left: 246px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1254,8 +1261,6 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-5 {
-    top: 512px;
-    left: 555px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1269,8 +1274,6 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-6 {
-    top: 512px;
-    left: 864px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1284,8 +1287,6 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-7 {
-    top: 512px;
-    left: 1173px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1299,8 +1300,6 @@ html, body {
   }
   
   .home-contact-go-to .text-wrapper-8 {
-    top: 970px;
-    left: 1173px;
     position: absolute;
     width: 228px;
     font-family: var(--h5-font-family);
@@ -1311,7 +1310,7 @@ html, body {
     line-height: var(--h5-line-height);
     white-space: nowrap;
     font-style: var(--h5-font-style);
-  }
+  } */
   
   .home-contact-go-to .frameContactBar {
     position: absolute;
