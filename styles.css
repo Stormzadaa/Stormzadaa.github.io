@@ -32,7 +32,7 @@ html, body {
     width: 1440px;
     height: 1430px;
     top: 404px;
-    /* left: -140px; */
+    left: 0px;
   }
   
   .home-contact-go-to .frame {
@@ -198,7 +198,7 @@ html, body {
   .home-contact-go-to .group-1 {
     position: absolute;
     top: 1118px;
-    left: 705px;
+    left: 630px;
     transform: rotate(60deg);
     transform: scale();
     opacity: 0.2;
@@ -238,17 +238,7 @@ html, body {
     transform: rotate(46.22deg);
     opacity: 0.2;
   }
-
-  .home-contact-go-to .group-6 {
-    position: absolute;
-    width: 334px;
-    height: 334px;
-    top: 1675px;
-    left: 1316px;
-    transform: rotate(63.3deg);
-    opacity: 0.2;
-  }
-  
+ 
   /* .home-contact-go-to .group-7 {
     position: absolute;
     width: 107px;
@@ -330,6 +320,15 @@ html, body {
     opacity: 0.2;
     rotate: 45deg;
     scale: 0.3;
+  }
+
+  .home-contact-go-to .group-16 {
+    position: absolute;
+    top: 1000px;
+    left: 920px;
+    opacity: 0.2;
+    rotate: 45deg;
+    scale: 0.7;
   }
 
   /* fim grupo base para poligonos */
@@ -1314,21 +1313,14 @@ html, body {
   
   .home-contact-go-to .frameContactBar {
     position: absolute;
+    transform-origin: top left;
     width: 1970px;
     height: 495px;
-    top: 1109px;
-    left: -235px;
+    top: 1050px;
+    left: 0px;
     background-color: var(--foundation-brownnormal);
-    transform: rotate(6deg);
+    transform: rotate(3deg);
     overflow: hidden;
-  }
-  
-  .home-contact-go-to .overlapContactText {
-    position: relative;
-    width: 1520px;
-    height: 546px;
-    top: -150px;
-    left: 237px;
   }
   
   .home-contact-go-to .wrapperContactSymbols {
@@ -1686,10 +1678,8 @@ html, body {
   
   .home-contact-go-to .group-19 {
     position: absolute;
-    width: 866px;
-    height: 95px;
-    top: 109px;
-    left: 651px;
+    top: 5px;
+    left: 0px;
     transform: rotate(-6deg);
   }
   
@@ -1703,7 +1693,7 @@ html, body {
   }
   
   .home-contact-go-to .textoAnimadoHD1 {
-    width: 865px;
+    width: 800px;
     top: 45px;
     left: 2px;
     transform: rotate(6deg);
@@ -1751,19 +1741,15 @@ html, body {
   }
   
   .home-contact-go-to .group-20 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     position: absolute;
-    width: 257px;
-    height: 248px;
-    top: 187px;
     left: 646px;
   }
   
-  .home-contact-go-to .text-wrapper-9 {
-    position: absolute;
-    width: 101px;
-    top: 146px;
-    left: 15px;
-    transform: rotate(-6deg);
+  .home-contact-go-to .textSM {
+    text-align: left;
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-greynormal-active);
@@ -1774,12 +1760,11 @@ html, body {
     font-style: var(--h7-font-style);
   }
   
-  .home-contact-go-to .text-wrapper-10 {
+  /* .home-contact-go-to .text-wrapper-10 {
     top: 185px;
     left: 19px;
     position: absolute;
     width: 101px;
-    transform: rotate(-6deg);
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-greynormal-active);
@@ -1795,7 +1780,6 @@ html, body {
     left: 23px;
     position: absolute;
     width: 101px;
-    transform: rotate(-6deg);
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-greynormal-active);
@@ -1811,7 +1795,6 @@ html, body {
     left: 133px;
     position: absolute;
     width: 101px;
-    transform: rotate(-6deg);
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-greynormal-active);
@@ -1827,7 +1810,6 @@ html, body {
     left: 137px;
     position: absolute;
     width: 101px;
-    transform: rotate(-6deg);
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-greynormal-active);
@@ -1843,7 +1825,6 @@ html, body {
     left: 141px;
     position: absolute;
     width: 101px;
-    transform: rotate(-6deg);
     font-family: var(--h7-font-family);
     font-weight: var(--h7-font-weight);
     color: var(--foundation-greynormal-active);
@@ -1852,14 +1833,11 @@ html, body {
     line-height: var(--h7-line-height);
     white-space: nowrap;
     font-style: var(--h7-font-style);
-  }
+  } */
   
   .home-contact-go-to .SOCIAL-MEDIA {
-    position: absolute;
     width: 185px;
     top: 9px;
-    left: 5px;
-    transform: rotate(-6deg);
     font-family: var(--h2-font-family);
     font-weight: var(--h2-font-weight);
     color: var(--foundation-greynormal-active);
@@ -1868,20 +1846,57 @@ html, body {
     line-height: var(--h2-line-height);
     font-style: var(--h2-font-style);
   }
-  
-  .home-contact-go-to .group-21 {
-    position: absolute;
-    width: 210px;
-    height: 209px;
-    top: 244px;
-    left: 103px;
+
+  .home-contact-go-to .distributionSM {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 18px;
+    row-gap: 20px;
+
   }
   
-  .home-contact-go-to .text-wrapper-15 {
+  .home-contact-go-to .group-21 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    left: 122px;
+  }
+
+  .home-contact-go-to .distributionGT {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 18px;
+    row-gap: 20px;
+
+  }
+
+  .home-contact-go-to .socialInfo {
+    position: absolute;
+    rotate: -3deg;
+    width: 100%;
+    height: 100%;
+    top: 40px;
+    left: 17px;
+  }
+  
+  .home-contact-go-to .textGT {
+    text-align: left;
+    font-family: var(--h7-font-family);
+    font-weight: var(--h7-font-weight);
+    color: var(--foundation-greynormal-active);
+    font-size: var(--h7-font-size);
+    letter-spacing: var(--h7-letter-spacing);
+    line-height: var(--h7-line-height);
+    font-style: var(--h7-font-style);
+  }
+
+  /* .home-contact-go-to .text-wrapper-15 {
     width: 165px;
     top: 145px;
-    left: 15px;
-    transform: rotate(-6deg);
+    left: 10px;
     color: var(--foundation-greynormal-active);
     font-size: var(--h7-font-size);
     line-height: var(--h7-line-height);
@@ -1896,8 +1911,7 @@ html, body {
   .home-contact-go-to .text-wrapper-16 {
     width: 165px;
     top: 182px;
-    left: 19px;
-    transform: rotate(-6deg);
+    left: 10px;
     color: var(--foundation-greynormal-active);
     font-size: var(--h7-font-size);
     line-height: var(--h7-line-height);
@@ -1907,14 +1921,11 @@ html, body {
     letter-spacing: var(--h7-letter-spacing);
     white-space: nowrap;
     font-style: var(--h7-font-style);
-  }
+  } */
   
   .home-contact-go-to .GET-IN-TOUCH {
-    position: absolute;
     width: 193px;
     top: 9px;
-    left: 5px;
-    transform: rotate(-6deg);
     font-family: var(--h2-font-family);
     font-weight: var(--h2-font-weight);
     color: var(--foundation-greynormal-active);
@@ -1952,11 +1963,11 @@ html, body {
     position: absolute;
     width: 2137px;
     height: 321px;
-    top: 111px;
+    top: 115px;
     left: 11px;
     background-color: var(--foundation-brownnormal);
     overflow: hidden;
-    transform: rotate(-6deg);
+    transform: rotate(-3deg);
   }
 
   .home-contact-go-to .contentHE {
@@ -1971,15 +1982,15 @@ html, body {
     position: absolute;
     width: 2144px;
     height: 313px;
-    top: 219px;
+    top: 239px;
     left: 9px;
     background-color: var(--foundation-browndark);
-    transform: rotate(12deg);
+    transform: rotate(6deg);
   }
 
   .home-contact-go-to .LOGO {
     position: absolute;
-    top: 20px;
+    top: 30px;
     left: 122px;
     z-index: 1;
   }
@@ -2106,7 +2117,7 @@ html, body {
     left: 837px;
     background-color: var(--foundation-browndark-hover);
     overflow: hidden;
-    transform: rotate(6deg);
+    transform: rotate(3deg);
   }
   
   .home-contact-go-to .caixaHeader {
