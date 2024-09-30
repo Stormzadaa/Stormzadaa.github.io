@@ -1694,7 +1694,7 @@ html, body {
   
   .home-contact-go-to .textoAnimadoHD1 {
     width: 800px;
-    top: 45px;
+    top: 4px;
     left: 2px;
     transform: rotate(6deg);
     color: var(--foundation-browndarker);
@@ -2095,7 +2095,7 @@ html, body {
   
   .home-contact-go-to .textoAnimadoHE {
     width: 865px;
-    top: 578px;
+    top: 579px;
     left: 776px;
     transform: rotate(0deg);
     color: var(--foundation-brownlight);
