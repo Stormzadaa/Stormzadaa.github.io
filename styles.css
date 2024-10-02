@@ -9,14 +9,14 @@ html, body {
     flex-direction: row;
     justify-content: center;
     width: 100%;
+    height: 100%;
   }
   
   .home-contact-go-to .div {
     background-color: var(--foundation-brownlight);
-    overflow: hidden;
-    width: 1440px;
-    height: 1834px;
-    position: relative;
+    width: 100%;
+    height: 100%;
+    position: absolute;
   }
 
   .home-contact-go-to .overlapPolygons {
@@ -36,6 +36,7 @@ html, body {
   }
   
   .home-contact-go-to .frame {
+    display: fle;
     position: absolute;
     width: 1440px;
     height: 1430px;
@@ -43,24 +44,7 @@ html, body {
     background-color: #ffffff;
     overflow: hidden;
   }
-
-  .home-contact-go-to .grupoProjetos {
-    position: absolute;
-    width: 1440px;
-    height: 1430px;
-    left: 0px;
-    background-color: #ffffff;
-    overflow: hidden;
-  }
-  
-  .home-contact-go-to .group {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    top: 20px;
-    left: 126px;
-  }
-    
+ 
 /* Base para os poligonos */
 
   .home-contact-go-to .polygon-8 {
@@ -412,10 +396,9 @@ html, body {
   
   .home-contact-go-to .caixaNavBar {
     position: absolute;
-    width: 2984px;
-    height: 480px;
-    top: -353px;
-    left: -869px;
+    width: 100%;
+    height: 10%;
+    top: -12%;
   }
 
   .home-contact-go-to .overlapTitulo {
