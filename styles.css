@@ -1,8 +1,13 @@
+.html, body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
 .portfolio-section {
   background: linear-gradient(0deg, #3d3d3d 0%, #3d3d3d 100%), rgba(127, 127, 127, 0.5);
   background-blend-mode: overlay, luminosity;
   display: flex;
-  padding: 25px 0 0;
   flex-direction: column;
   overflow: hidden;
 }
@@ -17,6 +22,7 @@
   justify-content: space-between;
   padding: 0 1px;
   font: 400 16px/1.2 Inter, sans-serif;
+  z-index: 1;
 }
 
 .logo {
@@ -49,11 +55,20 @@
   border: 1px solid #fcf9f7;
 }
 
+.fundo-poligonos {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 5%;
+  margin: 0px;
+}
+
 .main-title {
   color: #fcf9f7;
   align-self: center;
   margin-top: 39px;
   font: 400 61px/1.2 Inter, sans-serif;
+  z-index: 1;
 }
 
 .main-description {
@@ -61,6 +76,7 @@
   margin-top: 29px;
   width: 100%;
   font: 400 20px/1.2 Inter, sans-serif;
+  z-index: 1;
 }
 
 .sub-description {
@@ -100,6 +116,76 @@
   overflow: hidden;
   font: 400 16px/1.2 Inter, sans-serif;
   color: #fcf9f7;
+}
+
+.grupoPoligonoContact {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  opacity: 50%;
+}
+
+.grupoPoligonoContact2 {
+  position: absolute;
+  left: 1100px;
+  top: 50px;
+  rotate: 55deg;
+  scale: 1.2;
+  opacity: 50%;
+}
+
+.grupoPoligonoContact3 {
+  position: absolute;
+  left: 950px;
+  top: 600px;
+  rotate: 25deg;
+  scale: 1.2;
+  opacity: 50%;
+}
+
+.grupoPoligonoContact4 {
+  position: absolute;
+  left: 1180px;
+  top: 1050px;
+  rotate: 120deg;
+  scale: 0.8;
+  opacity: 50%;
+}
+
+.grupoPoligonoContact5 {
+  position: absolute;
+  left: 300px;
+  top: 500px;
+  rotate: 30deg;
+  scale: 1.6;
+  opacity: 50%;
+}
+
+.grupoPoligonoContact6 {
+  position: absolute;
+  left: 550px;
+  top: 150px;
+  rotate: 70deg;
+  scale: 0.6;
+  opacity: 50%;
+}
+
+.grupoPoligonoContact7 {
+  position: absolute;
+  left: 50px;
+  top: 1000px;
+  rotate: 90deg;
+  scale: 1.4;
+  opacity: 50%;
+}
+
+.grupoPoligonoContact8 {
+  position: absolute;
+  left: 600px;
+  top: 900px;
+  rotate: 70deg;
+  scale: 0.6;
+  opacity: 50%;
 }
 
 .footer-content {
@@ -162,11 +248,11 @@
 }
 
 .container-image-grid {
-
-  height: 100%;
+  display: flex;
+  justify-content: center;
   margin-top: 80px;
   margin-bottom: 80px;
-  align-self: center;
+  z-index: 1;
 }
 
 .image-grid {
@@ -174,7 +260,6 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 40px;
   width: 1196px;
-  justify-content: center;
 }
 
 .image-item p {
@@ -211,6 +296,7 @@
   .footer {
     max-width: 100%;
     margin: auto;
+    z-index: 1;
   }
 
   .footer-content {
@@ -222,4 +308,4 @@
     font-size: 40px;
     line-height: 54px;
   }
-}
+
