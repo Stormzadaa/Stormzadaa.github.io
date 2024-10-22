@@ -124,14 +124,14 @@
 .grupoPoligonoContact {
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: 70px;
   opacity: 50%;
 }
 
 .grupoPoligonoContact2 {
   position: absolute;
-  left: 1100px;
-  top: 50px;
+  left: 1150px;
+  top: 130px;
   rotate: 55deg;
   scale: 1.2;
   opacity: 50%;
