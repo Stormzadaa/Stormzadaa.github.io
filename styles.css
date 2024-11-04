@@ -895,12 +895,12 @@
   align-self: center;
   margin-top: 20px;
   margin-bottom: 0px;
-  font-family: var(--h6-font-family);
-  font-weight: var(--h6-font-weight);
-  font-size: var(--h6-font-size);
-  font-style: var(--h6-font-style);
-  letter-spacing: var(--h6-letter-spacing);
-  line-height: var(--h6-line-height);
+  font-family: var(--h5-font-family);
+  font-weight: var(--h5-font-weight);
+  font-size: var(--h5-font-size);
+  font-style: var(--h5-font-style);
+  letter-spacing: var(--h5-letter-spacing);
+  line-height: var(--h5-line-height);
   z-index: 1;
   max-width: 100%;
 }
@@ -1084,13 +1084,9 @@
 .footer-content {
   display: flex;
   flex-direction: column;
-  position: relative;
-  min-height: 264px;
-  width: 100%;
-  align-items: start;
-  justify-content: center;
-  padding: 44px 70px;
   align-items: center;
+  width: 100%;
+  padding: 44px 20px; /* Adjust padding as needed */
 }
 
 .footer-background {
@@ -1103,42 +1099,41 @@
 }
 
 .footer-sections {
-  position: relative;
   display: flex;
-  width: 751px;
-  max-width: 100%;
-  align-items: start;
-  gap: 20px;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 40px;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 2px 1px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .footer-section {
   display: flex;
-  margin-top: -11px;
   flex-direction: column;
 }
 
 .footer-title {
+  font-family: var(--h5-font-family);
+  font-weight: var(--h5-font-weight);
+  font-size: var(--h5-font-size);
+  font-style: var(--h5-font-style);
+  letter-spacing: var(--h5-letter-spacing);
+  line-height: var(--h5-line-height);
+  margin: 0;
+}
+
+.footer-description {
   font-family: var(--h7-font-family);
   font-weight: var(--h7-font-weight);
   font-size: var(--h7-font-size);
   font-style: var(--h7-font-style);
   letter-spacing: var(--h7-letter-spacing);
   line-height: var(--h7-line-height);
-  margin: 0;
-}
-
-.footer-description {
-  font-family: var(--h8-font-family);
-  font-weight: var(--h8-font-weight);
-  font-size: var(--h8-font-size);
-  font-style: var(--h8-font-style);
-  letter-spacing: var(--h8-letter-spacing);
-  line-height: var(--h8-line-height);
-  margin-top: 35px;
-  margin-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .header {
@@ -1206,21 +1201,5 @@
   bottom: 0;
 
 }
-
-  .footer {
-    max-width: 100%;
-    margin: auto;
-    z-index: 1;
-  }
-
-  .footer-content {
-    max-width: 100%;
-    padding: 0;
-  }
-
-  .footer-title {
-    font-size: 40px;
-    line-height: 54px;
-  }
 
 }
