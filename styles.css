@@ -882,14 +882,6 @@
     width: 30px;
   }
 
-  .fundo-poligonos {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    overflow: hidden;
-  }
-
   .main-title {
   color: #fcf9f7;
   align-self: center;
@@ -953,6 +945,15 @@
   padding: 139px 0 174px;
   color: #1d1d1d;
 }
+
+  .fundo-poligonos {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    overflow: hidden;
+    display: none;  /* Esconde o fundo */
+  }
 
 .grupoPoligonoContact {
   position: absolute;
@@ -1086,16 +1087,16 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 44px 20px; /* Adjust padding as needed */
 }
 
-.footer-background {
+.fundo-footer {
   position: absolute;
   inset: 0;
   height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: center;
+  scale: 0.6;
 }
 
 .footer-sections {
@@ -1113,6 +1114,9 @@
 .footer-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
 }
 
 .footer-title {
@@ -1141,17 +1145,6 @@
   margin: auto;
   z-index: 1;
 }
-
-.footer-content {
-  max-width: 100%;
-  padding: 0;
-}
-
-.footer-title {
-  font-size: 40px;
-  line-height: 54px;
-}
-
 
 .container-image-grid {
   display: flex;
