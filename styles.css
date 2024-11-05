@@ -1,3 +1,24 @@
+/* Not web-safe fonts import */
+
+@font-face {
+  font-family: 'Futura BK';
+  src: url('Assets/') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('Assets/ProximaNova-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --h1-font-family: 'Futura BK', 'Proxima Nova', Helvetica, sans-serif;
+  --h1-font-weight: 400;
+}
+
 /* Breakpoint for Desktop/Laptop */
 
 @media (min-width: 1280px) {
@@ -273,6 +294,9 @@
   flex-direction: column;
   overflow: hidden;
   color: #fcf9f7;
+  max-width: 100%;
+  margin: auto;
+  z-index: 1;
 }
 
 .footer-content {
@@ -331,12 +355,6 @@
   line-height: var(--h7-line-height);
   margin-top: 0px;
   margin-bottom: 0px;
-}
-
-.footer {
-  max-width: 100%;
-  margin: auto;
-  z-index: 1;
 }
 
 .header {
@@ -486,12 +504,12 @@
     align-self: center;
     margin-top: 20px;
     margin-bottom: 0px;
-    font-family: var(--h5-font-family);
-    font-weight: var(--h4-font-weight);
+    font-family: var(--h1-font-family);
+    font-weight: var(--h1-font-weight);
     font-size: var(--h4-font-size);
-    font-style: var(--h4-font-style);
-    letter-spacing: var(--h4-letter-spacing);
-    line-height: var(--h4-line-height);
+    font-style: var(--h1-font-style);
+    letter-spacing: var(--h1-letter-spacing);
+    line-height: var(--h1-line-height);
     z-index: 1;
     max-width: 100%;
   }
@@ -618,6 +636,9 @@
     flex-direction: column;
     overflow: hidden;
     color: #fcf9f7;
+    max-width: 100%;
+    margin: auto;
+    z-index: 1;
   }
 
   .footer-content {
@@ -659,30 +680,24 @@
   }
 
   .footer-title {
-    font-family: var(--h5-font-family);
-    font-weight: var(--h5-font-weight);
+    font-family: var(--h1-font-family);
+    font-weight: var(--h1-font-weight);
     font-size: var(--h5-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
+    font-style: var(--h1-font-style);
+    letter-spacing: var(--h1-letter-spacing);
+    line-height: var(--h1-line-height);
     margin: 0;
   }
 
   .footer-description {
-    font-family: var(--h7-font-family);
-    font-weight: var(--h6-font-weight);
-    font-size: var(--h6-font-size);
-    font-style: var(--h6-font-style);
-    letter-spacing: var(--h6-letter-spacing);
-    line-height: var(--h6-line-height);
+    font-family: var(--h5-font-family);
+    font-weight: var(--h5-font-weight);
+    font-size: var(--h7-font-size);
+    font-style: var(--h5-font-style);
+    letter-spacing: var(--h5-letter-spacing);
+    line-height: var(--h5-line-height);
     margin-top: 0px;
     margin-bottom: 0px;
-  }
-
-  .footer {
-    max-width: 100%;
-    margin: auto;
-    z-index: 1;
   }
 
   .image-item {
@@ -729,12 +744,12 @@
   }
 
   .image-container p {
-    font-family: var(--h5-font-family);
-    font-weight: var(--h5-font-weight);
+    font-family: var(--h1-font-family);
+    font-weight: var(--h1-font-weight);
     font-size: var(--h5-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
+    font-style: var(--h1-font-style);
+    letter-spacing: var(--h1-letter-spacing);
+    line-height: var(--h1-line-height);
     color: #fcf9f7;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -831,12 +846,12 @@
   align-self: center;
   margin-top: 20px;
   margin-bottom: 0px;
-  font-family: var(--h5-font-family);
-  font-weight: var(--h5-font-weight);
+  font-family: var(--h1-font-family);
+  font-weight: var(--h1-font-weight);
   font-size: var(--h5-font-size);
-  font-style: var(--h5-font-style);
-  letter-spacing: var(--h5-letter-spacing);
-  line-height: var(--h5-line-height);
+  font-style: var(--h1-font-style);
+  letter-spacing: var(--h1-letter-spacing);
+  line-height: var(--h1-line-height);
   z-index: 1;
   max-width: 100%;
   }
@@ -856,12 +871,12 @@
     overflow: hidden;
     color: #fcf9f7;
     margin: 0px;
-    font-family: var(--h7-font-family);
-    font-weight: var(--h7-font-weight);
-    font-size: var(--h7-font-size);
-    font-style: var(--h7-font-style);
-    letter-spacing: var(--h7-letter-spacing);
-    line-height: var(--h7-line-height);
+    font-family: var(--h5-font-family);
+    font-weight: var(--h5-font-weight);
+    font-size: var(--h-font-size);
+    font-style: var(--h5-font-style);
+    letter-spacing: var(--h5-letter-spacing);
+    line-height: var(--h5-line-height);
     z-index: 1;
   }
 
@@ -963,6 +978,9 @@
     flex-direction: column;
     overflow: hidden;
     color: #fcf9f7;
+    max-width: 100%;
+    margin: auto;
+    z-index: 1;
   }
 
   .footer-content {
@@ -1003,30 +1021,24 @@
   }
 
   .footer-title {
-    font-family: var(--h5-font-family);
-    font-weight: var(--h5-font-weight);
+    font-family: var(--h1-font-family);
+    font-weight: var(--h1-font-weight);
     font-size: var(--h5-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
+    font-style: var(--h1-font-style);
+    letter-spacing: var(--h1-letter-spacing);
+    line-height: var(--h1-line-height);
     margin: 0;
   }
 
   .footer-description {
-    font-family: var(--h7-font-family);
-    font-weight: var(--h7-font-weight);
+    font-family: var(--h5-font-family);
+    font-weight: var(--h5-font-weight);
     font-size: var(--h7-font-size);
-    font-style: var(--h7-font-style);
-    letter-spacing: var(--h7-letter-spacing);
-    line-height: var(--h7-line-height);
+    font-style: var(--h5-font-style);
+    letter-spacing: var(--h5-letter-spacing);
+    line-height: var(--h5-line-height);
     margin-top: 0px;
     margin-bottom: 0px;
-  }
-
-  .footer {
-    max-width: 100%;
-    margin: auto;
-    z-index: 1;
   }
 
   .container-image-grid {
@@ -1071,12 +1083,12 @@
   }
 
   .image-container p {
-    font-family: var(--h6-font-family);
-    font-weight: var(--h6-font-weight);
+    font-family: var(--h1-font-family);
+    font-weight: var(--h1-font-weight);
     font-size: var(--h6-font-size);
-    font-style: var(--h6-font-style);
-    letter-spacing: var(--h6-letter-spacing);
-    line-height: var(--h6-line-height);
+    font-style: var(--h1-font-style);
+    letter-spacing: var(--h1-letter-spacing);
+    line-height: var(--h1-line-height);
     color: #fcf9f7;
     margin-top: 0px;
     margin-bottom: 0px;
