@@ -102,7 +102,7 @@
 
 .fundo-poligonos {
   position: absolute;
-  top: 45px;
+  top: 0px;
   width: 100%;
   min-height: 100%; /* Allows it to stretch with content */
   background-image: url('Assets/GroupoPoligonosMobile.svg');
@@ -115,46 +115,53 @@
 .main-title {
   color: #fcf9f7;
   align-self: center;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 60px;
+  margin-bottom: 0px;
   font-family: var(--h1-font-family);
   font-weight: var(--h1-font-weight);
   font-size: var(--h1-font-size);
   font-style: var(--h1-font-style);
   letter-spacing: var(--h1-letter-spacing);
   line-height: var(--h1-line-height);
+  z-index: 1;
   max-width: 100%;
 }
 
 .hold-description {
   width: 100%;
   height: 100%;
+  margin-top: 20px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .main-description {
+  white-space: nowrap;
+  overflow: hidden;
   color: #fcf9f7;
   margin: 0px;
   font-family: var(--h6-font-family);
-  font-weight: var(--h6-font-weight);
-  font-size: var(--h6-font-size);
-  font-style: var(--h6-font-style);
-  letter-spacing: var(--h6-letter-spacing);
-  line-height: var(--h6-line-height);
+  font-weight: var(--h5-font-weight);
+  font-size: var(--h5-font-size);
+  font-style: var(--h5-font-style);
+  letter-spacing: var(--h5-letter-spacing);
+  line-height: var(--h5-line-height);
   z-index: 1;
 }
 
 .main-description2 {
+  white-space: nowrap;
+  overflow: hidden;
   color: #fcf9f7;
   margin: 0px;
-  font-family: var(--h8-font-family);
-  font-weight: var(--h8-font-weight);
-  font-size: var(--h8-font-size);
-  font-style: var(--h8-font-style);
-  letter-spacing: var(--h8-letter-spacing);
-  line-height: var(--h8-line-height);
+  font-family: var(--h7-font-family);
+  font-weight: var(--h-font-weight);
+  font-size: var(--h6-font-size);
+  font-style: var(--h6-font-style);
+  letter-spacing: var(--h6-letter-spacing);
+  line-height: var(--h6-line-height);
   z-index: 1;
   opacity: 20%;
 }
@@ -169,79 +176,9 @@
   color: #1d1d1d;
 }
 
-.grupoPoligonoContact {
-  position: absolute;
-  left: 0px;
-  top: 100px;
-  opacity: 50%;
-}
-
-.grupoPoligonoContact2 {
-  position: absolute;
-  left: 1150px;
-  top: 130px;
-  rotate: 55deg;
-  scale: 1.2;
-  opacity: 50%;
-}
-
-.grupoPoligonoContact3 {
-  position: absolute;
-  left: 950px;
-  top: 600px;
-  rotate: 25deg;
-  scale: 1.2;
-  opacity: 50%;
-}
-
-.grupoPoligonoContact4 {
-  position: absolute;
-  left: 1180px;
-  top: 1050px;
-  rotate: 120deg;
-  scale: 0.8;
-  opacity: 50%;
-}
-
-.grupoPoligonoContact5 {
-  position: absolute;
-  left: 300px;
-  top: 500px;
-  rotate: 30deg;
-  scale: 1.6;
-  opacity: 50%;
-}
-
-.grupoPoligonoContact6 {
-  position: absolute;
-  left: 550px;
-  top: 150px;
-  rotate: 70deg;
-  scale: 0.6;
-  opacity: 50%;
-}
-
-.grupoPoligonoContact7 {
-  position: absolute;
-  left: 50px;
-  top: 1000px;
-  rotate: 90deg;
-  scale: 1.4;
-  opacity: 50%;
-}
-
-.grupoPoligonoContact8 {
-  position: absolute;
-  left: 600px;
-  top: 900px;
-  rotate: 70deg;
-  scale: 0.6;
-  opacity: 50%;
-}
-
 .grupoPoligonoFooter {
   position: absolute;
-  left: 100%;
+  left: 110%;
   top: -50%;
   rotate: 120deg;
   scale: 0.5;
@@ -268,7 +205,7 @@
 
 .grupoPoligonoFooter4 {
   position: absolute;
-  left: -10%;
+  left: 0%;
   top: 50%;
   rotate: 70deg;
   scale: 1;
@@ -277,7 +214,7 @@
 
 .grupoPoligonoFooter5 {
   position: absolute;
-  left: 80%;
+  left: 85%;
   top: 60%;
   rotate: 70deg;
   scale: 0.6;
@@ -324,8 +261,8 @@
   gap: auto; /* Gap between columns */
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding-top: 40px; /* Padding top of 20px */
-  padding-bottom: 40px; /* Padding bottom of 20px */
+  padding-top: 60px; /* Padding top of 20px */
+  padding-bottom: 60px; /* Padding bottom of 20px */
 }
 
 .footer-section {
@@ -333,7 +270,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 20px;
+  gap: 30px;
 }
 
 .footer-title {
@@ -362,57 +299,68 @@
   flex-wrap: wrap;
 }
 
+
+.image-item {
+  text-align: center;
+  font-weight: bold;
+}
+
 .container-image-grid {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
-  margin-bottom: 80px;
-  padding-left: 122px;
-  padding-right: 122px;
+  width: 100%;
   z-index: 1;
 }
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 40px;
-}
-
-.image-item p {
-    text-align: center;
-    font-family: var(--h5-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h5-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
-    margin-top: 14px;
-    margin-bottom: 0px;
-    color: #fcf9f7
+  grid-template-columns: repeat(4,1fr); /* Change to a single column */
+  grid-gap: 20px; /* Adjust gap as needed */
+  margin-bottom: 60px;
+  margin-top: 30px;
+  width: 100%;
+  padding-left: 122px;
+  padding-right: 122px;
 }
 
 .image-container {
-    width: 269px;
-    height: 381px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff; /* Adiciona fundo branco ao container */
+  width: 100%; /* Make the container full width */
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Grey background for the container */
+  box-sizing: border-box;
+  position: relative;
 }
 
 .image-container img {
-    width: 100%;
-    height: auto; /* Mantém a proporção */
-    max-height: 100%; /* Limita a altura da imagem ao container */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;/* Adjusts the position between the top and center */
 }
 
-.image-item {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
+.image-container p {
+  font-family: var(--h1-font-family);
+  font-weight: var(--h1-font-weight);
+  font-size: var(--h5-font-size);
+  font-style: var(--h1-font-style);
+  letter-spacing: var(--h1-letter-spacing);
+  line-height: var(--h1-line-height);
+  color: #fcf9f7;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-color: #525252b2; /* Grey background for the project name */
+  width: 100%; /* Make the project name full width */
+  text-align: center; /* Center the text */
+  padding: 5px; /* Add padding if needed */
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
 }
-
 }
 
 /* Breakpoint for medium screen */
@@ -502,7 +450,7 @@
     .main-title {
     color: #fcf9f7;
     align-self: center;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 0px;
     font-family: var(--h1-font-family);
     font-weight: var(--h1-font-weight);
@@ -517,7 +465,7 @@
   .hold-description {
     width: 100%;
     height: 100%;
-    margin-top: 12px;
+    margin-top: 16px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -715,7 +663,7 @@
   .image-grid {
     display: grid;
     grid-template-columns: repeat(2,1fr); /* Change to a single column */
-    grid-gap: 60px; /* Adjust gap as needed */
+    grid-gap: 20px; /* Adjust gap as needed */
     margin-bottom: 40px;
     margin-top: 20px;
     width: 100%;
@@ -860,7 +808,7 @@
     width: 100%;
     height: 100%;
     margin-top: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1008,8 +956,8 @@
     gap: 40px;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   .footer-section {
@@ -1054,7 +1002,9 @@
     grid-gap: 20px; /* Adjust gap as needed */
     margin-bottom: 20px;
     width: 100%;
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
   }
 
   .image-item {
@@ -1064,7 +1014,7 @@
 
   .image-container {
     width: 100%; /* Make the container full width */
-    height: 220px;
+    height: 160px;
     overflow: hidden;
     display: flex;
     flex-direction: column; /* Stack items vertically */
