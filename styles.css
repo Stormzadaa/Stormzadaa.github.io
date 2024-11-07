@@ -23,12 +23,16 @@
 
 @media (min-width: 1280px) {
 
-.html, body {
+.html, body{
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+}
+
+.body {
+  padding-top: 100px; /* Adjust this value based on the height of your header */
 }
 
 .portfolio-section {
@@ -47,7 +51,11 @@
   width: 100%;
   height: 100px;
   background-color: var(--Background-DM);
-  z-index: 1;
+  max-width: 100%;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 
 .headerBox {
@@ -55,8 +63,8 @@
   max-width: 100%;
   padding-left: 122px;
   padding-right: 122px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   color: #fcf9f7;
   justify-content: space-between;
   font-family: var(--h7-font-family);
@@ -79,6 +87,15 @@
  display: none;
 }
 
+.nav-underline {
+  display: none;
+  /* other styles */
+}
+
+.nav-underline.active {
+  display: block;
+  /* other styles */
+}
 
 .nav-links {
   display: flex;
@@ -125,8 +142,15 @@
   font-style: var(--h1-font-style);
   letter-spacing: var(--h1-letter-spacing);
   line-height: var(--h1-line-height);
-  z-index: 1;
   max-width: 100%;
+}
+
+.hold-title {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hold-description {
@@ -296,11 +320,6 @@
   margin-bottom: 0px;
 }
 
-.header {
-  max-width: 100%;
-  flex-wrap: wrap;
-}
-
 
 .image-item {
   text-align: center;
@@ -376,6 +395,10 @@
     height: 100%;
   }
 
+  .body {
+    padding-top: 70px; /* Adjust this value based on the height of your header */
+  }
+
   .portfolio-section {
     background: var(--Background-DM);
     background-blend-mode: overlay, luminosity;
@@ -390,9 +413,13 @@
   .header{
     position: relative;
     width: 100%;
-    height: 100%;
-    background: var(--Background-DM);
-    z-index: 1;
+    height: 70px;
+    background-color: var(--Background-DM);
+    max-width: 100%;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    z-index: 2;
   }
 
   .headerBox {
@@ -400,8 +427,8 @@
     max-width: 100%;
     padding-left: 60px;
     padding-right: 60px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     color: #fcf9f7;
     justify-content: space-between;
     font-family: var(--h7-font-family);
@@ -412,6 +439,16 @@
     line-height: var(--h6-line-height);
     z-index: 1;
     box-sizing: border-box;
+  }
+
+  .nav-underline {
+    display: none;
+    /* other styles */
+  }
+  
+  .nav-underline.active {
+    display: block;
+    /* other styles */
   }
 
   .nav-links {
@@ -461,8 +498,15 @@
     font-style: var(--h1-font-style);
     letter-spacing: var(--h1-letter-spacing);
     line-height: var(--h1-line-height);
-    z-index: 1;
     max-width: 100%;
+  }
+
+  .hold-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .hold-description {
@@ -725,6 +769,10 @@
     width: 100%;
     height: 100%;
   }
+  
+  .body {
+    padding-top: 70px; /* Adjust this value based on the height of your header */
+  }
 
   .portfolio-section {
     background: var(--Background-DM);
@@ -740,9 +788,13 @@
   .header{
     position: relative;
     width: 100%;
-    height: 100%;
-    background: var(--Background-DM);
-    z-index: 1;
+    height: 70px;
+    background-color: var(--Background-DM);
+    max-width: 100%;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    z-index: 2;
   }
 
   .headerBox {
@@ -750,8 +802,8 @@
     max-width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     color: #fcf9f7;
     justify-content: space-between;
     font-family: var(--h6-font-family);
@@ -803,8 +855,15 @@
   font-style: var(--h1-font-style);
   letter-spacing: var(--h1-letter-spacing);
   line-height: var(--h1-line-height);
-  z-index: 1;
   max-width: 100%;
+  }
+
+  .hold-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hold-description {
