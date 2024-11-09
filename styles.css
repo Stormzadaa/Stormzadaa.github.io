@@ -295,12 +295,25 @@
 
 .fundo-footer {
   position: absolute;
-  inset: 0;
-  height: 100%;
   width: 100%;
-  object-fit: cover;
-  object-position: center;
-  scale: 0.6;
+  min-height: 100%;
+  background-image: url('Assets/GroupoPoligonosMobile.svg');
+  background-repeat: cover;
+  background-size: 5% auto; 
+  align-self: center;
+  opacity: 40%;
+  animation: moveDown 10s linear infinite; /* Upward movement only */
+  overflow: hidden; /* Prevents overflow */
+}
+
+/* Keyframes for the upward movement */
+@keyframes moveDown {
+  0% {
+    background-position: 0% 0%; /* Start at the bottom */
+  }
+  100% {
+    background-position: -0% 100%; /* Move up vertically */
+  }
 }
 
 .footer-sections {
@@ -710,13 +723,27 @@
 
   .fundo-footer {
     position: absolute;
-    inset: 0;
-    height: 100%;
     width: 100%;
-    object-fit: cover;
-    object-position: center;
-    scale: 0.6;
+    min-height: 100%;
+    background-image: url('Assets/GroupoPoligonosMobile.svg');
+    background-repeat: cover;
+    background-size: 5% auto; 
+    align-self: center;
+    opacity: 40%;
+    animation: moveDown 10s linear infinite; /* Upward movement only */
+    overflow: hidden; /* Prevents overflow */
   }
+  
+  /* Keyframes for the upward movement */
+  @keyframes moveDown {
+    0% {
+      background-position: 0% 0%; /* Start at the bottom */
+    }
+    100% {
+      background-position: -0% 100%; /* Move up vertically */
+    }
+  }
+  
 
   .footer-sections {
     display: flex;
@@ -1103,13 +1130,27 @@
 
   .fundo-footer {
     position: absolute;
-    inset: 0;
-    height: 100%;
     width: 100%;
-    object-fit: cover;
-    object-position: center;
-    scale: 0.6;
+    min-height: 100%;
+    background-image: url('Assets/GroupoPoligonosMobile.svg');
+    background-repeat: cover;
+    background-size: 5% auto; 
+    align-self: center;
+    opacity: 40%;
+    animation: moveDown 10s linear infinite; /* Upward movement only */
+    overflow: hidden; /* Prevents overflow */
   }
+  
+  /* Keyframes for the upward movement */
+  @keyframes moveDown {
+    0% {
+      background-position: 0% 0%; /* Start at the bottom */
+    }
+    100% {
+      background-position: -0% 100%; /* Move up vertically */
+    }
+  }
+  
 
   .footer-sections {
     display: flex;
