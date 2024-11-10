@@ -115,4 +115,39 @@ animateAndNavigate(document.getElementById("contactLink"), "#contact");
 
 // MAIN BODY ANIMATIONS
 
+document.addEventListener("DOMContentLoaded", function () {
+  // Select the footer element
+  const footer = document.querySelector('.footer');
+
+  // Flag to track if the footer has been shown
+  let footerShown = false;
+
+  // Create an intersection observer
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        // If the footer is in view and has not been shown before (show it)
+        if (entry.isIntersecting && !footerShown) {
+          footer.classList.remove('hide-footer'); // Ensure it's not hidden
+          footer.classList.add('show-footer');
+          footerShown = true; // Set flag to true after showing
+        } 
+        // If the footer is out of view and has been shown (hide it)
+        else if (!entry.isIntersecting && footerShown) {
+          footer.classList.remove('show-footer'); // Ensure it's not shown
+          footer.classList.add('hide-footer');
+          footerShown = false; // Reset flag after hiding
+        }
+      });
+    },
+    {
+      root: null, // Use the viewport as the root
+      threshold: 0.1 // Trigger when 10% of the footer is visible
+    }
+  );
+
+  // Start observing the footer
+  observer.observe(footer);
+});
+
 
