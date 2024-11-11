@@ -140,7 +140,7 @@
   background-repeat: repeat;
   background-size: 10% auto; 
   align-self: center;
-  opacity: 40%;
+  opacity: 20%;
 }
 
 .main-title {
@@ -242,7 +242,7 @@
   background-image: url('Assets/GroupoPoligonosMobile.svg');
   background-repeat: repeat; /* Repeats the background image vertically */
   background-size: 10% auto;
-  opacity: 60%;
+  opacity: 20%;
 }
 
 
@@ -597,7 +597,7 @@
     background-repeat: repeat;
     background-size: 30% auto; 
     align-self: center;
-    opacity: 40%;
+    opacity: 20%;
   }
 
   .footer {
@@ -630,7 +630,7 @@
     background-repeat: repeat;
     background-size: 40% auto; 
     align-self: center;
-    opacity: 40%;
+    opacity: 20%;
   }
  
   .footer-sections {
@@ -967,12 +967,12 @@
     background-repeat: cover;
     background-size: 30% auto; 
     align-self: center;
-    opacity: 60%;
+    opacity: 20%;
   }
 
   .footer {
     position: relative;
-    background: var(--Background-FT);
+  background: var(--Background-FT);
     align-self: stretch;
     display: flex;
     margin-top: 79px;
@@ -1000,7 +1000,7 @@
     background-repeat: repeat;
     background-size: 30% auto; 
     align-self: center;
-    opacity: 60%;
+    opacity: 20%;
   }
  
   .footer-sections {

@@ -91,15 +91,46 @@ logo.addEventListener("click", function (event) {
 
 // Function to animate and navigate to a target URL
 function animateAndNavigate(element, targetUrl) {
+  // Variable to store whether the link is being clicked
+  let isClicking = false;
+
+  // Mouseover (hover) event to scale on hover
+  element.addEventListener("mouseover", function () {
+    if (!isClicking) { // Only scale if not currently in the click animation state
+      element.style.transition = "transform 0.2s ease"; // Add smooth transition for hover
+      element.style.transform = "scale(1.2)"; // Scale up on hover
+    }
+  });
+
+  // Mouseout event to remove scaling after hover
+  element.addEventListener("mouseout", function () {
+    if (!isClicking) { // Only remove scaling if not in the click state
+      element.style.transform = "scale(1)"; // Reset scale
+    }
+  });
+
+  // Click event to scale on click
   element.addEventListener("click", function (event) {
     event.preventDefault(); // Prevent immediate navigation
-    element.style.transition = "transform 0.2s ease";
+
+    // Set the clicking state to true
+    isClicking = true;
+
+    // Apply scaling on click
+    element.style.transition = "transform 0.2s ease"; // Add smooth transition for click animation
     element.style.transform = "scale(1.2)"; // Animate scale on click
 
+    // After the click animation completes, navigate to the target URL
     setTimeout(() => {
-      element.style.transform = "scale(1)"; // Reset scale after animation
-      window.location.href = targetUrl; // Navigate to target URL
-    }, 200);
+      // Reset the scale back to normal after the click animation
+      element.style.transform = "scale(1)";
+
+      // Allow hover to apply again after the click animation finishes
+      isClicking = false;
+
+      // Navigate to the target URL
+      window.location.href = targetUrl;
+    }, 200); // Duration of the click scaling animation
   });
 }
 
