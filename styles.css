@@ -134,26 +134,26 @@
 
 .fundo-poligonos {
   position: absolute;
-  width: 100%;
-  min-height: 100%;
+  width: 200vw;
+  height: 200vh;
   background-image: url('Assets/GroupoPoligonosMobile.svg');
-  background-repeat: cover;
-  background-size: 10% auto; 
+  background-repeat: repeat;
+  background-size: 20%; /* Adjust the size to repeat more frequently */
   align-self: center;
   opacity: 40%;
-  animation: moveUp 60s linear infinite; /* Upward movement only */
-  overflow: hidden; /* Prevents overflow */
+  animation: spin 30s linear infinite;
+  transform-origin: center;
 }
 
-/* Keyframes for the upward movement */
-@keyframes moveUp {
+@keyframes spin {
   0% {
-    background-position: 0% 0%; /* Start at the bottom */
+    transform: rotate(0deg);
   }
   100% {
-    background-position: 0% -100%; /* Move up vertically */
+    transform: rotate(360deg);
   }
 }
+
 
 .main-title {
   color: #fcf9f7;
@@ -250,26 +250,13 @@
 .fundo-footer {
   position: absolute;
   width: 100%;
-  min-height: 100%;
+  height: 200%; /* Ensure enough space for both background images to scroll */
   background-image: url('Assets/GroupoPoligonosMobile.svg');
-  background-repeat: repeat;
-  background-size: 10% auto; 
-  align-self: center;
+  background-repeat: repeat; /* Repeats the background image vertically */
+  background-size: 10% auto;
   opacity: 60%;
-  animation: moveDown 5s linear infinite; /* Upward movement only */
-  overflow: hidden; /* Prevents overflow */
-  pointer-events: none;
 }
 
- /* Keyframes for the upward movement */
- @keyframes moveDown {
-  0% {
-    background-position: 0% 0%; /* Start at the bottom */
-  }
-  100% {
-    background-position: 0% -1000%; /* Move up vertically */
-  }
-}
 
 .footer-sections {
   display: flex;
@@ -619,24 +606,12 @@
     width: 100%;
     min-height: 100%;
     background-image: url('Assets/GroupoPoligonosMobile.svg');
-    background-repeat: cover;
-    background-size: 10% auto; 
+    background-repeat: repeat;
+    background-size: 30% auto; 
     align-self: center;
     opacity: 40%;
-    animation: moveUp 100s linear infinite; /* Upward movement only */
-    overflow: hidden; /* Prevents overflow */
   }
-  
-  /* Keyframes for the upward movement */
-  @keyframes moveUp {
-    0% {
-      background-position: 0% 0%; /* Start at the bottom */
-    }
-    100% {
-      background-position: 0% -100%; /* Move up vertically */
-    }
-  }
- 
+
   .footer {
     position: relative;
     background: var(--foundation-browndark-active);
@@ -665,25 +640,11 @@
     min-height: 100%;
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: repeat;
-    background-size: 10% auto; 
+    background-size: 30% auto; 
     align-self: center;
     opacity: 40%;
-    animation: moveDown 30s linear infinite; /* Upward movement only */
-    overflow: hidden; /* Prevents overflow */
-    pointer-events: none;
   }
-  
-  /* Keyframes for the upward movement */
-  @keyframes moveDown {
-    0% {
-      background-position: 0% 0%; /* Start at the bottom */
-    }
-    100% {
-      background-position: 0% 1000%; /* Move up vertically */
-    }
-  }
-  
-
+ 
   .footer-sections {
     display: flex;
     flex-direction: row;
@@ -1016,21 +977,9 @@
     min-height: 100%;
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: cover;
-    background-size: 20% auto; 
+    background-size: 30% auto; 
     align-self: center;
     opacity: 60%;
-    animation: moveUp 100s linear infinite; /* Upward movement only */
-    overflow: hidden; /* Prevents overflow */
-  }
-  
-  /* Keyframes for the upward movement */
-  @keyframes moveUp {
-    0% {
-      background-position: 0% 0%; /* Start at the bottom */
-    }
-    100% {
-      background-position: 0% -100%; /* Move up vertically */
-    }
   }
 
   .footer {
@@ -1061,25 +1010,11 @@
     min-height: 100%;
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: repeat;
-    background-size: 20% auto; 
+    background-size: 30% auto; 
     align-self: center;
     opacity: 60%;
-    animation: moveDown 8s linear infinite; /* Upward movement only */
-    overflow: hidden; /* Prevents overflow */
-    pointer-events: none;
   }
-  
-  /* Keyframes for the upward movement */
-  @keyframes moveDown {
-    0% {
-      background-position: 0% 0%; /* Start at the bottom */
-    }
-    100% {
-      background-position: 0% 100%; /* Move up vertically */
-    }
-  }
-  
-
+ 
   .footer-sections {
     display: flex;
     flex-direction: column;
