@@ -134,26 +134,14 @@
 
 .fundo-poligonos {
   position: absolute;
-  width: 200vw;
-  height: 200vh;
+  width: 100%;
+  min-height: 100%;
   background-image: url('Assets/GroupoPoligonosMobile.svg');
   background-repeat: repeat;
-  background-size: 20%; /* Adjust the size to repeat more frequently */
+  background-size: 10% auto; 
   align-self: center;
   opacity: 40%;
-  animation: spin 30s linear infinite;
-  transform-origin: center;
 }
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 
 .main-title {
   color: #fcf9f7;
@@ -228,7 +216,7 @@
 
 .footer {
   position: relative;
-  background: var(--foundation-browndark-active);
+  background: var(--Background-FT);
   align-self: stretch;
   display: flex;
   margin-top: 79px;
@@ -614,7 +602,7 @@
 
   .footer {
     position: relative;
-    background: var(--foundation-browndark-active);
+    background: var(--Background-FT);
     align-self: stretch;
     display: flex;
     margin-top: 79px;
@@ -640,7 +628,7 @@
     min-height: 100%;
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: repeat;
-    background-size: 30% auto; 
+    background-size: 40% auto; 
     align-self: center;
     opacity: 40%;
   }
@@ -984,7 +972,7 @@
 
   .footer {
     position: relative;
-    background: var(--foundation-browndark-active);
+    background: var(--Background-FT);
     align-self: stretch;
     display: flex;
     margin-top: 79px;
