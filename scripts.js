@@ -138,3 +138,25 @@ function animateAndNavigate(element, targetUrl) {
 animateAndNavigate(document.getElementById("workLink"), "#work");
 animateAndNavigate(document.getElementById("aboutLink"), "about.html");
 animateAndNavigate(document.getElementById("contactLink"), "#contact");
+
+// JavaScript to control the animation or dynamically change content
+document.addEventListener("DOMContentLoaded", function() {
+  const scrollingText = document.querySelector(".hold-description");
+
+  // Example: Pause animation when user hovers over the scrolling text
+  scrollingText.addEventListener("mouseover", function() {
+    scrollingText.style.animationPlayState = "paused"; // Pauses the animation on hover
+  });
+
+  scrollingText.addEventListener("mouseout", function() {
+    scrollingText.style.animationPlayState = "running"; // Resumes the animation when mouse leaves
+  });
+
+  // Example: Dynamically change the text content if needed
+  setTimeout(() => {
+    let pTags = document.querySelectorAll('.hold-description p');
+    pTags.forEach(p => {
+      p.textContent = "⦿ Design ⦿ Design ⦿ Design ⦿ Design"; // Replace text with "Design"
+    });
+  }, 5000); // Changes text after 5 seconds (or any time you like)
+});
