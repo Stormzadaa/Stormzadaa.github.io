@@ -134,29 +134,48 @@ function animateAndNavigate(element, targetUrl) {
   });
 }
 
-// Apply animation and navigation to each link
-animateAndNavigate(document.getElementById("workLink"), "#work");
-animateAndNavigate(document.getElementById("aboutLink"), "about.html");
-animateAndNavigate(document.getElementById("contactLink"), "#contact");
+const descriptionContainer = document.querySelector('.description-container');
+const holdDescription = document.querySelector('.hold-description');
 
-// JavaScript to control the animation or dynamically change content
-document.addEventListener("DOMContentLoaded", function() {
-  const scrollingText = document.querySelector(".hold-description");
+const containerHeight = holdDescription.offsetHeight;
+const itemHeight = descriptionContainer.firstElementChild.offsetHeight; // Assuming all items have the same height
+const totalHeight = descriptionContainer.scrollHeight; // Total height of content in the container
 
-  // Example: Pause animation when user hovers over the scrolling text
-  scrollingText.addEventListener("mouseover", function() {
-    scrollingText.style.animationPlayState = "paused"; // Pauses the animation on hover
-  });
-
-  scrollingText.addEventListener("mouseout", function() {
-    scrollingText.style.animationPlayState = "running"; // Resumes the animation when mouse leaves
-  });
-
-  // Example: Dynamically change the text content if needed
-  setTimeout(() => {
-    let pTags = document.querySelectorAll('.hold-description p');
-    pTags.forEach(p => {
-      p.textContent = "⦿ Design ⦿ Design ⦿ Design ⦿ Design"; // Replace text with "Design"
+// Duplicate the content to ensure a smooth infinite scroll
+function duplicateContent() {
+    const items = Array.from(descriptionContainer.children);
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        descriptionContainer.appendChild(clone);
     });
-  }, 5000); // Changes text after 5 seconds (or any time you like)
+}
+
+// Function to start the scrolling effect
+function startScrolling() {
+    let currentPosition = 100; // The initial position of the scroll
+
+    // Use requestAnimationFrame for smooth animation
+    function animateScroll() {
+        currentPosition += 0.38; // Move scroll position by 1px per frame
+
+        if (currentPosition >= totalHeight) {
+            // Reset scroll position when we reach the end of the content
+            currentPosition = 0;
+        }
+
+        // Apply the new position using CSS transform
+        descriptionContainer.style.transform = `translateY(-${currentPosition}px)`;
+
+        // Continue the animation
+        requestAnimationFrame(animateScroll);
+    }
+
+    // Start the animation loop
+    requestAnimationFrame(animateScroll);
+}
+
+// Wait for the DOM to load, then start the scrolling effect
+document.addEventListener('DOMContentLoaded', () => {
+    duplicateContent(); // Duplicate the content for infinite scroll
+    startScrolling();   // Start the animation
 });
