@@ -132,28 +132,54 @@
   border: 1px solid #fcf9f7;
 }
 
-.fundo-poligonos {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 180%; /* Larger size to cover the viewport during rotation */
-    height: 900%;
-    transform-origin: center; /* Rotate from the center */
-    background-image: url('Assets/GroupoPoligonosMobile.svg');
-    background-repeat: repeat;
-    background-size: 30% auto;
-    opacity: 30%;
-    animation: rotateBackground 900s linear infinite; /* Adjust time as needed */
+/* Carousel container */
+.carousel {
+  position:absolute;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+  overflow: hidden; /* Hide content that's out of bounds */
 }
 
-@keyframes rotateBackground {
+/* Common styles for the backgrounds */
+.fundo-poligonos {
+  position: absolute;
+  width: 100%;
+  height: 100%; /* Make sure the images cover the full screen height */
+  background-repeat: repeat-x;
+  opacity: 100%;
+}
+
+/* First background (start) */
+.fundo-poligonos-start {
+  background-image: url('Assets/GroupoPoligonosMobile.svg');
+  top: 0;
+  left: 0;
+  z-index: 1; /* Ensures it’s above the second background */
+  animation: slideDown 10s linear infinite;
+  background-color: rgba(0, 0, 255, 0.5); /* Temporary background color */
+}
+
+/* Second background (main) */
+.fundo-poligonos-main {
+  background-image: url('Assets/GroupoPoligonosMobile.svg');
+  top: 100%; /* Positioned below the first background */
+  left: 0;
+  z-index: 0; /* Behind the first background */
+  animation: slideDown 10s linear infinite;
+  background-color: rgba(255, 0, 0, 0.5); /* Temporary background color */
+}
+
+/* Slide down animation */
+@keyframes slideDown {
   0% {
-      transform: translate(-50%, -50%) rotate(0deg);
+    transform: translateY(0);
   }
   100% {
-      transform: translate(-50%, -50%) rotate(360deg);
+    transform: translateY(-100%); /* Moves the background up, showing the next one */
   }
 }
+
+
 
 .main-title {
   color: #fcf9f7;
@@ -612,24 +638,14 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 180%; /* Larger size to cover the viewport during rotation */
-    height: 900%;
-    transform-origin: center; /* Rotate from the center */
+    width: 100%; 
+    height: 100%;
     background-image: url('Assets/GroupoPoligonosMobile.svg');
-    background-repeat: repeat;
+    background-repeat: repeat-x;
     background-size: 30% auto;
     opacity: 30%;
-    animation: rotateBackground 900s linear infinite; /* Adjust time as needed */
 }
 
-@keyframes rotateBackground {
-  0% {
-      transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-      transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
 
   .footer {
     position: relative;
