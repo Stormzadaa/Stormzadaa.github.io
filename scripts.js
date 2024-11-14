@@ -134,48 +134,40 @@ function animateAndNavigate(element, targetUrl) {
   });
 }
 
-const descriptionContainer = document.querySelector('.description-container');
-const holdDescription = document.querySelector('.hold-description');
-
-const containerHeight = holdDescription.offsetHeight;
-const itemHeight = descriptionContainer.firstElementChild.offsetHeight; // Assuming all items have the same height
-const totalHeight = descriptionContainer.scrollHeight; // Total height of content in the container
-
-// Duplicate the content to ensure a smooth infinite scroll
-function duplicateContent() {
-    const items = Array.from(descriptionContainer.children);
-    items.forEach(item => {
-        const clone = item.cloneNode(true);
-        descriptionContainer.appendChild(clone);
-    });
-}
-
-// Function to start the scrolling effect
-function startScrolling() {
-    let currentPosition = 100; // The initial position of the scroll
-
-    // Use requestAnimationFrame for smooth animation
-    function animateScroll() {
-        currentPosition += 0.38; // Move scroll position by 1px per frame
-
-        if (currentPosition >= totalHeight) {
-            // Reset scroll position when we reach the end of the content
-            currentPosition = 0;
-        }
-
-        // Apply the new position using CSS transform
-        descriptionContainer.style.transform = `translateY(-${currentPosition}px)`;
-
-        // Continue the animation
-        requestAnimationFrame(animateScroll);
-    }
-
-    // Start the animation loop
-    requestAnimationFrame(animateScroll);
-}
-
-// Wait for the DOM to load, then start the scrolling effect
 document.addEventListener('DOMContentLoaded', () => {
-    duplicateContent(); // Duplicate the content for infinite scroll
-    startScrolling();   // Start the animation
+  const carouselContent = document.getElementById('carouselContent');
+  const containerWidth = document.querySelector('.carousel-container').offsetWidth;
+
+  // Duplicate content until it fills the screen width
+  let contentWidth = carouselContent.scrollWidth;
+  while (contentWidth < containerWidth * 10) { // Ensure it's enough for infinite loop
+      const items = Array.from(carouselContent.children);
+      items.forEach(item => {
+          const clone = item.cloneNode(true);
+          carouselContent.appendChild(clone);
+      });
+      contentWidth = carouselContent.scrollWidth;
+  }
+
+  let currentPosition = 0;
+  const scrollSpeed = 0.3; // Adjust this for faster/slower scrolling
+
+  function animateScroll() {
+      currentPosition -= scrollSpeed;
+
+      // Reset scroll position for a seamless loop
+      if (Math.abs(currentPosition) >= contentWidth / 2) {
+          currentPosition = 0;
+      }
+
+      // Apply the new scroll position
+      carouselContent.style.transform = `translateX(${currentPosition}px)`;
+
+      // Continue the animation
+      requestAnimationFrame(animateScroll);
+  }
+
+  // Start the animation
+  requestAnimationFrame(animateScroll);
 });
+
