@@ -135,39 +135,85 @@ function animateAndNavigate(element, targetUrl) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const carouselContent = document.getElementById('carouselContent');
-  const containerWidth = document.querySelector('.carousel-container').offsetWidth;
+  // ---- Text Carousel Logic ----
+  const textCarouselContent = document.getElementById('carouselContent');
+  const textContainerWidth = document.querySelector('.carousel-container').offsetWidth;
 
-  // Duplicate content until it fills the screen width
-  let contentWidth = carouselContent.scrollWidth;
-  while (contentWidth < containerWidth * 10) { // Ensure it's enough for infinite loop
-      const items = Array.from(carouselContent.children);
-      items.forEach(item => {
-          const clone = item.cloneNode(true);
-          carouselContent.appendChild(clone);
-      });
-      contentWidth = carouselContent.scrollWidth;
+  let textContentWidth = textCarouselContent.scrollWidth;
+  while (textContentWidth < textContainerWidth * 10) {
+    const textItems = Array.from(textCarouselContent.children);
+    textItems.forEach(item => {
+      const clone = item.cloneNode(true);
+      textCarouselContent.appendChild(clone);
+    });
+    textContentWidth = textCarouselContent.scrollWidth;
   }
 
-  let currentPosition = 0;
-  const scrollSpeed = 0.3; // Adjust this for faster/slower scrolling
+  let textCurrentPosition = 0;
+  const textScrollSpeed = 0.3;
 
-  function animateScroll() {
-      currentPosition -= scrollSpeed;
+  function animateTextScroll() {
+    textCurrentPosition -= textScrollSpeed;
+    if (Math.abs(textCurrentPosition) >= textContentWidth / 2) {
+      textCurrentPosition = 0;
+    }
+    textCarouselContent.style.transform = `translateX(${textCurrentPosition}px)`;
+    requestAnimationFrame(animateTextScroll);
+  }
 
-      // Reset scroll position for a seamless loop
-      if (Math.abs(currentPosition) >= contentWidth / 2) {
-          currentPosition = 0;
-      }
+  requestAnimationFrame(animateTextScroll);
+});
 
-      // Apply the new scroll position
-      carouselContent.style.transform = `translateX(${currentPosition}px)`;
+document.addEventListener('DOMContentLoaded', () => {
+  // ---- Background Carousel Logic ----
+  const backgroundCarouselContent = document.querySelector('.carousel-fundo');
+  const backgroundPoligonosStart = document.querySelector('.fundo-poligonos-start');
+  const backgroundPoligonosMain = document.querySelector('.fundo-poligonos-main');
 
-      // Continue the animation
-      requestAnimationFrame(animateScroll);
+  const backgroundContentWidth = backgroundPoligonosStart.offsetWidth; // Width of one background element
+  const numberOfClones = 4; // Set the number of clones (4 pairs in total)
+
+  // Append the necessary number of background elements (each element is added twice: start and main)
+  for (let i = 0; i < numberOfClones; i++) {
+    const backgroundCloneStart = backgroundPoligonosStart.cloneNode(true);
+    const backgroundCloneMain = backgroundPoligonosMain.cloneNode(true);
+
+    // Append the clones side by side
+    backgroundCarouselContent.appendChild(backgroundCloneStart);
+    backgroundCarouselContent.appendChild(backgroundCloneMain);
+  }
+
+  // Recalculate total width after clones are appended
+  const backgroundTotalWidth = backgroundContentWidth * numberOfClones * 2; // Total width to cover the screen
+
+  // Position the clones correctly by adjusting the left position
+  const allBackgrounds = document.querySelectorAll('.fundo-poligonos');
+  let leftPosition = 0;
+
+  // Set the left positions of all the background elements
+  allBackgrounds.forEach((background) => {
+    background.style.left = `${leftPosition}px`;
+    leftPosition += backgroundContentWidth; // Each background element moves by the full width of one element
+  });
+
+  let backgroundCurrentPosition = 0;
+  const backgroundScrollSpeed = 1; // Adjust scroll speed here
+
+  // Function to animate the scroll
+  function animateBackgroundScroll() {
+    backgroundCurrentPosition -= backgroundScrollSpeed;
+
+    // Reset position when the last clone has left the screen (when its left reaches 100% position)
+    if (Math.abs(backgroundCurrentPosition) >= backgroundTotalWidth) {
+      backgroundCurrentPosition = 0; // Reset position for continuous loop
+    }
+
+    backgroundCarouselContent.style.transform = `translateX(${backgroundCurrentPosition}px)`;
+    requestAnimationFrame(animateBackgroundScroll);
   }
 
   // Start the animation
-  requestAnimationFrame(animateScroll);
+  requestAnimationFrame(animateBackgroundScroll);
 });
+
 

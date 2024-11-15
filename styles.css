@@ -132,16 +132,48 @@
   border: 1px solid #fcf9f7;
 }
 
+
+.carousel {
+  position: absolute;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+}
+
+.carousel-fundo {
+  position: absolute;
+  width: 100%;
+  height: 100%; /* Full screen height */
+}
+
 .fundo-poligonos {
   position: absolute;
-  width: 100%; /* Larger size to cover the viewport during rotation */
-  height: 100%;
-  transform-origin: center; /* Rotate from the center */
+  width: 50%;
+  height: 100%; /* Cover the viewport */
+  background-repeat: repeat;
+  background-size: 20% auto;
+  opacity: 100%;
+  top: 0;
+}
+
+.fundo-poligonos-start {
+  background-image: url('Assets/GroupoPoligonosMobile.svg');
+  left: 0;
+}
+
+.fundo-poligonos-main {
+  background-image: url('Assets/GroupoPoligonosMobile.svg');
+  left: 50%;
+}
+
+/* .fundo-poligonos {
+  position: absolute;
+  width: 100%;
+  height: 100%; 
   background-image: url('Assets/GroupoPoligonosMobile.svg');
   background-repeat: repeat;
   background-size: 20% auto;
-  opacity: 10%;
-}
+  opacity: 20%;
+} */
 
 .main-title {
   color: #fcf9f7;
@@ -155,6 +187,7 @@
   letter-spacing: var(--h1-letter-spacing);
   line-height: var(--h1-line-height);
   max-width: 100%;
+  z-index: 0;
 }
 
 .hold-title {
@@ -628,15 +661,13 @@
   
   .fundo-poligonos {
     position: absolute;
-    width: 100%; /* Larger size to cover the viewport during rotation */
-    height: 100%;
-    transform-origin: center; /* Rotate from the center */
+    width: 100%;
+    height: 100%; 
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: repeat;
     background-size: 20% auto;
-    opacity: 10%;
+    opacity: 20%;
   }
-
 
   .footer {
     position: relative;
@@ -1005,7 +1036,7 @@
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: repeat;
     background-size: 20% auto;
-    opacity: 10%;
+    opacity: 20%;
   }
 
   .footer {
