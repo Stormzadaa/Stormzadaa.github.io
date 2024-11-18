@@ -164,56 +164,71 @@ document.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(animateTextScroll);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
   // ---- Background Carousel Logic ----
-  const backgroundCarouselContent = document.querySelector('.carousel-fundo');
-  const backgroundPoligonosStart = document.querySelector('.fundo-poligonos-start');
-  const backgroundPoligonosMain = document.querySelector('.fundo-poligonos-main');
 
-  const backgroundContentWidth = backgroundPoligonosStart.offsetWidth; // Width of one background element
-  const numberOfClones = 4; // Set the number of clones (4 pairs in total)
+  document.addEventListener('DOMContentLoaded', () => {
 
-  // Append the necessary number of background elements (each element is added twice: start and main)
-  for (let i = 0; i < numberOfClones; i++) {
-    const backgroundCloneStart = backgroundPoligonosStart.cloneNode(true);
-    const backgroundCloneMain = backgroundPoligonosMain.cloneNode(true);
-
-    // Append the clones side by side
-    backgroundCarouselContent.appendChild(backgroundCloneStart);
-    backgroundCarouselContent.appendChild(backgroundCloneMain);
-  }
-
-  // Recalculate total width after clones are appended
-  const backgroundTotalWidth = backgroundContentWidth * numberOfClones * 2; // Total width to cover the screen
-
-  // Position the clones correctly by adjusting the left position
-  const allBackgrounds = document.querySelectorAll('.fundo-poligonos');
-  let leftPosition = 0;
-
-  // Set the left positions of all the background elements
-  allBackgrounds.forEach((background) => {
-    background.style.left = `${leftPosition}px`;
-    leftPosition += backgroundContentWidth; // Each background element moves by the full width of one element
-  });
-
-  let backgroundCurrentPosition = 0;
-  const backgroundScrollSpeed = 0.5; // Adjust scroll speed here
-
-  // Function to animate the scroll
-  function animateBackgroundScroll() {
-    backgroundCurrentPosition -= backgroundScrollSpeed;
-
-    // Reset position when the last clone has left the screen (when its left reaches 100% position)
-    if (Math.abs(backgroundCurrentPosition) >= backgroundTotalWidth) {
-      backgroundCurrentPosition = 0; // Reset position for continuous loop
+    const backgroundCarouselContent = document.querySelector('.carousel-fundo');
+    const backgroundPoligonosStart = document.querySelector('.fundo-poligonos-start');
+    const backgroundPoligonosMain = document.querySelector('.fundo-poligonos-main');
+  
+    const backgroundContentWidth = backgroundPoligonosStart.offsetWidth; // Width of one background element
+    const numberOfClones = 4; // Set the number of clones (4 pairs in total)
+  
+    // Append the necessary number of background elements (each element is added twice: start and main)
+    for (let i = 0; i < numberOfClones; i++) {
+      const backgroundCloneStart = backgroundPoligonosStart.cloneNode(true);
+      const backgroundCloneMain = backgroundPoligonosMain.cloneNode(true);
+  
+      // Append the clones side by side
+      backgroundCarouselContent.appendChild(backgroundCloneStart);
+      backgroundCarouselContent.appendChild(backgroundCloneMain);
     }
-
-    backgroundCarouselContent.style.transform = `translateX(${backgroundCurrentPosition}px)`;
-    requestAnimationFrame(animateBackgroundScroll);
-  }
-
-  // Start the animation
-  requestAnimationFrame(animateBackgroundScroll);
-});
-
+  
+    // Recalculate total width after clones are appended
+    const backgroundTotalWidth = backgroundContentWidth * numberOfClones * 2; // Total width to cover the screen
+  
+    // Position the clones correctly by adjusting the left position
+    const allBackgrounds = document.querySelectorAll('.fundo-poligonos');
+    let leftPosition = 0;
+  
+    // Set the left positions of all the background elements
+    allBackgrounds.forEach((background) => {
+      background.style.left = `${leftPosition}px`;
+      leftPosition += backgroundContentWidth; // Each background element moves by the full width of one element
+    });
+  
+    let backgroundCurrentPosition = 0;
+    const backgroundScrollSpeed = 0.5; // Adjust scroll speed here
+    let animationFrameId;
+    let isAnimating = true;
+  
+    // Function to animate the scroll
+    function animateBackgroundScroll() {
+      backgroundCurrentPosition -= backgroundScrollSpeed;
+  
+      // Reset position when the last clone has left the screen (when its left reaches 100% position)
+      if (Math.abs(backgroundCurrentPosition) >= backgroundTotalWidth) {
+        backgroundCurrentPosition = 0; // Reset position for continuous loop
+      }
+  
+      backgroundCarouselContent.style.transform = `translateX(${backgroundCurrentPosition}px)`;
+      animationFrameId = requestAnimationFrame(animateBackgroundScroll);
+    }
+  
+    // Start the animation
+    animationFrameId = requestAnimationFrame(animateBackgroundScroll);
+  
+    // Add event listener to the button to toggle the animation
+    document.getElementById('toggleAnimationButton').addEventListener('click', () => {
+      if (isAnimating) {
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        animationFrameId = requestAnimationFrame(animateBackgroundScroll);
+      }
+      isAnimating = !isAnimating;
+    });
+  });
+  
+  
 
