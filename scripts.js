@@ -165,69 +165,82 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
   // ---- Background Carousel Logic ----
-
+  
   document.addEventListener('DOMContentLoaded', () => {
-
+    // Initialize the toggle button and its SVG elements
+    const toggleButton = document.getElementById('svgToggleSwitch');
+    const rect = toggleButton.querySelector('rect');
+    const circle = toggleButton.querySelector('circle');
+  
+    // ---- Background Carousel Logic ----
     const backgroundCarouselContent = document.querySelector('.carousel-fundo');
     const backgroundPoligonosStart = document.querySelector('.fundo-poligonos-start');
     const backgroundPoligonosMain = document.querySelector('.fundo-poligonos-main');
   
     const backgroundContentWidth = backgroundPoligonosStart.offsetWidth; // Width of one background element
-    const numberOfClones = 4; // Set the number of clones (4 pairs in total)
+    const numberOfClones = 4; // Number of clones to create
   
-    // Append the necessary number of background elements (each element is added twice: start and main)
+    // Clone and append background elements
     for (let i = 0; i < numberOfClones; i++) {
       const backgroundCloneStart = backgroundPoligonosStart.cloneNode(true);
       const backgroundCloneMain = backgroundPoligonosMain.cloneNode(true);
   
-      // Append the clones side by side
       backgroundCarouselContent.appendChild(backgroundCloneStart);
       backgroundCarouselContent.appendChild(backgroundCloneMain);
     }
   
-    // Recalculate total width after clones are appended
-    const backgroundTotalWidth = backgroundContentWidth * numberOfClones * 2; // Total width to cover the screen
+    // Total width for the background carousel
+    const backgroundTotalWidth = backgroundContentWidth * numberOfClones * 2;
   
-    // Position the clones correctly by adjusting the left position
+    // Position the background elements
     const allBackgrounds = document.querySelectorAll('.fundo-poligonos');
     let leftPosition = 0;
-  
-    // Set the left positions of all the background elements
     allBackgrounds.forEach((background) => {
       background.style.left = `${leftPosition}px`;
-      leftPosition += backgroundContentWidth; // Each background element moves by the full width of one element
+      leftPosition += backgroundContentWidth;
     });
   
     let backgroundCurrentPosition = 0;
-    const backgroundScrollSpeed = 0.5; // Adjust scroll speed here
+    const backgroundScrollSpeed = 0.5; // Adjust the scroll speed
     let animationFrameId;
-    let isAnimating = true;
+    let isAnimating = true; // Tracks if the animation is running
   
-    // Function to animate the scroll
+    // Function to animate the background
     function animateBackgroundScroll() {
       backgroundCurrentPosition -= backgroundScrollSpeed;
   
-      // Reset position when the last clone has left the screen (when its left reaches 100% position)
+      // Reset position for continuous scrolling
       if (Math.abs(backgroundCurrentPosition) >= backgroundTotalWidth) {
-        backgroundCurrentPosition = 0; // Reset position for continuous loop
+        backgroundCurrentPosition = 0;
       }
   
       backgroundCarouselContent.style.transform = `translateX(${backgroundCurrentPosition}px)`;
       animationFrameId = requestAnimationFrame(animateBackgroundScroll);
     }
   
-    // Start the animation
+    // Start the animation initially
     animationFrameId = requestAnimationFrame(animateBackgroundScroll);
   
-    // Add event listener to the button to toggle the animation
-    document.getElementById('toggleAnimationButton').addEventListener('click', () => {
-      if (isAnimating) {
-        cancelAnimationFrame(animationFrameId);
-      } else {
-        animationFrameId = requestAnimationFrame(animateBackgroundScroll);
-      }
+    // Toggle button click handler
+    toggleButton.addEventListener('click', () => {
+      // Toggle animation state
       isAnimating = !isAnimating;
+  
+      // Update SVG appearance
+      if (isAnimating) {
+        rect.setAttribute('fill', '#4CAF50'); // On state
+        circle.setAttribute('cx', '75');      // Move circle to the right
+        animationFrameId = requestAnimationFrame(animateBackgroundScroll); // Resume animation
+      } else {
+        rect.setAttribute('fill', '#252525');   // Off state
+        circle.setAttribute('cx', '25');      // Move circle to the left
+        cancelAnimationFrame(animationFrameId); // Pause animation
+      }
     });
+  
+    // Set initial state to match the animation state
+    rect.setAttribute('fill', '#4CAF50'); // Initially on
+    circle.setAttribute('cx', '75');
   });
   
   

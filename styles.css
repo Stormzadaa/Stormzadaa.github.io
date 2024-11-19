@@ -36,6 +36,22 @@
   padding-top: 100px; /* Adjust this value based on the height of your header */
 }
 
+.toggle-switch {
+  display: inline-block;
+  cursor: pointer;
+  scale: 0.5;
+  position: absolute; /* Position it relative to the viewport */
+  right: 0px; /* Align it to the right of the page */
+}
+
+.toggle-bg {
+  transition: fill 0.3s ease;
+}
+
+.toggle-circle {
+  transition: cx 0.3s ease;
+}
+
 .portfolio-section {
   background: var(--Background-DM);
   background-blend-mode: overlay, luminosity;
@@ -136,7 +152,7 @@
 .carousel {
   position: absolute;
   width: 100%;
-  height: 100vh; /* Full screen height */
+  height: 100%; /* Full screen height */
 }
 
 .carousel-fundo {
@@ -151,9 +167,10 @@
   height: 100%; /* Cover the viewport */
   background-repeat: repeat;
   background-size: 20% auto;
-  opacity: 50%;
+  opacity: 30%;
   top: 0;
 }
+
 
 .fundo-poligonos-start {
   background-image: url('Assets/GroupoPoligonosMobile.svg');
