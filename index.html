@@ -46,36 +46,30 @@
   
   
   <div class="body">
-    <!-- BOTAO -->
-    <div class="toggle-switch">
-      <svg
-        id="svgToggleSwitch"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 50"
-        width="100"
-        height="50"
-      >
-        <!-- Background -->
-        <rect
-          x="0"
-          y="0"
-          width="100"
-          height="50"
-          rx="25"
-          fill="#4CAF50"
-          class="toggle-bg"
-        ></rect>
-        <!-- Toggle -->
-        <circle
-          cx="75"
-          cy="25"
-          r="20"
-          fill="#fff"
-          class="toggle-circle"
-        >
-      </circle>
-      </svg>
-    </div>
+
+<!-- BUTTON -->
+  <div class="toggle-switch">
+    <svg
+      id="svgToggleSwitch"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 50 50"
+      width="50"
+      height="50"
+    >
+      <!-- Pause Icon -->
+      <g class="pause-icon">
+        <rect x="12" y="15" width="6" height="20" fill="#000" />
+        <rect x="22" y="15" width="6" height="20" fill="#000" />
+      </g>
+
+      <!-- Play Icon -->
+      <polygon
+        points="18,15 32,25 18,35"
+        fill="#000"
+        class="play-icon"
+      ></polygon>
+    </svg>
+  </div>
 
   <div class="hold-title">
     <h1 class="main-title">Lorem ipsum dolor sit amet</h1>

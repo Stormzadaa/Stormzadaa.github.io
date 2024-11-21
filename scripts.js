@@ -169,8 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('DOMContentLoaded', () => {
     // Initialize the toggle button and its SVG elements
     const toggleButton = document.getElementById('svgToggleSwitch');
-    const rect = toggleButton.querySelector('rect');
-    const circle = toggleButton.querySelector('circle');
+    const rect = toggleButton.querySelector('circle');
+    const playIcon = toggleButton.querySelector('.play-icon');
+    const pauseIcon = toggleButton.querySelector('.pause-icon');
+  
+    let isAnimating = true; // Tracks if the animation is running
   
     // ---- Background Carousel Logic ----
     const backgroundCarouselContent = document.querySelector('.carousel-fundo');
@@ -203,19 +206,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let backgroundCurrentPosition = 0;
     const backgroundScrollSpeed = 0.5; // Adjust the scroll speed
     let animationFrameId;
-    let isAnimating = true; // Tracks if the animation is running
   
     // Function to animate the background
     function animateBackgroundScroll() {
-      backgroundCurrentPosition -= backgroundScrollSpeed;
+      if (isAnimating) {
+        backgroundCurrentPosition -= backgroundScrollSpeed;
   
-      // Reset position for continuous scrolling
-      if (Math.abs(backgroundCurrentPosition) >= backgroundTotalWidth) {
-        backgroundCurrentPosition = 0;
+        // Reset position for continuous scrolling
+        if (Math.abs(backgroundCurrentPosition) >= backgroundTotalWidth) {
+          backgroundCurrentPosition = 0;
+        }
+  
+        backgroundCarouselContent.style.transform = `translateX(${backgroundCurrentPosition}px)`;
+        animationFrameId = requestAnimationFrame(animateBackgroundScroll);
       }
-  
-      backgroundCarouselContent.style.transform = `translateX(${backgroundCurrentPosition}px)`;
-      animationFrameId = requestAnimationFrame(animateBackgroundScroll);
     }
   
     // Start the animation initially
@@ -223,25 +227,25 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Toggle button click handler
     toggleButton.addEventListener('click', () => {
-      // Toggle animation state
-      isAnimating = !isAnimating;
+      isAnimating = !isAnimating; // Toggle animation state
   
-      // Update SVG appearance
+      // Toggle Play/Pause visibility based on the animation state
       if (isAnimating) {
-        rect.setAttribute('fill', '#4CAF50'); // On state
-        circle.setAttribute('cx', '75');      // Move circle to the right
-        animationFrameId = requestAnimationFrame(animateBackgroundScroll); // Resume animation
+        playIcon.style.opacity = "1";  // Show play icon
+        pauseIcon.style.opacity = "0"; // Hide pause icon
+  
+        // Restart the animation loop
+        animationFrameId = requestAnimationFrame(animateBackgroundScroll); // Restart animation when resumed
       } else {
-        rect.setAttribute('fill', '#252525');   // Off state
-        circle.setAttribute('cx', '25');      // Move circle to the left
-        cancelAnimationFrame(animationFrameId); // Pause animation
+        playIcon.style.opacity = "0";  // Hide play icon
+        pauseIcon.style.opacity = "1"; // Show pause icon
+  
+        cancelAnimationFrame(animationFrameId); // Stop animation
       }
     });
   
-    // Set initial state to match the animation state
-    rect.setAttribute('fill', '#4CAF50'); // Initially on
-    circle.setAttribute('cx', '75');
+    // Set initial state
+    playIcon.style.opacity = "1"; // Initially in "Play" state
+    pauseIcon.style.opacity = "0"; // Initially hide pause symbol
   });
   
-  
-

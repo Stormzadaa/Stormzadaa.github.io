@@ -36,21 +36,54 @@
   padding-top: 100px; /* Adjust this value based on the height of your header */
 }
 
+/* Container for the toggle button */
 .toggle-switch {
   display: inline-block;
+  position: absolute;
   cursor: pointer;
-  scale: 0.5;
-  position: absolute; /* Position it relative to the viewport */
-  right: 0px; /* Align it to the right of the page */
+  right: 10px; /* Position it 10px from the right side */
+  top: 80px; /* Position it 100px from the top */
 }
 
-.toggle-bg {
-  transition: fill 0.3s ease;
+/* Play/Pause icons */
+.play-icon,
+.pause-icon {
+  transition: opacity 0.3s ease;
+  transform-origin: center;
+  transform: scale(1);
+  pointer-events: none; /* Prevents the icon from being interactive */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
 }
 
-.toggle-circle {
-  transition: cx 0.3s ease;
+.play-icon {
+  opacity: 1; /* Visible by default */
+  transform: translate(0, 0); /* Center play icon */
 }
+
+.pause-icon {
+  opacity: 0; /* Hidden by default */
+  transform: translate(0, 0); /* Center pause icon */
+}
+
+/* Icon styling (Play and Pause) */
+.play-icon {
+  fill: black;
+}
+
+.pause-icon rect {
+  fill: black;
+}
+
+/* Center the pause and play icons */
+.play-icon {
+  transform: translate(6px, 6px); /* Adjusted to center the play icon */
+}
+
+.pause-icon rect {
+  transform: translate(6px, 6px); /* Adjusted to center the pause icon */
+}
+
+
 
 .portfolio-section {
   background: var(--Background-DM);
