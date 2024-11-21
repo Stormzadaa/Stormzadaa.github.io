@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     let backgroundCurrentPosition = 0;
-    const backgroundScrollSpeed = 0.5; // Adjust the scroll speed
+    const backgroundScrollSpeed = 0.18; // Adjust the scroll speed
     let animationFrameId;
   
     // Function to animate the background
