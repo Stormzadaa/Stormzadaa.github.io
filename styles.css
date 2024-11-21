@@ -67,11 +67,11 @@
 
 /* Icon styling (Play and Pause) */
 .play-icon {
-  fill: black;
+  fill: white;
 }
 
 .pause-icon rect {
-  fill: black;
+  fill: white;
 }
 
 /* Center the pause and play icons */
