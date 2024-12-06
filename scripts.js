@@ -135,33 +135,52 @@ function animateAndNavigate(element, targetUrl) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- Text Carousel Logic ----
-  const textCarouselContent = document.getElementById('carouselContent');
-  const textContainerWidth = document.querySelector('.carousel-container').offsetWidth;
+ // ---- Text Carousel Logic ----
+ const textCarouselContent = document.getElementById('carouselContent');
+ const textContainerWidth = document.querySelector('.carousel-container').offsetWidth;
 
-  let textContentWidth = textCarouselContent.scrollWidth;
-  while (textContentWidth < textContainerWidth * 10) {
-    const textItems = Array.from(textCarouselContent.children);
-    textItems.forEach(item => {
-      const clone = item.cloneNode(true);
-      textCarouselContent.appendChild(clone);
-    });
-    textContentWidth = textCarouselContent.scrollWidth;
-  }
+ let textContentWidth = textCarouselContent.scrollWidth;
 
-  let textCurrentPosition = 0;
-  const textScrollSpeed = 0.3;
+ // Clone text items to ensure enough content for scrolling
+ while (textContentWidth < textContainerWidth * 10) {
+   const textItems = Array.from(textCarouselContent.children);
+   textItems.forEach(item => {
+     const clone = item.cloneNode(true);
+     textCarouselContent.appendChild(clone);
+   });
+   textContentWidth = textCarouselContent.scrollWidth;
+ }
 
-  function animateTextScroll() {
-    textCurrentPosition -= textScrollSpeed;
-    if (Math.abs(textCurrentPosition) >= textContentWidth / 2) {
-      textCurrentPosition = 0;
-    }
-    textCarouselContent.style.transform = `translateX(${textCurrentPosition}px)`;
-    requestAnimationFrame(animateTextScroll);
-  }
+ let textCurrentPosition = 0;
+ let textScrollSpeed = 0.3; // Default scroll speed
 
-  requestAnimationFrame(animateTextScroll);
+ // Function to adjust scroll speed based on screen width
+ function adjustTextScrollSpeed() {
+   const screenWidth = window.innerWidth;
+   if (screenWidth <= 770) {
+     textScrollSpeed = 0.1; // Slower speed for small screens
+   } else if (screenWidth <= 1024) {
+     textScrollSpeed = 0.2; // Moderate speed for medium screens
+   } else {
+     textScrollSpeed = 0.3; // Default speed for larger screens
+   }
+ }
+
+ // Call adjustTextScrollSpeed initially and whenever the window is resized
+ adjustTextScrollSpeed();
+ window.addEventListener('resize', adjustTextScrollSpeed);
+
+ function animateTextScroll() {
+   textCurrentPosition -= textScrollSpeed;
+   if (Math.abs(textCurrentPosition) >= textContentWidth / 2) {
+     textCurrentPosition = 0;
+   }
+   textCarouselContent.style.transform = `translateX(${textCurrentPosition}px)`;
+   requestAnimationFrame(animateTextScroll);
+ }
+
+ // Start the animation initially
+ requestAnimationFrame(animateTextScroll);
 });
 
   // ---- Background Carousel Logic ----
