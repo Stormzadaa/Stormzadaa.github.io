@@ -183,7 +183,42 @@ document.addEventListener('DOMContentLoaded', () => {
  requestAnimationFrame(animateTextScroll);
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+  const circles = document.querySelector('.circles');
+  let isAnimating = false;
 
+  function startAnimation() {
+      isAnimating = true;
+      circles.setAttribute('data-animate', isAnimating);
+  }
 
+  function startCopyAnimation() {
+      const copy = circles.cloneNode(true);
+      copy.classList.add('copy');
+      circles.parentNode.appendChild(copy);
+      copy.setAttribute('data-animate', isAnimating);
+  }
 
+  function alternateAnimations() {
+      // Start the original animation
+      startAnimation();
 
+      // Use Intersection Observer to detect when img:nth-child(6) reaches the middle of the screen
+      const target = circles.querySelector('img:nth-child(6)');
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  // Start the copy animation 11 seconds after img:nth-child(6) starts its animation
+                  setTimeout(startCopyAnimation, 11000);
+                  // Disconnect the observer after triggering the animation
+                  observer.disconnect();
+              }
+          });
+      }, { threshold: 0.5 }); // 0.5 means the middle of the screen
+
+      observer.observe(target);
+  }
+
+  // Start the initial cycle
+  alternateAnimations();
+});
