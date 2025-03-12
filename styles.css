@@ -36,7 +36,7 @@
     padding-top: 100px; /* Adjust this value based on the height of your header */
   }
 
-  /* Container for the toggle button */
+  /* Container for the toggle button - Button start here */
   .toggle-switch {
     display: inline-block;
     position: absolute;
@@ -76,14 +76,12 @@
 
   /* Center the pause and play icons */
   .play-icon {
-    transform: translate(6px, 6px); /* Adjusted to center the play icon */
+    transform: translate(4px, 4px); /* Adjusted to center the play icon */
   }
 
   .pause-icon rect {
-    transform: translate(6px, 6px); /* Adjusted to center the pause icon */
+    transform: translate(4px, 4px); /* Adjusted to center the pause icon */
   }
-
-
 
   .portfolio-section {
     background: var(--Background-DM);
@@ -291,12 +289,12 @@
 @keyframes animate {
     0% {
         transform: translateY(0) rotate(0deg);
-        opacity: 1;
+        opacity: 0.5;
         border-radius: 0;
     }
     100% {
         transform: translateY(-200vh) rotate(720deg);
-        opacity: 0.3;
+        opacity: 0.1;
         border-radius: 50%;
     }
 }
@@ -792,117 +790,115 @@
     width: 100%;
     height: 100%; /* Full screen height */
   }
-    
-  .fundo-poligonos-mobile {
-  display: none;
-  }
+
+  /* Background animation */
   
   .area {
     width: 100%;
     height: 100%;
-}
+  }
 
-.circles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0; /* Ensure it has a base z-index */
-}
+  .circles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0; /* Ensure it has a base z-index */
+  }
 
-.circles img {
-    position: absolute;
-    display: block;
-    width: 20px;
-    height: 20px;
-    bottom: 0px;
-}
+  .circles img {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      bottom: 0px;
+  }
 
-.circles[data-animate="true"] img {
-    animation: animate 2s infinite;
-    animation-timing-function: linear;
-}
+  .circles[data-animate="true"] img {
+      animation: animate 2s infinite;
+      animation-timing-function: linear;
+  }
 
-.circles img:nth-child(1) {
-    left: 25%;
-    width: 80px;
-    height: 80px;
-    animation-delay: 1s;
-    animation-duration: 18s;
-}
+  .circles img:nth-child(1) {
+      left: 25%;
+      width: 80px;
+      height: 80px;
+      animation-delay: 1s;
+      animation-duration: 18s;
+  }
 
-.circles img:nth-child(2) {
-    left: 20%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 6s;
-    animation-duration: 12s;
-}
+  .circles img:nth-child(2) {
+      left: 20%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 6s;
+      animation-duration: 12s;
+  }
 
-.circles img:nth-child(3) {
-    left: 70%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 8s;
-    animation-duration: 14s;
-}
+  .circles img:nth-child(3) {
+      left: 70%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 8s;
+      animation-duration: 14s;
+  }
 
-.circles img:nth-child(4) {
-    left: 80%;
-    width: 60px;
-    height: 60px;
-    animation-delay: 5s;
-    animation-duration: 15s;
-}
+  .circles img:nth-child(4) {
+      left: 80%;
+      width: 60px;
+      height: 60px;
+      animation-delay: 5s;
+      animation-duration: 15s;
+  }
 
-.circles img:nth-child(5) {
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    animation-delay: 3s;
-    animation-duration: 16s;
-}
+  .circles img:nth-child(5) {
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      animation-delay: 3s;
+      animation-duration: 16s;
+  }
 
-.circles img:nth-child(6) {
-    left: 90%;
-    width: 140px;
-    height: 140px;
-    animation-delay: 0s;
-    animation-duration: 22s;
-}
+  .circles img:nth-child(6) {
+      left: 90%;
+      width: 140px;
+      height: 140px;
+      animation-delay: 0s;
+      animation-duration: 22s;
+  }
 
-.circles img:nth-child(7) {
-    left: 0%;
-    width: 100px;
-    height: 100px;
-    animation-delay: 2s;
-    animation-duration: 20s;
-}
+  .circles img:nth-child(7) {
+      left: 0%;
+      width: 100px;
+      height: 100px;
+      animation-delay: 2s;
+      animation-duration: 20s;
+  }
 
-@keyframes animate {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-        border-radius: 0;
-    }
-    100% {
-        transform: translateY(-200vh) rotate(720deg);
-        opacity: 0.3;
-        border-radius: 50%;
-    }
-}
+  @keyframes animate {
+      0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+          border-radius: 0;
+      }
+      100% {
+          transform: translateY(-200vh) rotate(720deg);
+          opacity: 0;
+          border-radius: 50%;
+      }
+  }
 
-.copy {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0; /* Ensure it has the same z-index as the original */
-}
+  .copy {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0; /* Ensure it has the same z-index as the original */
+  }
 
   .main-title {
   color: #fcf9f7;
@@ -1224,8 +1220,51 @@
     padding-top: 70px; /* Adjust this value based on the height of your header */
   }
 
+  /* Container for the toggle button - Button start here */
   .toggle-switch {
-  display: none;
+    display: inline-block;
+    position: absolute;
+    cursor: pointer;
+    right: 10px; /* Position it 10px from the right side */
+    top: 80px; /* Position it 100px from the top */
+  }
+
+  /* Play/Pause icons */
+  .play-icon,
+  .pause-icon {
+    transition: opacity 0.3s ease;
+    transform-origin: center;
+    transform: scale(1);
+    pointer-events: none; /* Prevents the icon from being interactive */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+  }
+
+  .play-icon {
+    opacity: 1; /* Visible by default */
+    transform: translate(0, 0); /* Center play icon */
+  }
+
+  .pause-icon {
+    opacity: 0; /* Hidden by default */
+    transform: translate(0, 0); /* Center pause icon */
+  }
+
+  /* Icon styling (Play and Pause) */
+  .play-icon {
+    fill: white;
+  }
+
+  .pause-icon rect {
+    fill: white;
+  }
+
+  /* Center the pause and play icons */
+  .play-icon {
+    transform: translate(4px, 4px); /* Adjusted to center the play icon */
+  }
+
+  .pause-icon rect {
+    transform: translate(4px, 4px); /* Adjusted to center the pause icon */
   }
 
   .portfolio-section {
@@ -1405,19 +1444,111 @@
     color: #1d1d1d;
   }
 
-  .area{
-  display: none;
-  }
-  
-  .fundo-poligonos-mobile {
-    position: absolute;
-    width: 100%; /* Larger size to cover the viewport during rotation */
+  .area {
+    width: 100%;
     height: 100%;
-    transform-origin: center; /* Rotate from the center */
-    background-image: url('Assets/GroupoPoligonosMobile.svg');
-    background-repeat: repeat;
-    background-size: 20% auto;
-    opacity: 80%;
+  }
+
+  .circles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0; /* Ensure it has a base z-index */
+  }
+
+  .circles img {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      bottom: 0px;
+  }
+
+  .circles[data-animate="true"] img {
+      animation: animate 2s infinite;
+      animation-timing-function: linear;
+  }
+
+  .circles img:nth-child(1) {
+      left: 25%;
+      width: 80px;
+      height: 80px;
+      animation-delay: 1s;
+      animation-duration: 18s;
+  }
+
+  .circles img:nth-child(2) {
+      left: 20%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 6s;
+      animation-duration: 12s;
+  }
+
+  .circles img:nth-child(3) {
+      left: 70%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 8s;
+      animation-duration: 14s;
+  }
+
+  .circles img:nth-child(4) {
+      left: 80%;
+      width: 60px;
+      height: 60px;
+      animation-delay: 5s;
+      animation-duration: 15s;
+  }
+
+  .circles img:nth-child(5) {
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      animation-delay: 3s;
+      animation-duration: 16s;
+  }
+
+  .circles img:nth-child(6) {
+      left: 90%;
+      width: 140px;
+      height: 140px;
+      animation-delay: 0s;
+      animation-duration: 22s;
+  }
+
+  .circles img:nth-child(7) {
+      left: 0%;
+      width: 100px;
+      height: 100px;
+      animation-delay: 2s;
+      animation-duration: 20s;
+  }
+
+  @keyframes animate {
+      0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+          border-radius: 0;
+      }
+      100% {
+          transform: translateY(-200vh) rotate(720deg);
+          opacity: 0;
+          border-radius: 50%;
+      }
+  }
+
+  .copy {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0; /* Ensure it has the same z-index as the original */
   }
 
   .footer {
