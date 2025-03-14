@@ -202,122 +202,27 @@
       font-size: 50px;
   }
   
-  .area {
-    width: 100%;
-    height: 100%;
-}
-
-.circles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0; /* Ensure it has a base z-index */
-}
-
-.circles img {
-    position: absolute;
-    display: block;
-    width: 20px;
-    height: 20px;
-    bottom: 0px;
-}
-
-.circles[data-animate="true"] img {
-    animation: animate 2s infinite;
-    animation-timing-function: linear;
-}
-
-.circles img:nth-child(1) {
-    left: 25%;
-    width: 80px;
-    height: 80px;
-    animation-delay: 1s;
-    animation-duration: 18s;
-}
-
-.circles img:nth-child(2) {
-    left: 20%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 6s;
-    animation-duration: 12s;
-}
-
-.circles img:nth-child(3) {
-    left: 70%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 8s;
-    animation-duration: 14s;
-}
-
-.circles img:nth-child(4) {
-    left: 80%;
-    width: 60px;
-    height: 60px;
-    animation-delay: 5s;
-    animation-duration: 15s;
-}
-
-.circles img:nth-child(5) {
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    animation-delay: 3s;
-    animation-duration: 16s;
-}
-
-.circles img:nth-child(6) {
-    left: 90%;
-    width: 140px;
-    height: 140px;
-    animation-delay: 0s;
-    animation-duration: 22s;
-}
-
-.circles img:nth-child(7) {
-    left: 0%;
-    width: 100px;
-    height: 100px;
-    animation-delay: 2s;
-    animation-duration: 20s;
-}
-
-@keyframes animate {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.5;
-        border-radius: 0;
-    }
-    100% {
-        transform: translateY(-200vh) rotate(720deg);
-        opacity: 0.1;
-        border-radius: 50%;
-    }
-}
-
-.copy {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0; /* Ensure it has the same z-index as the original */
-}
-
-  /* .fundo-poligonos {
+  .fundo-poligonos {
     position: absolute;
     width: 100%;
     height: 100%; 
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: repeat;
     background-size: 20% auto;
-    opacity: 20%;
-  } */
+    opacity: 40%;
+    z-index: 0; /* Ensure it stays behind other content */
+}
+
+.fundo-poligonos-clone {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    background-image: url('Assets/GroupoPoligonosMobile.svg');
+    background-repeat: repeat;
+    background-size: 20% auto;
+    opacity: 40%;
+    z-index: 0; /* Ensure it stays behind other content */
+}
 
   .main-title {
     color: #fcf9f7;
@@ -439,6 +344,7 @@
     color: #fcf9f7;
     max-width: 100%;
     margin: auto;
+    z-index: 1;
   }
 
   .footer-content {
