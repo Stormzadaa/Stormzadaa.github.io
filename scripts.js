@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fundoPoligonos.parentNode.appendChild(clone);
 
   let scrollPosition = 0;
+  let animationFrameId;
 
   function scrollUp() {
     scrollPosition -= 1;
@@ -64,8 +65,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
     clone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
-    requestAnimationFrame(scrollUp);
+    animationFrameId = requestAnimationFrame(scrollUp);
   }
 
+  // Start the animation initially
   scrollUp();
+
+  // ---- Play/Pause Button Logic ----
+  const toggleSwitch = document.querySelector('.toggle-switch');
+  const playIcon = document.querySelector('.play-icon');
+  const pauseIcon = document.querySelector('.pause-icon');
+  let isPaused = false;
+
+  toggleSwitch.addEventListener('click', () => {
+    if (isPaused) {
+      // Resume the animation
+      scrollUp();
+      playIcon.style.opacity = '0';
+      pauseIcon.style.opacity = '1';
+    } else {
+      // Pause the animation
+      cancelAnimationFrame(animationFrameId);
+      playIcon.style.opacity = '1';
+      pauseIcon.style.opacity = '0';
+    }
+    isPaused = !isPaused;
+  });
+
+   // ---- Nav Underline Toggle Logic ----
+   const contactLink = document.getElementById('contactLink');
+   const contactUnderline = document.getElementById('contactUnderline');
+ 
+   contactLink.addEventListener('click', (event) => {
+     event.preventDefault(); // Prevent default anchor behavior
+     contactUnderline.classList.add('active'); // Ensure underline is active before scrolling
+ 
+     window.scrollTo({
+       top: document.body.scrollHeight,
+       behavior: 'smooth'
+     });
+   });
+
+   window.addEventListener('scroll', () => {
+     if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+       contactUnderline.classList.add('active');
+     } else {
+       contactUnderline.classList.remove('active');
+     }
+   });
 });
+
