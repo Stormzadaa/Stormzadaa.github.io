@@ -208,21 +208,22 @@
     height: 100%; 
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: repeat;
-    background-size: 20% auto;
+    background-size: 25% auto;
     opacity: 40%;
     z-index: 0; /* Ensure it stays behind other content */
-}
-
-.fundo-poligonos-clone {
+  }
+  
+  .fundo-poligonos-clone {
     position: absolute;
     width: 100%;
     height: 100%; 
     background-image: url('Assets/GroupoPoligonosMobile.svg');
     background-repeat: repeat;
-    background-size: 20% auto;
+    background-size: 25% auto;
     opacity: 40%;
     z-index: 0; /* Ensure it stays behind other content */
-}
+  }
+  
 
   .main-title {
     color: #fcf9f7;
