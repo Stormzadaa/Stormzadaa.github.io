@@ -19,6 +19,11 @@
   --h1-font-weight: 400;
 }
 
+.toggle-switch {
+  cursor: pointer;
+}
+
+
   /* Breakpoint for Desktop/Laptop */
 
   @media (min-width: 1280px) {
@@ -478,14 +483,39 @@
 
   .image-grid {
     display: grid;
-    grid-template-columns: repeat(4,1fr); /* Change to a single column */
+    grid-template-columns: repeat(4, 1fr); /* Change to a single column */
     grid-gap: 20px; /* Adjust gap as needed */
     margin-bottom: 60px;
     margin-top: 30px;
     width: 100%;
     padding-left: 122px;
     padding-right: 122px;
-  }
+}
+
+@media (min-width: 5120px) {
+    .image-grid {
+        max-width: 3000px; /* Set a maximum width for the grid */
+        margin-left: auto; /* Center the grid horizontally */
+        margin-right: auto; /* Center the grid horizontally */
+    }
+
+    .footer {
+      position: relative;
+      background: var(--Background-FT);
+      align-self: stretch;
+      display: flex;
+      margin-top: 79px;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      overflow: hidden;
+      color: #fcf9f7;
+      max-width: 100%;
+      margin-bottom: 0px;
+      z-index: 1;
+  }  
+}
+
 
   .image-container {
     width: 100%; /* Make the container full width */
@@ -807,6 +837,28 @@
       height: 100%;
       overflow: hidden;
       z-index: 0; /* Ensure it has the same z-index as the original */
+  }
+
+  .fundo-poligonos {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    background-image: url('Assets/GroupoPoligonosMobile.svg');
+    background-repeat: repeat;
+    background-size: 25% auto;
+    opacity: 40%;
+    z-index: 0; /* Ensure it stays behind other content */
+  }
+  
+  .fundo-poligonos-clone {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    background-image: url('Assets/GroupoPoligonosMobile.svg');
+    background-repeat: repeat;
+    background-size: 25% auto;
+    opacity: 40%;
+    z-index: 0; /* Ensure it stays behind other content */
   }
 
   .main-title {
@@ -1132,10 +1184,10 @@
   /* Container for the toggle button - Button start here */
   .toggle-switch {
     display: inline-block;
-    position: absolute;
+    position: relative;
     cursor: pointer;
-    right: 10px; /* Position it 10px from the right side */
-    top: 80px; /* Position it 100px from the top */
+    left: 80%; /* Position it 10px from the right side */
+    top: 1%; /* Position it 100px from the top */
   }
 
   /* Play/Pause icons */
@@ -1251,6 +1303,28 @@
     border: none;
   }
   
+  .fundo-poligonos {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    background-image: url('Assets/GroupoPoligonosMobile.svg');
+    background-repeat: repeat;
+    background-size: 25% auto;
+    opacity: 40%;
+    z-index: 0; /* Ensure it stays behind other content */
+  }
+  
+  .fundo-poligonos-clone {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    background-image: url('Assets/GroupoPoligonosMobile.svg');
+    background-repeat: repeat;
+    background-size: 25% auto;
+    opacity: 40%;
+    z-index: 0; /* Ensure it stays behind other content */
+  }
+
   .main-title {
   color: #fcf9f7;
   align-self: center;
