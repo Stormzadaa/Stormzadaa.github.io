@@ -219,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuButton = document.querySelector('.menu-svg');
   const hamburgerMenu = document.getElementById('hamburgerMenu');
   const returnArrow = document.getElementById('returnArrow');
+  const hamburgerWorkLink = document.getElementById('hamburgerWorkLink');
 
   menuButton.addEventListener('click', () => {
     hamburgerMenu.classList.toggle('active');
@@ -235,8 +236,25 @@ document.addEventListener('DOMContentLoaded', () => {
       hamburgerMenu.classList.remove('active');
     }
   });
+
+  // Add underline to "Work" link when on index page
+  function addUnderlineToWorkLink() {
+    const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
+    console.log('Is index page:', isIndexPage); // Debugging line
+    if (isIndexPage) {
+      const underline = document.createElement('div');
+      underline.classList.add('active-underline');
+      hamburgerWorkLink.parentElement.appendChild(underline);
+    }
+  }
+
+  // Call the function initially
+  addUnderlineToWorkLink();
+
+  // Make "Work" link clickable
+  hamburgerWorkLink.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
 });
-
-
 
 
