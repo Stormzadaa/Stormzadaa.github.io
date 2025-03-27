@@ -213,3 +213,30 @@ window.addEventListener("scroll", function () {
     document.getElementById("workUnderline").classList.add("active");
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Hamburger menu logic
+  const menuButton = document.querySelector('.menu-svg');
+  const hamburgerMenu = document.getElementById('hamburgerMenu');
+  const returnArrow = document.getElementById('returnArrow');
+
+  menuButton.addEventListener('click', () => {
+    hamburgerMenu.classList.toggle('active');
+  });
+
+  // Close the menu when clicking the return arrow
+  returnArrow.addEventListener('click', () => {
+    hamburgerMenu.classList.remove('active');
+  });
+
+  // Close the menu when clicking outside of it
+  document.addEventListener('click', (event) => {
+    if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
+      hamburgerMenu.classList.remove('active');
+    }
+  });
+});
+
+
+
+
