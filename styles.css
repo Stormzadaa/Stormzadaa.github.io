@@ -1181,33 +1181,11 @@
     padding-top: 70px; /* Adjust this value based on the height of your header */
   }
 
-  /* Container for the toggle button - Button start here */
   .toggle-switch {
     display: inline-block;
     position: relative;
     cursor: pointer;
-    left: 80%; /* Position it 10px from the right side */
-    top: 1%; /* Position it 100px from the top */
-  }
-
-  /* Play/Pause icons */
-  .play-icon,
-  .pause-icon {
-    transition: opacity 0.3s ease;
-    transform-origin: center;
-    transform: scale(1);
-    pointer-events: none; /* Prevents the icon from being interactive */
-    transition: opacity 0.3s ease; /* Smooth transition for opacity change */
-  }
-
-  .play-icon {
-    opacity: 1; /* Visible by default */
-    transform: translate(0, 0); /* Center play icon */
-  }
-
-  .pause-icon {
-    opacity: 0; /* Hidden by default */
-    transform: translate(0, 0); /* Center pause icon */
+    order: 1; /* Ensure the toggle switch is placed before the menu button */
   }
 
   /* Icon styling (Play and Pause) */
@@ -1217,15 +1195,6 @@
 
   .pause-icon rect {
     fill: white;
-  }
-
-  /* Center the pause and play icons */
-  .play-icon {
-    transform: translate(4px, 4px); /* Adjusted to center the play icon */
-  }
-
-  .pause-icon rect {
-    transform: translate(4px, 4px); /* Adjusted to center the pause icon */
   }
 
   .portfolio-section {
@@ -1258,6 +1227,8 @@
     padding-right: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
     color: #fcf9f7;
     justify-content: space-between;
     font-family: var(--h6-font-family);
@@ -1268,6 +1239,12 @@
     line-height: var(--h6-line-height);
     z-index: 1;
     box-sizing: border-box;
+  }
+
+  .logo, .menu-svg, .toggle-switch {
+    height: 50px; /* Set the same height for all elements */
+    display: flex;
+    align-items: center;
   }
 
   .logo {
@@ -1301,6 +1278,8 @@
   .menu-svg {
     background-color: transparent;
     border: none;
+    order: 2;
+    padding: 0;
   }
   
   .fundo-poligonos {

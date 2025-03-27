@@ -117,6 +117,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // Function to move the toggle-switch into the header for small screens
+  function adjustToggleSwitchPlacement() {
+    const headerBox = document.querySelector('.headerBox');
+    const toggleSwitch = document.querySelector('.toggle-switch');
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth <= 768) {
+      if (!headerBox.contains(toggleSwitch)) {
+        headerBox.appendChild(toggleSwitch);
+      }
+    } else {
+      // Move the toggle-switch back to its original position if needed
+      const body = document.querySelector('.body');
+      if (body && !body.contains(toggleSwitch)) {
+        body.appendChild(toggleSwitch);
+      }
+    }
+  }
+
+  // Call the function initially and whenever the window is resized
+  adjustToggleSwitchPlacement();
+  window.addEventListener('resize', adjustToggleSwitchPlacement);
 });
 
 // Flag to prevent multiple scroll actions at the same time
@@ -190,5 +213,3 @@ window.addEventListener("scroll", function () {
     document.getElementById("workUnderline").classList.add("active");
   }
 });
-
-
