@@ -1259,7 +1259,8 @@
     aspect-ratio: 1;
     object-fit: contain;
     object-position: center;
-    width: 30px;
+    width: auto;
+    height: 35px;
     transition: transform 0.3s ease;
   }
 
@@ -1288,6 +1289,11 @@
     border: none;
     order: 2;
     padding: 0;
+  }
+
+  .menu-svg img{
+    height: 25px;
+    width: auto;
   }
   
   .fundo-poligonos {
