@@ -221,26 +221,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const returnArrow = document.getElementById('returnArrow');
   const hamburgerWorkLink = document.getElementById('hamburgerWorkLink');
 
+  // Define custom properties for transition durations
+  const openDuration = '1.2s';
+  const closeDuration = '0.6s';
+
+  // Toggle the menu visibility
   menuButton.addEventListener('click', () => {
-    hamburgerMenu.classList.toggle('active');
+    hamburgerMenu.style.setProperty('--menu-transition-duration', openDuration);
+    hamburgerMenu.style.display = 'block'; // Ensure the menu is displayed
+    setTimeout(() => {
+      hamburgerMenu.classList.add('active');
+      hamburgerMenu.classList.remove('hidden');
+    }, 10); // Slight delay to ensure the display property is set before applying the class
   });
 
   // Close the menu when clicking the return arrow
   returnArrow.addEventListener('click', () => {
-    hamburgerMenu.classList.remove('active');
+    hamburgerMenu.style.setProperty('--menu-transition-duration', closeDuration);
+    hamburgerMenu.classList.add('hidden');
+    setTimeout(() => {
+      hamburgerMenu.classList.remove('active');
+      hamburgerMenu.style.display = 'none'; // Hide the menu after the animation
+    }, 600); // Wait for the close animation to complete before removing the active class
   });
 
   // Close the menu when clicking outside of it
   document.addEventListener('click', (event) => {
     if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
-      hamburgerMenu.classList.remove('active');
+      hamburgerMenu.style.setProperty('--menu-transition-duration', closeDuration);
+      hamburgerMenu.classList.add('hidden');
+      setTimeout(() => {
+        hamburgerMenu.classList.remove('active');
+        hamburgerMenu.style.display = 'none'; // Hide the menu after the animation
+      }, 600); // Wait for the close animation to complete before removing the active class
     }
   });
 
   // Add underline to "Work" link when on index page
   function addUnderlineToWorkLink() {
     const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
-    console.log('Is index page:', isIndexPage); // Debugging line
     if (isIndexPage) {
       const underline = document.createElement('div');
       underline.classList.add('active-underline');
@@ -252,9 +271,66 @@ document.addEventListener('DOMContentLoaded', () => {
   addUnderlineToWorkLink();
 
   // Make "Work" link clickable
-  hamburgerWorkLink.addEventListener('click', () => {
-    window.location.href = 'index.html';
+  hamburgerWorkLink.addEventListener('click', (event) => {
+    if (window.scrollY === 0) {
+      event.preventDefault(); // Prevent scroll jump when at the top
+    } else {
+      smoothScrollTo(0, 500); // Smooth scroll to top
+    }
+    document.getElementById("workUnderline").classList.add("active");
+    document.getElementById("contactUnderline").classList.remove("active");
+    hamburgerMenu.style.setProperty('--menu-transition-duration', closeDuration);
+    hamburgerMenu.classList.add('hidden');
+    setTimeout(() => {
+      hamburgerMenu.classList.remove('active');
+      hamburgerMenu.style.display = 'none'; // Hide the menu after the animation
+    }, 600); // Wait for the close animation to complete before removing the active class
+  });
+
+  // Highlight the active link
+  const menuLinks = document.querySelectorAll('.hamburger-menu a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menuLinks.forEach(link => link.classList.remove('active'));
+      link.classList.add('active');
+      hamburgerMenu.style.setProperty('--menu-transition-duration', closeDuration);
+      hamburgerMenu.classList.add('hidden');
+      setTimeout(() => {
+        hamburgerMenu.classList.remove('active');
+        hamburgerMenu.style.display = 'none'; // Hide the menu after the animation
+      }, 600); // Wait for the close animation to complete before removing the active class
+    });
   });
 });
+
+// Smooth scroll function (reuse the existing one)
+function smoothScrollTo(target, duration) {
+  const start = window.scrollY;
+  const distance = target - start;
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const run = ease(timeElapsed, start, distance, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    } else {
+      isScrolling = false;
+    }
+  }
+
+  function ease(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return (c / 2) * t * t + b;
+    t--;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
+  }
+
+  isScrolling = true;
+  requestAnimationFrame(animation);
+}
+
 
 
