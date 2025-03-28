@@ -557,6 +557,10 @@
   }
 }
 
+.hamburger-menu {
+  display: none; /* Hidden by default */
+}
+
 /* Breakpoint for medium screen */
 
 @media (min-width: 769px) and (max-width: 1279px) {
@@ -1161,7 +1165,11 @@
     position: absolute;
     bottom: 0;
   }
-   
+ 
+  .hamburger-menu {
+    display: none; /* Hidden by default */
+  }
+
 }
   
 /* Breakpoint for mobile */
