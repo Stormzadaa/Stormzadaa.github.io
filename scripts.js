@@ -456,3 +456,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* Direction to the "about" page mobile*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerAboutLink = document.getElementById("hamburgerAboutLink");
+
+  // Event listener for "ABOUT" link
+  hamburgerAboutLink.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    window.location.href = "about.html"; // Redirect to about.html
+  });
+});
+
+/* Direction to the "work" page mobile */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerWorkLink = document.getElementById("hamburgerWorkLink");
+
+  // Event listener for "WORK" link
+  hamburgerWorkLink.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    window.location.href = "index.html"; // Redirect to index.html
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerAboutLink = document.getElementById("hamburgerAboutLink");
+  const hamburgerAboutUnderline = document.getElementById("hamburgerAboutUnderline");
+
+  // Check if the elements exist before adding event listeners
+  if (hamburgerAboutLink && hamburgerAboutUnderline) {
+    // Event listener for "ABOUT" link
+    hamburgerAboutLink.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent default anchor behavior
+      window.location.href = "about.html"; // Redirect to about.html
+    });
+
+    // Add underline to "About" link when on about page
+    function addUnderlineToAboutLink() {
+      const isAboutPage = window.location.pathname.endsWith("about.html");
+      if (isAboutPage) {
+        hamburgerAboutUnderline.style.display = "block";
+      } else {
+        hamburgerAboutUnderline.style.display = "none";
+      }
+    }
+
+    // Call the function initially
+    addUnderlineToAboutLink();
+  } else {
+    console.error("Element with ID 'hamburgerAboutLink' or 'hamburgerAboutUnderline' not found.");
+  }
+});
+
