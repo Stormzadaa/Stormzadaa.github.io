@@ -1259,7 +1259,7 @@
     aspect-ratio: 1;
     object-fit: contain;
     object-position: center;
-    width: auto;
+    width: 50px;
     height: 35px;
     transition: transform 0.3s ease;
   }
@@ -1284,13 +1284,6 @@
     display: none;
   }
 
-  .hamburger-menu .active-underline {
-    height: 2px;
-    background-color: #fcf9f7; /* Adjust the color as needed */
-    width: 100%;
-    margin-top: 2px; /* Adjust the spacing as needed */
-  }
-  
   .menu-svg {
     background-color: transparent;
     border: none;
@@ -1300,7 +1293,7 @@
 
   .menu-svg img{
     height: 25px;
-    width: auto;
+    width: 50px;
   }
   
   .fundo-poligonos {
@@ -1648,6 +1641,13 @@
     background-position: center; /* Center the SVG image */
     z-index: 1; /* Place it behind the ul */
     opacity: 60%;
+  }
+
+  .hamburger-menu .active-underline {
+    height: 2px;
+    background-color: #fcf9f7; /* Adjust the color as needed */
+    width: 100%;
+    margin-top: 2px; /* Adjust the spacing as needed */
   }
 
   .hamburger-menu.active {

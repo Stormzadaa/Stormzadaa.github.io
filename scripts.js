@@ -222,8 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburgerWorkLink = document.getElementById('hamburgerWorkLink');
 
   // Define custom properties for transition durations
-  const openDuration = '1.2s';
-  const closeDuration = '0.6s';
+  const openDuration = '0.9s';
+  const closeDuration = '0.5s';
 
   // Toggle the menu visibility
   menuButton.addEventListener('click', () => {
