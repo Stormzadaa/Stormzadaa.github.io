@@ -58,17 +58,18 @@ document.addEventListener("DOMContentLoaded", () => {
   fundoPoligonos.parentNode.appendChild(clone);
 
   let scrollPosition = 0;
+  let scrollSpeed = 0.5; // Default scroll speed
   let animationFrameId;
 
   function scrollUp() {
-    scrollPosition -= 1;
+    scrollPosition -= scrollSpeed; // Use scrollSpeed here
     if (scrollPosition <= -contentHeight) {
       scrollPosition = 0;
     }
     fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
     clone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
     animationFrameId = requestAnimationFrame(scrollUp);
-  }
+  }  
 
   // Start the animation initially
   scrollUp();
@@ -219,110 +220,68 @@ window.addEventListener("scroll", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Hamburger menu logic
   const menuButton = document.querySelector(".menu-svg");
   const hamburgerMenu = document.getElementById("hamburgerMenu");
   const returnArrow = document.getElementById("returnArrow");
-  const hamburgerWorkLink = document.getElementById("hamburgerWorkLink");
 
   // Define custom properties for transition durations
   const openDuration = "0.9s";
   const closeDuration = "0.5s";
 
-  // Toggle the menu visibility
+  // Function to close the menu if screen width is greater than 768px
+  function closeMenuOnLargeScreens() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 768) {
+      hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
+      hamburgerMenu.classList.add("hidden");
+      document.body.classList.remove("no-scroll"); // Enable scrolling
+      setTimeout(() => {
+        hamburgerMenu.classList.remove("active");
+        hamburgerMenu.style.display = "none"; // Hide the menu after the animation
+      }, 600); // Wait for the close animation to complete before removing the active class
+    }
+  }
+
+  // Call the function initially and whenever the window is resized
+  closeMenuOnLargeScreens();
+  window.addEventListener("resize", closeMenuOnLargeScreens);
+
+  // Toggle the menu visibility and lock/unlock scroll
   menuButton.addEventListener("click", () => {
     hamburgerMenu.style.setProperty("--menu-transition-duration", openDuration);
     hamburgerMenu.style.display = "block"; // Ensure the menu is displayed
+    document.body.classList.add("no-scroll"); // Disable scrolling
     setTimeout(() => {
       hamburgerMenu.classList.add("active");
       hamburgerMenu.classList.remove("hidden");
     }, 10); // Slight delay to ensure the display property is set before applying the class
   });
 
-  // Close the menu when clicking the return arrow
+  // Close the menu when clicking the return arrow and unlock scroll
   returnArrow.addEventListener("click", () => {
-    hamburgerMenu.style.setProperty(
-      "--menu-transition-duration",
-      closeDuration
-    );
+    hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
     hamburgerMenu.classList.add("hidden");
+    document.body.classList.remove("no-scroll"); // Enable scrolling
     setTimeout(() => {
       hamburgerMenu.classList.remove("active");
       hamburgerMenu.style.display = "none"; // Hide the menu after the animation
     }, 600); // Wait for the close animation to complete before removing the active class
   });
 
-  // Close the menu when clicking outside of it
+  // Close the menu when clicking outside of it and unlock scroll
   document.addEventListener("click", (event) => {
-    if (
-      !hamburgerMenu.contains(event.target) &&
-      !menuButton.contains(event.target)
-    ) {
-      hamburgerMenu.style.setProperty(
-        "--menu-transition-duration",
-        closeDuration
-      );
+    if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
+      hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
       hamburgerMenu.classList.add("hidden");
+      document.body.classList.remove("no-scroll"); // Enable scrolling
       setTimeout(() => {
         hamburgerMenu.classList.remove("active");
         hamburgerMenu.style.display = "none"; // Hide the menu after the animation
       }, 600); // Wait for the close animation to complete before removing the active class
     }
-  });
-
-  // Add underline to "Work" link when on index page
-  function addUnderlineToWorkLink() {
-    const isIndexPage =
-      window.location.pathname.endsWith("index.html") ||
-      window.location.pathname === "/";
-    if (isIndexPage) {
-      const underline = document.createElement("div");
-      underline.classList.add("active-underline");
-      hamburgerWorkLink.parentElement.appendChild(underline);
-    }
-  }
-
-  // Call the function initially
-  addUnderlineToWorkLink();
-
-  // Make "Work" link clickable
-  hamburgerWorkLink.addEventListener("click", (event) => {
-    if (window.scrollY === 0) {
-      event.preventDefault(); // Prevent scroll jump when at the top
-    } else {
-      smoothScrollTo(0, 500); // Smooth scroll to top
-    }
-    document.getElementById("workUnderline").classList.add("active");
-    document.getElementById("contactUnderline").classList.remove("active");
-    hamburgerMenu.style.setProperty(
-      "--menu-transition-duration",
-      closeDuration
-    );
-    hamburgerMenu.classList.add("hidden");
-    setTimeout(() => {
-      hamburgerMenu.classList.remove("active");
-      hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-    }, 600); // Wait for the close animation to complete before removing the active class
-  });
-
-  // Highlight the active link
-  const menuLinks = document.querySelectorAll(".hamburger-menu a");
-  menuLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      menuLinks.forEach((link) => link.classList.remove("active"));
-      link.classList.add("active");
-      hamburgerMenu.style.setProperty(
-        "--menu-transition-duration",
-        closeDuration
-      );
-      hamburgerMenu.classList.add("hidden");
-      setTimeout(() => {
-        hamburgerMenu.classList.remove("active");
-        hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-      }, 600); // Wait for the close animation to complete before removing the active class
-    });
   });
 });
+
 
 // Smooth scroll function (reuse the existing one)
 function smoothScrollTo(target, duration) {
