@@ -89,7 +89,7 @@
   }
 
   .portfolio-section {
-    background: var(--Background-DM);
+    background: var(--foundation-greydarker);
     background-blend-mode: overlay, luminosity;
     display: flex;
     flex-direction: column;
@@ -103,7 +103,7 @@
     position: relative;
     width: 100%;
     height: 100px;
-    background-color: var(--Background-DM);
+    background-color: var(--foundation-greydarker);
     max-width: 100%;
     flex-wrap: wrap;
     position: fixed;
@@ -292,7 +292,7 @@
 
   .footer {
     position: relative;
-    background: var(--Background-FT);
+    background: var(--foundation-browndark-active);
     display: flex;
     width: 100%;
     height: 100%;
@@ -508,6 +508,35 @@
   display: none; /* Hidden by default */
 }
 
+/* -------- ABOUT PAGE---------- */
+
+.aboutSection {
+  align-self: center;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+  max-width: 100%;
+  padding-left: 122px;
+  padding-right: 122px;
+}
+
+.about-title {
+  position: absolute;
+  color: #fcf9f7;
+  align-self: center;
+  margin-top: 60px;
+  margin-bottom: 0px;
+  font-family: var(--h1-font-family);
+  font-weight: var(--h1-font-weight);
+  font-size: var(--h1-font-size);
+  font-style: var(--h1-font-style);
+  letter-spacing: var(--h1-letter-spacing);
+  line-height: var(--h1-line-height);
+  max-width: 100%;
+  z-index: 0;
+}
+
 /* Breakpoint for medium screen */
 
 @media (min-width: 769px) and (max-width: 1279px) {
@@ -574,7 +603,7 @@
   }
 
   .portfolio-section {
-    background: var(--Background-DM);
+    background: var(--foundation-greydarker);
     background-blend-mode: overlay, luminosity;
     display: flex;
     flex-direction: column;
@@ -588,7 +617,7 @@
     position: relative;
     width: 100%;
     height: 70px;
-    background-color: var(--Background-DM);
+    background-color: var(--foundation-greydarker);
     max-width: 100%;
     flex-wrap: wrap;
     position: fixed;
@@ -877,7 +906,7 @@
 
   .footer {
     position: relative;
-    background: var(--Background-FT);
+    background: var(--foundation-browndark-active);
     display: flex;
     width: 100%;
     height: 100%;
@@ -1103,7 +1132,7 @@
   }
 
   .portfolio-section {
-    background: var(--Background-DM);
+    background: var(--foundation-greydarker);
     background-blend-mode: overlay, luminosity;
     display: flex;
     flex-direction: column;
@@ -1117,7 +1146,7 @@
     position: relative;
     width: 100%;
     height: 70px;
-    background-color: var(--Background-DM);
+    background-color: var(--foundation-greydarker);
     max-width: 100%;
     flex-wrap: wrap;
     position: fixed;
@@ -1282,7 +1311,7 @@
 
   .footer {
     position: relative;
-    background: var(--Background-FT);
+    background: var(--foundation-browndark-active);
     display: flex;
     width: 100%;
     height: 100%;
