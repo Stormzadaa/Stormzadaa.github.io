@@ -1,52 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ---- Text Carousel Logic ----
   const textCarouselContent = document.getElementById("carouselContent");
-  const textContainerWidth = document.querySelector(
-    ".carousel-container"
-  ).offsetWidth;
+  const textContainerWidth = document.querySelector(".carousel-container")?.offsetWidth;
 
-  let textContentWidth = textCarouselContent.scrollWidth;
+  if (textCarouselContent && textContainerWidth) {
+    let textContentWidth = textCarouselContent.scrollWidth;
 
-  // Clone text items to ensure enough content for scrolling
-  while (textContentWidth < textContainerWidth * 10) {
-    const textItems = Array.from(textCarouselContent.children);
-    textItems.forEach((item) => {
-      const clone = item.cloneNode(true);
-      textCarouselContent.appendChild(clone);
-    });
-    textContentWidth = textCarouselContent.scrollWidth;
-  }
-
-  let textCurrentPosition = 0;
-  let textScrollSpeed = 0.3; // Default scroll speed
-
-  // Function to adjust scroll speed based on screen width
-  function adjustTextScrollSpeed() {
-    const screenWidth = window.innerWidth;
-    if (screenWidth <= 770) {
-      textScrollSpeed = 0.1; // Slower speed for small screens
-    } else if (screenWidth <= 1024) {
-      textScrollSpeed = 0.2; // Moderate speed for medium screens
-    } else {
-      textScrollSpeed = 0.3; // Default speed for larger screens
+    // Clone text items to ensure enough content for scrolling
+    while (textContentWidth < textContainerWidth * 10) {
+      const textItems = Array.from(textCarouselContent.children);
+      textItems.forEach((item) => {
+        const clone = item.cloneNode(true);
+        textCarouselContent.appendChild(clone);
+      });
+      textContentWidth = textCarouselContent.scrollWidth;
     }
-  }
 
-  // Call adjustTextScrollSpeed initially and whenever the window is resized
-  adjustTextScrollSpeed();
-  window.addEventListener("resize", adjustTextScrollSpeed);
+    let textCurrentPosition = 0;
+    let textScrollSpeed = 0.3; // Default scroll speed
 
-  function animateTextScroll() {
-    textCurrentPosition -= textScrollSpeed;
-    if (Math.abs(textCurrentPosition) >= textContentWidth / 2) {
-      textCurrentPosition = 0;
+    // Function to adjust scroll speed based on screen width
+    function adjustTextScrollSpeed() {
+      const screenWidth = window.innerWidth;
+      if (screenWidth <= 770) {
+        textScrollSpeed = 0.1; // Slower speed for small screens
+      } else if (screenWidth <= 1024) {
+        textScrollSpeed = 0.2; // Moderate speed for medium screens
+      } else {
+        textScrollSpeed = 0.3; // Default speed for larger screens
+      }
     }
-    textCarouselContent.style.transform = `translateX(${textCurrentPosition}px)`;
+
+    // Call adjustTextScrollSpeed initially and whenever the window is resized
+    adjustTextScrollSpeed();
+    window.addEventListener("resize", adjustTextScrollSpeed);
+
+    function animateTextScroll() {
+      textCurrentPosition -= textScrollSpeed;
+      if (Math.abs(textCurrentPosition) >= textContentWidth / 2) {
+        textCurrentPosition = 0;
+      }
+      textCarouselContent.style.transform = `translateX(${textCurrentPosition}px)`;
+      requestAnimationFrame(animateTextScroll);
+    }
+
+    // Start the animation initially
     requestAnimationFrame(animateTextScroll);
   }
-
-  // Start the animation initially
-  requestAnimationFrame(animateTextScroll);
 
   // ---- Vertical Loop Animation Logic ----
   const fundoPoligonos = document.querySelector(".fundo-poligonos");
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
     clone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
     animationFrameId = requestAnimationFrame(scrollUp);
-  }  
+  }
 
   // Start the animation initially
   scrollUp();
@@ -110,6 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
     smoothScrollTo(document.body.scrollHeight, 1000); // Smooth scroll to footer
   });
 
+  let isScrolling = false;
+
   window.addEventListener("scroll", () => {
     if (!isScrolling) {
       const isAtBottom =
@@ -146,10 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", adjustToggleSwitchPlacement);
 });
 
-// Flag to prevent multiple scroll actions at the same time
-let isScrolling = false;
-
-// Function to perform smooth scrolling
+// Smooth scroll function
 function smoothScrollTo(target, duration) {
   const start = window.scrollY;
   const distance = target - start;
@@ -160,15 +159,7 @@ function smoothScrollTo(target, duration) {
     const timeElapsed = currentTime - startTime;
     const run = ease(timeElapsed, start, distance, duration);
     window.scrollTo(0, run);
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
-    } else {
-      // Ensure the "Contact" underline remains active when scrolled to the bottom
-      if (target === document.body.scrollHeight) {
-        document.getElementById("contactUnderline").classList.add("active");
-      }
-      isScrolling = false;
-    }
+    if (timeElapsed < duration) requestAnimationFrame(animation);
   }
 
   function ease(t, b, c, d) {
@@ -178,9 +169,9 @@ function smoothScrollTo(target, duration) {
     return (-c / 2) * (t * (t - 2) - 1) + b;
   }
 
-  isScrolling = true;
   requestAnimationFrame(animation);
 }
+
 
 // Initialize "Work" underline as always active
 document.getElementById("workUnderline").classList.add("active");
