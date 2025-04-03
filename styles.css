@@ -24,7 +24,6 @@
 }
 
 /* Breakpoint for Desktop/Laptop */
-
 @media (min-width: 1280px) {
   .html,
   body {

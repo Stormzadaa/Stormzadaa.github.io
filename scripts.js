@@ -102,27 +102,51 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Nav Underline Toggle Logic ----
   const contactLink = document.getElementById("contactLink");
   const contactUnderline = document.getElementById("contactUnderline");
+  const workUnderline = document.getElementById("workUnderline");
+  const footer = document.querySelector("footer");
 
   contactLink.addEventListener("click", (event) => {
     event.preventDefault(); // Prevent default anchor behavior
-    contactUnderline.classList.add("active"); // Ensure underline is active before scrolling
-
-    smoothScrollTo(document.body.scrollHeight, 1000); // Smooth scroll to footer
+    smoothScrollTo(document.body.scrollHeight, 1000); // Scroll to the bottom of the page
   });
-
-  let isScrolling = false;
 
   window.addEventListener("scroll", () => {
-    if (!isScrolling) {
-      const isAtBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight;
-      if (isAtBottom) {
-        contactUnderline.classList.add("active");
-      } else {
-        contactUnderline.classList.remove("active");
-      }
+    const footerRect = footer.getBoundingClientRect();
+    const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
+
+    if (isFooterVisible) {
+      contactUnderline.classList.add("active");
+    } else {
+      contactUnderline.classList.remove("active");
     }
+
+    // Keep "Work" underline always active
+    workUnderline.classList.add("active");
   });
+
+  // Smooth scroll function
+  function smoothScrollTo(target, duration) {
+    const start = window.scrollY;
+    const distance = target - start;
+    let startTime = null;
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = ease(timeElapsed, start, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+  }
 
   // Function to move the toggle-switch into the header for small screens
   function adjustToggleSwitchPlacement() {
@@ -148,31 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", adjustToggleSwitchPlacement);
 });
 
-// Smooth scroll function
-function smoothScrollTo(target, duration) {
-  const start = window.scrollY;
-  const distance = target - start;
-  let startTime = null;
-
-  function animation(currentTime) {
-    if (startTime === null) startTime = currentTime;
-    const timeElapsed = currentTime - startTime;
-    const run = ease(timeElapsed, start, distance, duration);
-    window.scrollTo(0, run);
-    if (timeElapsed < duration) requestAnimationFrame(animation);
-  }
-
-  function ease(t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return (c / 2) * t * t + b;
-    t--;
-    return (-c / 2) * (t * (t - 2) - 1) + b;
-  }
-
-  requestAnimationFrame(animation);
-}
-
-
 // Initialize "Work" underline as always active
 document.getElementById("workUnderline").classList.add("active");
 
@@ -194,21 +193,21 @@ document.getElementById("workLink").addEventListener("click", function (event) {
 
 // Scroll event to toggle "Contact" underline and keep "Work" underline active
 window.addEventListener("scroll", function () {
-  if (!isScrolling) {
-    const isAtBottom =
-      window.innerHeight + window.scrollY >= document.body.offsetHeight;
-    const contactUnderline = document.getElementById("contactUnderline");
+  const footer = document.querySelector("footer");
+  const footerRect = footer.getBoundingClientRect();
+  const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
+  const contactUnderline = document.getElementById("contactUnderline");
 
-    if (isAtBottom) {
-      contactUnderline.classList.add("active");
-    } else {
-      contactUnderline.classList.remove("active");
-    }
-
-    // Keep "Work" underline always active
-    document.getElementById("workUnderline").classList.add("active");
+  if (isFooterVisible) {
+    contactUnderline.classList.add("active");
+  } else {
+    contactUnderline.classList.remove("active");
   }
+
+  // Keep "Work" underline always active
+  document.getElementById("workUnderline").classList.add("active");
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-svg");
