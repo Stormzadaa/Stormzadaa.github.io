@@ -99,30 +99,38 @@ document.addEventListener("DOMContentLoaded", () => {
     isPaused = !isPaused;
   });
 
-  // ---- Nav Underline Toggle Logic ----
-  const contactLink = document.getElementById("contactLink");
-  const contactUnderline = document.getElementById("contactUnderline");
-  const workUnderline = document.getElementById("workUnderline");
-  const footer = document.querySelector("footer");
+ // ---- Nav Underline Toggle Logic ----
+const contactLink = document.getElementById("contactLink");
+const contactUnderline = document.getElementById("contactUnderline");
+const workUnderline = document.getElementById("workUnderline");
+const footer = document.querySelector("footer");
 
-  contactLink.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent default anchor behavior
-    smoothScrollTo(document.body.scrollHeight, 1000); // Scroll to the bottom of the page
-  });
+// Check if the current page is index.html
+const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
 
-  window.addEventListener("scroll", () => {
-    const footerRect = footer.getBoundingClientRect();
-    const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
+contactLink.addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent default anchor behavior
+  smoothScrollTo(document.body.scrollHeight, 1000); // Scroll to the bottom of the page
+});
 
-    if (isFooterVisible) {
-      contactUnderline.classList.add("active");
-    } else {
-      contactUnderline.classList.remove("active");
-    }
+window.addEventListener("scroll", () => {
+  const footerRect = footer.getBoundingClientRect();
+  const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
 
-    // Keep "Work" underline always active
+  if (isFooterVisible) {
+    contactUnderline.classList.add("active");
+  } else {
+    contactUnderline.classList.remove("active");
+  }
+
+  // Keep "Work" underline always active only on index.html
+  if (isIndexPage) {
     workUnderline.classList.add("active");
-  });
+  } else {
+    workUnderline.classList.remove("active");
+  }
+});
+
 
   // Smooth scroll function
   function smoothScrollTo(target, duration) {
@@ -172,8 +180,16 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", adjustToggleSwitchPlacement);
 });
 
-// Initialize "Work" underline as always active
-document.getElementById("workUnderline").classList.add("active");
+// Check if the current page is index.html
+const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+// Initialize "Work" underline as always active only on index.html
+if (isIndexPage) {
+  document.getElementById("workUnderline").classList.add("active");
+} else {
+  document.getElementById("workUnderline").classList.remove("active");
+}
+
 
 // Event listener for "About" link
 document.getElementById("aboutLink").addEventListener("click", function () {
@@ -191,12 +207,13 @@ document.getElementById("workLink").addEventListener("click", function (event) {
   document.getElementById("contactUnderline").classList.remove("active");
 });
 
-// Scroll event to toggle "Contact" underline and keep "Work" underline active
+// Scroll event to toggle "Contact" underline and keep "Work" underline active only on index.html
 window.addEventListener("scroll", function () {
   const footer = document.querySelector("footer");
   const footerRect = footer.getBoundingClientRect();
   const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
   const contactUnderline = document.getElementById("contactUnderline");
+  const workUnderline = document.getElementById("workUnderline");
 
   if (isFooterVisible) {
     contactUnderline.classList.add("active");
@@ -204,9 +221,17 @@ window.addEventListener("scroll", function () {
     contactUnderline.classList.remove("active");
   }
 
-  // Keep "Work" underline always active
-  document.getElementById("workUnderline").classList.add("active");
+  // Check if the current page is index.html
+  const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+  // Keep "Work" underline always active only on index.html
+  if (isIndexPage) {
+    workUnderline.classList.add("active");
+  } else {
+    workUnderline.classList.remove("active");
+  }
 });
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
