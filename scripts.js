@@ -210,8 +210,9 @@ if (isAboutPage) {
   document.getElementById("aboutUnderline").classList.remove("active");
 }
 
-// Event listener for "Work" link
-document.getElementById("workLink").addEventListener("click", function (event) {
+// Function to handle "Work" link click event
+function handleWorkLinkClick(event) {
+  const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
   if (isIndexPage) {
     if (window.scrollY === 0) {
       event.preventDefault(); // Prevent scroll jump when at the top
@@ -220,8 +221,14 @@ document.getElementById("workLink").addEventListener("click", function (event) {
     }
     document.getElementById("workUnderline").classList.add("active");
     document.getElementById("contactUnderline").classList.remove("active");
+  } else {
+    window.location.href = "index.html"; // Redirect to index.html
   }
-});
+}
+
+// Event listener for "Work" link
+document.getElementById("workLink").addEventListener("click", handleWorkLinkClick);
+
 
 // Scroll event to toggle "Contact" underline and keep "Work" and "About" underlines active only on their respective pages
 window.addEventListener("scroll", function () {
@@ -292,16 +299,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 10); // Slight delay to ensure the display property is set before applying the class
   });
 
-  // Close the menu when clicking the return arrow and unlock scroll
-  returnArrow.addEventListener("click", () => {
-    hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
-    hamburgerMenu.classList.add("hidden");
-    document.body.classList.remove("no-scroll"); // Enable scrolling
-    setTimeout(() => {
-      hamburgerMenu.classList.remove("active");
-      hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-    }, 600); // Wait for the close animation to complete before removing the active class
-  });
+// Function to close the menu
+function closeMenu() {
+  hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
+  hamburgerMenu.classList.add("hidden");
+  document.body.classList.remove("no-scroll"); // Enable scrolling
+  setTimeout(() => {
+    hamburgerMenu.classList.remove("active");
+    hamburgerMenu.style.display = "none"; // Hide the menu after the animation
+  }, 600); // Wait for the close animation to complete before removing the active class
+}
+
+// Close the menu when clicking the return arrow and unlock scroll
+returnArrow.addEventListener("click", closeMenu);
+
+// Close the menu when clicking outside of it and unlock scroll
+document.addEventListener("click", (event) => {
+  if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
+    closeMenu();
+  }
+});
+
+// Close the menu when clicking any menu option
+const menuOptions = document.querySelectorAll("#hamburgerMenu a"); // Assuming menu options are anchor tags
+menuOptions.forEach(option => {
+  option.addEventListener("click", closeMenu);
+});
+
 
   // Close the menu when clicking outside of it and unlock scroll
   document.addEventListener("click", (event) => {
@@ -424,17 +448,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburgerMenu.classList.add("active");
       hamburgerMenu.classList.remove("hidden");
     }, 10); // Slight delay to ensure the display property is set before applying the class
-  });
-
-  // Close the menu when clicking the return arrow and unlock scroll
-  returnArrow.addEventListener("click", () => {
-    hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
-    hamburgerMenu.classList.add("hidden");
-    document.body.classList.remove("no-scroll"); // Enable scrolling
-    setTimeout(() => {
-      hamburgerMenu.classList.remove("active");
-      hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-    }, 600); // Wait for the close animation to complete before removing the active class
   });
 
   // Close the menu when clicking outside of it and unlock scroll
