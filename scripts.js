@@ -190,30 +190,47 @@ if (isIndexPage) {
   document.getElementById("workUnderline").classList.remove("active");
 }
 
-
 // Event listener for "About" link
-document.getElementById("aboutLink").addEventListener("click", function () {
-  window.location.href = "about.html";
+document.getElementById("aboutLink").addEventListener("click", function (event) {
+  if (isAboutPage) {
+    if (window.scrollY !== 0) {
+      event.preventDefault(); // Prevent scroll jump when not at the top
+      smoothScrollTo(0, 500); // Smooth scroll to top
+    }
+  } else {
+    window.location.href = "about.html";
+  }
 });
+
+// Initialize "About" underline as always active only on about.html
+const isAboutPage = window.location.pathname.endsWith("about.html");
+if (isAboutPage) {
+  document.getElementById("aboutUnderline").classList.add("active");
+} else {
+  document.getElementById("aboutUnderline").classList.remove("active");
+}
 
 // Event listener for "Work" link
 document.getElementById("workLink").addEventListener("click", function (event) {
-  if (window.scrollY === 0) {
-    event.preventDefault(); // Prevent scroll jump when at the top
-  } else {
-    smoothScrollTo(0, 500); // Smooth scroll to top
+  if (isIndexPage) {
+    if (window.scrollY === 0) {
+      event.preventDefault(); // Prevent scroll jump when at the top
+    } else {
+      smoothScrollTo(0, 500); // Smooth scroll to top
+    }
+    document.getElementById("workUnderline").classList.add("active");
+    document.getElementById("contactUnderline").classList.remove("active");
   }
-  document.getElementById("workUnderline").classList.add("active");
-  document.getElementById("contactUnderline").classList.remove("active");
 });
 
-// Scroll event to toggle "Contact" underline and keep "Work" underline active only on index.html
+// Scroll event to toggle "Contact" underline and keep "Work" and "About" underlines active only on their respective pages
 window.addEventListener("scroll", function () {
   const footer = document.querySelector("footer");
   const footerRect = footer.getBoundingClientRect();
   const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
   const contactUnderline = document.getElementById("contactUnderline");
   const workUnderline = document.getElementById("workUnderline");
+  const aboutUnderline = document.getElementById("aboutUnderline");
 
   if (isFooterVisible) {
     contactUnderline.classList.add("active");
@@ -221,17 +238,20 @@ window.addEventListener("scroll", function () {
     contactUnderline.classList.remove("active");
   }
 
-  // Check if the current page is index.html
-  const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-
   // Keep "Work" underline always active only on index.html
   if (isIndexPage) {
     workUnderline.classList.add("active");
   } else {
     workUnderline.classList.remove("active");
   }
-});
 
+  // Keep "About" underline always active only on about.html
+  if (isAboutPage) {
+    aboutUnderline.classList.add("active");
+  } else {
+    aboutUnderline.classList.remove("active");
+  }
+});
 
 
 document.addEventListener("DOMContentLoaded", () => {
