@@ -1632,7 +1632,14 @@
     display: none; /* Initially hidden */
   }
   
-  
+  .work-underline {
+    height: 2px;
+    background-color: #fcf9f7; /* Adjust the color as needed */
+    width: 100%;
+    margin-top: 2px; /* Adjust the spacing as needed */
+    display: none; /* Initially hidden */
+  }  
+
   .hamburger-menu.active {
     display: block;
     transform: translateX(0); /* Slide in from right to left */

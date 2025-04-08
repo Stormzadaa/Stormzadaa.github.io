@@ -464,30 +464,45 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* Direction to the "about" page mobile*/
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburgerAboutLink = document.getElementById("hamburgerAboutLink");
-
-  // Event listener for "ABOUT" link
-  hamburgerAboutLink.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent default anchor behavior
-    window.location.href = "about.html"; // Redirect to about.html
-  });
-});
-
-/* Direction to the "work" page mobile */
-
+/* Direction to the "WORK" page mobile */
 document.addEventListener("DOMContentLoaded", () => {
   const hamburgerWorkLink = document.getElementById("hamburgerWorkLink");
+  const hamburgerWorkUnderline = document.getElementById("hamburgerWorkUnderline");
 
-  // Event listener for "WORK" link
-  hamburgerWorkLink.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent default anchor behavior
-    window.location.href = "index.html"; // Redirect to index.html
-  });
+  // Check if the elements exist before adding event listeners
+  if (hamburgerWorkLink && hamburgerWorkUnderline) {
+    // Event listener for "WORK" link
+    hamburgerWorkLink.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent default anchor behavior
+      const isWorkPage = window.location.pathname.endsWith("index.html");
+      if (isWorkPage) {
+        // Scroll to the header if on index.html page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Redirect to index.html if not on index.html page
+        window.location.href = "index.html";
+      }
+    });
+
+    // Add underline to "Work" link when on about page
+    function addUnderlineToWorkLink() {
+      const isWorkPage = window.location.pathname.endsWith("index.html");
+      if (isWorkPage) {
+        hamburgerWorkUnderline.style.display = "block";
+      } else {
+        hamburgerWorkUnderline.style.display = "none";
+      }
+    }
+
+    // Call the function initially
+    addUnderlineToWorkLink();
+  } else {
+    console.error("Element with ID 'hamburgerWorkLink' or 'hamburgerWorkUnderline' not found.");
+  }
 });
 
+
+/* Direction to the "ABOUT" page mobile */
 document.addEventListener("DOMContentLoaded", () => {
   const hamburgerAboutLink = document.getElementById("hamburgerAboutLink");
   const hamburgerAboutUnderline = document.getElementById("hamburgerAboutUnderline");
@@ -497,7 +512,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for "ABOUT" link
     hamburgerAboutLink.addEventListener("click", (event) => {
       event.preventDefault(); // Prevent default anchor behavior
-      window.location.href = "about.html"; // Redirect to about.html
+      const isAboutPage = window.location.pathname.endsWith("about.html");
+      if (isAboutPage) {
+        // Scroll to the header if on about.html page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Redirect to about.html if not on about.html page
+        window.location.href = "about.html";
+      }
     });
 
     // Add underline to "About" link when on about page
@@ -516,4 +538,5 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Element with ID 'hamburgerAboutLink' or 'hamburgerAboutUnderline' not found.");
   }
 });
+
 
