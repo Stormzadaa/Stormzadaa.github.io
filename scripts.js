@@ -428,7 +428,7 @@ function smoothScrollTo(target, duration) {
   requestAnimationFrame(animation);
 }
 
- /* Code to lock the background scroll during hamburger menu open */
+/* Code to lock the background scroll during hamburger menu open */
 
 document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-svg");
@@ -444,6 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburgerMenu.style.setProperty("--menu-transition-duration", openDuration);
     hamburgerMenu.style.display = "block"; // Ensure the menu is displayed
     document.body.classList.add("no-scroll"); // Disable scrolling
+    document.body.classList.add("disable-pointer-events"); // Disable pointer events
     setTimeout(() => {
       hamburgerMenu.classList.add("active");
       hamburgerMenu.classList.remove("hidden");
@@ -456,6 +457,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
       hamburgerMenu.classList.add("hidden");
       document.body.classList.remove("no-scroll"); // Enable scrolling
+      document.body.classList.remove("disable-pointer-events"); // Enable pointer events
       setTimeout(() => {
         hamburgerMenu.classList.remove("active");
         hamburgerMenu.style.display = "none"; // Hide the menu after the animation
@@ -463,6 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 /* Direction to the "WORK" page mobile */
 document.addEventListener("DOMContentLoaded", () => {
