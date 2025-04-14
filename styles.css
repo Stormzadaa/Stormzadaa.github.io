@@ -397,110 +397,84 @@
     color: #fcf9f7; /* Optional: add a hover effect */
   }
 
-  .image-item {
-    text-align: center;
-    font-weight: bold;
-    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
-    cursor: pointer;
-  }
-
-  .image-item a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-
-  .image-item:hover {
-    transform: scale(1.02); /* Scale up the image item */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
-  }
-
-  /* Click effect - Shrink the image item */
-  .image-item:active {
-    transform: scale(0.98); /* Scale down the image item */
-  }
-
   .container-image-grid {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    padding-left: 122px;
+    padding-right: 122px;
+    padding-top: 30px;
+    padding-bottom: 60px;
     z-index: 1;
   }
 
   .image-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Change to a single column */
-    grid-gap: 20px; /* Adjust gap as needed */
-    margin-bottom: 60px;
-    margin-top: 30px;
-    width: 100%;
-    padding-left: 122px;
-    padding-right: 122px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
   }
 
-  @media (min-width: 5120px) {
-    .image-grid {
-      max-width: 3000px; /* Set a maximum width for the grid */
-      margin-left: auto; /* Center the grid horizontally */
-      margin-right: auto; /* Center the grid horizontally */
-    }
+  .image-item {
+      aspect-ratio: 3 / 4;
+      text-align: center;
+      font-weight: bold;
+      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+      cursor: pointer;
+  }
 
-    .footer {
-      position: relative;
-      background: var(--Background-FT);
-      align-self: stretch;
-      display: flex;
-      margin-top: 79px;
+  .image-item a {
+      display: block;
       width: 100%;
       height: 100%;
-      flex-direction: column;
-      overflow: hidden;
-      color: #fcf9f7;
-      max-width: 100%;
-      margin-bottom: 0px;
-      z-index: 1;
-    }
+      position: relative;
+  }
+
+  .image-item:hover {
+      transform: scale(1.02); /* Scale up the image item */
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+  }
+
+  /* Click effect - Shrink the image item */
+  .image-item:active {
+      transform: scale(0.98); /* Scale down the image item */
   }
 
   .image-container {
-    width: 100%; /* Make the container full width */
-    height: 400px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0; /* Grey background for the container */
-    box-sizing: border-box;
-    position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Grey background for the container */
+      box-sizing: border-box;
+      position: relative;
+      border-radius: 1%;
   }
 
   .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top; /* Adjusts the position between the top and center */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
   }
 
   .image-container p {
-    font-family: var(--h1-font-family);
-    font-weight: var(--h1-font-weight);
-    font-size: var(--h6-font-size);
-    font-style: var(--h1-font-style);
-    letter-spacing: var(--h1-letter-spacing);
-    line-height: var(--h1-line-height);
-    color: #fcf9f7;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background-color: #525252b2; /* Grey background for the project name */
-    width: 100%; /* Make the project name full width */
-    text-align: center; /* Center the text */
-    padding: 5px; /* Add padding if needed */
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
+      font-family: var(--h1-font-family);
+      font-weight: var(--h1-font-weight);
+      font-size: var(--h6-font-size);
+      font-style: var(--h1-font-style);
+      letter-spacing: var(--h1-letter-spacing);
+      line-height: var(--h1-line-height);
+      color: #fcf9f7;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      background-color: #525252b2; /* Grey background for the project name */
+      width: 100%; /* Make the project name full width */
+      text-align: center; /* Center the text */
+      padding: 5px; /* Add padding if needed */
+      box-sizing: border-box;
+      position: absolute;
+      bottom: 0;
   }
+
 
   .hamburger-menu {
     display: none; /* Hidden by default */
@@ -1088,65 +1062,62 @@
     color: #fcf9f7; /* Optional: add a hover effect */
   }
 
-  .image-item {
-    text-align: center;
-    font-weight: bold;
-    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
-    cursor: pointer;
-  }
-
-  .image-item a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-
-  .image-item:hover {
-    transform: scale(1.02); /* Scale up the image item */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
-  }
-
-  /* Click effect - Shrink the image item */
-  .image-item:active {
-    transform: scale(0.98); /* Scale down the image item */
-  }
-
   .container-image-grid {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 40px;
     z-index: 1;
   }
 
   .image-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Change to a single column */
-    grid-gap: 20px; /* Adjust gap as needed */
-    margin-bottom: 40px;
-    width: 100%;
-    padding-left: 60px;
-    padding-right: 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+  }
+
+  .image-item {
+      aspect-ratio: 3 / 4;
+      text-align: center;
+      font-weight: bold;
+      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+      cursor: pointer;
+  }
+
+  .image-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+  }
+
+  .image-item:hover {
+      transform: scale(1.02); /* Scale up the image item */
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+  }
+
+  /* Click effect - Shrink the image item */
+  .image-item:active {
+      transform: scale(0.98); /* Scale down the image item */
   }
 
   .image-container {
-    width: 100%; /* Make the container full width */
-    height: 220px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0; /* Grey background for the container */
-    box-sizing: border-box;
-    position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Grey background for the container */
+      box-sizing: border-box;
+      position: relative;
+      border-radius: 1%;
   }
 
   .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top; /* Adjusts the position between the top and center */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
   }
 
   .image-container p {
@@ -1602,69 +1573,126 @@
   }
 
   .container-image-grid {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
     z-index: 1;
   }
 
   .image-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Change to a single column */
-    grid-gap: 20px; /* Adjust gap as needed */
-    margin-bottom: 20px;
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
   }
 
   .image-item {
-    text-align: center;
-    font-weight: bold;
-    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
-    cursor: pointer;
+      aspect-ratio: 3 / 4;
+      text-align: center;
+      font-weight: bold;
+      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+      cursor: pointer;
   }
 
   .image-item a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
   }
 
   .image-item:hover {
-    transform: scale(1.02); /* Scale up the image item */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+      transform: scale(1.02); /* Scale up the image item */
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+  }
+
+  /* Click effect - Shrink the image item */
+  .image-item:active {
+      transform: scale(0.98); /* Scale down the image item */
+  }
+
+  .image-container {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Grey background for the container */
+      box-sizing: border-box;
+      position: relative;
+      border-radius: 1%;
+  }
+
+  .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
   }
 
   @media (min-width: 430px) and (max-width: 768px) { 
 
     .container-image-grid {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      z-index: 1;
-    }
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Change to a single column */
-      grid-gap: 20px; /* Adjust gap as needed */
-      margin-bottom: 20px;
-      width: 100%;
       padding-left: 20px;
       padding-right: 20px;
+      padding-bottom: 20px;
+      z-index: 1;
     }
-  }
-
-  /* Click effect - Shrink the image item */
-  .image-item:active {
-    transform: scale(0.98); /* Scale down the image item */
+  
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+  
+    .image-item {
+        aspect-ratio: 3 / 4;
+        text-align: center;
+        font-weight: bold;
+        transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+        cursor: pointer;
+    }
+  
+    .image-item a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+  
+    .image-item:hover {
+        transform: scale(1.02); /* Scale up the image item */
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    }
+  
+    /* Click effect - Shrink the image item */
+    .image-item:active {
+        transform: scale(0.98); /* Scale down the image item */
+    }
+  
+    .image-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0; /* Grey background for the container */
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 1%;
+    }
+  
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
   }
 
   .image-container {
     width: 100%; /* Make the container full width */
-    height: 160px;
     overflow: hidden;
     display: flex;
     flex-direction: column; /* Stack items vertically */
