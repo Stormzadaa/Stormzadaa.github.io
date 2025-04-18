@@ -49,43 +49,37 @@
     top: 80px; /* Position it 100px from the top */
   }
 
-  /* Play/Pause icons */
-  .play-icon,
-  .pause-icon {
-    transition: opacity 0.3s ease;
-    transform-origin: center;
-    transform: scale(1);
-    pointer-events: none; /* Prevents the icon from being interactive */
-    transition: opacity 0.3s ease; /* Smooth transition for opacity change */
-  }
+  /* Play/Pause icons shared styles */
+.play-icon,
+.pause-icon {
+  opacity: 0;
+  transform-origin: center;
+  transform: translate(4px, 4px) scale(1); /* Center and scale together */
+  pointer-events: none; /* Prevent interaction */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade + transform */
+}
 
-  .play-icon {
-    opacity: 1; /* Visible by default */
-    transform: translate(0, 0); /* Center play icon */
-  }
+/* Show Play Icon when active */
+.play-icon.active {
+  opacity: 1;
+  transform: translate(4px, 4px) scale(1);
+}
 
-  .pause-icon {
-    opacity: 0; /* Hidden by default */
-    transform: translate(0, 0); /* Center pause icon */
-  }
+/* Show Pause Icon when active */
+.pause-icon.active {
+  opacity: 1;
+  transform: translate(4px, 4px) scale(1);
+}
 
-  /* Icon styling (Play and Pause) */
-  .play-icon {
-    fill: white;
-  }
+/* Icon fill colors */
+.play-icon {
+  fill: white;
+}
 
-  .pause-icon rect {
-    fill: white;
-  }
+.pause-icon rect {
+  fill: white;
+}
 
-  /* Center the pause and play icons */
-  .play-icon {
-    transform: translate(4px, 4px); /* Adjusted to center the play icon */
-  }
-
-  .pause-icon rect {
-    transform: translate(4px, 4px); /* Adjusted to center the pause icon */
-  }
 
   .portfolio-section {
     background: var(--foundation-greydarker);
@@ -607,43 +601,37 @@
     z-index: 1;
   }
 
-  /* Play/Pause icons */
-  .play-icon,
-  .pause-icon {
-    transition: opacity 0.3s ease;
-    transform-origin: center;
-    transform: scale(1);
-    pointer-events: none; /* Prevents the icon from being interactive */
-    transition: opacity 0.3s ease; /* Smooth transition for opacity change */
-  }
+ /* Play/Pause icons shared styles */
+.play-icon,
+.pause-icon {
+  opacity: 0;
+  transform-origin: center;
+  transform: translate(4px, 4px) scale(1); /* Center and scale together */
+  pointer-events: none; /* Prevent interaction */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade + transform */
+}
 
-  .play-icon {
-    opacity: 1; /* Visible by default */
-    transform: translate(0, 0); /* Center play icon */
-  }
+/* Show Play Icon when active */
+.play-icon.active {
+  opacity: 1;
+  transform: translate(4px, 4px) scale(1);
+}
 
-  .pause-icon {
-    opacity: 0; /* Hidden by default */
-    transform: translate(0, 0); /* Center pause icon */
-  }
+/* Show Pause Icon when active */
+.pause-icon.active {
+  opacity: 1;
+  transform: translate(4px, 4px) scale(1);
+}
 
-  /* Icon styling (Play and Pause) */
-  .play-icon {
-    fill: white;
-  }
+/* Icon fill colors */
+.play-icon {
+  fill: white;
+}
 
-  .pause-icon rect {
-    fill: white;
-  }
+.pause-icon rect {
+  fill: white;
+}
 
-  /* Center the pause and play icons */
-  .play-icon {
-    transform: translate(6px, 6px); /* Adjusted to center the play icon */
-  }
-
-  .pause-icon rect {
-    transform: translate(6px, 6px); /* Adjusted to center the pause icon */
-  }
 
   .portfolio-section {
     background: var(--foundation-greydarker);
@@ -1267,14 +1255,37 @@
     order: 1; /* Ensure the toggle switch is placed before the menu button */
   }
 
-  /* Icon styling (Play and Pause) */
-  .play-icon {
-    fill: white;
-  }
+/* Play/Pause icons shared styles */
+.play-icon,
+.pause-icon {
+  opacity: 0;
+  transform-origin: center;
+  transform: translate(10px, 4px) scale(1); /* Center and scale together */
+  pointer-events: none; /* Prevent interaction */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade + transform */
+}
 
-  .pause-icon rect {
-    fill: white;
-  }
+/* Show Play Icon when active */
+.play-icon.active {
+  opacity: 1;
+  transform: translate(4px, 4px) scale(1);
+}
+
+/* Show Pause Icon when active */
+.pause-icon.active {
+  opacity: 1;
+  transform: translate(4px, 4px) scale(1);
+}
+
+/* Icon fill colors */
+.play-icon {
+  fill: white;
+}
+
+.pause-icon rect {
+  fill: white;
+}
+
 
   .portfolio-section {
     background: var(--foundation-greydarker);

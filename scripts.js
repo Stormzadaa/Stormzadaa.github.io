@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ---- Vertical Loop Animation Logic ----
 const fundoPoligonos = document.querySelector(".fundo-poligonos");
-const contentHeight = fundoPoligonos.scrollHeight;
+let contentHeight = fundoPoligonos.scrollHeight;
 
 // Clone the content to create a seamless loop
 const clone = fundoPoligonos.cloneNode(true);
@@ -62,21 +62,21 @@ let scrollSpeed = 0.5; // Default scroll speed
 let animationFrameId;
 
 function scrollUp() {
-  scrollPosition -= scrollSpeed; // Use scrollSpeed here
+  scrollPosition -= scrollSpeed;
 
   // If the scroll position goes beyond the content, reset it
   if (scrollPosition <= -contentHeight) {
     scrollPosition = 0;
   }
 
-  // Use transform for smoother scrolling and better performance
+  // Apply transform for both original and cloned elements
   fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
   clone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
 
   animationFrameId = requestAnimationFrame(scrollUp);
 }
 
-// Start the animation initially
+// Start the animation
 scrollUp();
 
 // ---- Play/Pause Button Logic ----
@@ -85,55 +85,44 @@ const playIcon = document.querySelector(".play-icon");
 const pauseIcon = document.querySelector(".pause-icon");
 let isPaused = false;
 
-// Set initial state of icons
-playIcon.style.opacity = "0";
-pauseIcon.style.opacity = "1";
+// Set initial state
+playIcon.classList.remove('active');
+pauseIcon.classList.add('active');
 
 toggleSwitch.addEventListener("click", () => {
   if (isPaused) {
-    // Resume the animation
+    // Resume animation
     scrollUp();
-    playIcon.style.opacity = "0";
-    pauseIcon.style.opacity = "1";
+    playIcon.classList.remove('active');
+    pauseIcon.classList.add('active');
   } else {
-    // Pause the animation
+    // Pause animation
     cancelAnimationFrame(animationFrameId);
-    playIcon.style.opacity = "1";
-    pauseIcon.style.opacity = "0";
+    playIcon.classList.add('active');
+    pauseIcon.classList.remove('active');
   }
   isPaused = !isPaused;
 });
 
 // ---- Mobile Responsiveness and Performance Improvements ----
-
-// Handle resize events to adjust content size on mobile
 window.addEventListener('resize', () => {
-  // Recalculate content height when resizing
   const newContentHeight = fundoPoligonos.scrollHeight;
   if (contentHeight !== newContentHeight) {
-    // If content height changes (e.g., on mobile), update the scroll position reset
     contentHeight = newContentHeight;
-    scrollPosition = 0; // Reset scroll position
+    scrollPosition = 0; // Reset position after resize
   }
 });
 
-// Performance improvements for mobile by reducing scroll speed on smaller screens
-const mediaQuery = window.matchMedia("(max-width: 768px)"); // Mobile view breakpoint
-mediaQuery.addEventListener("change", () => {
-  // Adjust scroll speed on mobile for smoother animation
-  if (mediaQuery.matches) {
-    scrollSpeed = 0.25; // Slower scroll speed on mobile
-  } else {
-    scrollSpeed = 0.5; // Default scroll speed on larger screens
-  }
-});
+// Adjust scroll speed based on screen size
+const mediaQuery = window.matchMedia("(max-width: 768px)");
 
-// Initial check for mobile screen
-if (mediaQuery.matches) {
-  scrollSpeed = 0.25; // Slower scroll speed on mobile
-} else {
-  scrollSpeed = 0.5; // Default scroll speed on larger screens
+function updateScrollSpeed() {
+  scrollSpeed = mediaQuery.matches ? 0.25 : 0.5;
 }
+
+mediaQuery.addEventListener("change", updateScrollSpeed);
+updateScrollSpeed(); // Initial check
+
 
 
  // ---- Nav Underline Toggle Logic ----
