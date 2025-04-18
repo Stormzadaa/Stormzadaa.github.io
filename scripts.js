@@ -48,56 +48,93 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(animateTextScroll);
   }
 
-  // ---- Vertical Loop Animation Logic ----
-  const fundoPoligonos = document.querySelector(".fundo-poligonos");
-  const contentHeight = fundoPoligonos.scrollHeight;
+// ---- Vertical Loop Animation Logic ----
+const fundoPoligonos = document.querySelector(".fundo-poligonos");
+const contentHeight = fundoPoligonos.scrollHeight;
 
-  // Clone the content to create a seamless loop
-  const clone = fundoPoligonos.cloneNode(true);
-  clone.classList.add("fundo-poligonos-clone");
-  fundoPoligonos.parentNode.appendChild(clone);
+// Clone the content to create a seamless loop
+const clone = fundoPoligonos.cloneNode(true);
+clone.classList.add("fundo-poligonos-clone");
+fundoPoligonos.parentNode.appendChild(clone);
 
-  let scrollPosition = 0;
-  let scrollSpeed = 0.5; // Default scroll speed
-  let animationFrameId;
+let scrollPosition = 0;
+let scrollSpeed = 0.5; // Default scroll speed
+let animationFrameId;
 
-  function scrollUp() {
-    scrollPosition -= scrollSpeed; // Use scrollSpeed here
-    if (scrollPosition <= -contentHeight) {
-      scrollPosition = 0;
-    }
-    fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
-    clone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
-    animationFrameId = requestAnimationFrame(scrollUp);
+function scrollUp() {
+  scrollPosition -= scrollSpeed; // Use scrollSpeed here
+
+  // If the scroll position goes beyond the content, reset it
+  if (scrollPosition <= -contentHeight) {
+    scrollPosition = 0;
   }
 
-  // Start the animation initially
-  scrollUp();
+  // Use transform for smoother scrolling and better performance
+  fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
+  clone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
 
-  // ---- Play/Pause Button Logic ----
-  const toggleSwitch = document.querySelector(".toggle-switch");
-  const playIcon = document.querySelector(".play-icon");
-  const pauseIcon = document.querySelector(".pause-icon");
-  let isPaused = false;
+  animationFrameId = requestAnimationFrame(scrollUp);
+}
 
-  // Set initial state of icons
-  playIcon.style.opacity = "0";
-  pauseIcon.style.opacity = "1";
+// Start the animation initially
+scrollUp();
 
-  toggleSwitch.addEventListener("click", () => {
-    if (isPaused) {
-      // Resume the animation
-      scrollUp();
-      playIcon.style.opacity = "0";
-      pauseIcon.style.opacity = "1";
-    } else {
-      // Pause the animation
-      cancelAnimationFrame(animationFrameId);
-      playIcon.style.opacity = "1";
-      pauseIcon.style.opacity = "0";
-    }
-    isPaused = !isPaused;
-  });
+// ---- Play/Pause Button Logic ----
+const toggleSwitch = document.querySelector(".toggle-switch");
+const playIcon = document.querySelector(".play-icon");
+const pauseIcon = document.querySelector(".pause-icon");
+let isPaused = false;
+
+// Set initial state of icons
+playIcon.style.opacity = "0";
+pauseIcon.style.opacity = "1";
+
+toggleSwitch.addEventListener("click", () => {
+  if (isPaused) {
+    // Resume the animation
+    scrollUp();
+    playIcon.style.opacity = "0";
+    pauseIcon.style.opacity = "1";
+  } else {
+    // Pause the animation
+    cancelAnimationFrame(animationFrameId);
+    playIcon.style.opacity = "1";
+    pauseIcon.style.opacity = "0";
+  }
+  isPaused = !isPaused;
+});
+
+// ---- Mobile Responsiveness and Performance Improvements ----
+
+// Handle resize events to adjust content size on mobile
+window.addEventListener('resize', () => {
+  // Recalculate content height when resizing
+  const newContentHeight = fundoPoligonos.scrollHeight;
+  if (contentHeight !== newContentHeight) {
+    // If content height changes (e.g., on mobile), update the scroll position reset
+    contentHeight = newContentHeight;
+    scrollPosition = 0; // Reset scroll position
+  }
+});
+
+// Performance improvements for mobile by reducing scroll speed on smaller screens
+const mediaQuery = window.matchMedia("(max-width: 768px)"); // Mobile view breakpoint
+mediaQuery.addEventListener("change", () => {
+  // Adjust scroll speed on mobile for smoother animation
+  if (mediaQuery.matches) {
+    scrollSpeed = 0.25; // Slower scroll speed on mobile
+  } else {
+    scrollSpeed = 0.5; // Default scroll speed on larger screens
+  }
+});
+
+// Initial check for mobile screen
+if (mediaQuery.matches) {
+  scrollSpeed = 0.25; // Slower scroll speed on mobile
+} else {
+  scrollSpeed = 0.5; // Default scroll speed on larger screens
+}
+
 
  // ---- Nav Underline Toggle Logic ----
 const contactLink = document.getElementById("contactLink");
