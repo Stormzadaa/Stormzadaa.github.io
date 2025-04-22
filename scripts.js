@@ -49,63 +49,105 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 // ---- Vertical Loop Animation Logic ----
+const toggleSwitch = document.querySelector(".toggle-switch");
+const playIcon = document.querySelector(".play-icon");
+const pauseIcon = document.querySelector(".pause-icon");
 const fundoPoligonos = document.querySelector(".fundo-poligonos");
+
+if (!toggleSwitch || !playIcon || !pauseIcon || !fundoPoligonos) {
+  console.error("Required elements are missing in the DOM.");
+  return;
+}
+
 let contentHeight = fundoPoligonos.scrollHeight;
+let scrollPosition = 0;
+let scrollSpeed = 0.5;
+let animationFrameId;
+let isAnimationRunning = false;
+let isPaused = false;
 
 // Clone the content to create a seamless loop
 const clone = fundoPoligonos.cloneNode(true);
 clone.classList.add("fundo-poligonos-clone");
 fundoPoligonos.parentNode.appendChild(clone);
 
-let scrollPosition = 0;
-let scrollSpeed = 0.5; // Default scroll speed
-let animationFrameId;
-
+// Function to handle vertical scrolling
 function scrollUp() {
+  if (!isAnimationRunning) return;
+
   scrollPosition -= scrollSpeed;
 
-  // If the scroll position goes beyond the content, reset it
   if (scrollPosition <= -contentHeight) {
     scrollPosition = 0;
   }
 
-  // Apply transform for both original and cloned elements
   fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
   clone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
 
   animationFrameId = requestAnimationFrame(scrollUp);
 }
 
-// Start the animation
-scrollUp();
-
-// ---- Play/Pause Button Logic ----
-const toggleSwitch = document.querySelector(".toggle-switch");
-const playIcon = document.querySelector(".play-icon");
-const pauseIcon = document.querySelector(".pause-icon");
-let isPaused = false;
-
-// Set initial state
-playIcon.classList.remove('active');
-pauseIcon.classList.add('active');
-
-toggleSwitch.addEventListener("click", () => {
-  if (isPaused) {
-    // Resume animation
-    scrollUp();
-    playIcon.classList.remove('active');
-    pauseIcon.classList.add('active');
-  } else {
-    // Pause animation
+// Function to update play/pause state
+function updatePlayPauseState(paused, broadcast = true) {
+  if (paused) {
+    isAnimationRunning = false;
     cancelAnimationFrame(animationFrameId);
-    playIcon.classList.add('active');
-    pauseIcon.classList.remove('active');
+    playIcon.classList.add("active");
+    pauseIcon.classList.remove("active");
+  } else {
+    if (!isAnimationRunning) {
+      isAnimationRunning = true;
+      scrollUp();
+    }
+    playIcon.classList.remove("active");
+    pauseIcon.classList.add("active");
   }
-  isPaused = !isPaused;
+  isPaused = paused;
+
+  // Save the state to localStorage
+  if (broadcast) {
+    localStorage.setItem("isPaused", isPaused);
+  }
+}
+
+// Add event listener for the toggle button
+toggleSwitch.addEventListener("click", () => {
+  updatePlayPauseState(!isPaused);
 });
 
+// Listen for changes in localStorage to sync across tabs
+window.addEventListener("storage", (event) => {
+  if (event.key === "isPaused") {
+    const pausedState = event.newValue === "true";
+    if (pausedState !== isPaused) {
+      updatePlayPauseState(pausedState, false);
+    }
+  }
+});
+
+// Initialize the state from localStorage
+const savedState = localStorage.getItem("isPaused");
+if (savedState !== null) {
+  isPaused = savedState === "true";
+
+  // Align the button state with the animation state
+  if (isPaused) {
+    playIcon.classList.add("active");
+    pauseIcon.classList.remove("active");
+  } else {
+    playIcon.classList.remove("active");
+    pauseIcon.classList.add("active");
+    isAnimationRunning = true;
+    scrollUp();
+  }
+} else {
+  // Start the animation by default
+  isAnimationRunning = true;
+  scrollUp();
+}
+
 // ---- Mobile Responsiveness and Performance Improvements ----
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   const newContentHeight = fundoPoligonos.scrollHeight;
   if (contentHeight !== newContentHeight) {
     contentHeight = newContentHeight;
@@ -186,15 +228,16 @@ window.addEventListener("scroll", () => {
   function adjustToggleSwitchPlacement() {
     const headerBox = document.querySelector(".headerBox");
     const toggleSwitch = document.querySelector(".toggle-switch");
+    const body = document.querySelector(".body");
     const screenWidth = window.innerWidth;
 
     if (screenWidth <= 768) {
-      if (!headerBox.contains(toggleSwitch)) {
+      // Move toggle-switch into headerBox for mobile screens
+      if (headerBox && !headerBox.contains(toggleSwitch)) {
         headerBox.appendChild(toggleSwitch);
       }
     } else {
-      // Move the toggle-switch back to its original position if needed
-      const body = document.querySelector(".body");
+      // Move toggle-switch back to its original position for larger screens
       if (body && !body.contains(toggleSwitch)) {
         body.appendChild(toggleSwitch);
       }
