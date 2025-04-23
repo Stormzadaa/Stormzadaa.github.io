@@ -180,6 +180,17 @@
     padding-right: 122px;
     padding-top: 25px;
     padding-bottom: 25px;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .headerBox {
+    display: flex;
+    max-width: 100%;
+    padding-left: 122px;
+    padding-right: 122px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     color: #fcf9f7;
     justify-content: space-between;
     font-family: var(--h7-font-family);
@@ -372,6 +383,7 @@
     background-repeat: repeat; /* Repeats the background image vertically */
     background-size: 10% auto;
     opacity: 20%;
+    z-index: 1;
   }
 
   .footer-sections {
@@ -395,27 +407,11 @@
     gap: 30px;
   }
 
-  .footer-title {
-    font-family: var(--h1-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h5-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
-    margin: 0;
-  }
-
   .social-media-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns */
     gap: 20px; /* Adds 20px gap between the items */
     text-align: left;
-    font-family: var(--h5-font-family);
-    font-weight: var(--h6-font-weight);
-    font-size: var(--h6-font-size);
-    font-style: var(--h6-font-style);
-    letter-spacing: var(--h6-letter-spacing);
-    line-height: var(--h6-line-height);
   }
 
   .get-in-touch-grid {
@@ -423,12 +419,6 @@
     grid-template-rows: repeat(2, 1fr); /* Two rows, each equal height */
     gap: 20px;
     text-align: center;
-    font-family: var(--h5-font-family);
-    font-weight: var(--h6-font-weight);
-    font-size: var(--h6-font-size);
-    font-style: var(--h6-font-style);
-    letter-spacing: var(--h6-letter-spacing);
-    line-height: var(--h6-line-height);
   }
 
   .social-media-grid a {
@@ -533,8 +523,6 @@
     display: none; /* Hidden by default */
   }
 
-  /* -------- ABOUT PAGE---------- */
-
   .hold-titleAbout {
     display: flex;
     flex-direction: column;
@@ -559,47 +547,26 @@
   }
 
   .main-titleAbout {
-    color: #fcf9f7;
     align-self: center;
     margin-top: 60px;
     margin-bottom: 0px;
-    font-family: var(--h1-font-family);
-    font-weight: var(--h1-font-weight);
-    font-size: var(--h1-font-size);
-    font-style: var(--h1-font-style);
-    letter-spacing: var(--h1-letter-spacing);
-    line-height: var(--h1-line-height);
     max-width: 100%;
     z-index: 0;
     margin-bottom: 60px;
   }
 
   .subTitleAbout {
-    color: #fcf9f7;
     align-self: center;
     margin-top: 60px;
     margin-bottom: 0px;
-    font-family: var(--h6-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h3-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
     max-width: 100%;
     z-index: 0;
     margin-bottom: 60px;
   }
 
   .firstTextAbout {
-    color: #fcf9f7;
     align-self: center;
     margin: 0px;
-    font-family: var(--h6-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h5-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
     max-width: 100%;
     z-index: 0;
     margin-left: 122px;
@@ -607,15 +574,8 @@
   }
 
   .secondTextAbout {
-    color: #fcf9f7;
     align-self: center;
     margin: 0px;
-    font-family: var(--h6-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h5-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
     max-width: 100%;
     z-index: 0;
     margin-left: 122px;
@@ -623,19 +583,100 @@
   }
 
   .subTitleAbout2 {
-    color: #fcf9f7;
     align-self: center;
     margin-top: 60px;
     margin-bottom: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-bottom: 60px;
+  }
+
+  /* Footer Title Typography */
+  .footerTitleTypo {
+    font-family: var(--h1-font-family);
+    font-weight: var(--h1-font-weight);
+    font-size: var(--h5-font-size);
+    font-style: var(--h1-font-style);
+    letter-spacing: var(--h1-letter-spacing);
+    line-height: var(--h1-line-height);
+    color: #fcf9f7;
+    text-transform: uppercase;
+  }
+
+  /* Footer Subtitle Typography (if needed) */
+  .footerSubtitleTypo {
+    font-family: var(--h2-font-family);
+    font-weight: var(--h2-font-weight);
+    font-size: var(--h4-font-size);
+    font-style: var(--h2-font-style);
+    letter-spacing: var(--h2-letter-spacing);
+    line-height: var(--h2-line-height);
+    color: #cccccc;
+  }
+
+  /* Footer Text Typography */
+  .footerTextTypo {
+    font-family: var(--h3-font-family);
+    font-weight: var(--h3-font-weight);
+    font-size: var(--h6-font-size);
+    font-style: var(--h3-font-style);
+    letter-spacing: var(--h3-letter-spacing);
+    line-height: var(--h3-line-height);
+    color: #cccccc;
+  }
+
+  /* Ensure links in the footer inherit text styles */
+  .footer-section a.footerTextTypo {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .footer-section a.footerTextTypo:hover {
+    text-decoration: underline;
+  }
+
+  /* Title Typography */
+  .titleTypo {
+    font-family: var(--h1-font-family);
+    font-weight: var(--h1-font-weight);
+    font-size: var(--h1-font-size);
+    font-style: var(--h1-font-style);
+    letter-spacing: var(--h1-letter-spacing);
+    line-height: var(--h1-line-height);
+    color: #fcf9f7; 
+  }
+
+  /* Subtitle Typography */
+  .subtitleTypo {
     font-family: var(--h6-font-family);
     font-weight: var(--h5-font-weight);
     font-size: var(--h3-font-size);
     font-style: var(--h5-font-style);
     letter-spacing: var(--h5-letter-spacing);
     line-height: var(--h5-line-height);
-    max-width: 100%;
-    z-index: 0;
-    margin-bottom: 60px;
+    color: #fcf9f7; 
+  }
+
+  /* Text Typography */
+  .textTypo {
+    font-family: var(--h6-font-family);
+    font-weight: var(--h5-font-weight);
+    font-size: var(--h5-font-size);
+    font-style: var(--h5-font-style);
+    letter-spacing: var(--h5-letter-spacing);
+    line-height: var(--h5-line-height);
+    color: #fcf9f7; 
+  }
+
+  /* Header Typography */
+  .headerTypo {
+    font-family: var(--h7-font-family);
+    font-weight: var(--h5-font-weight);
+    font-size: var(--h6-font-size);
+    font-style: var(--h5-font-style);
+    letter-spacing: var(--h5-letter-spacing);
+    line-height: var(--h5-line-height);
+    color: #fcf9f7; /* Moved from .headerBox */
   }
 }
 
