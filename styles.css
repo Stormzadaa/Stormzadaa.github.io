@@ -30,6 +30,48 @@
   z-index: 1;
 }
 
+/* Keyframes for the header color transition */
+@keyframes headerColorChange {
+  0% {
+    background-color: var(--foundation-greydarker); /* Replace with the original header color */
+  }
+  100% {
+    background-color: var(--TarkovHeaderBackground); /* Final color for the header */
+  }
+}
+
+/* Keyframes for the footer color transition */
+@keyframes footerColorChange {
+  0% {
+    background-color:var(--foundation-browndark-active); /* Replace with the original footer color */
+  }
+  100% {
+    background-color: var(--TarkovFooterBackground); /* Final color for the footer */
+  }
+}
+
+/* Keyframes for the portfolio-section color transition */
+@keyframes portfolioColorChange {
+  0% {
+    background-color: var(--foundation-greydarker); /* Replace with the original portfolio-section color */
+  }
+  100% {
+    background-color:var(--TarkovPageBackground); /* Final color for the portfolio-section */
+  }
+}
+
+/* Apply the animations only to the Tarkov page */
+.tarkov-page .header {
+  animation: headerColorChange 7s ease-in-out 1s forwards; /* 2s delay, 10s duration */
+}
+
+.tarkov-page .footer {
+  animation: footerColorChange 7s ease-in-out 1s forwards; /* 2s delay, 10s duration */
+}
+
+.tarkov-page .portfolio-section {
+  animation: portfolioColorChange 7s ease-in-out 1s forwards; /* 2s delay, 10s duration */
+}
 
 /* Breakpoint for Desktop/Laptop */
 @media (min-width: 1280px) {
@@ -100,6 +142,23 @@
     overflow: hidden;
     min-height: 100vh; /* Ensures it covers the viewport */
     position: relative; /* Sets the parent reference for absolute positioning */
+  }
+
+  .portfolio-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.08; /* 10% opacity */
+    z-index: 1; /* Ensure it is above the background but below the content */
+    pointer-events: none; /* Prevent interaction with the overlay */
+  }
+
+  .portfolio-section {
+    position: relative; /* Ensure the pseudo-element is positioned relative to this container */
+    z-index: 2; /* Ensure content is above the overlay */
   }
 
   .header {
@@ -206,7 +265,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("Assets/GroupoPoligonosMobile.svg");
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 40%;
@@ -217,7 +275,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("Assets/GroupoPoligonosMobile.svg");
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 40%;
@@ -471,7 +528,6 @@
       position: absolute;
       bottom: 0;
   }
-
 
   .hamburger-menu {
     display: none; /* Hidden by default */
@@ -867,7 +923,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("Assets/GroupoPoligonosMobile.svg");
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 40%;
@@ -878,7 +933,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("Assets/GroupoPoligonosMobile.svg");
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 40%;
@@ -1395,7 +1449,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("Assets/GroupoPoligonosMobile.svg");
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 80%;
@@ -1406,7 +1459,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("Assets/GroupoPoligonosMobile.svg");
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 80%;

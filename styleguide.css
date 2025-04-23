@@ -20,6 +20,10 @@
   --foundation-browndarker: rgba(79, 69, 61, 1);
   --Background-DM: rgba(27, 27, 27);
   --Background-FT: rgb(37, 37, 37);
+  --TarkovFooterBackground: rgb(101, 113, 125);
+  --TarkovText: rgb(255, 255, 255);
+  --TarkovHeaderBackground: rgb(40, 47, 53);
+  --TarkovPageBackground: rgb(26, 30, 35);
   --h1-font-family: "Futura BK", Helvetica;
   --h1-font-weight: 400;
   --h1-font-size: 61px;

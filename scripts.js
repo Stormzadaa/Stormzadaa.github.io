@@ -141,7 +141,10 @@ if (savedState !== null) {
     scrollUp();
   }
 } else {
-  // Start the animation by default
+  // Start the animation by default (play state)
+  isPaused = false; // Ensure it's not paused
+  playIcon.classList.remove("active");
+  pauseIcon.classList.add("active");
   isAnimationRunning = true;
   scrollUp();
 }
@@ -247,6 +250,12 @@ window.addEventListener("scroll", () => {
   // Call the function initially and whenever the window is resized
   adjustToggleSwitchPlacement();
   window.addEventListener("resize", adjustToggleSwitchPlacement);
+
+  // Check if the current page is the Tarkov page
+  if (document.body.classList.contains("tarkov-page")) {
+    // Trigger animations (CSS handles the animations)
+    console.log("Tarkov page loaded. Animations applied.");
+  }
 });
 
 // Check if the current page is index.html
@@ -608,6 +617,31 @@ document.addEventListener("DOMContentLoaded", () => {
     addUnderlineToAboutLink();
   } else {
     console.error("Element with ID 'hamburgerAboutLink' or 'hamburgerAboutUnderline' not found.");
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const contactLink = document.getElementById("contactLink"); // Header "Contact" button
+  const hamburgerContactLink = document.getElementById("hamburgerContactLink"); // Hamburger menu "Contact" button
+  const footer = document.querySelector("footer"); // Footer element
+
+  // Function to scroll to the footer
+  function scrollToFooter(event) {
+    event.preventDefault(); // Prevent default anchor behavior
+    if (footer) {
+      footer.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the footer
+    } else {
+      console.warn("Footer not found on this page.");
+    }
+  }
+
+  // Add event listeners for both "Contact" buttons
+  if (contactLink) {
+    contactLink.addEventListener("click", scrollToFooter);
+  }
+
+  if (hamburgerContactLink) {
+    hamburgerContactLink.addEventListener("click", scrollToFooter);
   }
 });
 
