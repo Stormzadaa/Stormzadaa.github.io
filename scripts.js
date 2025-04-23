@@ -141,10 +141,7 @@ if (savedState !== null) {
     scrollUp();
   }
 } else {
-  // Start the animation by default (play state)
-  isPaused = false; // Ensure it's not paused
-  playIcon.classList.remove("active");
-  pauseIcon.classList.add("active");
+  // Start the animation by default
   isAnimationRunning = true;
   scrollUp();
 }
@@ -250,12 +247,6 @@ window.addEventListener("scroll", () => {
   // Call the function initially and whenever the window is resized
   adjustToggleSwitchPlacement();
   window.addEventListener("resize", adjustToggleSwitchPlacement);
-
-  // Check if the current page is the Tarkov page
-  if (document.body.classList.contains("tarkov-page")) {
-    // Trigger animations (CSS handles the animations)
-    console.log("Tarkov page loaded. Animations applied.");
-  }
 });
 
 // Check if the current page is index.html
@@ -621,28 +612,61 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const contactLink = document.getElementById("contactLink"); // Header "Contact" button
-  const hamburgerContactLink = document.getElementById("hamburgerContactLink"); // Hamburger menu "Contact" button
-  const footer = document.querySelector("footer"); // Footer element
+  const body = document.body;
 
-  // Function to scroll to the footer
-  function scrollToFooter(event) {
-    event.preventDefault(); // Prevent default anchor behavior
-    if (footer) {
-      footer.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the footer
-    } else {
-      console.warn("Footer not found on this page.");
-    }
-  }
+  // Check if the page is the Tarkov page
+  if (body.classList.contains("tarkov-page")) {
+    const portfolioSection = document.querySelector(".portfolio-section");
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
 
-  // Add event listeners for both "Contact" buttons
-  if (contactLink) {
-    contactLink.addEventListener("click", scrollToFooter);
-  }
-
-  if (hamburgerContactLink) {
-    hamburgerContactLink.addEventListener("click", scrollToFooter);
+    // Simulate the color change after a delay
+    setTimeout(() => {
+      portfolioSection?.classList.add("tarkov-active");
+      header?.classList.add("tarkov-active");
+      footer?.classList.add("tarkov-active");
+    }, 1000); // Adjust the delay as needed
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const contactLink = document.getElementById("contactLink");
+  const footer = document.querySelector("footer");
+
+  if (contactLink && footer) {
+    // Add smooth scroll functionality to the "CONTACT" link in the header
+    contactLink.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent default anchor behavior
+      smoothScrollTo(document.body.scrollHeight, 1000); // Smooth scroll to footer
+    });
+  }
+});
+
+// Smooth scroll function
+function smoothScrollTo(target, duration) {
+  const start = window.scrollY;
+  const distance = target - start;
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const run = ease(timeElapsed, start, distance, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) requestAnimationFrame(animation);
+  }
+
+  function ease(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return (c / 2) * t * t + b;
+    t--;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
+  }
+
+  requestAnimationFrame(animation);
+}
+
+
+
 
 
