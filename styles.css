@@ -95,7 +95,7 @@
   .subTitleTypography{
     font-family: var(--h6-font-family);
     font-weight: var(--h5-font-weight);
-    font-size: var(--h5-font-size);
+    font-size: var(--h3-font-size);
     font-style: var(--h5-font-style);
     letter-spacing: var(--h5-letter-spacing);
     line-height: var(--h5-line-height);
@@ -659,7 +659,7 @@
   .subTitleTypography{
     font-family: var(--h6-font-family);
     font-weight: var(--h5-font-weight);
-    font-size: var(--h6-font-size);
+    font-size: var(--h4-font-size);
     font-style: var(--h5-font-style);
     letter-spacing: var(--h5-letter-spacing);
     line-height: var(--h5-line-height);
@@ -1310,15 +1310,15 @@
     letter-spacing: var(--h5-letter-spacing);
     line-height: var(--h5-line-height);
     color: #fcf9f7;
-  } /*
+  } 
 
   .textTypography{
     font-family: var(--h6-font-family);
     font-weight: var(--h5-font-weight);
-    font-size: var(--h5-font-size);
+    font-size: var(--h7-font-size);
     font-style: var(--h5-font-style);
     letter-spacing: var(--h5-letter-spacing);
-    line-height: var (--h5-line-height);
+    line-height: var(--h5-line-height);
     color: #fcf9f7; 
   }
 
@@ -1330,19 +1330,18 @@
     letter-spacing: var(--h1-letter-spacing);
     line-height: var(--h1-line-height);
     color: #fcf9f7;
-    margin: 0;
     text-transform: uppercase;
   }
 
   .footerTextTypography{
-    font-family: var(--h6-font-family);
+    font-family: var(--h5-font-family);
     font-weight: var(--h5-font-weight);
     font-size: var(--h7-font-size);
     font-style: var(--h5-font-style);
     letter-spacing: var(--h5-letter-spacing);
     line-height: var(--h5-line-height);
     color: #fcf9f7; 
-  }  */
+  }  
 
   .toggle-switch {
     display: flex; /* Enable flexbox for alignment */
@@ -1422,14 +1421,7 @@
     padding-bottom: 10px;
     justify-content: space-between;
     align-items: center;
-    color: #fcf9f7;
     justify-content: space-between;
-    font-family: var(--h6-font-family);
-    font-weight: var(--h6-font-weight);
-    font-size: var(--h6-font-size);
-    font-style: var(--h6-font-style);
-    letter-spacing: var(--h6-letter-spacing);
-    line-height: var(--h6-line-height);
     z-index: 1;
     box-sizing: border-box;
   }
@@ -1598,12 +1590,6 @@
   }
 
   .footer-title {
-    font-family: var(--h1-font-family);
-    font-weight: var(--h1-font-weight);
-    font-size: var(--h6-font-size);
-    font-style: var(--h1-font-style);
-    letter-spacing: var(--h1-letter-spacing);
-    line-height: var(--h1-line-height);
     margin: 0;
   }
 
@@ -1612,12 +1598,6 @@
     grid-template-columns: repeat(1, 1fr); /* Creates two equal-width columns */
     gap: 20px; /* Adds 20px gap between the items */
     text-align: center;
-    font-family: var(--h5-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
     margin-top: 0px;
     margin-bottom: 0px;
   }
@@ -1627,12 +1607,6 @@
     grid-template-rows: repeat(2, 1fr); /* Two rows, each equal height */
     gap: 20px;
     text-align: center;
-    font-family: var(--h5-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h7-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
     margin-top: 0px;
     margin-bottom: 0px;
   }
@@ -1970,47 +1944,26 @@
   }
 
   .main-titleAbout {
-    color: #fcf9f7;
     align-self: center;
     margin-top: 20px;
     margin-bottom: 0px;
-    font-family: var(--h1-font-family);
-    font-weight: var(--h1-font-weight);
-    font-size: var(--h4-font-size);
-    font-style: var(--h1-font-style);
-    letter-spacing: var(--h1-letter-spacing);
-    line-height: var(--h1-line-height);
     max-width: 100%;
     z-index: 0;
     margin-bottom: 20px;
   }
 
   .subTitleAbout {
-    color: #fcf9f7;
     align-self: center;
     margin-top: 20px;
     margin-bottom: 0px;
-    font-family: var(--h1-font-family);
-    font-weight: var(--h1-font-weight);
-    font-size: var(--h6-font-size);
-    font-style: var(--h1-font-style);
-    letter-spacing: var(--h1-letter-spacing);
-    line-height: var(--h1-line-height);
     max-width: 100%;
     z-index: 0;
     margin-bottom: 20px;
   }
 
   .firstTextAbout {
-    color: #fcf9f7;
     align-self: center;
     margin: 0px;
-    font-family: var(--h6-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h7-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
     max-width: 100%;
     z-index: 0;
     margin-left: 20px;
@@ -2018,15 +1971,8 @@
   }
 
   .secondTextAbout {
-    color: #fcf9f7;
     align-self: center;
     margin: 0px;
-    font-family: var(--h6-font-family);
-    font-weight: var(--h5-font-weight);
-    font-size: var(--h7-font-size);
-    font-style: var(--h5-font-style);
-    letter-spacing: var(--h5-letter-spacing);
-    line-height: var(--h5-line-height);
     max-width: 100%;
     z-index: 0;
     margin-left: 20px;
@@ -2034,16 +1980,9 @@
   }
 
   .subTitleAbout2 {
-    color: #fcf9f7;
     align-self: center;
     margin-top: 20px;
     margin-bottom: 0px;
-    font-family: var(--h1-font-family);
-    font-weight: var(--h1-font-weight);
-    font-size: var(--h6-font-size);
-    font-style: var (--h1-font-style);
-    letter-spacing: var(--h1-letter-spacing);
-    line-height: var(--h1-line-height);
     max-width: 100%;
     z-index: 0;
     margin-bottom: 20px;
