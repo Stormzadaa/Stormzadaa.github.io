@@ -4,6 +4,7 @@
   --foundation-greylight: rgba(238, 238, 238, 1);
   --foundation-greylight-hover: rgba(229, 229, 229, 1);
   --foundation-greylight-active: rgba(201, 201, 201, 1);
+  --foundation-greylight-darker: rgba(146, 146, 146, 0.795);
   --foundation-greynormal: rgba(82, 82, 82, 1);
   --foundation-greynormal-hover: rgba(74, 74, 74, 1);
   --foundation-greynormal-active: rgba(66, 66, 66, 1);
