@@ -527,6 +527,9 @@
     max-width: 100%;
     z-index: 0;
     margin-bottom: 60px;
+    line-height: 1.5; 
+    text-align: left; 
+    letter-spacing: 25px; 
   }
 
   .subTitleAbout {
@@ -1172,6 +1175,9 @@
     max-width: 100%;
     z-index: 0;
     margin-bottom: 40px;
+    line-height: 1.5; 
+    text-align: left; 
+    letter-spacing: 18px; 
   }
 
   .subTitleAbout {
@@ -1881,6 +1887,9 @@
     max-width: 100%;
     z-index: 0;
     margin-bottom: 20px;
+    line-height: 1.5; 
+    text-align: left; 
+    letter-spacing: 12px; 
   }
 
   .subTitleAbout {
