@@ -304,6 +304,7 @@
   /* Carousel container styling */
   .carousel-container {
     position: relative;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     margin-top: 30px;
@@ -529,6 +530,8 @@
     line-height: 1.5; 
     text-align: left; 
     letter-spacing: 25px; 
+    margin-left: 122px;
+    margin-right: 122px;
   }
 
   .subTitleAbout {
@@ -946,6 +949,7 @@
   /* Carousel container styling */
   .carousel-container {
     position: relative;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     margin-top: 30px;
@@ -1176,6 +1180,8 @@
     line-height: 1.5; 
     text-align: left; 
     letter-spacing: 18px; 
+    margin-left: 60px;
+    margin-right: 60px;
   }
 
   .subTitleAbout {
@@ -1448,6 +1454,7 @@
   /* Carousel container styling */
   .carousel-container {
     position: relative;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     margin-top: 20px;
@@ -1887,6 +1894,8 @@
     line-height: 1.5; 
     text-align: left; 
     letter-spacing: 12px; 
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .subTitleAbout {

@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function adjustTextScrollSpeed() {
       const screenWidth = window.innerWidth;
       if (screenWidth <= 770) {
-        textScrollSpeed = 1.2; // Slower speed for small screens
+        textScrollSpeed = 0.9; // Slower speed for small screens
       } else if (screenWidth <= 1024) {
-        textScrollSpeed = 2; // Moderate speed for medium screens
+        textScrollSpeed = 1.2; // Moderate speed for medium screens
       } else {
-        textScrollSpeed = 3; // Default speed for larger screens
+        textScrollSpeed = 2; // Default speed for larger screens
       }
     }
 
