@@ -304,7 +304,6 @@
   /* Carousel container styling */
   .carousel-container {
     position: relative;
-    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     margin-top: 30px;
@@ -314,7 +313,6 @@
   .carousel-content {
     display: inline-flex;
     white-space: nowrap;
-    font-size: 2rem;
   }
 
   /* Carousel word styling */
@@ -379,8 +377,8 @@
   .footer-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: left;
+    text-align: left;
     gap: 30px;
   }
 
@@ -395,7 +393,7 @@
     display: grid;
     grid-template-rows: repeat(2, 1fr); /* Two rows, each equal height */
     gap: 20px;
-    text-align: center;
+    text-align: left;
   }
 
   .social-media-grid a {
@@ -433,7 +431,6 @@
   }
 
   .image-item {
-      aspect-ratio: 9 / 16;
       text-align: center;
       font-weight: bold;
       transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
@@ -458,8 +455,7 @@
   }
 
   .image-container {
-      width: 100%;
-      height: 100%;
+      aspect-ratio: 9 / 16;
       overflow: hidden;
       display: flex;
       flex-direction: column; /* Stack items vertically */
@@ -477,20 +473,18 @@
       object-fit: cover;
   }
 
-  .image-container p {
-    font-family: var(--body-font-family);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
-    color: #fcf9f7;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background-color: #525252b2;
-    width: 100%;
-    text-align: center;
-    padding: 5px;
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
+  .image-item p {
+      font-family: var(--heading-font-family);
+      font-weight: var(--font-weight-regular);
+      font-size: var(--h4-font-size);
+      color: #fcf9f7;
+      margin: 0;
+      background-color: transparent;
+      width: 100%;
+      text-align: left;
+      padding: 5px 0; 
+      box-sizing: border-box;
+      position: static;
   }
 
   .hamburger-menu {
@@ -949,7 +943,6 @@
   /* Carousel container styling */
   .carousel-container {
     position: relative;
-    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     margin-top: 30px;
@@ -960,7 +953,6 @@
   .carousel-content {
     display: inline-flex;
     white-space: nowrap;
-    font-size: 2rem;
   }
 
   /* Carousel word styling */
@@ -1012,7 +1004,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    align-items: center;
+    align-items: left;
     gap: auto; /* Gap between columns */
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -1024,8 +1016,8 @@
   .footer-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: left;
+    text-align: left;
     gap: 40px;
   }
 
@@ -1044,7 +1036,7 @@
     display: grid;
     grid-template-rows: repeat(2, 1fr); /* Two rows, each equal height */
     gap: 20px;
-    text-align: center;
+    text-align: left;
   }
 
   .social-media-grid a {
@@ -1081,7 +1073,6 @@
   }
 
   .image-item {
-      aspect-ratio: 9 / 16;
       text-align: center;
       font-weight: bold;
       transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
@@ -1106,8 +1097,7 @@
   }
 
   .image-container {
-      width: 100%;
-      height: 100%;
+aspect-ratio: 9 / 16;
       overflow: hidden;
       display: flex;
       flex-direction: column; /* Stack items vertically */
@@ -1125,20 +1115,18 @@
       object-fit: cover;
   }
 
-  .image-container p {
-    font-family: var(--body-font-family);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h7-font-size);
-    color: #fcf9f7;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background-color: #525252b2; /* Grey background for the project name */
-    width: 100%; /* Make the project name full width */
-    text-align: center; /* Center the text */
-    padding: 5px; /* Add padding if needed */
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
+  .image-item p {
+      font-family: var(--heading-font-family);
+      font-weight: var(--font-weight-regular);
+      font-size: var(--h4-font-size);
+      color: #fcf9f7;
+      margin: 0;
+      background-color: transparent; 
+      width: 100%; 
+      text-align: left; 
+      padding: 5px 0;
+      box-sizing: border-box;
+      position: static; 
   }
 
   .hamburger-menu {
@@ -1528,7 +1516,7 @@
   .footer-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     text-align: center;
     gap: 20px;
   }
@@ -1589,7 +1577,6 @@
   }
 
   .image-item {
-      aspect-ratio: 3 / 4;
       text-align: center;
       font-weight: bold;
       transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
@@ -1614,8 +1601,7 @@
   }
 
   .image-container {
-      width: 100%;
-      height: 100%;
+      aspect-ratio: 3 / 4;
       overflow: hidden;
       display: flex;
       flex-direction: column; /* Stack items vertically */
@@ -1649,7 +1635,6 @@
     }
   
     .image-item {
-        aspect-ratio: 3 / 4;
         text-align: center;
         font-weight: bold;
         transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
@@ -1674,8 +1659,7 @@
     }
   
     .image-container {
-        width: 100%;
-        height: 100%;
+        aspect-ratio: 3 / 4;
         overflow: hidden;
         display: flex;
         flex-direction: column; /* Stack items vertically */
@@ -1713,20 +1697,18 @@
     object-position: top; /* Adjusts the position between the top and center */
   }
 
-  .image-container p {
-    font-family: var(--body-font-family);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h8-font-size);
-    color: #fcf9f7;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background-color: #525252b2; /* Grey background for the project name */
-    width: 100%; /* Make the project name full width */
-    text-align: center; /* Center the text */
-    padding: 5px; /* Add padding if needed */
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
+  .image-item p {
+      font-family: var(--heading-font-family);
+      font-weight: var(--font-weight-regular);
+      font-size: var(--h5-font-size);
+      color: #fcf9f7;
+      margin: 0;
+      background-color: transparent; 
+      width: 100%; 
+      text-align: left; 
+      padding: 5px 0; 
+      box-sizing: border-box;
+      position: static; 
   }
 
   .hamburger-menu {
