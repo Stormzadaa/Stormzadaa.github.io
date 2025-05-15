@@ -1,78 +1,78 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ---- Infinite Carousel Animation Logic ----
-  const carouselContent = document.getElementById("carouselContent");
-  if (carouselContent) {
+  // ---- Infinite Text Carousel Animation Logic ----
+  const textCarouselContent = document.getElementById("carouselContent");
+  if (textCarouselContent) {
     // Duplicate the content for seamless infinite effect
-    const clone = carouselContent.cloneNode(true);
-    clone.id = "carouselContentClone";
-    carouselContent.parentNode.appendChild(clone);
+    const textClone = textCarouselContent.cloneNode(true);
+    textClone.id = "carouselContentClone";
+    textCarouselContent.parentNode.appendChild(textClone);
 
     // Set up initial positions
-    let baseSpeed = getCarouselSpeed();
-    let speed = baseSpeed;
-    let pos1 = 0;
-    let pos2 = carouselContent.offsetWidth;
+    let textBaseSpeed = getTextCarouselSpeed();
+    let textSpeed = textBaseSpeed;
+    let textPos1 = 0;
+    let textPos2 = textCarouselContent.offsetWidth;
 
     // 4 speeds for 4 breakpoints matching your CSS media queries
-    function getCarouselSpeed() {
+    function getTextCarouselSpeed() {
       const width = window.innerWidth;
-      if (width <= 430) return 2;         // Mobile small (≤430px)
-      if (width <= 768) return 2.5;       // Mobile large (431px–768px)
-      if (width <= 1279) return 3;        // Tablet (769px–1279px)
-      return 4;                           // Desktop (≥1280px)
+      if (width <= 430) return 2;
+      if (width <= 768) return 2.5;
+      if (width <= 1279) return 3;
+      return 4;
     }
 
-    function animateCarousel() {
-      pos1 -= speed;
-      pos2 -= speed;
+    function animateTextCarousel() {
+      textPos1 -= textSpeed;
+      textPos2 -= textSpeed;
 
       // When the first content is fully out of view, reset its position after the clone
-      if (pos1 <= -carouselContent.offsetWidth) {
-        pos1 = pos2 + carouselContent.offsetWidth;
+      if (textPos1 <= -textCarouselContent.offsetWidth) {
+        textPos1 = textPos2 + textCarouselContent.offsetWidth;
       }
-      if (pos2 <= -clone.offsetWidth) {
-        pos2 = pos1 + clone.offsetWidth;
+      if (textPos2 <= -textClone.offsetWidth) {
+        textPos2 = textPos1 + textClone.offsetWidth;
       }
 
-      carouselContent.style.transform = `translateX(${pos1}px)`;
-      clone.style.transform = `translateX(${pos2}px)`;
+      textCarouselContent.style.transform = `translateX(${textPos1}px)`;
+      textClone.style.transform = `translateX(${textPos2}px)`;
 
-      requestAnimationFrame(animateCarousel);
+      requestAnimationFrame(animateTextCarousel);
     }
 
     // Ensure both contents are inline and next to each other
-    carouselContent.style.display = "inline-flex";
-    clone.style.display = "inline-flex";
-    clone.style.position = "absolute";
-    clone.style.left = "0";
-    clone.style.top = "0";
+    textCarouselContent.style.display = "inline-flex";
+    textClone.style.display = "inline-flex";
+    textClone.style.position = "absolute";
+    textClone.style.left = "0";
+    textClone.style.top = "0";
 
     // Set parent container to relative for absolute positioning
-    carouselContent.parentNode.style.position = "relative";
-    carouselContent.parentNode.style.height = `${carouselContent.offsetHeight}px`;
+    textCarouselContent.parentNode.style.position = "relative";
+    textCarouselContent.parentNode.style.height = `${textCarouselContent.offsetHeight}px`;
 
     // Start the animation
-    animateCarousel();
+    animateTextCarousel();
 
     // Responsive: update widths, positions, and speed on resize
     window.addEventListener("resize", () => {
-      baseSpeed = getCarouselSpeed();
-      speed = baseSpeed;
-      pos1 = 0;
-      pos2 = carouselContent.offsetWidth;
-      clone.style.width = `${carouselContent.offsetWidth}px`;
-      carouselContent.parentNode.style.height = `${carouselContent.offsetHeight}px`;
+      textBaseSpeed = getTextCarouselSpeed();
+      textSpeed = textBaseSpeed;
+      textPos1 = 0;
+      textPos2 = textCarouselContent.offsetWidth;
+      textClone.style.width = `${textCarouselContent.offsetWidth}px`;
+      textCarouselContent.parentNode.style.height = `${textCarouselContent.offsetHeight}px`;
     });
 
     // --- Hover effect for individual spans and speed ---
     function handleSpanHover(span) {
-      speed = baseSpeed / 2;
+      textSpeed = textBaseSpeed / 2;
       span.style.transition = "font-size 0.5s";
       span.style.fontSize = "1.05em";
     }
 
     function handleSpanLeave(span) {
-      speed = baseSpeed;
+      textSpeed = textBaseSpeed;
       span.style.fontSize = "";
     }
 
@@ -85,154 +85,122 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    attachSpanListeners(carouselContent);
-    attachSpanListeners(clone);
+    attachSpanListeners(textCarouselContent);
+    attachSpanListeners(textClone);
   }
 
-// ---- Vertical Loop Animation Logic ----
-const toggleSwitch = document.querySelector(".toggle-switch");
-const playIcon = document.querySelector(".play-icon");
-const pauseIcon = document.querySelector(".pause-icon");
-const fundoPoligonos = document.querySelector(".fundo-poligonos");
+  // ---- Infinite Background Loop Animation Logic ----
+  const fundoPoligonos = document.querySelector(".fundo-poligonos");
+  let bgIsAnimationRunning = true; // <-- Move to outer scope for toggle access
+  let bgAnimationFrameId; // <-- Move to outer scope for cancelAnimationFrame
 
-if (toggleSwitch && playIcon && pauseIcon && fundoPoligonos) {
-  let contentHeight = fundoPoligonos.scrollHeight;
-  let scrollPosition = 0;
-  let scrollSpeed = 0.5;
-  let animationFrameId;
-  let isAnimationRunning = false;
-  let isPaused = false;
+  if (fundoPoligonos) {
+    // Use unique variables for background loop
+    let bgContentHeight = fundoPoligonos.scrollHeight;
+    let bgScrollPosition = 0;
+    let bgScrollSpeed = 0.5;
 
-  // Use a unique variable name for the fundo-poligonos clone
-  const fundoClone = fundoPoligonos.cloneNode(true);
-  fundoClone.classList.add("fundo-poligonos-clone");
-  fundoPoligonos.parentNode.appendChild(fundoClone);
+    // Use a unique variable name for the fundo-poligonos clone
+    const fundoClone = fundoPoligonos.cloneNode(true);
+    fundoClone.classList.add("fundo-poligonos-clone");
+    fundoPoligonos.parentNode.appendChild(fundoClone);
 
-  function scrollUp() {
-    if (!isAnimationRunning) return;
+    function scrollBgUp() {
+      if (!bgIsAnimationRunning) return;
 
-    scrollPosition -= scrollSpeed;
+      bgScrollPosition -= bgScrollSpeed;
 
-    if (scrollPosition <= -contentHeight) {
-      scrollPosition = 0;
-    }
-
-    fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
-    fundoClone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
-
-    animationFrameId = requestAnimationFrame(scrollUp);
-  }
-
-  // Function to update play/pause state
-  function updatePlayPauseState(paused, broadcast = true) {
-    if (paused) {
-      isAnimationRunning = false;
-      cancelAnimationFrame(animationFrameId);
-      playIcon.classList.add("active");
-      pauseIcon.classList.remove("active");
-    } else {
-      if (!isAnimationRunning) {
-        isAnimationRunning = true;
-        scrollUp();
+      if (bgScrollPosition <= -bgContentHeight) {
+        bgScrollPosition = 0;
       }
-      playIcon.classList.remove("active");
-      pauseIcon.classList.add("active");
+
+      fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
+      fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
+
+      bgAnimationFrameId = requestAnimationFrame(scrollBgUp);
     }
-    isPaused = paused;
 
-    // Save the state to localStorage
-    if (broadcast) {
-      localStorage.setItem("isPaused", isPaused);
+    // Start the background animation
+    scrollBgUp();
+
+    // Responsive: update heights and reset position on resize
+    window.addEventListener("resize", () => {
+      const newBgContentHeight = fundoPoligonos.scrollHeight;
+      if (bgContentHeight !== newBgContentHeight) {
+        bgContentHeight = newBgContentHeight;
+        bgScrollPosition = 0;
+      }
+    });
+
+    // Adjust scroll speed based on screen size
+    const bgMediaQuery = window.matchMedia("(max-width: 768px)");
+    function updateBgScrollSpeed() {
+      bgScrollSpeed = bgMediaQuery.matches ? 0.25 : 0.5;
     }
-  }
+    bgMediaQuery.addEventListener("change", updateBgScrollSpeed);
+    updateBgScrollSpeed();
 
-  // Add event listener for the toggle button
-  toggleSwitch.addEventListener("click", () => {
-    updatePlayPauseState(!isPaused);
-  });
+    // ---- Play/Pause Button for Background Animation Only ----
+    const toggleSwitch = document.querySelector(".toggle-switch");
+    const playIcon = document.querySelector(".play-icon");
+    const pauseIcon = document.querySelector(".pause-icon");
 
-  // Listen for changes in localStorage to sync across tabs
-  window.addEventListener("storage", (event) => {
-    if (event.key === "isPaused") {
-      const pausedState = event.newValue === "true";
-      if (pausedState !== isPaused) {
-        updatePlayPauseState(pausedState, false);
+    function updateToggleIcons() {
+      if (bgIsAnimationRunning) {
+        playIcon.classList.remove("active");
+        pauseIcon.classList.add("active");
+      } else {
+        playIcon.classList.add("active");
+        pauseIcon.classList.remove("active");
       }
     }
+
+    if (toggleSwitch && playIcon && pauseIcon) {
+      toggleSwitch.addEventListener("click", () => {
+        bgIsAnimationRunning = !bgIsAnimationRunning;
+        updateToggleIcons();
+        if (bgIsAnimationRunning) {
+          scrollBgUp();
+        } else {
+          cancelAnimationFrame(bgAnimationFrameId);
+        }
+      });
+      // Set initial state
+      updateToggleIcons();
+    }
+  }
+
+  // ---- Nav Underline Toggle Logic ----
+  const contactLink = document.getElementById("contactLink");
+  const contactUnderline = document.getElementById("contactUnderline");
+  const workUnderline = document.getElementById("workUnderline");
+  const footer = document.querySelector("footer");
+
+  // Check if the current page is index.html
+  const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+  contactLink.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    smoothScrollTo(document.body.scrollHeight, 1000); // Scroll to the bottom of the page
   });
 
-  // Initialize the state from localStorage
-  const savedState = localStorage.getItem("isPaused");
-  if (savedState !== null) {
-    isPaused = savedState === "true";
+  window.addEventListener("scroll", () => {
+    const footerRect = footer.getBoundingClientRect();
+    const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
 
-    // Align the button state with the animation state
-    if (isPaused) {
-      playIcon.classList.add("active");
-      pauseIcon.classList.remove("active");
+    if (isFooterVisible) {
+      contactUnderline.classList.add("active");
     } else {
-      playIcon.classList.remove("active");
-      pauseIcon.classList.add("active");
-      isAnimationRunning = true;
-      scrollUp();
+      contactUnderline.classList.remove("active");
     }
-  } else {
-    // Start the animation by default
-    isAnimationRunning = true;
-    scrollUp();
-  }
 
-  // ---- Mobile Responsiveness and Performance Improvements ----
-  window.addEventListener("resize", () => {
-    const newContentHeight = fundoPoligonos.scrollHeight;
-    if (contentHeight !== newContentHeight) {
-      contentHeight = newContentHeight;
-      scrollPosition = 0; // Reset position after resize
+    // Keep "Work" underline always active only on index.html
+    if (isIndexPage) {
+      workUnderline.classList.add("active");
+    } else {
+      workUnderline.classList.remove("active");
     }
   });
-
-  // Adjust scroll speed based on screen size
-  const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-  function updateScrollSpeed() {
-    scrollSpeed = mediaQuery.matches ? 0.25 : 0.5;
-  }
-
-  mediaQuery.addEventListener("change", updateScrollSpeed);
-  updateScrollSpeed(); // Initial check
-}
-
- // ---- Nav Underline Toggle Logic ----
-const contactLink = document.getElementById("contactLink");
-const contactUnderline = document.getElementById("contactUnderline");
-const workUnderline = document.getElementById("workUnderline");
-const footer = document.querySelector("footer");
-
-// Check if the current page is index.html
-const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-
-contactLink.addEventListener("click", (event) => {
-  event.preventDefault(); // Prevent default anchor behavior
-  smoothScrollTo(document.body.scrollHeight, 1000); // Scroll to the bottom of the page
-});
-
-window.addEventListener("scroll", () => {
-  const footerRect = footer.getBoundingClientRect();
-  const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
-
-  if (isFooterVisible) {
-    contactUnderline.classList.add("active");
-  } else {
-    contactUnderline.classList.remove("active");
-  }
-
-  // Keep "Work" underline always active only on index.html
-  if (isIndexPage) {
-    workUnderline.classList.add("active");
-  } else {
-    workUnderline.classList.remove("active");
-  }
-});
 
 
   // Smooth scroll function
@@ -282,60 +250,60 @@ window.addEventListener("scroll", () => {
   // Call the function initially and whenever the window is resized
   adjustToggleSwitchPlacement();
   window.addEventListener("resize", adjustToggleSwitchPlacement);
-});
+  });
 
-// Check if the current page is index.html
-const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-
-// Initialize "Work" underline as always active only on index.html
-if (isIndexPage) {
-  document.getElementById("workUnderline").classList.add("active");
-} else {
-  document.getElementById("workUnderline").classList.remove("active");
-}
-
-// Event listener for "About" link
-document.getElementById("aboutLink").addEventListener("click", function (event) {
-  if (isAboutPage) {
-    if (window.scrollY !== 0) {
-      event.preventDefault(); // Prevent scroll jump when not at the top
-      smoothScrollTo(0, 500); // Smooth scroll to top
-    }
-  } else {
-    window.location.href = "about.html";
-  }
-});
-
-// Initialize "About" underline as always active only on about.html
-const isAboutPage = window.location.pathname.endsWith("about.html");
-if (isAboutPage) {
-  document.getElementById("aboutUnderline").classList.add("active");
-} else {
-  document.getElementById("aboutUnderline").classList.remove("active");
-}
-
-// Function to handle "Work" link click event
-function handleWorkLinkClick(event) {
+  // Check if the current page is index.html
   const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+  // Initialize "Work" underline as always active only on index.html
   if (isIndexPage) {
-    if (window.scrollY === 0) {
-      event.preventDefault(); // Prevent scroll jump when at the top
-    } else {
-      smoothScrollTo(0, 500); // Smooth scroll to top
-    }
     document.getElementById("workUnderline").classList.add("active");
-    document.getElementById("contactUnderline").classList.remove("active");
   } else {
-    window.location.href = "index.html"; // Redirect to index.html
+    document.getElementById("workUnderline").classList.remove("active");
   }
-}
 
-// Event listener for "Work" link
-document.getElementById("workLink").addEventListener("click", handleWorkLinkClick);
+  // Event listener for "About" link
+  document.getElementById("aboutLink").addEventListener("click", function (event) {
+    if (isAboutPage) {
+      if (window.scrollY !== 0) {
+        event.preventDefault(); // Prevent scroll jump when not at the top
+        smoothScrollTo(0, 500); // Smooth scroll to top
+      }
+    } else {
+      window.location.href = "about.html";
+    }
+  });
+
+  // Initialize "About" underline as always active only on about.html
+  const isAboutPage = window.location.pathname.endsWith("about.html");
+  if (isAboutPage) {
+    document.getElementById("aboutUnderline").classList.add("active");
+  } else {
+    document.getElementById("aboutUnderline").classList.remove("active");
+  }
+
+  // Function to handle "Work" link click event
+  function handleWorkLinkClick(event) {
+    const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+    if (isIndexPage) {
+      if (window.scrollY === 0) {
+        event.preventDefault(); // Prevent scroll jump when at the top
+      } else {
+        smoothScrollTo(0, 500); // Smooth scroll to top
+      }
+      document.getElementById("workUnderline").classList.add("active");
+      document.getElementById("contactUnderline").classList.remove("active");
+    } else {
+      window.location.href = "index.html"; // Redirect to index.html
+    }
+  }
+
+  // Event listener for "Work" link
+  document.getElementById("workLink").addEventListener("click", handleWorkLinkClick);
 
 
-// Scroll event to toggle "Contact" underline and keep "Work" and "About" underlines active only on their respective pages
-window.addEventListener("scroll", function () {
+  // Scroll event to toggle "Contact" underline and keep "Work" and "About" underlines active only on their respective pages
+  window.addEventListener("scroll", function () {
   const footer = document.querySelector("footer");
   const footerRect = footer.getBoundingClientRect();
   const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
@@ -362,10 +330,10 @@ window.addEventListener("scroll", function () {
   } else {
     aboutUnderline.classList.remove("active");
   }
-});
+  });
 
 
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-svg");
   const hamburgerMenu = document.getElementById("hamburgerMenu");
   const returnArrow = document.getElementById("returnArrow");
@@ -414,40 +382,40 @@ function closeMenu() {
   }, 600); // Wait for the close animation to complete before removing the active class
 }
 
-// Close the menu when clicking the return arrow and unlock scroll
-returnArrow.addEventListener("click", closeMenu);
-
-// Close the menu when clicking outside of it and unlock scroll
-document.addEventListener("click", (event) => {
-  if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
-    closeMenu();
-  }
-});
-
-// Close the menu when clicking any menu option
-const menuOptions = document.querySelectorAll("#hamburgerMenu a"); // Assuming menu options are anchor tags
-menuOptions.forEach(option => {
-  option.addEventListener("click", closeMenu);
-});
-
+  // Close the menu when clicking the return arrow and unlock scroll
+  returnArrow.addEventListener("click", closeMenu);
 
   // Close the menu when clicking outside of it and unlock scroll
   document.addEventListener("click", (event) => {
     if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
-      hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
-      hamburgerMenu.classList.add("hidden");
-      document.body.classList.remove("no-scroll"); // Enable scrolling
-      setTimeout(() => {
-        hamburgerMenu.classList.remove("active");
-        hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-      }, 600); // Wait for the close animation to complete before removing the active class
+      closeMenu();
     }
   });
-});
+
+  // Close the menu when clicking any menu option
+  const menuOptions = document.querySelectorAll("#hamburgerMenu a"); // Assuming menu options are anchor tags
+  menuOptions.forEach(option => {
+    option.addEventListener("click", closeMenu);
+  });
 
 
-// Smooth scroll function (reuse the existing one)
-function smoothScrollTo(target, duration) {
+    // Close the menu when clicking outside of it and unlock scroll
+    document.addEventListener("click", (event) => {
+      if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
+        hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
+        hamburgerMenu.classList.add("hidden");
+        document.body.classList.remove("no-scroll"); // Enable scrolling
+        setTimeout(() => {
+          hamburgerMenu.classList.remove("active");
+          hamburgerMenu.style.display = "none"; // Hide the menu after the animation
+        }, 600); // Wait for the close animation to complete before removing the active class
+      }
+    });
+  });
+
+
+  // Smooth scroll function (reuse the existing one)
+  function smoothScrollTo(target, duration) {
   const start = window.scrollY;
   const distance = target - start;
   let startTime = null;
@@ -473,9 +441,9 @@ function smoothScrollTo(target, duration) {
 
   isScrolling = true;
   requestAnimationFrame(animation);
-}
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   const hamburgerContactLink = document.getElementById("hamburgerContactLink");
   const hamburgerContactUnderline = document.getElementById("hamburgerContactUnderline");
 
@@ -501,10 +469,10 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault(); // Prevent default anchor behavior
     smoothScrollTo(document.body.scrollHeight, 1000); // Smooth scroll to footer
   });
-});
+  });
 
-// Smooth scroll function (reuse the existing one)
-function smoothScrollTo(target, duration) {
+  // Smooth scroll function (reuse the existing one)
+  function smoothScrollTo(target, duration) {
   const start = window.scrollY;
   const distance = target - start;
   let startTime = null;
@@ -530,11 +498,11 @@ function smoothScrollTo(target, duration) {
 
   isScrolling = true;
   requestAnimationFrame(animation);
-}
+  }
 
-/* Code to lock the background scroll during hamburger menu open */
+  /* Code to lock the background scroll during hamburger menu open */
 
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-svg");
   const hamburgerMenu = document.getElementById("hamburgerMenu");
   const returnArrow = document.getElementById("returnArrow");
@@ -568,11 +536,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 600); // Wait for the close animation to complete before removing the active class
     }
   });
-});
+  });
 
 
-/* Direction to the "WORK" page mobile */
-document.addEventListener("DOMContentLoaded", () => {
+  /* Direction to the "WORK" page mobile */
+  document.addEventListener("DOMContentLoaded", () => {
   const hamburgerWorkLink = document.getElementById("hamburgerWorkLink");
   const hamburgerWorkUnderline = document.getElementById("hamburgerWorkUnderline");
 
@@ -606,11 +574,11 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("Element with ID 'hamburgerWorkLink' or 'hamburgerWorkUnderline' not found.");
   }
-});
+  });
 
 
-/* Direction to the "ABOUT" page mobile */
-document.addEventListener("DOMContentLoaded", () => {
+  /* Direction to the "ABOUT" page mobile */
+  document.addEventListener("DOMContentLoaded", () => {
   const hamburgerAboutLink = document.getElementById("hamburgerAboutLink");
   const hamburgerAboutUnderline = document.getElementById("hamburgerAboutUnderline");
 
@@ -644,9 +612,9 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("Element with ID 'hamburgerAboutLink' or 'hamburgerAboutUnderline' not found.");
   }
-});
+  });
 
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
   // Check if the page is the Tarkov page
@@ -662,9 +630,9 @@ document.addEventListener("DOMContentLoaded", () => {
       footer?.classList.add("tarkov-active");
     }, 1000); // Adjust the delay as needed
   }
-});
+  });
 
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   const contactLink = document.getElementById("contactLink");
   const footer = document.querySelector("footer");
 
@@ -675,10 +643,10 @@ document.addEventListener("DOMContentLoaded", () => {
       smoothScrollTo(document.body.scrollHeight, 1000); // Smooth scroll to footer
     });
   }
-});
+  });
 
-// Smooth scroll function
-function smoothScrollTo(target, duration) {
+  // Smooth scroll function
+  function smoothScrollTo(target, duration) {
   const start = window.scrollY;
   const distance = target - start;
   let startTime = null;
