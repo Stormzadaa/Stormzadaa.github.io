@@ -284,6 +284,8 @@
     align-self: center;
     margin-top: 60px;
     margin-bottom: 0px;
+    padding-left: 122px;
+    padding-right: 122px;
     max-width: 100%;
     z-index: 0;
     line-height: 1.5; 
@@ -293,8 +295,6 @@
   }
 
   .hold-title {
-    padding-left: 122px;
-    padding-right: 122px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -922,6 +922,8 @@
     align-self: center;
     margin-top: 40px;
     margin-bottom: 0px;
+    padding-left: 60px;
+    padding-right: 60px;
     max-width: 100%;
     z-index: 0;
     line-height: 1.5; 
@@ -932,8 +934,6 @@
 
   .hold-title {
     height: 100%;
-    padding-left: 60px;
-    padding-right: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;

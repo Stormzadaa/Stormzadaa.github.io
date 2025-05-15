@@ -1,51 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ---- Text Carousel Logic ----
-  const textCarouselContent = document.getElementById("carouselContent");
-  const textContainerWidth = document.querySelector(".carousel-container")?.offsetWidth;
+  // ---- Infinite Carousel Animation Logic ----
+  const carouselContent = document.getElementById("carouselContent");
+  if (carouselContent) {
+    // Duplicate the content for seamless infinite effect
+    const clone = carouselContent.cloneNode(true);
+    clone.id = "carouselContentClone";
+    carouselContent.parentNode.appendChild(clone);
 
-  if (textCarouselContent && textContainerWidth) {
-    let textContentWidth = textCarouselContent.scrollWidth;
+    // Set up initial positions
+    let baseSpeed = getCarouselSpeed();
+    let speed = baseSpeed;
+    let pos1 = 0;
+    let pos2 = carouselContent.offsetWidth;
 
-    // Clone text items to ensure enough content for scrolling
-    while (textContentWidth < textContainerWidth * 10) {
-      const textItems = Array.from(textCarouselContent.children);
-      textItems.forEach((item) => {
-        const clone = item.cloneNode(true);
-        textCarouselContent.appendChild(clone);
+    // 4 speeds for 4 breakpoints matching your CSS media queries
+    function getCarouselSpeed() {
+      const width = window.innerWidth;
+      if (width <= 430) return 2;         // Mobile small (≤430px)
+      if (width <= 768) return 2.5;       // Mobile large (431px–768px)
+      if (width <= 1279) return 3;        // Tablet (769px–1279px)
+      return 4;                           // Desktop (≥1280px)
+    }
+
+    function animateCarousel() {
+      pos1 -= speed;
+      pos2 -= speed;
+
+      // When the first content is fully out of view, reset its position after the clone
+      if (pos1 <= -carouselContent.offsetWidth) {
+        pos1 = pos2 + carouselContent.offsetWidth;
+      }
+      if (pos2 <= -clone.offsetWidth) {
+        pos2 = pos1 + clone.offsetWidth;
+      }
+
+      carouselContent.style.transform = `translateX(${pos1}px)`;
+      clone.style.transform = `translateX(${pos2}px)`;
+
+      requestAnimationFrame(animateCarousel);
+    }
+
+    // Ensure both contents are inline and next to each other
+    carouselContent.style.display = "inline-flex";
+    clone.style.display = "inline-flex";
+    clone.style.position = "absolute";
+    clone.style.left = "0";
+    clone.style.top = "0";
+
+    // Set parent container to relative for absolute positioning
+    carouselContent.parentNode.style.position = "relative";
+    carouselContent.parentNode.style.height = `${carouselContent.offsetHeight}px`;
+
+    // Start the animation
+    animateCarousel();
+
+    // Responsive: update widths, positions, and speed on resize
+    window.addEventListener("resize", () => {
+      baseSpeed = getCarouselSpeed();
+      speed = baseSpeed;
+      pos1 = 0;
+      pos2 = carouselContent.offsetWidth;
+      clone.style.width = `${carouselContent.offsetWidth}px`;
+      carouselContent.parentNode.style.height = `${carouselContent.offsetHeight}px`;
+    });
+
+    // --- Hover effect for individual spans and speed ---
+    function handleSpanHover(span) {
+      speed = baseSpeed / 2;
+      span.style.transition = "font-size 0.5s";
+      span.style.fontSize = "1.05em";
+    }
+
+    function handleSpanLeave(span) {
+      speed = baseSpeed;
+      span.style.fontSize = "";
+    }
+
+    // Attach listeners to all spans in both original and clone
+    function attachSpanListeners(container) {
+      const spans = container.querySelectorAll("span");
+      spans.forEach(span => {
+        span.addEventListener("mouseenter", () => handleSpanHover(span));
+        span.addEventListener("mouseleave", () => handleSpanLeave(span));
       });
-      textContentWidth = textCarouselContent.scrollWidth;
     }
 
-    let textCurrentPosition = 0;
-    let textScrollSpeed = 0.3; // Default scroll speed
-
-    // Function to adjust scroll speed based on screen width
-    function adjustTextScrollSpeed() {
-      const screenWidth = window.innerWidth;
-      if (screenWidth <= 770) {
-        textScrollSpeed = 0.9; // Slower speed for small screens
-      } else if (screenWidth <= 1024) {
-        textScrollSpeed = 1.2; // Moderate speed for medium screens
-      } else {
-        textScrollSpeed = 2; // Default speed for larger screens
-      }
-    }
-
-    // Call adjustTextScrollSpeed initially and whenever the window is resized
-    adjustTextScrollSpeed();
-    window.addEventListener("resize", adjustTextScrollSpeed);
-
-    function animateTextScroll() {
-      textCurrentPosition -= textScrollSpeed;
-      if (Math.abs(textCurrentPosition) >= textContentWidth / 2) {
-        textCurrentPosition = 0;
-      }
-      textCarouselContent.style.transform = `translateX(${textCurrentPosition}px)`;
-      requestAnimationFrame(animateTextScroll);
-    }
-
-    // Start the animation initially
-    requestAnimationFrame(animateTextScroll);
+    attachSpanListeners(carouselContent);
+    attachSpanListeners(clone);
   }
 
 // ---- Vertical Loop Animation Logic ----
