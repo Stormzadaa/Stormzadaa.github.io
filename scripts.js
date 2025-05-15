@@ -95,118 +95,112 @@ const playIcon = document.querySelector(".play-icon");
 const pauseIcon = document.querySelector(".pause-icon");
 const fundoPoligonos = document.querySelector(".fundo-poligonos");
 
-if (!toggleSwitch || !playIcon || !pauseIcon || !fundoPoligonos) {
-  console.error("Required elements are missing in the DOM.");
-  return;
-}
+if (toggleSwitch && playIcon && pauseIcon && fundoPoligonos) {
+  let contentHeight = fundoPoligonos.scrollHeight;
+  let scrollPosition = 0;
+  let scrollSpeed = 0.5;
+  let animationFrameId;
+  let isAnimationRunning = false;
+  let isPaused = false;
 
-let contentHeight = fundoPoligonos.scrollHeight;
-let scrollPosition = 0;
-let scrollSpeed = 0.5;
-let animationFrameId;
-let isAnimationRunning = false;
-let isPaused = false;
+  // Use a unique variable name for the fundo-poligonos clone
+  const fundoClone = fundoPoligonos.cloneNode(true);
+  fundoClone.classList.add("fundo-poligonos-clone");
+  fundoPoligonos.parentNode.appendChild(fundoClone);
 
-// Clone the content to create a seamless loop
-const clone = fundoPoligonos.cloneNode(true);
-clone.classList.add("fundo-poligonos-clone");
-fundoPoligonos.parentNode.appendChild(clone);
+  function scrollUp() {
+    if (!isAnimationRunning) return;
 
-// Function to handle vertical scrolling
-function scrollUp() {
-  if (!isAnimationRunning) return;
+    scrollPosition -= scrollSpeed;
 
-  scrollPosition -= scrollSpeed;
+    if (scrollPosition <= -contentHeight) {
+      scrollPosition = 0;
+    }
 
-  if (scrollPosition <= -contentHeight) {
-    scrollPosition = 0;
+    fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
+    fundoClone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
+
+    animationFrameId = requestAnimationFrame(scrollUp);
   }
 
-  fundoPoligonos.style.transform = `translateY(${scrollPosition}px)`;
-  clone.style.transform = `translateY(${scrollPosition + contentHeight}px)`;
+  // Function to update play/pause state
+  function updatePlayPauseState(paused, broadcast = true) {
+    if (paused) {
+      isAnimationRunning = false;
+      cancelAnimationFrame(animationFrameId);
+      playIcon.classList.add("active");
+      pauseIcon.classList.remove("active");
+    } else {
+      if (!isAnimationRunning) {
+        isAnimationRunning = true;
+        scrollUp();
+      }
+      playIcon.classList.remove("active");
+      pauseIcon.classList.add("active");
+    }
+    isPaused = paused;
 
-  animationFrameId = requestAnimationFrame(scrollUp);
-}
+    // Save the state to localStorage
+    if (broadcast) {
+      localStorage.setItem("isPaused", isPaused);
+    }
+  }
 
-// Function to update play/pause state
-function updatePlayPauseState(paused, broadcast = true) {
-  if (paused) {
-    isAnimationRunning = false;
-    cancelAnimationFrame(animationFrameId);
-    playIcon.classList.add("active");
-    pauseIcon.classList.remove("active");
-  } else {
-    if (!isAnimationRunning) {
+  // Add event listener for the toggle button
+  toggleSwitch.addEventListener("click", () => {
+    updatePlayPauseState(!isPaused);
+  });
+
+  // Listen for changes in localStorage to sync across tabs
+  window.addEventListener("storage", (event) => {
+    if (event.key === "isPaused") {
+      const pausedState = event.newValue === "true";
+      if (pausedState !== isPaused) {
+        updatePlayPauseState(pausedState, false);
+      }
+    }
+  });
+
+  // Initialize the state from localStorage
+  const savedState = localStorage.getItem("isPaused");
+  if (savedState !== null) {
+    isPaused = savedState === "true";
+
+    // Align the button state with the animation state
+    if (isPaused) {
+      playIcon.classList.add("active");
+      pauseIcon.classList.remove("active");
+    } else {
+      playIcon.classList.remove("active");
+      pauseIcon.classList.add("active");
       isAnimationRunning = true;
       scrollUp();
     }
-    playIcon.classList.remove("active");
-    pauseIcon.classList.add("active");
-  }
-  isPaused = paused;
-
-  // Save the state to localStorage
-  if (broadcast) {
-    localStorage.setItem("isPaused", isPaused);
-  }
-}
-
-// Add event listener for the toggle button
-toggleSwitch.addEventListener("click", () => {
-  updatePlayPauseState(!isPaused);
-});
-
-// Listen for changes in localStorage to sync across tabs
-window.addEventListener("storage", (event) => {
-  if (event.key === "isPaused") {
-    const pausedState = event.newValue === "true";
-    if (pausedState !== isPaused) {
-      updatePlayPauseState(pausedState, false);
-    }
-  }
-});
-
-// Initialize the state from localStorage
-const savedState = localStorage.getItem("isPaused");
-if (savedState !== null) {
-  isPaused = savedState === "true";
-
-  // Align the button state with the animation state
-  if (isPaused) {
-    playIcon.classList.add("active");
-    pauseIcon.classList.remove("active");
   } else {
-    playIcon.classList.remove("active");
-    pauseIcon.classList.add("active");
+    // Start the animation by default
     isAnimationRunning = true;
     scrollUp();
   }
-} else {
-  // Start the animation by default
-  isAnimationRunning = true;
-  scrollUp();
-}
 
-// ---- Mobile Responsiveness and Performance Improvements ----
-window.addEventListener("resize", () => {
-  const newContentHeight = fundoPoligonos.scrollHeight;
-  if (contentHeight !== newContentHeight) {
-    contentHeight = newContentHeight;
-    scrollPosition = 0; // Reset position after resize
+  // ---- Mobile Responsiveness and Performance Improvements ----
+  window.addEventListener("resize", () => {
+    const newContentHeight = fundoPoligonos.scrollHeight;
+    if (contentHeight !== newContentHeight) {
+      contentHeight = newContentHeight;
+      scrollPosition = 0; // Reset position after resize
+    }
+  });
+
+  // Adjust scroll speed based on screen size
+  const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+  function updateScrollSpeed() {
+    scrollSpeed = mediaQuery.matches ? 0.25 : 0.5;
   }
-});
 
-// Adjust scroll speed based on screen size
-const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-function updateScrollSpeed() {
-  scrollSpeed = mediaQuery.matches ? 0.25 : 0.5;
+  mediaQuery.addEventListener("change", updateScrollSpeed);
+  updateScrollSpeed(); // Initial check
 }
-
-mediaQuery.addEventListener("change", updateScrollSpeed);
-updateScrollSpeed(); // Initial check
-
-
 
  // ---- Nav Underline Toggle Logic ----
 const contactLink = document.getElementById("contactLink");

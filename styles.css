@@ -277,7 +277,7 @@
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 40%;
-    z-index: -1; /* Ensure it stays behind other content */
+    z-index: 0; /* Ensure it stays behind other content */
   }
 
   .main-title {
@@ -915,7 +915,7 @@
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 40%;
-    z-index: -1; /* Ensure it stays behind other content */
+    z-index: 0; /* Ensure it stays behind other content */
   }
 
   .main-title {
@@ -1413,7 +1413,7 @@ aspect-ratio: 9 / 16;
     background-repeat: repeat;
     background-size: 25% auto;
     opacity: 60%;
-    z-index: -1; /* Ensure it stays behind other content */
+    z-index: 0; /* Ensure it stays behind other content */
   }
 
   .main-title {
