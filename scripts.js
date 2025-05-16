@@ -80,6 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function attachSpanListeners(container) {
       const spans = container.querySelectorAll("span");
       spans.forEach(span => {
+        // Set display and min-width to prevent shifting
+        span.style.display = "inline-block";
+        // Optionally, set min-width based on the span's initial width
+        if (!span.style.minWidth) {
+          span.style.minWidth = `${span.offsetWidth}px`;
+        }
         span.addEventListener("mouseenter", () => handleSpanHover(span));
         span.addEventListener("mouseleave", () => handleSpanLeave(span));
       });
