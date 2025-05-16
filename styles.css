@@ -36,6 +36,14 @@
   background-color: var(--TarkovFooterBackground); /* Change to the desired color */
 }
 
+.tarkov-page .hamburger-menu.tarkov-active {
+  background: linear-gradient(
+    to bottom,
+    var(--TarkovHeaderBackground, #2c2c2c) 45%,
+    var(--TarkovFooterBackground, #3a2a1a) 100%
+  );
+}
+
 /* Breakpoint for Desktop/Laptop */
 @media (min-width: 1280px) {
   .html,
@@ -1723,7 +1731,7 @@ aspect-ratio: 9 / 16;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     z-index: 3;
     transform: translateX(100%);
-    transition: transform var(--menu-transition-duration) ease; /* Use custom property for transition duration */
+    transition: transform var(--menu-transition-duration) ease, background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
   }
 
   .hamburger-menu::before {

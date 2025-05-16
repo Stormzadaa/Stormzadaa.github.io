@@ -716,6 +716,29 @@ function closeMenu() {
   requestAnimationFrame(animation);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+
+  // Check if the page is the Tarkov page
+  if (body.classList.contains("tarkov-page")) {
+    const portfolioSection = document.querySelector(".portfolio-section");
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+    // Simulate the color change after a delay
+    setTimeout(() => {
+      portfolioSection?.classList.add("tarkov-active");
+      header?.classList.add("tarkov-active");
+      footer?.classList.add("tarkov-active");
+      // Change hamburger menu color for Tarkov page (especially on mobile)
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add("tarkov-active");
+      }
+    }, 1000); // Adjust the delay as needed
+  }
+});
+
 
 
 
