@@ -91,44 +91,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Infinite Background Loop Animation Logic ----
   const fundoPoligonos = document.querySelector(".fundo-poligonos");
-  let bgIsAnimationRunning = true; // <-- Move to outer scope for toggle access
-  let bgAnimationFrameId; // <-- Move to outer scope for cancelAnimationFrame
+  let bgAnimationFrameId;
+  // Use localStorage keys for sync
+  const BG_STATE_KEY = "bgIsAnimationRunning";
+  const BG_POS_KEY = "bgScrollPosition";
+
+  // Helper: get/set state from localStorage
+  function getBgState() {
+    const running = localStorage.getItem(BG_STATE_KEY);
+    return running === null ? true : running === "true";
+  }
+  function setBgState(val) {
+    localStorage.setItem(BG_STATE_KEY, val ? "true" : "false");
+  }
+  function getBgPos() {
+    const pos = localStorage.getItem(BG_POS_KEY);
+    return pos === null ? 0 : parseFloat(pos);
+  }
+  function setBgPos(val) {
+    localStorage.setItem(BG_POS_KEY, val);
+  }
+
+  let bgIsAnimationRunning = getBgState();
+  let bgScrollPosition = getBgPos();
 
   if (fundoPoligonos) {
-    // Use unique variables for background loop
     let bgContentHeight = fundoPoligonos.scrollHeight;
-    let bgScrollPosition = 0;
     let bgScrollSpeed = 0.5;
 
-    // Use a unique variable name for the fundo-poligonos clone
     const fundoClone = fundoPoligonos.cloneNode(true);
     fundoClone.classList.add("fundo-poligonos-clone");
     fundoPoligonos.parentNode.appendChild(fundoClone);
 
     function scrollBgUp() {
       if (!bgIsAnimationRunning) return;
-
       bgScrollPosition -= bgScrollSpeed;
-
       if (bgScrollPosition <= -bgContentHeight) {
         bgScrollPosition = 0;
       }
-
       fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
       fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
-
+      setBgPos(bgScrollPosition); // Save position on every frame
       bgAnimationFrameId = requestAnimationFrame(scrollBgUp);
     }
 
-    // Start the background animation
-    scrollBgUp();
+    // Set initial position from storage
+    fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
+    fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
 
     // Responsive: update heights and reset position on resize
     window.addEventListener("resize", () => {
       const newBgContentHeight = fundoPoligonos.scrollHeight;
       if (bgContentHeight !== newBgContentHeight) {
         bgContentHeight = newBgContentHeight;
-        bgScrollPosition = 0;
+        // Keep the same scroll position ratio
+        fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
+        fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
       }
     });
 
@@ -158,15 +176,44 @@ document.addEventListener("DOMContentLoaded", () => {
     if (toggleSwitch && playIcon && pauseIcon) {
       toggleSwitch.addEventListener("click", () => {
         bgIsAnimationRunning = !bgIsAnimationRunning;
+        setBgState(bgIsAnimationRunning);
+        updateToggleIcons();
+        if (bgIsAnimationRunning) {
+          scrollBgUp();
+        } else {
+          cancelAnimationFrame(bgAnimationFrameId);
+          setBgPos(bgScrollPosition); // Save position when paused
+        }
+      });
+      updateToggleIcons();
+    }
+
+    // Listen for storage changes (sync across tabs/pages)
+    window.addEventListener("storage", (e) => {
+      if (e.key === BG_STATE_KEY) {
+        bgIsAnimationRunning = getBgState();
         updateToggleIcons();
         if (bgIsAnimationRunning) {
           scrollBgUp();
         } else {
           cancelAnimationFrame(bgAnimationFrameId);
         }
-      });
-      // Set initial state
-      updateToggleIcons();
+      }
+      if (e.key === BG_POS_KEY) {
+        bgScrollPosition = getBgPos();
+        fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
+        fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
+      }
+    });
+
+    // Start or pause animation on load
+    updateToggleIcons();
+    if (bgIsAnimationRunning) {
+      scrollBgUp();
+    } else {
+      cancelAnimationFrame(bgAnimationFrameId);
+      fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
+      fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
     }
   }
 
