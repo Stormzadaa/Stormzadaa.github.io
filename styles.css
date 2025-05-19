@@ -102,6 +102,15 @@
     font-size: var(--h7-font-size);
     color: var(--foundation-greylight);
   }
+
+  .textTableTypographyTarkov {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h6-font-size);
+  color: var(--foundation-greylight-active);
+  margin: 0;
+  text-transform: uppercase;
+  }
   
 
   .body {
@@ -535,7 +544,7 @@
     margin-right: 122px;
   }
 
-  .subTitleAbout {
+  .subTitleTarkov {
     align-self: center;
     margin-top: 60px;
     margin-bottom: 0px;
@@ -544,7 +553,7 @@
     margin-bottom: 60px;
   }
 
-  .firstTextAbout {
+  .textContentTarkov {
     align-self: center;
     margin: 0px;
     max-width: 100%;
@@ -553,23 +562,30 @@
     margin-right: 122px;
   }
 
-  .secondTextAbout {
-    align-self: center;
-    margin: 0px;
-    max-width: 100%;
-    z-index: 0;
-    margin-left: 122px;
-    margin-right: 122px;
-  }
+.textTableTarkovTheProject {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 18px;
+  width: 100%;
+  max-width: 100%;
+}
 
-  .subTitleAbout2 {
-    align-self: center;
-    margin-top: 60px;
-    margin-bottom: 0px;
-    max-width: 100%;
-    z-index: 0;
-    margin-bottom: 60px;
-  }
+.tarkov-table-row {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+}
+
+.tarkov-table-cell {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
 
   /* Ensure links in the footer inherit text styles */
 
