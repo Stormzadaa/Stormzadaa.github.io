@@ -545,121 +545,29 @@
   }
   /*--------------- TARKOV PAGE---------  */
  
-  .subTitleTarkov {
-    align-self: center;
-    margin-top: 60px;
-    margin-bottom: 0px;
+  .heroSectionTarkov {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 40px 0;
+  }
+
+  .hero-text {
+    flex: 1;
+  }
+
+  .hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .hero-image img {
     max-width: 100%;
-    z-index: 0;
-    margin-bottom: 60px;
+    height: auto;
+    border-radius: 12px;
   }
-
-  .textContentTarkov {
-    align-self: center;
-    margin: 0px;
-    max-width: 100%;
-    z-index: 0;
-    margin-left: 122px;
-    margin-right: 122px;
-  }
-
-.textTableTarkovTheProject {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-  gap: 24px 24px; /* row-gap column-gap */
-  width: 100%;
-  max-width: 100%;
-  justify-items: center; /* center content horizontally in each cell */
-  align-items: start;    /* align content to the top of each cell */
-}
-
-.tarkov-table-row {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  width: auto; /* Let the row shrink to fit content */
-  justify-content: left;
-}
-
-.tarkov-table-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: left; /* center content in cell */
-  justify-content: flex-start;
-  padding: 0 8px;
-  box-sizing: border-box;
-  width: 100%; /* fill grid cell */
-  min-width: 0; /* allow shrinking */
-}
-
-.tarkov-table-cell-space > .textTypography {
-  margin-top: 12px;
-}
-
-  .tarkov-role-list {
-  align-items: flex-start;
-  text-align: left;
-  padding-left: 24px; /* optional: for nice bullet indent */
-  margin: 0;
-  }
-
-  .tarkov-role-list li {
-    margin-top: 12px;
-  }
-  
-  .tarkov-role-list {
-  align-self: flex-start !important;
-  text-align: left;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: 24px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.alignedLeftTextTarkov {
-  text-align: left !important;
-  align-self: flex-start !important;
-  margin-left: 0 !important;
-  margin-bottom: 12px !important;
-  width: 100%;
-}
-
-.tarkov-image-row {
-  display: flex;
-  flex-direction: row;
-  gap: 4%;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  margin: 0;
-}
-
-.tarkov-image-responsive {
-  max-width: 48%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-  background: #222;
-}
-
-.tarkov-image-single {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 32px 0;
-}
-
-.tarkov-image-single .tarkov-image-responsive {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-  background: #222;
-}
   
   /* Ensure links in the footer inherit text styles */
 
@@ -671,6 +579,34 @@
   .footer-section a.footerTextTypography:hover {
     text-decoration: underline;
   }
+
+  .heroSectionTarkov {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.hero-headline {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-images {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-images img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
 
 }
 
