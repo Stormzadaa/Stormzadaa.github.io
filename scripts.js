@@ -783,6 +783,88 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const track = document.querySelector('.carousel-track');
+  if (!track) return;
+  const slides = Array.from(track.children);
+  let current = 0;
+  const total = slides.length;
+
+  function mod(n, m) {
+    return ((n % m) + m) % m;
+  }
+
+  function updateCarousel() {
+    slides.forEach((slide, idx) => {
+      let rel = idx - current;
+      // Wrap for infinite effect
+      if (rel > total / 2) rel -= total;
+      if (rel < -total / 2) rel += total;
+
+      if (rel === 0) {
+        // Center
+        slide.classList.add('active');
+        slide.style.opacity = '1';
+        slide.style.transform = 'translateX(0%) scale(1.1)';
+        slide.style.zIndex = 2;
+        slide.style.pointerEvents = 'none';
+      } else if (rel === -1 || (rel === total - 1 && current === 0)) {
+        // Left neighbor (peek)
+        slide.classList.remove('active');
+        slide.style.opacity = '0.5';
+        slide.style.transform = 'translateX(-60%) scale(1)';
+        slide.style.zIndex = 1;
+        slide.style.pointerEvents = 'auto';
+      } else if (rel === 1 || (rel === -(total - 1) && current === total - 1)) {
+        // Right neighbor (peek)
+        slide.classList.remove('active');
+        slide.style.opacity = '0.5';
+        slide.style.transform = 'translateX(60%) scale(1)';
+        slide.style.zIndex = 1;
+        slide.style.pointerEvents = 'auto';
+      } else {
+        // Hide others
+        slide.classList.remove('active');
+        slide.style.opacity = '0';
+        slide.style.transform = 'translateX(0%) scale(1)';
+        slide.style.zIndex = 0;
+        slide.style.pointerEvents = 'none';
+      }
+    });
+  }
+
+  slides.forEach((slide, idx) => {
+    slide.addEventListener('click', () => {
+      if (idx !== current) {
+        current = idx;
+        updateCarousel();
+      }
+    });
+  });
+
+  // Swipe support for mobile
+  let startX = null;
+  track.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
+  track.addEventListener('touchend', e => {
+    if (startX === null) return;
+    let endX = e.changedTouches[0].clientX;
+    if (endX - startX > 40) {
+      // Swipe right: previous
+      current = mod(current - 1, total);
+      updateCarousel();
+    } else if (startX - endX > 40) {
+      // Swipe left: next
+      current = mod(current + 1, total);
+      updateCarousel();
+    }
+    startX = null;
+  });
+
+  updateCarousel();
+});
+
 
 
 
