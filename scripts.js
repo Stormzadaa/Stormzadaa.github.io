@@ -745,6 +745,44 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const carousel = document.querySelector('.carousel');
+  if (!carousel) return;
+  const images = carousel.querySelectorAll('.carousel-image');
+  const leftBtn = carousel.querySelector('.carousel-arrow.left');
+  const rightBtn = carousel.querySelector('.carousel-arrow.right');
+  let current = 0;
+
+  function showImage(idx) {
+    images.forEach((img, i) => {
+      img.classList.toggle('active', i === idx);
+    });
+  }
+
+  leftBtn.addEventListener('click', () => {
+    current = (current - 1 + images.length) % images.length;
+    showImage(current);
+  });
+
+  rightBtn.addEventListener('click', () => {
+    current = (current + 1) % images.length;
+    showImage(current);
+  });
+
+  // Optional: swipe support for mobile
+  let startX = null;
+  carousel.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
+  carousel.addEventListener('touchend', e => {
+    if (startX === null) return;
+    let endX = e.changedTouches[0].clientX;
+    if (endX - startX > 40) leftBtn.click();
+    else if (startX - endX > 40) rightBtn.click();
+    startX = null;
+  });
+});
+
 
 
 
