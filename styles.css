@@ -571,68 +571,7 @@
 
   /*--------------- Carousel Tarkov ---------  */
 
-    .carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    gap: 1rem;
-  }
-  .carousel-track {
-    width: 80%;
-    aspect-ratio: 16 / 10;
-    max-width: 1000px;
-    min-width: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-    position: relative;
-    margin: 0 auto;
-    gap: 0;
-  }
 
-.carousel-image {
-  flex: 0 0 60%; /* Center image covers 60% */
-  margin: 0 -7% 0 -7%; /* Negative margin for peeking */
-  opacity: 0.5;
-  cursor: pointer;
-  transition: transform 0.4s, opacity 0.4s;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 0; top: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-}
-
-.carousel-image.active {
-  opacity: 1;
-  cursor: default;
-  z-index: 2;
-  transform: translateX(0%) scale(1.1);
-  pointer-events: none;
-}
-
-.carousel-image img {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  object-fit: cover;
-}
-.carousel-image-double {
-  display: flex !important;
-  gap: 8px;
-}
-.carousel-image-double img {
-  width: 49%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-}
 
   /* Ensure links in the footer inherit text styles */
 
