@@ -745,6 +745,68 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.querySelector('.tarkov-3d-carousel-section .carousel');
+  if (!carousel) return;
+  const cards = carousel.querySelectorAll('.card');
+  const prevBtn = document.querySelector('.tarkov-3d-carousel-section .prev-btn');
+  const nextBtn = document.querySelector('.tarkov-3d-carousel-section .next-btn');
+  const subtitle = document.getElementById('carouselSubtitle');
+
+  // Array of subtitles in order
+  const subtitles = [
+    "Settings & PostFX",
+    "Menu with Friend List",
+    "Selection Wheel",
+    "Selection Page",
+    "Flea Market"
+  ];
+
+  let currentIndex = 0;
+  const totalCards = cards.length;
+  const theta = (2 * Math.PI) / totalCards;
+  const radius = 1900;
+
+  function updateSubtitle(index) {
+    if (!subtitle) return;
+    subtitle.classList.remove('visible');
+    setTimeout(() => {
+      subtitle.textContent = subtitles[index];
+      subtitle.classList.add('visible');
+    }, 300); // Match this to your CSS transition
+  }
+
+  function arrangeCards() {
+    cards.forEach((card, index) => {
+      const angle = theta * index;
+      card.style.transform = `translateX(-50%) rotateY(${angle}rad) translateZ(${radius}px)`;
+    });
+    carousel.style.transform = `translateZ(-${radius}px) rotateY(${-currentIndex * theta}rad)`;
+    updateSubtitle(currentIndex);
+  }
+
+  arrangeCards();
+  updateSubtitle(currentIndex);
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+    arrangeCards();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalCards;
+    arrangeCards();
+  });
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', () => {
+      currentIndex = index;
+      arrangeCards();
+    });
+  });
+});
+
+
 
 
 
