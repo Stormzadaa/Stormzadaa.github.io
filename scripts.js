@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4 speeds for 4 breakpoints matching your CSS media queries
     function getTextCarouselSpeed() {
       const width = window.innerWidth;
-      if (width <= 430) return 2;
-      if (width <= 768) return 2.5;
-      if (width <= 1279) return 3;
-      return 4;
+      if (width <= 430) return 0.4;
+      if (width <= 768) return 0.6;
+      if (width <= 1279) return 0.7;
+      return 0.8;
     }
 
     function animateTextCarousel() {
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (fundoPoligonos) {
     let bgContentHeight = fundoPoligonos.scrollHeight;
-    let bgScrollSpeed = 0.5;
+    let bgScrollSpeed = 0.1;
 
     const fundoClone = fundoPoligonos.cloneNode(true);
     fundoClone.classList.add("fundo-poligonos-clone");
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Adjust scroll speed based on screen size
     const bgMediaQuery = window.matchMedia("(max-width: 768px)");
     function updateBgScrollSpeed() {
-      bgScrollSpeed = bgMediaQuery.matches ? 0.25 : 0.5;
+      bgScrollSpeed = bgMediaQuery.matches ? 0.05 : 0.1;
     }
     bgMediaQuery.addEventListener("change", updateBgScrollSpeed);
     updateBgScrollSpeed();
