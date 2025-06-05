@@ -740,7 +740,7 @@
 .tarkov-3d-carousel-section .carousel-subtitle.visible {
   opacity: 1;
 }
-}
+
 /* Breakpoint for medium screen */
 
 @media (min-width: 769px) and (max-width: 1279px) {
