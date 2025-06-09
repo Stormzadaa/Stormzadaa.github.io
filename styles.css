@@ -740,6 +740,33 @@
 .tarkov-3d-carousel-section .carousel-subtitle.visible {
   opacity: 1;
 }
+
+.view-case-study-btn {
+  display: block;
+  margin: 32px auto 0 auto;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.view-case-study-btn:hover {
+  background: #444;
+}
+
+.full-case-study-tarkov {
+  margin: 40px auto 0 auto;
+  max-width: 800px;
+  padding: 32px 24px;
+  background: #181818;
+  color: #eee;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
 }
 /* Breakpoint for medium screen */
 

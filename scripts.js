@@ -806,6 +806,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Show full case study and hide button on click
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('viewCaseStudyBtn');
+  const section = document.getElementById('fullCaseStudyTarkov');
+  if (btn && section) {
+    btn.addEventListener('click', function() {
+      btn.style.display = 'none';
+      section.style.display = 'block';
+      section.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+});
+
 
 
 
