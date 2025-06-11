@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Attach listeners to all spans in both original and clone
     function attachSpanListeners(container) {
       const spans = container.querySelectorAll("span");
-      spans.forEach(span => {
+      spans.forEach((span) => {
         // Set display and min-width to prevent shifting
         span.style.display = "inline-block";
         // Optionally, set min-width based on the span's initial width
@@ -136,14 +136,18 @@ document.addEventListener("DOMContentLoaded", () => {
         bgScrollPosition = 0;
       }
       fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
-      fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
+      fundoClone.style.transform = `translateY(${
+        bgScrollPosition + bgContentHeight
+      }px)`;
       setBgPos(bgScrollPosition); // Save position on every frame
       bgAnimationFrameId = requestAnimationFrame(scrollBgUp);
     }
 
     // Set initial position from storage
     fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
-    fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
+    fundoClone.style.transform = `translateY(${
+      bgScrollPosition + bgContentHeight
+    }px)`;
 
     // Responsive: update heights and reset position on resize
     window.addEventListener("resize", () => {
@@ -152,7 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
         bgContentHeight = newBgContentHeight;
         // Keep the same scroll position ratio
         fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
-        fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
+        fundoClone.style.transform = `translateY(${
+          bgScrollPosition + bgContentHeight
+        }px)`;
       }
     });
 
@@ -208,7 +214,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === BG_POS_KEY) {
         bgScrollPosition = getBgPos();
         fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
-        fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
+        fundoClone.style.transform = `translateY(${
+          bgScrollPosition + bgContentHeight
+        }px)`;
       }
     });
 
@@ -219,7 +227,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       cancelAnimationFrame(bgAnimationFrameId);
       fundoPoligonos.style.transform = `translateY(${bgScrollPosition}px)`;
-      fundoClone.style.transform = `translateY(${bgScrollPosition + bgContentHeight}px)`;
+      fundoClone.style.transform = `translateY(${
+        bgScrollPosition + bgContentHeight
+      }px)`;
     }
   }
 
@@ -230,7 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const footer = document.querySelector("footer");
 
   // Check if the current page is index.html
-  const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+  const isIndexPage =
+    window.location.pathname.endsWith("index.html") ||
+    window.location.pathname === "/";
 
   contactLink.addEventListener("click", (event) => {
     event.preventDefault(); // Prevent default anchor behavior
@@ -239,7 +251,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", () => {
     const footerRect = footer.getBoundingClientRect();
-    const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
+    const isFooterVisible =
+      footerRect.top < window.innerHeight && footerRect.bottom >= 0;
 
     if (isFooterVisible) {
       contactUnderline.classList.add("active");
@@ -254,7 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
       workUnderline.classList.remove("active");
     }
   });
-
 
   // Smooth scroll function
   function smoothScrollTo(target, duration) {
@@ -303,20 +315,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call the function initially and whenever the window is resized
   adjustToggleSwitchPlacement();
   window.addEventListener("resize", adjustToggleSwitchPlacement);
-  });
+});
 
-  // Check if the current page is index.html
-  const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+// Check if the current page is index.html
+const isIndexPage =
+  window.location.pathname.endsWith("index.html") ||
+  window.location.pathname === "/";
 
-  // Initialize "Work" underline as always active only on index.html
-  if (isIndexPage) {
-    document.getElementById("workUnderline").classList.add("active");
-  } else {
-    document.getElementById("workUnderline").classList.remove("active");
-  }
+// Initialize "Work" underline as always active only on index.html
+if (isIndexPage) {
+  document.getElementById("workUnderline").classList.add("active");
+} else {
+  document.getElementById("workUnderline").classList.remove("active");
+}
 
-  // Event listener for "About" link
-  document.getElementById("aboutLink").addEventListener("click", function (event) {
+// Event listener for "About" link
+document
+  .getElementById("aboutLink")
+  .addEventListener("click", function (event) {
     if (isAboutPage) {
       if (window.scrollY !== 0) {
         event.preventDefault(); // Prevent scroll jump when not at the top
@@ -327,39 +343,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initialize "About" underline as always active only on about.html
-  const isAboutPage = window.location.pathname.endsWith("about.html");
-  if (isAboutPage) {
-    document.getElementById("aboutUnderline").classList.add("active");
-  } else {
-    document.getElementById("aboutUnderline").classList.remove("active");
-  }
+// Initialize "About" underline as always active only on about.html
+const isAboutPage = window.location.pathname.endsWith("about.html");
+if (isAboutPage) {
+  document.getElementById("aboutUnderline").classList.add("active");
+} else {
+  document.getElementById("aboutUnderline").classList.remove("active");
+}
 
-  // Function to handle "Work" link click event
-  function handleWorkLinkClick(event) {
-    const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-    if (isIndexPage) {
-      if (window.scrollY === 0) {
-        event.preventDefault(); // Prevent scroll jump when at the top
-      } else {
-        smoothScrollTo(0, 500); // Smooth scroll to top
-      }
-      document.getElementById("workUnderline").classList.add("active");
-      document.getElementById("contactUnderline").classList.remove("active");
+// Function to handle "Work" link click event
+function handleWorkLinkClick(event) {
+  const isIndexPage =
+    window.location.pathname.endsWith("index.html") ||
+    window.location.pathname === "/";
+  if (isIndexPage) {
+    if (window.scrollY === 0) {
+      event.preventDefault(); // Prevent scroll jump when at the top
     } else {
-      window.location.href = "index.html"; // Redirect to index.html
+      smoothScrollTo(0, 500); // Smooth scroll to top
     }
+    document.getElementById("workUnderline").classList.add("active");
+    document.getElementById("contactUnderline").classList.remove("active");
+  } else {
+    window.location.href = "index.html"; // Redirect to index.html
   }
+}
 
-  // Event listener for "Work" link
-  document.getElementById("workLink").addEventListener("click", handleWorkLinkClick);
+// Event listener for "Work" link
+document
+  .getElementById("workLink")
+  .addEventListener("click", handleWorkLinkClick);
 
-
-  // Scroll event to toggle "Contact" underline and keep "Work" and "About" underlines active only on their respective pages
-  window.addEventListener("scroll", function () {
+// Scroll event to toggle "Contact" underline and keep "Work" and "About" underlines active only on their respective pages
+window.addEventListener("scroll", function () {
   const footer = document.querySelector("footer");
   const footerRect = footer.getBoundingClientRect();
-  const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
+  const isFooterVisible =
+    footerRect.top < window.innerHeight && footerRect.bottom >= 0;
   const contactUnderline = document.getElementById("contactUnderline");
   const workUnderline = document.getElementById("workUnderline");
   const aboutUnderline = document.getElementById("aboutUnderline");
@@ -383,10 +403,9 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     aboutUnderline.classList.remove("active");
   }
-  });
+});
 
-
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-svg");
   const hamburgerMenu = document.getElementById("hamburgerMenu");
   const returnArrow = document.getElementById("returnArrow");
@@ -399,7 +418,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeMenuOnLargeScreens() {
     const screenWidth = window.innerWidth;
     if (screenWidth > 768) {
-      hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
+      hamburgerMenu.style.setProperty(
+        "--menu-transition-duration",
+        closeDuration
+      );
       hamburgerMenu.classList.add("hidden");
       document.body.classList.remove("no-scroll"); // Enable scrolling
       setTimeout(() => {
@@ -424,51 +446,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 10); // Slight delay to ensure the display property is set before applying the class
   });
 
-// Function to close the menu
-function closeMenu() {
-  hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
-  hamburgerMenu.classList.add("hidden");
-  document.body.classList.remove("no-scroll"); // Enable scrolling
-  setTimeout(() => {
-    hamburgerMenu.classList.remove("active");
-    hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-  }, 600); // Wait for the close animation to complete before removing the active class
-}
+  // Function to close the menu
+  function closeMenu() {
+    hamburgerMenu.style.setProperty(
+      "--menu-transition-duration",
+      closeDuration
+    );
+    hamburgerMenu.classList.add("hidden");
+    document.body.classList.remove("no-scroll"); // Enable scrolling
+    setTimeout(() => {
+      hamburgerMenu.classList.remove("active");
+      hamburgerMenu.style.display = "none"; // Hide the menu after the animation
+    }, 600); // Wait for the close animation to complete before removing the active class
+  }
 
   // Close the menu when clicking the return arrow and unlock scroll
   returnArrow.addEventListener("click", closeMenu);
 
   // Close the menu when clicking outside of it and unlock scroll
   document.addEventListener("click", (event) => {
-    if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
+    if (
+      !hamburgerMenu.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
       closeMenu();
     }
   });
 
   // Close the menu when clicking any menu option
   const menuOptions = document.querySelectorAll("#hamburgerMenu a"); // Assuming menu options are anchor tags
-  menuOptions.forEach(option => {
+  menuOptions.forEach((option) => {
     option.addEventListener("click", closeMenu);
   });
 
-
-    // Close the menu when clicking outside of it and unlock scroll
-    document.addEventListener("click", (event) => {
-      if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
-        hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
-        hamburgerMenu.classList.add("hidden");
-        document.body.classList.remove("no-scroll"); // Enable scrolling
-        setTimeout(() => {
-          hamburgerMenu.classList.remove("active");
-          hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-        }, 600); // Wait for the close animation to complete before removing the active class
-      }
-    });
+  // Close the menu when clicking outside of it and unlock scroll
+  document.addEventListener("click", (event) => {
+    if (
+      !hamburgerMenu.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
+      hamburgerMenu.style.setProperty(
+        "--menu-transition-duration",
+        closeDuration
+      );
+      hamburgerMenu.classList.add("hidden");
+      document.body.classList.remove("no-scroll"); // Enable scrolling
+      setTimeout(() => {
+        hamburgerMenu.classList.remove("active");
+        hamburgerMenu.style.display = "none"; // Hide the menu after the animation
+      }, 600); // Wait for the close animation to complete before removing the active class
+    }
   });
+});
 
-
-  // Smooth scroll function (reuse the existing one)
-  function smoothScrollTo(target, duration) {
+// Smooth scroll function (reuse the existing one)
+function smoothScrollTo(target, duration) {
   const start = window.scrollY;
   const distance = target - start;
   let startTime = null;
@@ -494,11 +526,13 @@ function closeMenu() {
 
   isScrolling = true;
   requestAnimationFrame(animation);
-  }
+}
 
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const hamburgerContactLink = document.getElementById("hamburgerContactLink");
-  const hamburgerContactUnderline = document.getElementById("hamburgerContactUnderline");
+  const hamburgerContactUnderline = document.getElementById(
+    "hamburgerContactUnderline"
+  );
 
   // Function to check if the user is at the footer section
   function checkFooterVisibility() {
@@ -522,10 +556,10 @@ function closeMenu() {
     event.preventDefault(); // Prevent default anchor behavior
     smoothScrollTo(document.body.scrollHeight, 1000); // Smooth scroll to footer
   });
-  });
+});
 
-  // Smooth scroll function (reuse the existing one)
-  function smoothScrollTo(target, duration) {
+// Smooth scroll function (reuse the existing one)
+function smoothScrollTo(target, duration) {
   const start = window.scrollY;
   const distance = target - start;
   let startTime = null;
@@ -551,11 +585,11 @@ function closeMenu() {
 
   isScrolling = true;
   requestAnimationFrame(animation);
-  }
+}
 
-  /* Code to lock the background scroll during hamburger menu open */
+/* Code to lock the background scroll during hamburger menu open */
 
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-svg");
   const hamburgerMenu = document.getElementById("hamburgerMenu");
   const returnArrow = document.getElementById("returnArrow");
@@ -578,8 +612,14 @@ function closeMenu() {
 
   // Close the menu when clicking outside of it and unlock scroll
   document.addEventListener("click", (event) => {
-    if (!hamburgerMenu.contains(event.target) && !menuButton.contains(event.target)) {
-      hamburgerMenu.style.setProperty("--menu-transition-duration", closeDuration);
+    if (
+      !hamburgerMenu.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
+      hamburgerMenu.style.setProperty(
+        "--menu-transition-duration",
+        closeDuration
+      );
       hamburgerMenu.classList.add("hidden");
       document.body.classList.remove("no-scroll"); // Enable scrolling
       document.body.classList.remove("disable-pointer-events"); // Enable pointer events
@@ -589,13 +629,14 @@ function closeMenu() {
       }, 600); // Wait for the close animation to complete before removing the active class
     }
   });
-  });
+});
 
-
-  /* Direction to the "WORK" page mobile */
-  document.addEventListener("DOMContentLoaded", () => {
+/* Direction to the "WORK" page mobile */
+document.addEventListener("DOMContentLoaded", () => {
   const hamburgerWorkLink = document.getElementById("hamburgerWorkLink");
-  const hamburgerWorkUnderline = document.getElementById("hamburgerWorkUnderline");
+  const hamburgerWorkUnderline = document.getElementById(
+    "hamburgerWorkUnderline"
+  );
 
   // Check if the elements exist before adding event listeners
   if (hamburgerWorkLink && hamburgerWorkUnderline) {
@@ -605,7 +646,7 @@ function closeMenu() {
       const isWorkPage = window.location.pathname.endsWith("index.html");
       if (isWorkPage) {
         // Scroll to the header if on index.html page
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         // Redirect to index.html if not on index.html page
         window.location.href = "index.html";
@@ -625,15 +666,18 @@ function closeMenu() {
     // Call the function initially
     addUnderlineToWorkLink();
   } else {
-    console.error("Element with ID 'hamburgerWorkLink' or 'hamburgerWorkUnderline' not found.");
+    console.error(
+      "Element with ID 'hamburgerWorkLink' or 'hamburgerWorkUnderline' not found."
+    );
   }
-  });
+});
 
-
-  /* Direction to the "ABOUT" page mobile */
-  document.addEventListener("DOMContentLoaded", () => {
+/* Direction to the "ABOUT" page mobile */
+document.addEventListener("DOMContentLoaded", () => {
   const hamburgerAboutLink = document.getElementById("hamburgerAboutLink");
-  const hamburgerAboutUnderline = document.getElementById("hamburgerAboutUnderline");
+  const hamburgerAboutUnderline = document.getElementById(
+    "hamburgerAboutUnderline"
+  );
 
   // Check if the elements exist before adding event listeners
   if (hamburgerAboutLink && hamburgerAboutUnderline) {
@@ -643,7 +687,7 @@ function closeMenu() {
       const isAboutPage = window.location.pathname.endsWith("about.html");
       if (isAboutPage) {
         // Scroll to the header if on about.html page
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         // Redirect to about.html if not on about.html page
         window.location.href = "about.html";
@@ -663,11 +707,13 @@ function closeMenu() {
     // Call the function initially
     addUnderlineToAboutLink();
   } else {
-    console.error("Element with ID 'hamburgerAboutLink' or 'hamburgerAboutUnderline' not found.");
+    console.error(
+      "Element with ID 'hamburgerAboutLink' or 'hamburgerAboutUnderline' not found."
+    );
   }
-  });
+});
 
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
   // Check if the page is the Tarkov page
@@ -683,9 +729,9 @@ function closeMenu() {
       footer?.classList.add("tarkov-active");
     }, 1000); // Adjust the delay as needed
   }
-  });
+});
 
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const contactLink = document.getElementById("contactLink");
   const footer = document.querySelector("footer");
 
@@ -696,10 +742,10 @@ function closeMenu() {
       smoothScrollTo(document.body.scrollHeight, 1000); // Smooth scroll to footer
     });
   }
-  });
+});
 
-  // Smooth scroll function
-  function smoothScrollTo(target, duration) {
+// Smooth scroll function
+function smoothScrollTo(target, duration) {
   const start = window.scrollY;
   const distance = target - start;
   let startTime = null;
@@ -745,13 +791,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const carousel = document.querySelector('.tarkov-3d-carousel-section .carousel');
+document.addEventListener("DOMContentLoaded", () => {
+  const carousel = document.querySelector(
+    ".tarkov-3d-carousel-section .carousel"
+  );
   if (!carousel) return;
-  const cards = carousel.querySelectorAll('.card');
-  const prevBtn = document.querySelector('.tarkov-3d-carousel-section .prev-btn');
-  const nextBtn = document.querySelector('.tarkov-3d-carousel-section .next-btn');
-  const subtitle = document.getElementById('carouselSubtitle');
+  const cards = carousel.querySelectorAll(".card");
+  const prevBtn = document.querySelector(
+    ".tarkov-3d-carousel-section .prev-btn"
+  );
+  const nextBtn = document.querySelector(
+    ".tarkov-3d-carousel-section .next-btn"
+  );
+  const subtitle = document.getElementById("carouselSubtitle");
 
   // Array of subtitles in order
   const subtitles = [
@@ -759,7 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Menu with Friend List",
     "Selection Wheel",
     "Selection Page",
-    "Flea Market"
+    "Flea Market",
   ];
 
   let currentIndex = 0;
@@ -769,10 +821,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateSubtitle(index) {
     if (!subtitle) return;
-    subtitle.classList.remove('visible');
+    subtitle.classList.remove("visible");
     setTimeout(() => {
       subtitle.textContent = subtitles[index];
-      subtitle.classList.add('visible');
+      subtitle.classList.add("visible");
     }, 300); // Match this to your CSS transition
   }
 
@@ -781,25 +833,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const angle = theta * index;
       card.style.transform = `translateX(-50%) rotateY(${angle}rad) translateZ(${radius}px)`;
     });
-    carousel.style.transform = `translateZ(-${radius}px) rotateY(${-currentIndex * theta}rad)`;
+    carousel.style.transform = `translateZ(-${radius}px) rotateY(${
+      -currentIndex * theta
+    }rad)`;
     updateSubtitle(currentIndex);
   }
 
   arrangeCards();
   updateSubtitle(currentIndex);
 
-  prevBtn.addEventListener('click', () => {
+  prevBtn.addEventListener("click", () => {
     currentIndex = (currentIndex - 1 + totalCards) % totalCards;
     arrangeCards();
   });
 
-  nextBtn.addEventListener('click', () => {
+  nextBtn.addEventListener("click", () => {
     currentIndex = (currentIndex + 1) % totalCards;
     arrangeCards();
   });
 
   cards.forEach((card, index) => {
-    card.addEventListener('click', () => {
+    card.addEventListener("click", () => {
       currentIndex = index;
       arrangeCards();
     });
@@ -807,22 +861,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Show full case study and hide button on click
-document.addEventListener('DOMContentLoaded', function() {
-  const btn = document.getElementById('viewCaseStudyBtn');
-  const section = document.getElementById('fullCaseStudyTarkov');
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("viewCaseStudyBtn");
+  const section = document.getElementById("fullCaseStudyTarkov");
   if (btn && section) {
-    btn.addEventListener('click', function() {
-      btn.style.display = 'none';
-      section.style.display = 'block';
-      section.scrollIntoView({ behavior: 'smooth' });
+    btn.addEventListener("click", function () {
+      btn.style.display = "none";
+      section.style.display = "block";
+      section.scrollIntoView({ behavior: "smooth" });
     });
   }
 });
-
-
-
-
-
-
-
-

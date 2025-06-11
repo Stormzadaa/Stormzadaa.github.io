@@ -10,30 +10,42 @@
 }
 
 .tarkov-page .portfolio-section {
-  background-color: var(--foundation-greydarker); /* Set the initial background color */
+  background-color: var(
+    --foundation-greydarker
+  ); /* Set the initial background color */
   transition: background-color 2s ease; /* Smooth transition over 4 seconds */
 }
 
 .tarkov-page .portfolio-section.tarkov-active {
-  background-color: var(--TarkovPageBackground); /* Change to the desired color */
+  background-color: var(
+    --TarkovPageBackground
+  ); /* Change to the desired color */
 }
 
 .tarkov-page .header {
-  background-color: var(--foundation-greydarker); /* Set the initial background color */
+  background-color: var(
+    --foundation-greydarker
+  ); /* Set the initial background color */
   transition: background-color 2s ease; /* Smooth transition over 4 seconds */
 }
 
 .tarkov-page .header.tarkov-active {
-  background-color: var(--TarkovHeaderBackground); /* Change to the desired color */
+  background-color: var(
+    --TarkovHeaderBackground
+  ); /* Change to the desired color */
 }
 
 .tarkov-page .footer {
-  background-color: var(--foundation-browndark-active); /* Set the initial background color */
+  background-color: var(
+    --foundation-browndark-active
+  ); /* Set the initial background color */
   transition: background-color 2s ease; /* Smooth transition over 4 seconds */
 }
 
 .tarkov-page .footer.tarkov-active {
-  background-color: var(--TarkovFooterBackground); /* Change to the desired color */
+  background-color: var(
+    --TarkovFooterBackground
+  ); /* Change to the desired color */
 }
 
 .tarkov-page .hamburger-menu.tarkov-active {
@@ -65,28 +77,28 @@
     font-size: var(--h6-font-size);
     color: var(--foundation-greylight);
   }
-  
+
   .titleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-bold);
     font-size: var(--h1-font-size);
     color: var(--foundation-greylight-active);
   }
-  
+
   .subTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
     font-size: var(--h3-font-size);
     color: var(--foundation-greylight-darker);
   }
-  
+
   .textTypography {
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-regular);
     font-size: var(--h6-font-size);
     color: var(--foundation-greylight);
   }
-  
+
   .footerTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
@@ -95,7 +107,7 @@
     margin: 0;
     text-transform: uppercase;
   }
-  
+
   .footerTextTypography {
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-regular);
@@ -104,14 +116,13 @@
   }
 
   .textTableTypographyTarkov {
-  font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--h6-font-size);
-  color: var(--foundation-greylight-active);
-  margin: 0;
-  text-transform: uppercase;
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--h6-font-size);
+    color: var(--foundation-greylight-active);
+    margin: 0;
+    text-transform: uppercase;
   }
-  
 
   .body {
     padding-top: 100px; /* Adjust this value based on the height of your header */
@@ -136,7 +147,7 @@
     transform: scale(0.9); /* Slightly scale down for a smoother effect */
     transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth and slower transition */
   }
-  
+
   .play-icon.active,
   .pause-icon.active {
     display: block; /* Show the active icon */
@@ -305,9 +316,9 @@
     padding-right: 122px;
     max-width: 100%;
     z-index: 0;
-    line-height: 1.5; 
-    text-align: left; 
-    letter-spacing: 25px; 
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: 25px;
     text-transform: uppercase;
   }
 
@@ -442,65 +453,65 @@
   }
 
   .image-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 
   .image-item {
-      text-align: center;
-      font-weight: bold;
-      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
-      cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+    cursor: pointer;
   }
 
   .image-item a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
   }
 
   .image-item:hover {
-      transform: scale(1.02); /* Scale up the image item */
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    transform: scale(1.02); /* Scale up the image item */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
   }
 
   /* Click effect - Shrink the image item */
   .image-item:active {
-      transform: scale(0.98); /* Scale down the image item */
+    transform: scale(0.98); /* Scale down the image item */
   }
 
   .image-container {
-      aspect-ratio: 9 / 16;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column; /* Stack items vertically */
-      justify-content: center;
-      align-items: center;
-      background-color: #f0f0f0; /* Grey background for the container */
-      box-sizing: border-box;
-      position: relative;
-      border-radius: 1%;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Grey background for the container */
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 1%;
   }
 
   .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .image-item p {
-      font-family: var(--heading-font-family);
-      font-weight: var(--font-weight-regular);
-      font-size: var(--h4-font-size);
-      color: #fcf9f7;
-      margin: 0;
-      background-color: transparent;
-      width: 100%;
-      padding: 5px 0; 
-      box-sizing: border-box;
-      position: static;
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h4-font-size);
+    color: #fcf9f7;
+    margin: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: 5px 0;
+    box-sizing: border-box;
+    position: static;
   }
 
   .hamburger-menu {
@@ -537,14 +548,14 @@
     max-width: 100%;
     z-index: 0;
     margin-bottom: 60px;
-    line-height: 1.5; 
-    text-align: left; 
-    letter-spacing: 25px; 
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: 25px;
     margin-left: 122px;
     margin-right: 122px;
   }
   /*--------------- TARKOV PAGE---------  */
- 
+
   .subTitleTarkov {
     align-self: center;
     margin-top: 60px;
@@ -555,8 +566,6 @@
   }
 
   /*--------------- Carousel Tarkov ---------  */
-
-
 
   /* Ensure links in the footer inherit text styles */
 
@@ -570,203 +579,218 @@
   }
 
   .heroSectionTarkov {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 40px 0;
-  text-align: center;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+    text-align: center;
+  }
 
-.hero-headline {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
+  .hero-headline {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 
-/* Ensure .heroSectionTarkov images are 100% width and 16:9 ratio */
-.heroSectionTarkov .carousel-image {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  display: block;
-}
+  /* Ensure .heroSectionTarkov images are 100% width and 16:9 ratio */
+  .heroSectionTarkov .carousel-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    display: block;
+  }
 
-.heroSectionTarkov .carousel-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+  .heroSectionTarkov .carousel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
-/* Tarkov 3D Image Carousel Styles */
-.tarkov-3d-carousel-section {
-  width: 100%;
-  max-width: none;
-  margin: 60px 0 0 0;
-  padding: 40px 0 80px 0;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.tarkov-3d-carousel-section .scene {
-  width: 100%;
-  max-width: calc(100vw - 244px);
-  height: auto;
-  perspective: 1000px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.tarkov-3d-carousel-section .carousel {
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-}
-.tarkov-3d-carousel-section .card {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 16 / 9;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) translateZ(400px);
-  perspective: 1000px;
-  transition: transform 1s;
-  cursor: pointer;
-  background: transparent;
-  box-shadow: 0 0 15px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.2);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.tarkov-3d-carousel-section .card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.8s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.tarkov-3d-carousel-section .card-front {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  flex-direction: column;      /* <-- Add this line */
-  justify-content: flex-start; /* Optional: aligns items to the top */
-  align-items: center;
-  background: #181818;
-  border-radius: 12px;
-  overflow: hidden;
-}
-.tarkov-3d-carousel-section .carousel-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: 16 / 9;
-  border-radius: 8px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.4);
-  display: block;
-}
-.tarkov-3d-carousel-section .controls {
-  margin-top: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-.tarkov-3d-carousel-section .prev-btn,
-.tarkov-3d-carousel-section .next-btn {
-  background: #222;
-  color: #eee;
-  border: 1px solid #444;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-family: inherit;
-  border-radius: 4px;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 48px;
-  min-height: 48px;
-}
-.tarkov-3d-carousel-section .prev-btn:hover,
-.tarkov-3d-carousel-section .next-btn:hover {
-  background: #444;
-  color: #fff;
-}
-.tarkov-3d-carousel-section .prev-btn svg,
-.tarkov-3d-carousel-section .next-btn svg {
-  display: block;
-}
-@media (max-width: 768px) {
-  .tarkov-3d-carousel-section .scene { max-width: 500px; }
-  .tarkov-3d-carousel-section .carousel { transform: translateZ(-300px); }
-  .tarkov-3d-carousel-section .card { transform: translateX(-50%) translateZ(300px); width: 180px; height: 300px; }
-}
-@media (max-width: 480px) {
-  .tarkov-3d-carousel-section .scene { max-width: 320px; }
-  .tarkov-3d-carousel-section .carousel { transform: translateZ(-200px); }
-  .tarkov-3d-carousel-section .card { transform: translateX(-50%) translateZ(200px); width: 120px; height: 180px; }
-}
+  /* Tarkov 3D Image Carousel Styles */
+  .tarkov-3d-carousel-section {
+    width: 100%;
+    max-width: none;
+    margin: 60px 0 0 0;
+    padding: 40px 0 80px 0;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tarkov-3d-carousel-section .scene {
+    width: 100%;
+    max-width: calc(100vw - 244px);
+    height: auto;
+    perspective: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .tarkov-3d-carousel-section .carousel {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+  }
+  .tarkov-3d-carousel-section .card {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(400px);
+    perspective: 1000px;
+    transition: transform 1s;
+    cursor: pointer;
+    background: transparent;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tarkov-3d-carousel-section .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tarkov-3d-carousel-section .card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column; /* <-- Add this line */
+    justify-content: flex-start; /* Optional: aligns items to the top */
+    align-items: center;
+    background: #181818;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .tarkov-3d-carousel-section .carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+    display: block;
+  }
+  .tarkov-3d-carousel-section .controls {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .tarkov-3d-carousel-section .prev-btn,
+  .tarkov-3d-carousel-section .next-btn {
+    background: #222;
+    color: #eee;
+    border: 1px solid #444;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    border-radius: 4px;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  .tarkov-3d-carousel-section .prev-btn:hover,
+  .tarkov-3d-carousel-section .next-btn:hover {
+    background: #444;
+    color: #fff;
+  }
+  .tarkov-3d-carousel-section .prev-btn svg,
+  .tarkov-3d-carousel-section .next-btn svg {
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .tarkov-3d-carousel-section .scene {
+      max-width: 500px;
+    }
+    .tarkov-3d-carousel-section .carousel {
+      transform: translateZ(-300px);
+    }
+    .tarkov-3d-carousel-section .card {
+      transform: translateX(-50%) translateZ(300px);
+      width: 180px;
+      height: 300px;
+    }
+  }
+  @media (max-width: 480px) {
+    .tarkov-3d-carousel-section .scene {
+      max-width: 320px;
+    }
+    .tarkov-3d-carousel-section .carousel {
+      transform: translateZ(-200px);
+    }
+    .tarkov-3d-carousel-section .card {
+      transform: translateX(-50%) translateZ(200px);
+      width: 120px;
+      height: 180px;
+    }
+  }
 
-.tarkov-3d-carousel-section .carousel-subtitle {
-  margin-top: 32px;
-  margin-bottom: 32px;
-  color: #eee;
-  font-size: 1.25rem;
-  font-family: var(--heading-font-family, "Exo", sans-serif);
-  text-align: center;
-  letter-spacing: 1px;
-  font-weight: 500;
-  min-height: 1.5em;
-  opacity: 0;
-  transition: opacity 0.5s;
-  pointer-events: none;
-}
-.tarkov-3d-carousel-section .carousel-subtitle.visible {
-  opacity: 1;
-}
+  .tarkov-3d-carousel-section .carousel-subtitle {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    color: #eee;
+    font-size: 1.25rem;
+    font-family: var(--heading-font-family, "Exo", sans-serif);
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 500;
+    min-height: 1.5em;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+  .tarkov-3d-carousel-section .carousel-subtitle.visible {
+    opacity: 1;
+  }
 
-.view-case-study-btn {
-  display: block;
-  margin: 32px auto 0 auto;
-  padding: 12px 32px;
-  font-size: 1.1rem;
-  background: #222;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.view-case-study-btn:hover {
-  background: #444;
-}
+  .view-case-study-btn {
+    display: block;
+    margin: 32px auto 0 auto;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .view-case-study-btn:hover {
+    background: #444;
+  }
 
-.full-case-study-tarkov {
-  margin: 40px auto 0 auto;
-  max-width: 800px;
-  padding: 32px 24px;
-  background: #181818;
-  color: #eee;
-  border-radius: 10px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-}
-
+  .full-case-study-tarkov {
+    margin: 40px auto 0 auto;
+    max-width: 800px;
+    padding: 32px 24px;
+    background: #181818;
+    color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  }
 }
 /* Breakpoint for medium screen */
 
@@ -794,28 +818,28 @@
     font-size: var(--h7-font-size);
     color: var(--foundation-greylight);
   }
-  
+
   .titleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-bold);
     font-size: var(--h1-font-size);
     color: var(--foundation-greylight-active);
   }
-  
+
   .subTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
     font-size: var(--h4-font-size);
     color: var(--foundation-greylight-darker);
   }
-  
+
   .textTypography {
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-regular);
     font-size: var(--h7-font-size);
     color: var(--foundation-greylight);
   }
-  
+
   .footerTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
@@ -824,14 +848,13 @@
     margin: 0;
     text-transform: uppercase;
   }
-  
+
   .footerTextTypography {
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-regular);
     font-size: var(--h8-font-size);
     color: var(--foundation-greylight);
   }
-  
 
   /* Container for the toggle button */
   .toggle-switch {
@@ -853,7 +876,7 @@
     transform: scale(0.9); /* Slightly scale down for a smoother effect */
     transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth and slower transition */
   }
-  
+
   .play-icon.active,
   .pause-icon.active {
     display: block; /* Show the active icon */
@@ -861,14 +884,14 @@
     transform: scale(1); /* Scale back to normal size */
   }
 
-/* Icon fill colors */
-.play-icon {
-  fill: white;
-}
+  /* Icon fill colors */
+  .play-icon {
+    fill: white;
+  }
 
-.pause-icon rect {
-  fill: white;
-}
+  .pause-icon rect {
+    fill: white;
+  }
 
   .play-icon,
   .pause-icon {
@@ -1118,9 +1141,9 @@
     padding-right: 60px;
     max-width: 100%;
     z-index: 0;
-    line-height: 1.5; 
-    text-align: left; 
-    letter-spacing: 18px; 
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: 18px;
     text-transform: uppercase;
   }
 
@@ -1262,65 +1285,65 @@
   }
 
   .image-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
 
   .image-item {
-      text-align: center;
-      font-weight: bold;
-      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
-      cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+    cursor: pointer;
   }
 
   .image-item a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
   }
 
   .image-item:hover {
-      transform: scale(1.02); /* Scale up the image item */
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    transform: scale(1.02); /* Scale up the image item */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
   }
 
   /* Click effect - Shrink the image item */
   .image-item:active {
-      transform: scale(0.98); /* Scale down the image item */
+    transform: scale(0.98); /* Scale down the image item */
   }
 
   .image-container {
-aspect-ratio: 9 / 16;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column; /* Stack items vertically */
-      justify-content: center;
-      align-items: center;
-      background-color: #f0f0f0; /* Grey background for the container */
-      box-sizing: border-box;
-      position: relative;
-      border-radius: 1%;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Grey background for the container */
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 1%;
   }
 
   .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .image-item p {
-      font-family: var(--heading-font-family);
-      font-weight: var(--font-weight-regular);
-      font-size: var(--h4-font-size);
-      color: #fcf9f7;
-      margin: 0;
-      background-color: transparent; 
-      width: 100%; 
-      padding: 5px 0; 
-      box-sizing: border-box;
-      position: static; 
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h4-font-size);
+    color: #fcf9f7;
+    margin: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: 5px 0;
+    box-sizing: border-box;
+    position: static;
   }
 
   .hamburger-menu {
@@ -1338,7 +1361,8 @@ aspect-ratio: 9 / 16;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     z-index: 3;
     transform: translateX(100%);
-    transition: transform var(--menu-transition-duration) ease, background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
+    transition: transform var(--menu-transition-duration) ease,
+      background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
   }
 
   .hamburger-menu::before {
@@ -1378,14 +1402,14 @@ aspect-ratio: 9 / 16;
     margin-top: 2px; /* Adjust the spacing as needed */
     display: none; /* Initially hidden */
   }
-  
+
   .work-underline {
     height: 2px;
     background-color: #fcf9f7; /* Adjust the color as needed */
     width: 100%;
     margin-top: 2px; /* Adjust the spacing as needed */
     display: none; /* Initially hidden */
-  }  
+  }
 
   .hamburger-menu.active {
     display: block;
@@ -1396,16 +1420,15 @@ aspect-ratio: 9 / 16;
     transform: translateX(100%); /* Slide out to the right */
   }
 
-  
-/* CSS to disable pointer events */
-.disable-pointer-events {
-  pointer-events: none;
+  /* CSS to disable pointer events */
+  .disable-pointer-events {
+    pointer-events: none;
   }
-  
+
   /* Ensure pointer events are enabled for the hamburger menu */
   #hamburgerMenu {
-  pointer-events: auto;
-  }  
+    pointer-events: auto;
+  }
 
   /* Menu items */
   .hamburger-menu ul {
@@ -1452,7 +1475,7 @@ aspect-ratio: 9 / 16;
   .no-scroll {
     overflow: hidden;
   }
-  
+
   /* -------- ABOUT PAGE---------- */
 
   .hold-titleAbout {
@@ -1485,9 +1508,9 @@ aspect-ratio: 9 / 16;
     max-width: 100%;
     z-index: 0;
     margin-bottom: 20px;
-    line-height: 1.5; 
-    text-align: left; 
-    letter-spacing: 12px; 
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: 12px;
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -1553,28 +1576,28 @@ aspect-ratio: 9 / 16;
     font-size: var(--h8-font-size);
     color: var(--foundation-greylight);
   }
-  
+
   .titleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-bold);
     font-size: var(--h3-font-size);
     color: var(--foundation-greylight-active);
   }
-  
+
   .subTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
     font-size: var(--h5-font-size);
     color: var(--foundation-greylight-darker);
   }
-  
+
   .textTypography {
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-regular);
     font-size: var(--h8-font-size);
     color: var(--foundation-greylight);
   }
-  
+
   .footerTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
@@ -1583,14 +1606,13 @@ aspect-ratio: 9 / 16;
     margin: 0;
     text-transform: uppercase;
   }
-  
+
   .footerTextTypography {
     font-family: var(--body-font-family);
     font-weight: var(--font-weight-regular);
     font-size: var(--h9-font-size);
     color: var(--foundation-greylight);
   }
-  
 
   .toggle-switch {
     display: flex; /* Enable flexbox for alignment */
@@ -1603,7 +1625,7 @@ aspect-ratio: 9 / 16;
     z-index: 1;
   }
 
-/* Play/Pause icons shared styles */
+  /* Play/Pause icons shared styles */
   /* Play/Pause icons shared styles */
   .play-icon,
   .pause-icon {
@@ -1614,7 +1636,7 @@ aspect-ratio: 9 / 16;
     transform: scale(0.9); /* Slightly scale down for a smoother effect */
     transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth and slower transition */
   }
-  
+
   .play-icon.active,
   .pause-icon.active {
     display: block; /* Show the active icon */
@@ -1622,14 +1644,14 @@ aspect-ratio: 9 / 16;
     transform: scale(1); /* Scale back to normal size */
   }
 
-/* Icon fill colors */
-.play-icon {
-  fill: white;
-}
+  /* Icon fill colors */
+  .play-icon {
+    fill: white;
+  }
 
-.pause-icon rect {
-  fill: white;
-}
+  .pause-icon rect {
+    fill: white;
+  }
 
   .play-icon,
   .pause-icon {
@@ -1638,7 +1660,7 @@ aspect-ratio: 9 / 16;
     transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth transition */
   }
 
-.portfolio-section {
+  .portfolio-section {
     background: var(--foundation-greydarker);
     background-blend-mode: overlay, luminosity;
     display: flex;
@@ -1745,9 +1767,9 @@ aspect-ratio: 9 / 16;
     max-width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    line-height: 1.5; 
-    text-align: left; 
-    letter-spacing: 12px; 
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: 12px;
     text-transform: uppercase;
   }
 
@@ -1891,36 +1913,93 @@ aspect-ratio: 9 / 16;
   }
 
   .image-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
   }
 
   .image-item {
-      text-align: center;
-      font-weight: bold;
-      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
-      cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+    cursor: pointer;
   }
 
   .image-item a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
   }
 
   .image-item:hover {
-      transform: scale(1.02); /* Scale up the image item */
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    transform: scale(1.02); /* Scale up the image item */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
   }
 
   /* Click effect - Shrink the image item */
   .image-item:active {
-      transform: scale(0.98); /* Scale down the image item */
+    transform: scale(0.98); /* Scale down the image item */
   }
 
   .image-container {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Grey background for the container */
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 1%;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 430px) and (max-width: 768px) {
+    .container-image-grid {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+      z-index: 1;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .image-item {
+      text-align: center;
+      font-weight: bold;
+      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+      cursor: pointer;
+    }
+
+    .image-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .image-item:hover {
+      transform: scale(1.02); /* Scale up the image item */
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    }
+
+    /* Click effect - Shrink the image item */
+    .image-item:active {
+      transform: scale(0.98); /* Scale down the image item */
+    }
+
+    .image-container {
       aspect-ratio: 3 / 4;
       overflow: hidden;
       display: flex;
@@ -1931,70 +2010,12 @@ aspect-ratio: 9 / 16;
       box-sizing: border-box;
       position: relative;
       border-radius: 1%;
-  }
+    }
 
-  .image-container img {
+    .image-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-  }
-
-  @media (min-width: 430px) and (max-width: 768px) { 
-
-    .container-image-grid {
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-bottom: 20px;
-      z-index: 1;
-    }
-  
-    .image-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-  
-    .image-item {
-        text-align: center;
-        font-weight: bold;
-        transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
-        cursor: pointer;
-    }
-  
-    .image-item a {
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
-  
-    .image-item:hover {
-        transform: scale(1.02); /* Scale up the image item */
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
-    }
-  
-    /* Click effect - Shrink the image item */
-    .image-item:active {
-        transform: scale(0.98); /* Scale down the image item */
-    }
-  
-    .image-container {
-        aspect-ratio: 3 / 4;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column; /* Stack items vertically */
-        justify-content: center;
-        align-items: center;
-        background-color: #f0f0f0; /* Grey background for the container */
-        box-sizing: border-box;
-        position: relative;
-        border-radius: 1%;
-    }
-  
-    .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
     }
   }
 
@@ -2018,16 +2039,16 @@ aspect-ratio: 9 / 16;
   }
 
   .image-item p {
-      font-family: var(--heading-font-family);
-      font-weight: var(--font-weight-regular);
-      font-size: var(--h5-font-size);
-      color: #fcf9f7;
-      margin: 0;
-      background-color: transparent; 
-      width: 100%; 
-      padding: 5px 0; 
-      box-sizing: border-box;
-      position: static; 
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h5-font-size);
+    color: #fcf9f7;
+    margin: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: 5px 0;
+    box-sizing: border-box;
+    position: static;
   }
 
   .hamburger-menu {
@@ -2045,7 +2066,8 @@ aspect-ratio: 9 / 16;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     z-index: 3;
     transform: translateX(100%);
-    transition: transform var(--menu-transition-duration) ease, background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
+    transition: transform var(--menu-transition-duration) ease,
+      background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
   }
 
   .hamburger-menu::before {
@@ -2085,14 +2107,14 @@ aspect-ratio: 9 / 16;
     margin-top: 2px; /* Adjust the spacing as needed */
     display: none; /* Initially hidden */
   }
-  
+
   .work-underline {
     height: 2px;
     background-color: #fcf9f7; /* Adjust the color as needed */
     width: 100%;
     margin-top: 2px; /* Adjust the spacing as needed */
     display: none; /* Initially hidden */
-  }  
+  }
 
   .hamburger-menu.active {
     display: block;
@@ -2103,16 +2125,15 @@ aspect-ratio: 9 / 16;
     transform: translateX(100%); /* Slide out to the right */
   }
 
-  
-/* CSS to disable pointer events */
-.disable-pointer-events {
-  pointer-events: none;
+  /* CSS to disable pointer events */
+  .disable-pointer-events {
+    pointer-events: none;
   }
-  
+
   /* Ensure pointer events are enabled for the hamburger menu */
   #hamburgerMenu {
-  pointer-events: auto;
-  }  
+    pointer-events: auto;
+  }
 
   /* Menu items */
   .hamburger-menu ul {
@@ -2160,7 +2181,6 @@ aspect-ratio: 9 / 16;
     overflow: hidden;
   }
 
-  
   /* -------- ABOUT PAGE---------- */
 
   .hold-titleAbout {
@@ -2193,9 +2213,9 @@ aspect-ratio: 9 / 16;
     max-width: 100%;
     z-index: 0;
     margin-bottom: 20px;
-    line-height: 1.5; 
-    text-align: left; 
-    letter-spacing: 12px; 
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: 12px;
     margin-left: 20px;
     margin-right: 20px;
   }
