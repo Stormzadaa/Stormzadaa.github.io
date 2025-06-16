@@ -578,7 +578,7 @@
     text-decoration: underline;
   }
 
-  .heroSectionTarkov {
+  .TarkovCaseStudy {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -586,8 +586,13 @@
     text-align: center;
   }
 
-  .hero-headline {
+  .tarkovStudy-headline {
     font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .tarkovStudy-goal {
+    font-size: 1.2rem;
     margin-bottom: 2rem;
   }
 
