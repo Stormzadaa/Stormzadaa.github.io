@@ -1640,3 +1640,708 @@
     margin-bottom: 20px;
   }
 }
+
+/* Breakpoint for mobile */
+
+@media (max-width: 768px) {
+  .html,
+  body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    scroll-behavior: smooth;
+    display: flex;
+  }
+
+  .body {
+    padding-top: 70px; /* Adjust this value based on the height of your header */
+  }
+
+  .headerTypography {
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h8-font-size);
+    color: var(--foundation-greylight);
+  }
+
+  .titleTypography {
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--h3-font-size);
+    color: var(--foundation-greylight-active);
+  }
+
+  .subTitleTypography {
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--h5-font-size);
+    color: var(--foundation-greylight-darker);
+  }
+
+  .textTypography {
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h8-font-size);
+    color: var(--foundation-greylight);
+  }
+
+  .footerTitleTypography {
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--h8-font-size);
+    color: var(--foundation-greylight-active);
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .footerTextTypography {
+    font-family: var(--body-font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h9-font-size);
+    color: var(--foundation-greylight);
+  }
+
+  .toggle-switch {
+    display: flex; /* Enable flexbox for alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative;
+    cursor: pointer;
+    width: 50px; /* Set width for the toggle switch */
+    height: 50px; /* Set height for the toggle switch */
+    z-index: 1;
+  }
+
+  /* Play/Pause icons shared styles */
+  /* Play/Pause icons shared styles */
+  .play-icon,
+  .pause-icon {
+    display: none; /* Hidden by default */
+    width: 28px; /* Default width for icons */
+    height: 28px; /* Default height for icons */
+    opacity: 0; /* Start with opacity 0 for smooth fade */
+    transform: scale(0.9); /* Slightly scale down for a smoother effect */
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth and slower transition */
+  }
+
+  .play-icon.active,
+  .pause-icon.active {
+    display: block; /* Show the active icon */
+    opacity: 1; /* Fade in */
+    transform: scale(1); /* Scale back to normal size */
+  }
+
+  /* Icon fill colors */
+  .play-icon {
+    fill: white;
+  }
+
+  .pause-icon rect {
+    fill: white;
+  }
+
+  .play-icon,
+  .pause-icon {
+    width: 30px; /* Larger icons for mobile */
+    height: 30px;
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth transition */
+  }
+
+  .portfolio-section {
+    background: var(--foundation-greydarker);
+    background-blend-mode: overlay, luminosity;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    min-height: 100vh; /* Ensures it covers the viewport */
+    position: relative; /* Sets the parent reference for absolute positioning */
+  }
+
+  .header {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    background-color: var(--foundation-greydarker);
+    max-width: 100%;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
+
+  .headerBox {
+    display: flex;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    box-sizing: border-box;
+  }
+
+  .logo {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 50px;
+    height: 35px;
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.1); /* Slightly grow on hover */
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-item {
+    display: none;
+  }
+
+  .nav-link {
+    display: none;
+  }
+
+  .nav-underline {
+    display: none;
+  }
+
+  .menu-svg {
+    background-color: transparent;
+    border: none;
+    order: 2;
+    padding: 0;
+  }
+
+  .menu-svg img {
+    height: 25px;
+    width: 50px;
+  }
+
+  .fundo-poligonos {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("Assets/GroupoPoligonosMobile.svg");
+    background-repeat: repeat;
+    background-size: 25% auto;
+    opacity: 60%;
+    z-index: 0; /* Ensure it stays behind other content */
+  }
+
+  .fundo-poligonos-clone {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("Assets/GroupoPoligonosMobile.svg");
+    background-repeat: repeat;
+    background-size: 25% auto;
+    opacity: 60%;
+    z-index: 0; /* Ensure it stays behind other content */
+  }
+
+  .main-title {
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+  }
+
+  .hold-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Carousel container styling */
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* Carousel content styling */
+  .carousel-content {
+    display: inline-flex;
+    white-space: nowrap;
+  }
+
+  /* Carousel word styling */
+  .carousel-content span {
+    padding: 0 20px;
+  }
+
+  .project-overlay {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    aspect-ratio: 0.706;
+    width: 100%;
+    padding: 139px 0 174px;
+    color: #1d1d1d;
+  }
+
+  .footer {
+    position: relative;
+    background: var(--foundation-browndark-active);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    color: #fcf9f7;
+    max-width: 100%;
+    z-index: 1;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .fundo-footer {
+    position: absolute;
+    width: 100%;
+    height: 100%; /* Ensure enough space for both background images to scroll */
+    background-image: url("Assets/GroupoPoligonosMobile.svg");
+    background-repeat: repeat; /* Repeats the background image vertically */
+    background-size: 20% auto;
+    opacity: 30%;
+  }
+
+  .footer-sections {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-title {
+    margin: 0;
+  }
+
+  .social-media-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Creates two equal-width columns */
+    gap: 20px; /* Adds 20px gap between the items */
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .get-in-touch-grid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); /* Two rows, each equal height */
+    gap: 20px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .social-media-grid a {
+    text-decoration: underline;
+    color: inherit; /* Maintain text color */
+    cursor: pointer;
+  }
+
+  .social-media-grid a:hover {
+    color: #fcf9f7; /* Optional: add a hover effect */
+  }
+
+  .underline {
+    text-decoration: underline;
+    color: inherit; /* Maintain the text color */
+    cursor: pointer;
+  }
+
+  .underline:hover {
+    color: #fcf9f7; /* Optional: add a hover effect */
+  }
+
+  .container-image-grid {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    z-index: 1;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .image-item {
+    text-align: center;
+    font-weight: bold;
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+    cursor: pointer;
+  }
+
+  .image-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .image-item:hover {
+    transform: scale(1.02); /* Scale up the image item */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+  }
+
+  /* Click effect - Shrink the image item */
+  .image-item:active {
+    transform: scale(0.98); /* Scale down the image item */
+  }
+
+  .image-container {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Grey background for the container */
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 1%;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 430px) and (max-width: 768px) {
+    .container-image-grid {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+      z-index: 1;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .image-item {
+      text-align: center;
+      font-weight: bold;
+      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+      cursor: pointer;
+    }
+
+    .image-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .image-item:hover {
+      transform: scale(1.02); /* Scale up the image item */
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    }
+
+    /* Click effect - Shrink the image item */
+    .image-item:active {
+      transform: scale(0.98); /* Scale down the image item */
+    }
+
+    .image-container {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Grey background for the container */
+      box-sizing: border-box;
+      position: relative;
+      border-radius: 1%;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .image-container {
+    width: 100%; /* Make the container full width */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Grey background for the container */
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top; /* Adjusts the position between the top and center */
+  }
+
+  .image-item p {
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h5-font-size);
+    color: #fcf9f7;
+    margin: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: 5px 0;
+    box-sizing: border-box;
+    position: static;
+  }
+
+  .hamburger-menu {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      var(--Background-DM) 45%,
+      rgba(101, 89, 78, 1) 100%
+    );
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    transform: translateX(100%);
+    transition: transform var(--menu-transition-duration) ease,
+      background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
+  }
+
+  .hamburger-menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: url("Assets/FundoHamburguer.svg");
+    background-repeat: repeat; /* Repeats the background image vertically */
+    background-size: 60% auto;
+    background-position: center; /* Center the SVG image */
+    z-index: 1; /* Place it behind the ul */
+    opacity: 60%;
+  }
+
+  .hamburger-menu .active-underline {
+    height: 2px;
+    background-color: #fcf9f7; /* Adjust the color as needed */
+    width: 100%;
+    margin-top: 2px; /* Adjust the spacing as needed */
+  }
+
+  .contact-underline {
+    height: 2px;
+    background-color: #fcf9f7; /* Adjust the color as needed */
+    width: 100%;
+    margin-top: 2px; /* Adjust the spacing as needed */
+    display: none; /* Initially hidden */
+  }
+
+  .about-underline {
+    height: 2px;
+    background-color: #fcf9f7; /* Adjust the color as needed */
+    width: 100%;
+    margin-top: 2px; /* Adjust the spacing as needed */
+    display: none; /* Initially hidden */
+  }
+
+  .work-underline {
+    height: 2px;
+    background-color: #fcf9f7; /* Adjust the color as needed */
+    width: 100%;
+    margin-top: 2px; /* Adjust the spacing as needed */
+    display: none; /* Initially hidden */
+  }
+
+  .hamburger-menu.active {
+    display: block;
+    transform: translateX(0); /* Slide in from right to left */
+  }
+
+  .hamburger-menu.hidden {
+    transform: translateX(100%); /* Slide out to the right */
+  }
+
+  /* CSS to disable pointer events */
+  .disable-pointer-events {
+    pointer-events: none;
+  }
+
+  /* Ensure pointer events are enabled for the hamburger menu */
+  #hamburgerMenu {
+    pointer-events: auto;
+  }
+
+  /* Menu items */
+  .hamburger-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align items to the right */
+    justify-content: top;
+    height: 100%;
+    padding-right: 20px; /* Add padding to align text properly */
+    padding-top: 40px; /* Add top padding */
+    z-index: 2; /* Ensure ul is above the SVG background */
+  }
+
+  .hamburger-menu li {
+    margin: 20px 0;
+    z-index: 2; /* Ensure li elements are above the SVG background */
+  }
+
+  .hamburger-menu a {
+    color: #fcf9f7;
+    text-decoration: none;
+    z-index: 2; /* Ensure a elements are above the SVG background */
+  }
+
+  /* Return arrow button styling */
+  .return-arrow {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 0;
+    background: none;
+    border: none; /* Remove border */
+  }
+
+  .return-arrow img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .no-scroll {
+    overflow: hidden;
+  }
+
+  /* -------- ABOUT PAGE---------- */
+
+  .hold-titleAbout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  #aboutImage {
+    width: 100%;
+    max-height: 70vh; /* Maintain aspect ratio */
+    object-fit: cover;
+    z-index: 1;
+    display: block; /* Ensures the image is treated as a block element */
+    margin: auto; /* Centers the image horizontally */
+  }
+
+  .main-titleAbout {
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: left;
+    letter-spacing: 12px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .subTitleAbout {
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-bottom: 20px;
+  }
+
+  .firstTextAbout {
+    align-self: center;
+    margin: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .secondTextAbout {
+    align-self: center;
+    margin: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .subTitleAbout2 {
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-bottom: 20px;
+  }
+}
