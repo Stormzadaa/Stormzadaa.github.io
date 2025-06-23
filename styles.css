@@ -811,6 +811,7 @@
   border-collapse: collapse;
   table-layout: fixed;
 }
+
 .responsive-table th, .responsive-table td {
   border: 1px solid #222;
   border-left-width: 3px;
@@ -823,10 +824,12 @@
   position: relative;
   vertical-align: middle;
 }
+
 .responsive-table th:nth-child(2),
 .responsive-table td:nth-child(2) {
   background-color: #e0f7fa;
 }
+
 .responsive-table img {
   width: 100%;
   height: 100%;
@@ -835,6 +838,112 @@
 }
 
 /* --------------------------------------------------------------- */
+
+.defineSynthesisTarkov ul {
+  text-align: left;
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+.persona-card {
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.persona-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.persona-avatar {
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.persona-name-role h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.role {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+.persona-section {
+  margin-bottom: 16px;
+}
+
+.persona-section h3 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+  color: #444;
+}
+
+.persona-section ul {
+  list-style: disc inside;
+  margin: 0;
+  padding-left: 0;
+  color: #555;
+}
+
+.persona-section ul li {
+  margin-bottom: 6px;
+}
+
+.persona-quote blockquote {
+  margin: 0;
+  padding: 10px 20px;
+  border-left: 4px solid #546658;
+  background: #000000;
+  font-style: italic;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.persona-cards-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Stretch cards to equal height */
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.persona-card.transparent-bg {
+  flex: 1 1 0;
+  max-width: 540px;
+  min-width: 420px;
+  margin: 0 1rem;
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 32px 32px 24px 32px;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%; /* Fill the height of the row */
+  box-sizing: border-box;
+}
 
 }
 /* Breakpoint for medium screen */
