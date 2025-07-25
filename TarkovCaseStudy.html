@@ -463,165 +463,185 @@
               </table>
             </div>
             </div>
-            <div class="IdeateAndDesignTarkov">
-              <h2>Ideate and Design</h2>
+              <div class="IdeateAndDesignTarkov">
+              <h2 class="IdeateAndDesignHeader">Ideate and Design</h2>
+              <h3 class="IdeateAndDesignSubHeader">UX User Flow</h3>
               <p>The flow begins with launching the game and preparing the loadout before entering a raid. During combat, the player may get shot, prompting a health check and decision whether healing is needed. If yes, the healing wheel is accessed via shortcut for quick application. Grenade use is similarly streamlined through a grenade wheel allowing fast selection and deployment. These interaction points reduce downtime, increase responsiveness, and improve player focus in intense moments.</p>
              <div class="user-flow-container">
-  <!-- Start -->
-  <div class="flow-step start">
-    <div class="flow-box">Start</div>
-  </div>
-  <div class="flow-arrow">↓</div>
+                <!-- Start -->
+                <div class="flow-step start">
+                  <div class="flow-box">Start</div>
+                </div>
+                <div class="flow-arrow">↓</div>
 
-  <!-- Game Launch Sequence -->
-  <div class="flow-step">
-    <div class="flow-box">Open the Game</div>
-  </div>
-  <div class="flow-arrow">↓</div>
+                <!-- Game Launch Sequence -->
+                <div class="flow-step">
+                  <div class="flow-box">Open the Game</div>
+                </div>
+                <div class="flow-arrow">↓</div>
 
-  <div class="flow-step">
-    <div class="flow-box">Main Menu</div>
-  </div>
-  <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                  <div class="flow-box">Main Menu</div>
+                </div>
+                <div class="flow-arrow">↓</div>
 
-  <div class="flow-step">
-    <div class="flow-box">Prepare Loadout</div>
-  </div>
-  <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                  <div class="flow-box">Prepare Loadout</div>
+                </div>
+                <div class="flow-arrow">↓</div>
 
-  <div class="flow-step action">
-    <div class="flow-box">Start Raid</div>
-  </div>
-  <div class="flow-arrow">↓</div>
+                <div class="flow-step action">
+                  <div class="flow-box">Start Raid</div>
+                </div>
+                <div class="flow-arrow">↓</div>
 
-  <div class="flow-step">
-    <div class="flow-box">Engage in Conflict</div>
-  </div>
-  <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                  <div class="flow-box">Engage in Conflict</div>
+                </div>
+                <div class="flow-arrow">↓</div>
 
-  <!-- First Decision: Did player get shot? -->
-  <div class="flow-step">
-    <div class="decision-box">
-      <div class="decision-text">Did player get shot?</div>
-    </div>
-  </div>
+                <!-- First Decision: Did player get shot? -->
+                <div class="flow-step">
+                  <div class="decision-box">
+                    <div class="decision-text">Did player get shot?</div>
+                  </div>
+                </div>
 
-  <div class="branch-container">
-    <!-- YES Branch - Got Shot -->
-    <div class="branch-path">
-      <div class="branch-label">YES</div>
-      <div class="flow-step critical">
-        <div class="flow-box">Check Health</div>
-      </div>
-      <div class="flow-arrow">↓</div>
-      
-      <!-- Sub-decision: Need healing? -->
-      <div class="flow-step">
-        <div class="decision-box">
-          <div class="decision-text">Need healing?</div>
-        </div>
-      </div>
+                <div class="branch-container">
+                  <!-- YES Branch - Got Shot -->
+                  <div class="branch-path">
+                    <div class="branch-label">YES</div>
+                    <div class="flow-step critical">
+                      <div class="flow-box">Check Health</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    
+                    <!-- Sub-decision: Need healing? -->
+                    <div class="flow-step">
+                      <div class="decision-box">
+                        <div class="decision-text">Need healing?</div>
+                      </div>
+                    </div>
 
-      <div class="sub-branch">
-        <!-- YES - Need Healing -->
-        <div class="sub-path">
-          <div class="branch-label">YES</div>
-          <div class="flow-step action">
-            <div class="flow-box">Open Healing Wheel</div>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <div class="flow-box">Hold Heal Shortcut</div>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <div class="flow-box">Apply Healing</div>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <div class="flow-box">Continue Fighting</div>
-          </div>
-        </div>
+                    <div class="sub-branch">
+                      <!-- YES - Need Healing -->
+                      <div class="sub-path">
+                        <div class="branch-label">YES</div>
+                        <div class="flow-step action">
+                          <div class="flow-box">Open Healing Wheel</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">
+                          <div class="flow-box">Hold Heal Shortcut</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">
+                          <div class="flow-box">Apply Healing</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">
+                          <div class="flow-box">Continue Fighting</div>
+                        </div>
+                      </div>
 
-        <!-- NO - No Healing Needed -->
-        <div class="sub-path">
-          <div class="branch-label">NO</div>
-          <div class="flow-step">
-            <div class="flow-box">Continue Fighting</div>
-          </div>
-        </div>
-      </div>
-    </div>
+                      <!-- NO - No Healing Needed -->
+                      <div class="sub-path">
+                        <div class="branch-label">NO</div>
+                        <div class="flow-step">
+                          <div class="flow-box">Continue Fighting</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-    <!-- NO Branch - Didn't Get Shot -->
-    <div class="branch-path">
-      <div class="branch-label">NO</div>
-      <div class="flow-step">
-        <div class="flow-box">Continue Fighting</div>
-      </div>
-    </div>
-  </div>
+                  <!-- NO Branch - Didn't Get Shot -->
+                  <div class="branch-path">
+                    <div class="branch-label">NO</div>
+                    <div class="flow-step">
+                      <div class="flow-box">Continue Fighting</div>
+                    </div>
+                  </div>
+                </div>
 
-  <!-- Converge point -->
-  <div class="converge-point">
-    <div class="converge-line"></div>
-    <div class="flow-arrow">↓</div>
-  </div>
+                <!-- Converge point -->
+                <div class="converge-point">
+                  <div class="converge-line"></div>
+                  <div class="flow-arrow">↓</div>
+                </div>
 
-  <!-- Second Decision: Need grenade? -->
-  <div class="flow-step">
-    <div class="decision-box">
-      <div class="decision-text">Need grenade?</div>
-    </div>
-  </div>
+                <!-- Second Decision: Need grenade? -->
+                <div class="flow-step">
+                  <div class="decision-box">
+                    <div class="decision-text">Need grenade?</div>
+                  </div>
+                </div>
 
-  <div class="branch-container">
-    <!-- YES Branch - Need Grenade -->
-    <div class="branch-path">
-      <div class="branch-label">YES</div>
-      <div class="flow-step action">
-        <div class="flow-box">Open Grenade Wheel</div>
-      </div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">
-        <div class="flow-box">Select Grenade Type</div>
-      </div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">
-        <div class="flow-box">Throw Grenade</div>
-      </div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">
-        <div class="flow-box">Continue Fighting</div>
-      </div>
-    </div>
+                <div class="branch-container">
+                  <!-- YES Branch - Need Grenade -->
+                  <div class="branch-path">
+                    <div class="branch-label">YES</div>
+                    <div class="flow-step action">
+                      <div class="flow-box">Open Grenade Wheel</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">
+                      <div class="flow-box">Select Grenade Type</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">
+                      <div class="flow-box">Throw Grenade</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step">
+                      <div class="flow-box">Continue Fighting</div>
+                    </div>
+                  </div>
 
-    <!-- NO Branch - No Grenade -->
-    <div class="branch-path">
-      <div class="branch-label">NO</div>
-      <div class="flow-step">
-        <div class="flow-box">Continue Fighting</div>
-      </div>
-    </div>
-  </div>
+                  <!-- NO Branch - No Grenade -->
+                  <div class="branch-path">
+                    <div class="branch-label">NO</div>
+                    <div class="flow-step">
+                      <div class="flow-box">Continue Fighting</div>
+                    </div>
+                  </div>
+                </div>
 
-  <!-- Final converge and end -->
-  <div class="converge-point">
-    <div class="converge-line"></div>
-    <div class="flow-arrow">↓</div>
-  </div>
+                <!-- Final converge and end -->
+                <div class="converge-point">
+                  <div class="converge-line"></div>
+                  <div class="flow-arrow">↓</div>
+                </div>
 
-  <div class="flow-step">
-    <div class="flow-box">Execute the Plan</div>
-  </div>
-  <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                  <div class="flow-box">Execute the Plan</div>
+                </div>
+                <div class="flow-arrow">↓</div>
 
-  <div class="flow-step end">
-    <div class="flow-box">End (Raid Continues)</div>
-  </div>
-</div>
-            </div>
-            </p>
+                <div class="flow-step end">
+                  <div class="flow-box">End (Raid Continues)</div>
+                </div>
+                
+              </div>
+              </div>
+              <div class="design-concepts-container">
+                <h3 class="IdeateAndDesignSubHeader">Design Simplification & Early Concepts</h3>
+                <h4 class="CaptionLowFidelitySketchesTarkov">Friend System Overhaul</h4>
+                <p>Improved friend management and clarity by adding status icons, direct friend requests, and group functionality. Designed to reduce friction and support social interaction</p>
+                <div class="design-images-grid">
+                  <div class="design-images-row">
+                    <img src="Assets/Tarkov/Sketch1.jpg" alt="Friend System Design 1" class="design-concept-image" />
+                    <img src="Assets/Tarkov/Sketch2.jpg" alt="Friend System Design 2" class="design-concept-image" />
+                  </div>
+                  <div class="design-images-single">
+                    <img src="Assets/Tarkov/Sketch3.jpg" alt="Menu with Friend List Integration" class="design-concept-image" />
+                  </div>
+                </div>
+                <h4 class="CaptionLowFidelitySketchesTarkov">Pre-Raid Group Coordination</h4>
+                <p>Streamlined team readiness with a "Ready" button for all members. Added friend invite/kick options and real-time friend list access to improve flow before raids.</p>
+                <div class="design-images-single">
+                  <img src="Assets/Tarkov/Sketch4.jpg" alt="Pre-Raid Group Coordination" class="design-concept-image" />
+                </div>
+              </div>
           </section>
         </div>
       </div>
