@@ -213,7 +213,7 @@
   flex-direction: column; /* <-- Add this line */
   justify-content: flex-start; /* Optional: aligns items to the top */
   align-items: center;
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -400,13 +400,15 @@
 /* Problem & Goals header - outside the box */
 .ProblemGoalsContext {
   color: var(--TarkovTitles) !important;
+  border-bottom: 2px solid var(--TarkovTitles);
+  padding-bottom: 10px;
+  text-align: left;
   margin-top: 0 !important;
   margin-bottom: 20px !important;
-  text-align: center;
 }
 
 .problemAndGoalsContext {
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   padding: 30px;
   border-radius: 10px;
   margin: 0 0 30px 0;
@@ -435,7 +437,9 @@
 
 .RnDHeader {
   color: var(--TarkovTitles) !important;
-  text-align: center;
+  border-bottom: 2px solid var(--TarkovTitles);
+  padding-bottom: 10px;
+  text-align: left;
 }
 
 .RnDSubHeader {
@@ -444,8 +448,21 @@
   text-align: left;
 }
 
+.DefineTarkovHeader {
+  color: var(--TarkovTitles) !important;
+  border-bottom: 2px solid var(--TarkovTitles);
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.DefineTarkovSubHeader {
+  color: var(--TarkovSecondaryLink) !important;
+  margin-top: 30px !important;
+  text-align: left;
+}
+
 .tarkovKeyFindings {
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   padding: 20px;
   border-radius: 8px;
   border-left: 3px solid var(--TarkovSecondaryLink);
@@ -463,7 +480,7 @@
   width: 100%;
   border-collapse: collapse;
   margin: 30px 0;
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -471,23 +488,38 @@
 .responsive-table th {
   background: rgba(196, 170, 122, 0.2);
   color: #ffffff;
-  padding: 15px;
+  padding: 0;
   text-align: left;
   font-weight: 600;
 }
 
 .responsive-table td {
-  padding: 15px;
+  padding: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   color: #cccccc;
   vertical-align: top;
+  height: 200px;
+  width: 200px;
+}
+
+.responsive-table td:last-child {
+  border-right: none;
+}
+
+.responsive-table tr:last-child td {
+  border-bottom: none;
 }
 
 .responsive-table img {
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
 }
 
 /* =============================================
@@ -504,7 +536,7 @@
   flex: 1;
   min-width: 300px;
   min-height: 800px;
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   border-radius: 15px;
   padding: 25px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -572,6 +604,7 @@
   margin: 0 0 10px 0 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 5px;
+  text-align: left !important;
 }
 
 .persona-section ul {
@@ -613,7 +646,7 @@
 .journey-map table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -633,11 +666,14 @@
   color: #cccccc;
   vertical-align: top;
   font-size: 0.9em;
+  text-align: left;
 }
 
 .emote-column {
-  text-align: center;
+  text-align: left;
   font-size: 1.2em;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 /* =============================================
@@ -651,7 +687,7 @@
 .table-container table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -719,7 +755,7 @@
   max-width: 900px;
   margin: 30px auto;
   padding: 25px;
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -1027,7 +1063,7 @@
    ============================================= */
 .RetrospectiveAndLearnings {
   margin: 40px 0;
-  background: var(--TarkovCardBackground);
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   padding: 30px;
   border-radius: 15px;
   border-left: 4px solid var(--TarkovTitles);
@@ -1035,8 +1071,11 @@
 
 .RnLHeader {
   color: var(--TarkovTitles) !important;
+  border-bottom: 2px solid var(--TarkovTitles);
+  padding-bottom: 10px;
+  text-align: left;
   margin-top: 0 !important;
-  text-align: center;
+  margin-bottom: 20px !important;
 }
 
 .RetrospectiveAndLearnings h3 {
@@ -1062,6 +1101,80 @@
   color: var(--TarkovSecondaryLink);
   font-style: italic;
   font-weight: 600;
+}
+
+/* Knight Quote - Outside the container */
+.knight-quote {
+  margin: 30px 0;
+  padding: 20px 30px 0 30px;
+  background: linear-gradient(to bottom, rgba(196, 170, 122, 0.1) 0%, rgba(196, 170, 122, 0.05) 70%, transparent 100%);
+  border-left: 4px solid;
+  border-image: linear-gradient(to bottom, var(--TarkovSecondaryLink) 0%, var(--TarkovSecondaryLink) 70%, transparent 100%) 1;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.knight-quote p {
+  color: var(--TarkovSecondaryLink) !important;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+}
+
+.knight-quote cite {
+  color: #cccccc !important;
+  font-size: 1em;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 20px;
+}
+
+.knight-quote .goons-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  margin-top: auto;
+  border-radius: 0 0 8px 0;
+  mask: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  -webkit-mask: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+}
+
+/* Case Study Navigation Buttons */
+.case-study-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 40px 0 20px 0;
+}
+
+.nav-button {
+  padding: 15px 30px;
+  font-size: 1.1em;
+  font-weight: 600;
+  background: var(--TarkovButton);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-button:hover {
+  background: var(--TarkovButtonHover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(196, 170, 122, 0.4);
 }
 
 /* =============================================
