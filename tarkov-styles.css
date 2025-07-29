@@ -1,0 +1,1093 @@
+/* =============================================
+   TARKOV CASE STUDY - DEDICATED STYLES
+   ============================================= */
+
+/* =============================================
+   TARKOV PAGE BODY & LAYOUT
+   ============================================= */
+
+.tarkov-page .portfolio-section {
+  background-color: var(
+    --foundation-greydarker
+  ); /* Set the initial background color */
+  transition: background-color 2s ease; /* Smooth transition over 4 seconds */
+}
+
+.tarkov-page .portfolio-section.tarkov-active {
+  background-color: var(
+    --TarkovPageBackground
+  ); /* Change to the desired color */
+}
+
+.tarkov-page .header {
+  background-color: var(
+    --foundation-greydarker
+  ); /* Set the initial background color */
+  transition: background-color 2s ease; /* Smooth transition over 4 seconds */
+}
+
+.tarkov-page .header.tarkov-active {
+  background-color: var(
+    --TarkovHeaderBackground
+  ); /* Change to the desired color */
+}
+
+.tarkov-page .footer {
+  background-color: var(
+    --foundation-browndark-active
+  ); /* Set the initial background color */
+  transition: background-color 2s ease; /* Smooth transition over 4 seconds */
+}
+
+.tarkov-page .footer.tarkov-active {
+  background-color: var(
+    --TarkovFooterBackground
+  ); /* Change to the desired color */
+}
+
+.tarkov-page .hamburger-menu.tarkov-active {
+  background: linear-gradient(
+    to bottom,
+    var(--TarkovHeaderBackground, #2c2c2c) 45%,
+    var(--TarkovFooterBackground, #3a2a1a) 100%
+  );
+}
+
+.tarkov-page {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* =============================================
+   MAIN LAYOUT & TYPOGRAPHY
+   ============================================= */
+.TarkovCaseStudy {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.textTableTypographyTarkov {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h6-font-size);
+  color: var(--foundation-greylight-active);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.subTitleTarkov {
+  align-self: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  max-width: 100%;
+  z-index: 0;
+}
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+.heroSectionTarkov {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.tarkovStudy-headline {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #f4f4f4;
+  line-height: 1.2;
+}
+
+.tarkovStudy-goal {
+  font-size: 1.2em;
+  color: #cccccc;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =============================================
+   FOOTER LINKS
+   ============================================= */
+.footer-section a.footerTextTypography {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-section a.footerTextTypography:hover {
+  text-decoration: underline;
+}
+
+/* =============================================
+   3D CAROUSEL STYLES
+   ============================================= */
+
+/* Ensure .heroSectionTarkov images are 100% width and 16:9 ratio */
+.heroSectionTarkov .carousel-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  display: block;
+}
+
+.heroSectionTarkov .carousel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tarkov 3D Image Carousel Styles */
+.tarkov-3d-carousel-section {
+  width: 100%;
+  max-width: none;
+  margin: 60px 0 0 0;
+  padding: 40px 0 80px 0;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tarkov-3d-carousel-section .scene {
+  width: 100%;
+  max-width: calc(100vw - 244px);
+  height: auto;
+  perspective: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tarkov-3d-carousel-section .carousel {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+.tarkov-3d-carousel-section .card {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateZ(400px);
+  perspective: 1000px;
+  transition: transform 1s;
+  cursor: pointer;
+  background: transparent;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tarkov-3d-carousel-section .card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tarkov-3d-carousel-section .card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column; /* <-- Add this line */
+  justify-content: flex-start; /* Optional: aligns items to the top */
+  align-items: center;
+  background: #181818;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.tarkov-3d-carousel-section .carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  display: block;
+}
+.tarkov-3d-carousel-section .controls {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.tarkov-3d-carousel-section .prev-btn,
+.tarkov-3d-carousel-section .next-btn {
+  background: #222;
+  color: #eee;
+  border: 1px solid #444;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+  border-radius: 4px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+}
+.tarkov-3d-carousel-section .prev-btn:hover,
+.tarkov-3d-carousel-section .next-btn:hover {
+  background: #444;
+  color: #fff;
+}
+.tarkov-3d-carousel-section .prev-btn svg,
+.tarkov-3d-carousel-section .next-btn svg {
+  display: block;
+}
+@media (max-width: 768px) {
+  .tarkov-3d-carousel-section .scene {
+    max-width: 500px;
+  }
+  .tarkov-3d-carousel-section .carousel {
+    transform: translateZ(-300px);
+  }
+  .tarkov-3d-carousel-section .card {
+    transform: translateX(-50%) translateZ(300px);
+    width: 180px;
+    height: 300px;
+  }
+}
+@media (max-width: 480px) {
+  .tarkov-3d-carousel-section .scene {
+    max-width: 320px;
+  }
+  .tarkov-3d-carousel-section .carousel {
+    transform: translateZ(-200px);
+  }
+  .tarkov-3d-carousel-section .card {
+    transform: translateX(-50%) translateZ(200px);
+    width: 120px;
+    height: 180px;
+  }
+}
+
+.tarkov-3d-carousel-section .carousel-subtitle {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  color: #eee;
+  font-size: 1.25rem;
+  font-family: var(--heading-font-family, "Exo", sans-serif);
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 500;
+  min-height: 1.5em;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.tarkov-3d-carousel-section .carousel-subtitle.visible {
+  opacity: 1;
+}
+
+.view-case-study-btn {
+  display: block;
+  margin: 32px auto 0 auto;
+  padding: 15px 30px;
+  font-size: 1.1em;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.view-case-study-btn:hover {
+  background: #444;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+}
+
+.full-case-study-tarkov {
+  width: 100%;
+  max-width: none;
+  background: transparent;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tarkovGoalsStatement {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+  list-style-type: disc;
+  text-align: left;
+}
+
+/* =============================================
+   FULL CASE STUDY SECTION
+   ============================================= */
+.full-case-study-tarkov {
+  padding: 40px 0;
+  line-height: 1.6;
+}
+
+.full-case-study-tarkov h2,
+.full-case-study-tarkov h3,
+.full-case-study-tarkov h4 {
+  color: #f4f4f4;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.full-case-study-tarkov h2 {
+  font-size: 2.2em;
+  border-bottom: 2px solid #ff6b35;
+  padding-bottom: 10px;
+}
+
+.full-case-study-tarkov h3 {
+  font-size: 1.8em;
+  color: #ff6b35;
+}
+
+.full-case-study-tarkov h4 {
+  font-size: 1.4em;
+  color: #f7931e;
+}
+
+.full-case-study-tarkov p {
+  color: #cccccc;
+  margin-bottom: 15px;
+}
+
+.full-case-study-tarkov ul,
+.full-case-study-tarkov ol {
+  color: #cccccc;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.full-case-study-tarkov li {
+  margin-bottom: 8px;
+}
+
+/* =============================================
+   PROBLEM & GOALS SECTION
+   ============================================= */
+.problemAndGoalsContext {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 10px;
+  margin: 30px 0;
+  border-left: 4px solid #ff6b35;
+}
+
+.ProblemGoalsContext {
+  color: #ff6b35 !important;
+  margin-top: 0 !important;
+}
+
+.tarkovProblemStatement {
+  font-size: 1.1em;
+  color: #e0e0e0 !important;
+}
+
+.tarkovGoalsStatement {
+  color: #cccccc !important;
+}
+
+.tarkovGoalsStatement li {
+  margin-bottom: 10px;
+}
+
+/* =============================================
+   RESEARCH & DISCOVERY SECTION
+   ============================================= */
+.researchAndDiscovery {
+  margin: 40px 0;
+}
+
+.RnDHeader {
+  color: #ff6b35 !important;
+}
+
+.RnDSubHeader {
+  color: #f7931e !important;
+  margin-top: 30px !important;
+}
+
+.tarkovKeyFindings {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 3px solid #f7931e;
+}
+
+.tarkovKeyFindings li {
+  margin-bottom: 12px;
+  color: #e0e0e0 !important;
+}
+
+/* =============================================
+   COMPETITIVE ANALYSIS TABLE
+   ============================================= */
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.responsive-table th {
+  background: rgba(255, 107, 53, 0.2);
+  color: #ffffff;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.responsive-table td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cccccc;
+  vertical-align: top;
+}
+
+.responsive-table img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* =============================================
+   PERSONA CARDS
+   ============================================= */
+.persona-cards-row {
+  display: flex;
+  gap: 30px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.persona-card {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.persona-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.persona-avatar svg {
+  background: rgba(255, 107, 53, 0.2);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.persona-name-role h2 {
+  color: #ff6b35 !important;
+  margin: 0 !important;
+  font-size: 1.4em;
+}
+
+.persona-name-role .role {
+  color: #f7931e !important;
+  margin: 5px 0 0 0 !important;
+  font-weight: 600;
+}
+
+.persona-section {
+  margin-bottom: 20px;
+}
+
+.persona-section h3 {
+  color: #f4f4f4 !important;
+  font-size: 1.1em;
+  margin: 0 0 10px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 5px;
+}
+
+.persona-section ul {
+  margin: 0 !important;
+  padding-left: 15px !important;
+}
+
+.persona-section li {
+  color: #cccccc !important;
+  margin-bottom: 5px !important;
+}
+
+.persona-quote blockquote {
+  background: rgba(255, 107, 53, 0.1);
+  border-left: 4px solid #ff6b35;
+  padding: 15px;
+  margin: 0;
+  font-style: italic;
+  color: #e0e0e0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* =============================================
+   JOURNEY MAP
+   ============================================= */
+.journey-map {
+  margin: 40px 0;
+}
+
+.journey-map h3 {
+  color: #ff6b35 !important;
+  margin-bottom: 20px !important;
+}
+
+.journey-map table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.journey-map th {
+  background: rgba(255, 107, 53, 0.2);
+  color: #ffffff;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.journey-map td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cccccc;
+  vertical-align: top;
+  font-size: 0.9em;
+}
+
+.emote-column {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+/* =============================================
+   FEATURE PRIORITIZATION TABLE
+   ============================================= */
+.table-container {
+  margin: 30px 0;
+  overflow-x: auto;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-container th {
+  background: rgba(255, 107, 53, 0.2);
+  color: #ffffff;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.table-container td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cccccc;
+  vertical-align: top;
+}
+
+/* Priority Labels */
+.priority-Must-Have {
+  background: rgba(220, 53, 69, 0.2);
+  color: #ff6b6b;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85em;
+}
+
+.priority-Should-Have {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85em;
+}
+
+.priority-Could-Have {
+  background: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85em;
+}
+
+.priority-Wont-Have {
+  background: rgba(108, 117, 125, 0.2);
+  color: #9e9e9e;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85em;
+}
+
+/* =============================================
+   USER FLOW DIAGRAM
+   ============================================= */
+.user-flow-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Step boxes - Smaller */
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.flow-box {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  min-width: 140px;
+  text-align: center;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #2d3748;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.flow-box:hover {
+  background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+  border-color: #4299e1;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Decision diamonds - Smaller */
+.decision-box {
+  background: linear-gradient(135deg, #fed7d7, #feb2b2);
+  border: 2px solid #f56565;
+  transform: rotate(45deg);
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  box-shadow: 0 3px 8px rgba(245, 101, 101, 0.2);
+}
+
+.decision-text {
+  transform: rotate(-45deg);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #742a2a;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 60px;
+}
+
+/* Arrows - Smaller */
+.flow-arrow {
+  font-size: 20px;
+  color: #4299e1;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(66, 153, 225, 0.3);
+  margin: 6px 0;
+}
+
+.flow-arrow.vertical {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+}
+
+/* Branch container - Tighter spacing */
+.branch-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 15px 0;
+  position: relative;
+}
+
+.branch-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 160px;
+}
+
+.branch-label {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #4299e1;
+  background: rgba(66, 153, 225, 0.1);
+  padding: 3px 10px;
+  border-radius: 15px;
+  border: 1px solid rgba(66, 153, 225, 0.2);
+}
+
+/* Special step types */
+.flow-step.start .flow-box {
+  background: linear-gradient(135deg, #c6f6d5, #9ae6b4);
+  border-color: #48bb78;
+  color: #22543d;
+}
+
+.flow-step.action .flow-box {
+  background: linear-gradient(135deg, #fbd38d, #f6ad55);
+  border-color: #ed8936;
+  color: #744210;
+}
+
+.flow-step.critical .flow-box {
+  background: linear-gradient(135deg, #fed7d7, #feb2b2);
+  border-color: #f56565;
+  color: #742a2a;
+}
+
+.flow-step.end .flow-box {
+  background: linear-gradient(135deg, #d6bcfa, #b794f6);
+  border-color: #9f7aea;
+  color: #44337a;
+}
+
+/* Converge point - Smaller */
+.converge-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.converge-line {
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #4299e1, transparent);
+  margin: 8px 0;
+}
+
+/* Sub-branch for nested decisions - Tighter */
+.sub-branch {
+  display: flex;
+  gap: 30px;
+  margin: 12px 0;
+}
+
+.sub-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsive design - More compact */
+
+@media (max-width: 768px) {
+  .user-flow-container {
+    padding: 15px 10px;
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .branch-container {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .branch-path {
+    min-width: 100%;
+    max-width: 250px;
+  }
+
+  .flow-box {
+    min-width: 100px;
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+
+  .decision-box {
+    width: 70px;
+    height: 70px;
+  }
+
+  .decision-text {
+    font-size: 8px;
+    max-width: 40px;
+  }
+
+  .sub-branch {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .converge-line {
+    width: 100px;
+  }
+
+  .flow-arrow {
+    font-size: 16px;
+  }
+}
+
+/* Smooth animations - Subtle */
+@keyframes flowGlow {
+  0%,
+  100% {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 5px 15px rgba(66, 153, 225, 0.2);
+  }
+}
+
+.flow-box:hover,
+.decision-box:hover {
+  animation: flowGlow 2s ease-in-out infinite;
+}
+
+/* Connection lines for better visual flow - Thinner */
+.connection-line {
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(to bottom, #4299e1, rgba(66, 153, 225, 0.3));
+  margin: 3px 0;
+}
+
+.horizontal-line {
+  height: 1px;
+  width: 30px;
+  background: linear-gradient(to right, #4299e1, rgba(66, 153, 225, 0.3));
+  margin: 0 8px;
+}
+
+/* =============================================
+   DESIGN CONCEPTS & IMAGES
+   ============================================= */
+.design-concepts-container,
+.design-wireframes-container {
+  margin: 40px 0;
+}
+
+.IdeateAndDesignHeader,
+.HighFidelityHeader {
+  color: #ff6b35 !important;
+  border-bottom: 2px solid #ff6b35;
+  padding-bottom: 10px;
+}
+
+.IdeateAndDesignSubHeader,
+.HighFidelitySubHeader {
+  color: #f7931e !important;
+  margin-top: 30px !important;
+}
+
+.CaptionLowFidelitySketchesTarkov {
+  color: #f4f4f4 !important;
+  margin-top: 25px !important;
+  margin-bottom: 10px !important;
+}
+
+.design-images-grid {
+  margin: 20px 0;
+}
+
+.design-images-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.design-images-single {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.design-concept-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.design-concept-image:hover {
+  transform: scale(1.02);
+}
+
+.design-images-row .design-concept-image {
+  max-width: 48%;
+  flex: 1;
+}
+
+/* =============================================
+   RETROSPECTIVE & LEARNINGS
+   ============================================= */
+.RetrospectiveAndLearnings {
+  margin: 40px 0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  border-left: 4px solid #ff6b35;
+}
+
+.RnLHeader {
+  color: #ff6b35 !important;
+  margin-top: 0 !important;
+}
+
+.RetrospectiveAndLearnings h3 {
+  color: #f7931e !important;
+  margin-top: 25px !important;
+}
+
+.RetrospectiveAndLearnings p {
+  color: #e0e0e0 !important;
+}
+
+.RetrospectiveAndLearnings ul {
+  color: #cccccc !important;
+}
+
+.RetrospectiveAndLearnings li {
+  margin-bottom: 10px !important;
+  color: #cccccc !important;
+}
+
+.RetrospectiveAndLearnings em {
+  color: #f7931e;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* =============================================
+   RESPONSIVE DESIGN
+   ============================================= */
+@media (min-width: 769px) and (max-width: 1279px) {
+  .TarkovCaseStudy {
+    padding: 15px;
+  }
+
+  .tarkovStudy-headline {
+    font-size: 2em;
+  }
+
+  .persona-cards-row {
+    flex-direction: column;
+  }
+
+  .branch-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .design-images-row {
+    flex-direction: column;
+  }
+
+  .design-images-row .design-concept-image {
+    max-width: 100%;
+  }
+
+  .responsive-table,
+  .table-container {
+    font-size: 0.8em;
+  }
+
+  .scene {
+    height: 300px;
+  }
+
+  .card {
+    width: 250px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tarkovStudy-headline {
+    font-size: 1.6em;
+  }
+
+  .tarkovStudy-goal {
+    font-size: 1em;
+  }
+
+  .full-case-study-tarkov h2 {
+    font-size: 1.8em;
+  }
+
+  .full-case-study-tarkov h3 {
+    font-size: 1.4em;
+  }
+
+  .scene {
+    height: 250px;
+  }
+
+  .card {
+    width: 200px;
+    height: 120px;
+  }
+}
