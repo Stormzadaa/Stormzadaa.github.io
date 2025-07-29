@@ -67,8 +67,8 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .textTableTypographyTarkov {
@@ -92,7 +92,7 @@
    HERO SECTION
    ============================================= */
 .heroSectionTarkov {
-  text-align: center;
+  text-align: left;
   margin-bottom: 40px;
 }
 
@@ -100,8 +100,9 @@
   font-size: 2.5em;
   font-weight: bold;
   margin-bottom: 2rem;
-  color: #f4f4f4;
+  color: var(--TarkovTitles);
   line-height: 1.2;
+  text-align: left;
 }
 
 .tarkovStudy-goal {
@@ -109,9 +110,7 @@
   color: #cccccc;
   margin-bottom: 2rem;
   line-height: 1.6;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: left;
 }
 
 /* =============================================
@@ -214,7 +213,7 @@
   flex-direction: column; /* <-- Add this line */
   justify-content: flex-start; /* Optional: aligns items to the top */
   align-items: center;
-  background: #181818;
+  background: var(--TarkovCardBackground);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -236,9 +235,9 @@
 }
 .tarkov-3d-carousel-section .prev-btn,
 .tarkov-3d-carousel-section .next-btn {
-  background: #222;
-  color: #eee;
-  border: 1px solid #444;
+  background: var(--TarkovButton);
+  color: #fff;
+  border: 1px solid var(--TarkovButton);
   padding: 10px 20px;
   cursor: pointer;
   transition: all 0.3s;
@@ -253,7 +252,7 @@
 }
 .tarkov-3d-carousel-section .prev-btn:hover,
 .tarkov-3d-carousel-section .next-btn:hover {
-  background: #444;
+  background: var(--TarkovButtonHover);
   color: #fff;
 }
 .tarkov-3d-carousel-section .prev-btn svg,
@@ -311,7 +310,7 @@
   padding: 15px 30px;
   font-size: 1.1em;
   font-weight: 600;
-  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  background: var(--TarkovButton);
   color: white;
   border: none;
   border-radius: 8px;
@@ -322,9 +321,9 @@
 }
 
 .view-case-study-btn:hover {
-  background: #444;
+  background: var(--TarkovButtonHover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 8px 25px rgba(196, 170, 122, 0.4);
 }
 
 .full-case-study-tarkov {
@@ -355,25 +354,27 @@
 .full-case-study-tarkov h2,
 .full-case-study-tarkov h3,
 .full-case-study-tarkov h4 {
-  color: #f4f4f4;
+  color: var(--TarkovMainTitle);
   margin-top: 40px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .full-case-study-tarkov h2 {
   font-size: 2.2em;
-  border-bottom: 2px solid #ff6b35;
+  border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 10px;
 }
 
 .full-case-study-tarkov h3 {
   font-size: 1.8em;
-  color: #ff6b35;
+  color: var(--TarkovTitles);
 }
 
 .full-case-study-tarkov h4 {
   font-size: 1.4em;
-  color: #f7931e;
+  color: var(--TarkovSecondaryLink);
+  text-align: left;
 }
 
 .full-case-study-tarkov p {
@@ -395,17 +396,21 @@
 /* =============================================
    PROBLEM & GOALS SECTION
    ============================================= */
-.problemAndGoalsContext {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 10px;
-  margin: 30px 0;
-  border-left: 4px solid #ff6b35;
+
+/* Problem & Goals header - outside the box */
+.ProblemGoalsContext {
+  color: var(--TarkovTitles) !important;
+  margin-top: 0 !important;
+  margin-bottom: 20px !important;
+  text-align: center;
 }
 
-.ProblemGoalsContext {
-  color: #ff6b35 !important;
-  margin-top: 0 !important;
+.problemAndGoalsContext {
+  background: var(--TarkovCardBackground);
+  padding: 30px;
+  border-radius: 10px;
+  margin: 0 0 30px 0;
+  border-left: 4px solid var(--TarkovTitles);
 }
 
 .tarkovProblemStatement {
@@ -429,19 +434,21 @@
 }
 
 .RnDHeader {
-  color: #ff6b35 !important;
+  color: var(--TarkovTitles) !important;
+  text-align: center;
 }
 
 .RnDSubHeader {
-  color: #f7931e !important;
+  color: var(--TarkovSecondaryLink) !important;
   margin-top: 30px !important;
+  text-align: left;
 }
 
 .tarkovKeyFindings {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--TarkovCardBackground);
   padding: 20px;
   border-radius: 8px;
-  border-left: 3px solid #f7931e;
+  border-left: 3px solid var(--TarkovSecondaryLink);
 }
 
 .tarkovKeyFindings li {
@@ -456,13 +463,13 @@
   width: 100%;
   border-collapse: collapse;
   margin: 30px 0;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--TarkovCardBackground);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .responsive-table th {
-  background: rgba(255, 107, 53, 0.2);
+  background: rgba(196, 170, 122, 0.2);
   color: #ffffff;
   padding: 15px;
   text-align: left;
@@ -496,43 +503,71 @@
 .persona-card {
   flex: 1;
   min-width: 300px;
-  background: rgba(255, 255, 255, 0.05);
+  min-height: 800px;
+  background: var(--TarkovCardBackground);
   border-radius: 15px;
   padding: 25px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 .persona-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
+  text-align: center;
+  min-height: 140px;
 }
 
 .persona-avatar svg {
-  background: rgba(255, 107, 53, 0.2);
+  background: rgba(196, 170, 122, 0.8);
   padding: 10px;
   border-radius: 50%;
+  color: #333333;
+  fill: #333333;
 }
 
 .persona-name-role h2 {
-  color: #ff6b35 !important;
+  color: var(--TarkovSecondaryLink) !important;
   margin: 0 !important;
   font-size: 1.4em;
 }
 
 .persona-name-role .role {
-  color: #f7931e !important;
+  color: var(--TarkovSecondaryLink) !important;
   margin: 5px 0 0 0 !important;
   font-weight: 600;
 }
 
 .persona-section {
   margin-bottom: 20px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Specific alignment for persona sections */
+.persona-section:nth-child(3) { /* Goals section */
+  min-height: 140px;
+}
+
+.persona-section:nth-child(4) { /* Frustrations section */
+  min-height: 140px;
+}
+
+.persona-section:nth-child(5) { /* Motivations/other sections */
+  min-height: 120px;
+}
+
+.persona-section:nth-child(6) { /* Additional sections */
+  min-height: 100px;
 }
 
 .persona-section h3 {
-  color: #f4f4f4 !important;
+  color: var(--TarkovSecondaryLink) !important;
   font-size: 1.1em;
   margin: 0 0 10px 0 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -549,9 +584,13 @@
   margin-bottom: 5px !important;
 }
 
+.persona-quote {
+  margin-top: auto;
+}
+
 .persona-quote blockquote {
-  background: rgba(255, 107, 53, 0.1);
-  border-left: 4px solid #ff6b35;
+  background: rgba(196, 170, 122, 0.1);
+  border-left: 4px solid var(--TarkovTitles);
   padding: 15px;
   margin: 0;
   font-style: italic;
@@ -567,20 +606,20 @@
 }
 
 .journey-map h3 {
-  color: #ff6b35 !important;
+  color: var(--TarkovTitles) !important;
   margin-bottom: 20px !important;
 }
 
 .journey-map table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--TarkovCardBackground);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .journey-map th {
-  background: rgba(255, 107, 53, 0.2);
+  background: rgba(196, 170, 122, 0.2);
   color: #ffffff;
   padding: 12px;
   text-align: left;
@@ -612,13 +651,13 @@
 .table-container table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--TarkovCardBackground);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .table-container th {
-  background: rgba(255, 107, 53, 0.2);
+  background: rgba(196, 170, 122, 0.2);
   color: #ffffff;
   padding: 15px;
   text-align: left;
@@ -680,7 +719,7 @@
   max-width: 900px;
   margin: 30px auto;
   padding: 25px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--TarkovCardBackground);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -776,11 +815,11 @@
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   font-size: 11px;
   font-weight: 600;
-  color: #4299e1;
-  background: rgba(66, 153, 225, 0.1);
+  color: var(--TarkovSecondaryLink);
+  background: rgba(80, 114, 123, 0.1);
   padding: 3px 10px;
   border-radius: 15px;
-  border: 1px solid rgba(66, 153, 225, 0.2);
+  border: 1px solid rgba(80, 114, 123, 0.2);
 }
 
 /* Special step types */
@@ -930,19 +969,21 @@
 
 .IdeateAndDesignHeader,
 .HighFidelityHeader {
-  color: #ff6b35 !important;
-  border-bottom: 2px solid #ff6b35;
+  color: var(--TarkovTitles) !important;
+  border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 10px;
+  text-align: left;
 }
 
 .IdeateAndDesignSubHeader,
 .HighFidelitySubHeader {
-  color: #f7931e !important;
+  color: var(--TarkovSecondaryLink) !important;
   margin-top: 30px !important;
+  text-align: left;
 }
 
 .CaptionLowFidelitySketchesTarkov {
-  color: #f4f4f4 !important;
+  color: var(--TarkovMainTitle) !important;
   margin-top: 25px !important;
   margin-bottom: 10px !important;
 }
@@ -986,20 +1027,22 @@
    ============================================= */
 .RetrospectiveAndLearnings {
   margin: 40px 0;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--TarkovCardBackground);
   padding: 30px;
   border-radius: 15px;
-  border-left: 4px solid #ff6b35;
+  border-left: 4px solid var(--TarkovTitles);
 }
 
 .RnLHeader {
-  color: #ff6b35 !important;
+  color: var(--TarkovTitles) !important;
   margin-top: 0 !important;
+  text-align: center;
 }
 
 .RetrospectiveAndLearnings h3 {
-  color: #f7931e !important;
+  color: var(--TarkovSecondaryLink) !important;
   margin-top: 25px !important;
+  text-align: left;
 }
 
 .RetrospectiveAndLearnings p {
@@ -1016,7 +1059,7 @@
 }
 
 .RetrospectiveAndLearnings em {
-  color: #f7931e;
+  color: var(--TarkovSecondaryLink);
   font-style: italic;
   font-weight: 600;
 }

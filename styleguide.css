@@ -23,10 +23,15 @@
   --foundation-browndarker: rgba(79, 69, 61, 1);
   --Background-DM: rgba(27, 27, 27);
   --Background-FT: rgb(37, 37, 37);
-  --TarkovFooterBackground: rgb(101, 113, 125);
+  --TarkovFooterBackground: rgb(52, 52, 52);
   --TarkovText: rgb(255, 255, 255);
-  --TarkovHeaderBackground: rgb(40, 47, 53);
-  --TarkovPageBackground: rgb(26, 30, 35);
+  --TarkovHeaderBackground: rgb(42, 42, 42);
+  --TarkovPageBackground: rgb(28, 28, 28);
+  --TarkovCardBackground: rgb(60, 63, 65);
+  --TarkovSecondaryLink: rgb(190, 181, 162);
+  --TarkovTitles: rgb(164, 140, 95);
+  --TarkovButton: rgb(90, 109, 90);
+  --TarkovButtonHover: rgb(118, 140, 118);
 }
 
 :root {
