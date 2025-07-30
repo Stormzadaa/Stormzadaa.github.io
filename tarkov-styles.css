@@ -93,7 +93,7 @@
    ============================================= */
 .heroSectionTarkov {
   text-align: left;
-  margin-bottom: 55px;
+  margin-bottom: 0;
 }
 
 .tarkovStudy-headline {
@@ -150,7 +150,7 @@
 .tarkov-3d-carousel-section {
   width: 100%;
   max-width: none;
-  margin: 0;
+  margin: 55px 0 27.5px 0;
   padding: 0;
   position: relative;
   z-index: 1;
@@ -189,18 +189,23 @@
   cursor: pointer;
   background: transparent;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* Remove overflow hidden on hover for active cards */
+.tarkov-3d-carousel-section .card.active:hover {
+  overflow: visible;
+}
+
 .tarkov-3d-carousel-section .card-inner {
   width: 100%;
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.8s ease;
+  transition: transform 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,50 +220,130 @@
   justify-content: flex-start; /* Optional: aligns items to the top */
   align-items: center;
   background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
+  transform-origin: center center;
 }
 .tarkov-3d-carousel-section .carousel-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   aspect-ratio: 16 / 9;
-  border-radius: 8px;
+  border-radius: 0;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
   display: block;
 }
-.tarkov-3d-carousel-section .controls {
-  margin-top: 21px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 21px;
-}
-.tarkov-3d-carousel-section .prev-btn,
-.tarkov-3d-carousel-section .next-btn {
-  background: var(--TarkovButton);
-  color: #fff;
-  border: 1px solid var(--TarkovButton);
-  padding: 10px 20px;
+
+/* Hover effect only for the front/active card */
+.tarkov-3d-carousel-section .card.active .card-inner:hover {
+  transform: scale(1.02);
   cursor: pointer;
-  transition: all 0.3s;
-  font-family: inherit;
-  border-radius: 4px;
-  font-size: 2rem;
+}
+
+/* Click areas for carousel navigation */
+.tarkov-3d-carousel-section .carousel-click-areas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.tarkov-3d-carousel-section .click-area {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 48px;
-  min-height: 48px;
+  font-size: 2.5rem;
+  color: rgba(196, 170, 122, 0.7);
+  background: transparent;
+  backdrop-filter: none;
 }
-.tarkov-3d-carousel-section .prev-btn:hover,
-.tarkov-3d-carousel-section .next-btn:hover {
-  background: var(--TarkovButtonHover);
-  color: #fff;
+
+.tarkov-3d-carousel-section .click-area:hover {
+  backdrop-filter: none;
+  background: transparent;
+  color: rgba(196, 170, 122, 1);
+  box-shadow: none;
 }
-.tarkov-3d-carousel-section .prev-btn svg,
-.tarkov-3d-carousel-section .next-btn svg {
-  display: block;
+
+.tarkov-3d-carousel-section .click-area.left-area {
+  left: -5%;
+  width: 4%;
+  top: 0%;
+  height: 100%;
+  background: transparent;
+  border-radius: 12px 0 0 12px;
+  z-index: 5;
+}
+
+.tarkov-3d-carousel-section .click-area.left-area:hover {
+  background: transparent;
+  box-shadow: none;
+}
+
+.tarkov-3d-carousel-section .click-area.left-area:before {
+  content: "‹";
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(196, 170, 122, 0.4);
+  opacity: 1;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.tarkov-3d-carousel-section .click-area.left-area:hover:before {
+  opacity: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 0.6);
+  transform: scale(1.8);
+}
+
+.tarkov-3d-carousel-section .click-area.right-area {
+  right: -5%;
+  width: 4%;
+  top: 0%;
+  height: 100%;
+  background: transparent;
+  border-radius: 0 12px 12px 0;
+  z-index: 5;
+}
+
+.tarkov-3d-carousel-section .click-area.right-area:hover {
+  background: transparent;
+  box-shadow: none;
+}
+
+.tarkov-3d-carousel-section .click-area.right-area:before {
+  content: "›";
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(196, 170, 122, 0.4);
+  opacity: 1;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.tarkov-3d-carousel-section .click-area.right-area:hover:before {
+  opacity: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 0.6);
+  transform: scale(1.8);
+}
+
+.tarkov-3d-carousel-section .click-area.center-area {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 80%;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 90;
+  border-radius: 12px;
+  background: transparent;
 }
 @media (max-width: 768px) {
   .tarkov-3d-carousel-section .scene {
@@ -271,6 +356,30 @@
     transform: translateX(-50%) translateZ(300px);
     width: 180px;
     height: 300px;
+  }
+  
+  /* Adjust click areas for mobile */
+  .tarkov-3d-carousel-section .click-area.left-area {
+    left: -5.5%;
+    width: 5%;
+    top: 0%;
+    height: 100%;
+  }
+  
+  .tarkov-3d-carousel-section .click-area.right-area {
+    right: -5.5%;
+    width: 5%;
+    top: 0%;
+    height: 100%;
+  }
+  
+  .tarkov-3d-carousel-section .click-area.center-area {
+    width: 70%;
+    height: 85%;
+  }
+  
+  .tarkov-3d-carousel-section .click-area:before {
+    font-size: 2rem;
   }
 }
 @media (max-width: 480px) {
@@ -285,6 +394,50 @@
     width: 120px;
     height: 180px;
   }
+  
+  /* Further adjust click areas for small mobile */
+  .tarkov-3d-carousel-section .click-area.left-area {
+    left: -4.5%;
+    width: 3.75%;
+    top: 0%;
+    height: 100%;
+  }
+  
+  .tarkov-3d-carousel-section .click-area.right-area {
+    right: -4.5%;
+    width: 3.75%;
+    top: 0%;
+    height: 100%;
+  }
+  
+  .tarkov-3d-carousel-section .click-area.center-area {
+    width: 80%;
+    height: 90%;
+  }
+  
+  .tarkov-3d-carousel-section .click-area:before {
+    font-size: 1.8rem;
+  }
+}
+
+/* Click area hints - subtle pulsing effect */
+@keyframes clickHint {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.tarkov-3d-carousel-section .click-area.left-area:after,
+.tarkov-3d-carousel-section .click-area.right-area:after {
+  display: none;
+}
+
+/* Hide hints when hovering over click areas */
+.tarkov-3d-carousel-section .click-area:hover:after {
+  display: none;
 }
 
 .tarkov-3d-carousel-section .carousel-subtitle {
@@ -1082,6 +1235,7 @@
 
 .CaptionLowFidelitySketchesTarkov {
   color: var(--TarkovMainTitle) !important;
+  font-size: var(--h6-font-size) !important;
   margin-top: 21px !important;
   margin-bottom: 13px !important;
 }
@@ -1109,11 +1263,6 @@
   height: auto;
   border-radius: 10px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.design-concept-image:hover {
-  transform: scale(1.02);
 }
 
 .design-images-row .design-concept-image {
@@ -1126,6 +1275,20 @@
 .design-concepts-container .design-images-single .design-concept-image {
   max-width: 100%;
   width: 100%;
+}
+
+/* Design section divider - appears after images, before subheadings */
+.design-section-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--TarkovMainTitle) 20%,
+    var(--TarkovMainTitle) 80%,
+    transparent 100%
+  );
+  margin: 34px 0 21px 0;
+  opacity: 0.6;
 }
 
 /* =============================================

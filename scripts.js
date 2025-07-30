@@ -299,14 +299,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const body = document.querySelector(".body");
     const screenWidth = window.innerWidth;
 
+    // Only proceed if all required elements exist
+    if (!toggleSwitch) {
+      console.log("Toggle switch not found, skipping placement adjustment");
+      return;
+    }
+
     if (screenWidth <= 768) {
       // Move toggle-switch into headerBox for mobile screens
-      if (headerBox && !headerBox.contains(toggleSwitch)) {
+      if (headerBox && toggleSwitch && !headerBox.contains(toggleSwitch)) {
         headerBox.appendChild(toggleSwitch);
       }
     } else {
       // Move toggle-switch back to its original position for larger screens
-      if (body && !body.contains(toggleSwitch)) {
+      if (body && toggleSwitch && !body.contains(toggleSwitch)) {
         body.appendChild(toggleSwitch);
       }
     }
@@ -797,12 +803,6 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   if (!carousel) return;
   const cards = carousel.querySelectorAll(".card");
-  const prevBtn = document.querySelector(
-    ".tarkov-3d-carousel-section .prev-btn"
-  );
-  const nextBtn = document.querySelector(
-    ".tarkov-3d-carousel-section .next-btn"
-  );
   const subtitle = document.getElementById("carouselSubtitle");
 
   // Array of subtitles in order
@@ -829,35 +829,177 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function arrangeCards() {
-    cards.forEach((card, index) => {
+    console.log(`Arranging cards, currentIndex: ${currentIndex}`);
+    
+    // Get fresh card references from the DOM each time
+    const currentCards = carousel.querySelectorAll('.card');
+    
+    currentCards.forEach((card, index) => {
       const angle = theta * index;
       card.style.transform = `translateX(-50%) rotateY(${angle}rad) translateZ(${radius}px)`;
+      
+      // Add/remove active class based on current index
+      if (index === currentIndex) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+      
+      // Special handling for clickable cards to ensure they stay clickable in all positions
+      if (index === 0 || index === 1 || index === 2 || index === 3 || index === 4) { // Settings & PostFX (0), Menu with Friend List (1), Selection Wheel (2), Selection Page (3), Flea Market (4)
+        // Only apply click functionality and styling when the card is active (in center)
+        if (index === currentIndex) {
+          // Force higher z-index and ensure visibility
+          card.style.zIndex = '25';
+          card.style.pointerEvents = 'auto';
+          card.style.cursor = 'pointer';
+          
+          // Apply special styling to all child elements
+          const allChildren = card.querySelectorAll('*');
+          allChildren.forEach(child => {
+            child.style.pointerEvents = 'auto';
+            child.style.cursor = 'pointer';
+          });
+          
+          // Remove any existing click handlers to avoid duplicates
+          const clonedCard = card.cloneNode(true);
+          card.parentNode.replaceChild(clonedCard, card);
+          
+          clonedCard.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // First show the full case study if it's not visible
+            const btn = document.getElementById("viewCaseStudyBtn");
+            const section = document.getElementById("fullCaseStudyTarkov");
+            if (btn && btn.style.display !== "none") {
+              btn.style.display = "none";
+              section.style.display = "block";
+            }
+            
+            // Navigate to appropriate section based on card index
+            let targetSection;
+            if (index === 0) {
+              // Settings & PostFX card
+              console.log('Settings card clicked, navigating to Settings Enhancements section');
+              targetSection = document.getElementById('settings-enhancements');
+            } else if (index === 1) {
+              // Menu with Friend List card
+              console.log('Friend List card clicked, navigating to Friend System Overhaul section');
+              targetSection = document.getElementById('friend-system-overhaul');
+            } else if (index === 2) {
+              // Selection Wheel card
+              console.log('Selection Wheel card clicked, navigating to Raid UI Enhancements section');
+              targetSection = document.getElementById('raid-ui-enhancements');
+            } else if (index === 3) {
+              // Selection Page card
+              console.log('Selection Page card clicked, navigating to Pre-Raid Group Coordination section');
+              targetSection = document.getElementById('pre-raid-group-coordination');
+            } else if (index === 4) {
+              // Flea Market card
+              console.log('Flea Market card clicked, navigating to Flea Market section');
+              targetSection = document.getElementById('flea-market');
+            }
+            
+            if (targetSection) {
+              // Center the title in the viewport
+              const rect = targetSection.getBoundingClientRect();
+              const viewportHeight = window.innerHeight;
+              const elementHeight = rect.height;
+              // Calculate offset to center the element in the viewport
+              const yOffset = -(viewportHeight / 2) + (elementHeight / 2);
+              const y = rect.top + window.pageYOffset + yOffset;
+              
+              window.scrollTo({top: y, behavior: 'smooth'});
+            }
+          });
+          
+          console.log(`Clickable card ${index} arranged at angle: ${angle}, position: center (active)`);
+        } else {
+          // When not active, remove special styling and click functionality
+          card.style.zIndex = '';
+          card.style.pointerEvents = 'none';
+          card.style.cursor = 'default';
+          
+          // Remove special styling from child elements
+          const allChildren = card.querySelectorAll('*');
+          allChildren.forEach(child => {
+            child.style.pointerEvents = 'none';
+            child.style.cursor = 'default';
+          });
+          
+          console.log(`Clickable card ${index} arranged at angle: ${angle}, position: side (inactive)`);
+        }
+      } else {
+        // For non-clickable cards, ensure they're properly disabled
+        card.style.pointerEvents = 'none';
+        card.style.cursor = 'default';
+        card.style.zIndex = '';
+        
+        const allChildren = card.querySelectorAll('*');
+        allChildren.forEach(child => {
+          child.style.pointerEvents = 'none';
+          child.style.cursor = 'default';
+        });
+      }
     });
     carousel.style.transform = `translateZ(-${radius}px) rotateY(${
       -currentIndex * theta
     }rad)`;
     updateSubtitle(currentIndex);
+    
+    // Update invisible click areas after arranging cards
+    updateClickAreas();
+  }
+
+  // Create invisible click areas for better click detection
+  function createClickAreas() {
+    const scene = document.querySelector('.tarkov-3d-carousel-section .scene');
+    if (!scene) return;
+    
+    // Create a container for click areas
+    const clickContainer = document.createElement('div');
+    clickContainer.className = 'carousel-click-areas';
+    
+    // Create click areas for left and right sides - let CSS handle the styling
+    const leftClickArea = document.createElement('div');
+    leftClickArea.className = 'click-area left-area';
+    
+    const rightClickArea = document.createElement('div');
+    rightClickArea.className = 'click-area right-area';
+    
+    // Add click handlers for the areas
+    leftClickArea.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const leftIndex = (currentIndex - 1 + totalCards) % totalCards;
+      console.log(`Left click area clicked, navigating to card ${leftIndex}`);
+      currentIndex = leftIndex;
+      arrangeCards();
+    });
+    
+    rightClickArea.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const rightIndex = (currentIndex + 1) % totalCards;
+      console.log(`Right click area clicked, navigating to card ${rightIndex}`);
+      currentIndex = rightIndex;
+      arrangeCards();
+    });
+    
+    clickContainer.appendChild(leftClickArea);
+    clickContainer.appendChild(rightClickArea);
+    scene.appendChild(clickContainer);
+  }
+  
+  function updateClickAreas() {
+    // This function can be used to update click area positions if needed
+    // For now, the fixed left/right areas should work for the carousel
   }
 
   arrangeCards();
   updateSubtitle(currentIndex);
-
-  prevBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-    arrangeCards();
-  });
-
-  nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % totalCards;
-    arrangeCards();
-  });
-
-  cards.forEach((card, index) => {
-    card.addEventListener("click", () => {
-      currentIndex = index;
-      arrangeCards();
-    });
-  });
+  createClickAreas();
 });
 
 // Show full case study and hide button on click

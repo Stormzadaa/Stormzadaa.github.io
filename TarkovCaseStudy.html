@@ -119,20 +119,6 @@
                 </div>
               </div>
               <div class="carousel-subtitle" id="carouselSubtitle"></div>
-              <div class="controls">
-                <button class="prev-btn" aria-label="Previous">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18l-6-6 6-6" stroke="#eee" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </button>
-                <button class="next-btn" aria-label="Next">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 6l6 6-6 6" stroke="#eee" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </div>
             </div>
           </div>
           <!-- Tarkov 3D Image Carousel END -->
@@ -625,6 +611,7 @@
               </div>
               <div class="design-concepts-container">
                 <h4 class="DefineTarkovSubHeader">Design Simplification & Early Concepts</h4>
+                <p>These initial sketches explore fundamental improvements to Tarkov's most problematic user interactions. Each concept focuses on reducing friction and cognitive load while maintaining the game's hardcore aesthetic. Through rapid ideation and low-fidelity wireframes, I tested various approaches to core problems like friend management, raid coordination, and in-game awareness before committing to detailed designs.</p>
                 <h4 class="CaptionLowFidelitySketchesTarkov">Friend System Overhaul</h4>
                 <p><strong>Goal:</strong> Reduce social friction and improve clarity by introducing status indicators, friend requests, and group features.</p>
                 <p>Improved friend management and clarity by adding status icons, direct friend requests, and group functionality. Designed to reduce friction and support social interaction</p>
@@ -637,24 +624,28 @@
                     <img src="Assets/Tarkov/Sketch3.jpg" alt="Menu with Friend List Integration" class="design-concept-image" />
                   </div>
                 </div>
+                <div class="design-section-divider"></div>
                 <h4 class="CaptionLowFidelitySketchesTarkov">Pre-Raid Group Coordination</h4>
                 <p><strong>Goal:</strong> Streamline team readiness with a 'Ready' state, inline friend list access, and invite/kick controls.</p>
                 <p>Streamlined team readiness with a "Ready" button for all members. Added friend invite/kick options and real-time friend list access to improve flow before raids.</p>
                 <div class="design-images-single">
                   <img src="Assets/Tarkov/Sketch4.jpg" alt="Pre-Raid Group Coordination" class="design-concept-image" />
                 </div>
+                <div class="design-section-divider"></div>
                 <h4 class="CaptionLowFidelitySketchesTarkov">Raid UI Enhancements</h4>
                 <p><strong>Goal:</strong> Boost in-raid awareness and efficiency with always-visible health info, overlays for grenades and healing, and contextual HUD elements.</p>
                 <p>Boosted in-raid awareness with always-visible health, buffs/debuffs, and optional overlays (weather, compass, time). Introduced a contextual grenade wheel with focus blur for clarity.</p>
                 <div class="design-images-single">
                   <img src="Assets/Tarkov/Sketch6.jpg" alt="Raid UI Enhancements" class="design-concept-image" />
                 </div>
+                <div class="design-section-divider"></div>
                 <h4 class="CaptionLowFidelitySketchesTarkov">PostFX & Flea Market QoL</h4>
                 <p><strong>Goal:</strong> Minimize screen switching and simplify item management with presets and inline market interactions.</p>
                 <p>Reduced screen switching by embedding item filtering and trading actions directly into context. Users can now manage PostFX presets intuitively.</p>
                 <div class="design-images-single">
                   <img src="Assets/Tarkov/Sketch8.jpg" alt="PostFX & Flea Market QoL" class="design-concept-image" />
                 </div>
+                <div class="design-section-divider"></div>
                 <h4 class="CaptionLowFidelitySketchesTarkov">Settings Enhancements</h4>
                 <p><strong>Goal:</strong> Speed up visual customization and trading setup with PostFX presets and a streamlined flea market overlay.</p>
                 <p>Identified friction in visual and market settings. Introduced PostFX presets for faster customization and a streamlined flea market overlay to reduce navigation steps and speed up item interactions.</p>
@@ -664,7 +655,9 @@
               </div>
               <div class="design-wireframes-container">
               <h2 class="HighFidelityHeader">High-Fidelity Design</h2>
-              <h4 class="CaptionLowFidelitySketchesTarkov">Friend System Overhaul</h4>
+              <h4 class="DefineTarkovSubHeader">Refined Design Solutions & Implementation</h4>
+              <p>Building on the early concepts, these high-fidelity designs showcase the final visual direction and detailed interactions. Each solution addresses specific user pain points identified during research, with refined aesthetics that maintain Tarkov's authentic feel while dramatically improving usability and workflow efficiency.</p>
+              <h4 id="friend-system-overhaul" class="CaptionLowFidelitySketchesTarkov">Friend System Overhaul</h4>
               <p>Goal: Reduce social friction and improve clarity.</p>
               <p>Key Changes:
               <ul>
@@ -682,7 +675,8 @@
                   <img src="Assets/Tarkov/Friend_List3.jpg" alt="Menu with Friend List Integration" class="design-concept-image" />
                 </div>
               </div>
-              <h4 class="CaptionLowFidelitySketchesTarkov">Pre-Raid Group Coordination</h4>
+              <div class="design-section-divider"></div>
+              <h4 id="pre-raid-group-coordination" class="CaptionLowFidelitySketchesTarkov">Pre-Raid Group Coordination</h4>
               <p>Goal: Improve team flow and readiness.</p>
               <p>Key Changes:
               <ul>
@@ -694,7 +688,8 @@
               <div class="design-images-single">
                 <img src="Assets/Tarkov/Selection_page.jpg" alt="Pre-Raid Group Coordination" class="design-concept-image" />
               </div>
-              <h4 class="CaptionLowFidelitySketchesTarkov">Raid UI Enhancements</h4>
+              <div class="design-section-divider"></div>
+              <h4 id="raid-ui-enhancements" class="CaptionLowFidelitySketchesTarkov">Raid UI Enhancements</h4>
               <p>Goal: Improve player awareness and combat efficiency.</p>
               <p>Key Changes:
               <ul>
@@ -709,7 +704,8 @@
               <div class="design-images-single">
                 <img src="Assets/Tarkov/In_game_layout.jpg" alt="Raid UI Enhancements - In-Game Layout" class="design-concept-image" />
               </div>
-              <h4 class="CaptionLowFidelitySketchesTarkov">Settings Enhancements</h4>
+              <div class="design-section-divider"></div>
+              <h4 id="settings-enhancements" class="CaptionLowFidelitySketchesTarkov">Settings Enhancements</h4>
               <p>Goal: Reduce repetitive visual setup and streamline trading.</p>
               <p>Key Changes:
               <ul>
@@ -721,7 +717,8 @@
               <div class="design-images-single">
                 <img src="Assets/Tarkov/config_preset.jpg" alt="Settings Enhancements" class="design-concept-image" />
               </div>
-              <h4 class="CaptionLowFidelitySketchesTarkov">Flea Market</h4>
+              <div class="design-section-divider"></div>
+              <h4 id="flea-market" class="CaptionLowFidelitySketchesTarkov">Flea Market</h4>
               <p>Goal: Minimize screen-switching and improve item interactions.</p>
               <p>Key Changes:
               <ul>
