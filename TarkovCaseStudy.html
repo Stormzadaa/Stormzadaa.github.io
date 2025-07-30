@@ -241,15 +241,9 @@
                 Key Insights
               </h4>
               <ul>
-                <li>Tarkov’s full HUD hide feature offers unmatched immersion control compared to competitors.</li>
-                <li>Dark and Darker improves player awareness with buffs/debuffs and compass info in the HUD, reducing
-                  frustration.</li>
-                <li>Warzone provides robust social features with easy friend status visibility and group management,
-                  lacking in Tarkov.</li>
-                <li>Players want quicker access to grenade/healing selection and always-visible critical stats without
-                  opening the inventory.</li>
-                <li>UI improvements like money value tooltips and message separation enhance clarity during gameplay.
-                </li>
+                <li>Tarkov’s full HUD hiding enhances immersion.</li>
+                <li>Competitors like Dark and Darker improve awareness with buffs/debuffs and compass overlays.</li>
+                <li>Social usability (e.g. friend status visibility, group tools) is a key advantage in Warzone but missing in Tarkov.</li>
               </ul>
               <div class="persona-cards-row">
                 <!-- Persona 1: Carlos -->
@@ -417,6 +411,9 @@
               </table>
             </div>
             <h4 class="DefineTarkovSubHeader">Feature Priorization Table</h4>
+              <p class="tarkovIntroductionParagraph">
+              A UX/UI redesign for Escape from Tarkov focused on reducing interface friction and improving real‑time interactions. Key enhancements include upgraded friend lists, more intuitive in‑raid HUD elements, and streamlined pre‑raid workflows — all aimed at boosting usability and immersion.
+            </p>
             <div class="table-container">
               <table>
                 <thead>
@@ -428,6 +425,7 @@
                 </thead>
                 <tbody>
                   <!-- Must Have -->
+                  <tr><td colspan="3"><strong>These 'Must Have' features form the core improvements necessary for enhancing gameplay and social interaction.</strong></td></tr>
                   <tr><td>Create the status feature inside the friend list (online/offline/occupied)</td><td class="priority-Must-Have">Must Have</td><td>Friend List & Social</td></tr>
                   <tr><td>Add members of group as friends directly from the pre-raid screen</td><td class="priority-Must-Have">Must Have</td><td>Friend List & Social</td></tr>
                   <tr><td>Display buffs/debuffs and character info outside inventory</td><td class="priority-Must-Have">Must Have</td><td>Combat Enhancements</td></tr>
@@ -439,6 +437,7 @@
                   <tr><td>Cloud save settings option</td><td class="priority-Must-Have">Must Have</td><td>Quality of Life</td></tr>
 
                   <!-- Should Have -->
+                  <tr><td colspan="3"><strong>The 'Should Have' features add meaningful refinements that support and expand the core experience.</strong></td></tr>
                   <tr><td>Send messages button direct into friend list</td><td class="priority-Should-Have">Should Have</td><td>Friend List & Social</td></tr>
                   <tr><td>Create a group system inside the friend list</td><td class="priority-Should-Have">Should Have</td><td>Friend List & Social</td></tr>
                   <tr><td>Improve contrast of unavailable servers in launcher</td><td class="priority-Should-Have">Should Have</td><td>UI/UX Improvements</td></tr>
@@ -448,6 +447,7 @@
                   <tr><td>Display necessary XP to level up</td><td class="priority-Should-Have">Should Have</td><td>UI/UX Improvements</td></tr>
 
                   <!-- Could Have -->
+                  <tr><td colspan="3"><strong>The 'Could Have' features are nice-to-haves that would further polish the interface but are lower priority.</strong></td></tr>
                   <tr><td>Change iconography for barter necessary items</td><td class="priority-Could-Have">Could Have</td><td>UI/UX Improvements</td></tr>
                   <tr><td>Money conversion tooltip on hover</td><td class="priority-Could-Have">Could Have</td><td>Marketplace & Economy</td></tr>
                   <tr><td>Change friend list layout (pin to side)</td><td class="priority-Could-Have">Could Have</td><td>UI/UX Improvements</td></tr>
@@ -455,6 +455,7 @@
                   <tr><td>Display shortcuts and search bar in statistics section</td><td class="priority-Could-Have">Could Have</td><td>UI/UX Improvements</td></tr>
 
                   <!-- Won't Have -->
+                  <tr><td colspan="3"><strong>The 'Won’t Have': Lower-priority or strategically deferred items..</strong></td></tr>
                   <tr><td>Separate vendor messages from user messages</td><td class="priority-Wont-Have">Won’t Have</td><td>Friend List & Social</td></tr>
                   <tr><td>Filter by item opens multiple windows without closing old</td><td class="priority-Wont-Have">Won’t Have</td><td>UI/UX Improvements</td></tr>
                   <tr><td>Display profile and account info in a friend list popup</td><td class="priority-Wont-Have">Won’t Have</td><td>Friend List & Social</td></tr>
@@ -465,7 +466,7 @@
               <div class="IdeateAndDesignTarkov">
               <h2 class="IdeateAndDesignHeader">Ideate and Design</h2>
               <h4 class="DefineTarkovSubHeader">UX User Flow</h4>
-              <p>The flow begins with launching the game and preparing the loadout before entering a raid. During combat, the player may get shot, prompting a health check and decision whether healing is needed. If yes, the healing wheel is accessed via shortcut for quick application. Grenade use is similarly streamlined through a grenade wheel allowing fast selection and deployment. These interaction points reduce downtime, increase responsiveness, and improve player focus in intense moments.</p>
+              <p>This flow starts with game launch and loadout prep, followed by combat decisions. If the player is shot, they can quickly heal via a shortcut-activated wheel. Grenade selection is also streamlined through a radial menu. These adjustments reduce downtime, increase responsiveness, and enhance focus during critical gameplay moments.</p>
              <div class="user-flow-container">
                 <!-- Start -->
                 <div class="flow-step start">
@@ -625,6 +626,7 @@
               <div class="design-concepts-container">
                 <h4 class="DefineTarkovSubHeader">Design Simplification & Early Concepts</h4>
                 <h4 class="CaptionLowFidelitySketchesTarkov">Friend System Overhaul</h4>
+                <p><strong>Goal:</strong> Reduce social friction and improve clarity by introducing status indicators, friend requests, and group features.</p>
                 <p>Improved friend management and clarity by adding status icons, direct friend requests, and group functionality. Designed to reduce friction and support social interaction</p>
                 <div class="design-images-grid">
                   <div class="design-images-row">
@@ -636,21 +638,25 @@
                   </div>
                 </div>
                 <h4 class="CaptionLowFidelitySketchesTarkov">Pre-Raid Group Coordination</h4>
+                <p><strong>Goal:</strong> Streamline team readiness with a 'Ready' state, inline friend list access, and invite/kick controls.</p>
                 <p>Streamlined team readiness with a "Ready" button for all members. Added friend invite/kick options and real-time friend list access to improve flow before raids.</p>
                 <div class="design-images-single">
                   <img src="Assets/Tarkov/Sketch4.jpg" alt="Pre-Raid Group Coordination" class="design-concept-image" />
                 </div>
                 <h4 class="CaptionLowFidelitySketchesTarkov">Raid UI Enhancements</h4>
+                <p><strong>Goal:</strong> Boost in-raid awareness and efficiency with always-visible health info, overlays for grenades and healing, and contextual HUD elements.</p>
                 <p>Boosted in-raid awareness with always-visible health, buffs/debuffs, and optional overlays (weather, compass, time). Introduced a contextual grenade wheel with focus blur for clarity.</p>
                 <div class="design-images-single">
                   <img src="Assets/Tarkov/Sketch6.jpg" alt="Raid UI Enhancements" class="design-concept-image" />
                 </div>
                 <h4 class="CaptionLowFidelitySketchesTarkov">PostFX & Flea Market QoL</h4>
+                <p><strong>Goal:</strong> Minimize screen switching and simplify item management with presets and inline market interactions.</p>
                 <p>Reduced screen switching by embedding item filtering and trading actions directly into context. Users can now manage PostFX presets intuitively.</p>
                 <div class="design-images-single">
                   <img src="Assets/Tarkov/Sketch8.jpg" alt="PostFX & Flea Market QoL" class="design-concept-image" />
                 </div>
                 <h4 class="CaptionLowFidelitySketchesTarkov">Settings Enhancements</h4>
+                <p><strong>Goal:</strong> Speed up visual customization and trading setup with PostFX presets and a streamlined flea market overlay.</p>
                 <p>Identified friction in visual and market settings. Introduced PostFX presets for faster customization and a streamlined flea market overlay to reduce navigation steps and speed up item interactions.</p>
                 <div class="design-images-single">
                   <img src="Assets/Tarkov/Sketch7.jpg" alt="Settings Enhancements" class="design-concept-image" />
@@ -736,35 +742,29 @@
               <div class="RetrospectiveAndLearnings">
               
               <h4 class="DefineTarkovSubHeader">Key Takeaways</h4>
-              <p>What began as a plan to fix a few tedious UI elements quickly expanded as I noticed deeper friction in small interactions throughout the game. Once I implemented the first changes and users experienced real relief in their workflows, feedback began pouring in with suggestions for other improvements. This shift taught me to listen actively and reevaluate priorities based on user pain.</p>
-              
-              <p>One of the biggest challenges was scoping the case study — deciding what to include and what to leave for future iterations. I had to balance ambition with clarity, focusing on features that impacted the core user loop the most: friend list usability, raid interaction clarity, healing/grenade access, and smoother market & crafting flows.</p>
+              <ul>
+                <li>Small UI changes can spark major user feedback and engagement.</li>
+                <li>Clear, intuitive design reduces frustration in high-stakes environments.</li>
+                <li>Quick access to frequent actions (healing, grenades) improves retention.</li>
+                <li>Removing redundant steps and microinteractions greatly improve usability.</li>
+                <li>Transparency and iterative design build user trust.</li>
+              </ul>
               
               <h4 class="DefineTarkovSubHeader">What I Improved</h4>
               <ul>
-                <li>Simplified the Friend List with clearer interactions, statuses, and fewer pop-ups</li>
-                <li>Improved Pre-Raid Coordination with real-time friend status and faster team setup</li>
-                <li>Gave users more contextual info during raids, while keeping it optional for experienced players</li>
-                <li>Reduced time sink in the Flea Market and PostFX areas by avoiding unnecessary screen switches</li>
-                <li>Introduced presets and overlays for faster, less tedious customization</li>
-              </ul>
-              
-              <h4 class="DefineTarkovSubHeader">Lessons Learned</h4>
-              <ul>
-                <li>User feedback is invaluable — even small changes can spark major input.</li>
-                <li>UI clarity reduces frustration dramatically in high-stakes environments like Tarkov.</li>
-                <li>Simplifying access to frequent actions (like grenades or healing) saves lives in-game — and reduces player churn.</li>
-                <li>Microinteractions and removing redundancy have outsized impact in complex systems.</li>
-                <li>Transparency and iteration are key to building trust with a dedicated user base.</li>
+                <li>Simplified friend list interactions and status indicators.</li>
+                <li>Enhanced pre-raid coordination with real-time friend info.</li>
+                <li>Added contextual HUD info during raids.</li>
+                <li>Reduced time lost switching between menus in the flea market and settings.</li>
+                <li>Enabled presets for quick, repeatable customization.</li>
               </ul>
               
               <h4 class="DefineTarkovSubHeader">If I Had More Time</h4>
-              <p>With more time and space, I'd:</p>
               <ul>
-                <li>Improve the Stash UX with better iconography and personalization</li>
-                <li>Rework inventory pop-ups (like bags/cases) into smarter collapsible modules</li>
-                <li>Add more user profile customization</li>
-                <li>Continue gathering player feedback focused on discoverability and future features</li>
+                <li>Improve stash UX with personalized icons and layouts.</li>
+                <li>Rework inventory pop-ups into smarter collapsible modules.</li>
+                <li>Add more user profile customization options.</li>
+                <li>Continue gathering and applying player feedback for future updates.</li>
               </ul>
               
               <p>Escape from Tarkov has a passionate community and a UX foundation with great potential.</p>
@@ -774,6 +774,10 @@
                 <cite>- Knight</cite>
                 <img src="Assets/Tarkov/TheGoons.jpg" alt="The Goons" class="goons-image" />
               </blockquote>
+              
+              <p style="text-align: center; margin: 40px 0 20px 0; color: #cccccc; font-size: 1.1em; font-style: italic;">
+                Thank you for reviewing this case study! If you'd like to discuss this project or explore my portfolio further, please don't hesitate to get in touch.
+              </p>
               
               <div class="case-study-navigation">
                 <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="nav-button">Back to Top</button>
