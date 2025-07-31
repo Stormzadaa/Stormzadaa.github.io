@@ -1,35 +1,86 @@
 // Smart Header Behavior - Hide on scroll down, show on scroll up or top hover
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     let lastScrollTop = 0;
     let isHeaderVisible = true;
     let scrollThreshold = 100; // Minimum scroll distance before hiding header
     let hoverZoneHeight = 80; // Height of hover zone at top of page
     let scrollTimer = null;
+    let isInitialized = false;
     
     const header = document.querySelector('.header');
     if (!header) return;
-    
-    // Add CSS transition for smooth header animation
-    header.style.transition = 'transform 0.3s ease-in-out';
-    header.style.position = 'fixed';
-    header.style.top = '0';
-    header.style.left = '0';
-    header.style.right = '0';
-    header.style.zIndex = '1000';
-    
-    // Adjust body padding to account for fixed header
-    function adjustBodyPadding() {
-        const headerHeight = header.offsetHeight;
-        document.body.style.paddingTop = headerHeight + 'px';
+
+    // Check if mobile (768px or less)
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
+    // Initialize header behavior for desktop
+    function initializeHeaderBehavior() {
+        if (isInitialized || isMobile()) return;
+        
+        // Add CSS transition for smooth header animation
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        header.style.position = 'fixed';
+        header.style.top = '0';
+        header.style.left = '0';
+        header.style.right = '0';
+        header.style.zIndex = '1000';
+        
+        // Remove any existing body padding
+        document.body.style.paddingTop = '0';
+        
+        // Add event listeners
+        window.addEventListener('scroll', throttledScroll, { passive: true });
+        document.addEventListener('mousemove', handleMouseMove, { passive: true });
+        document.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+        header.addEventListener('mouseenter', showHeader);
+        
+        // Initialize header state based on current scroll position
+        const initialScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (initialScrollTop > scrollThreshold) {
+            hideHeader();
+        }
+        
+        isInitialized = true;
     }
     
-    // Initialize body padding
-    adjustBodyPadding();
+    // Cleanup header behavior for mobile
+    function cleanupHeaderBehavior() {
+        if (!isInitialized) return;
+        
+        // Remove event listeners
+        window.removeEventListener('scroll', throttledScroll);
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseleave', handleMouseLeave);
+        header.removeEventListener('mouseenter', showHeader);
+        
+        // Reset header styles
+        header.style.transform = 'translateY(0)';
+        header.style.position = '';
+        header.style.top = '';
+        header.style.left = '';
+        header.style.right = '';
+        header.style.zIndex = '';
+        header.style.transition = '';
+        
+        document.body.style.paddingTop = '';
+        isHeaderVisible = true;
+        isInitialized = false;
+    }
+
     
-    // Recalculate on window resize
-    window.addEventListener('resize', adjustBodyPadding);
-    
+    // Handle window resize - switch between mobile and desktop behavior
+    window.addEventListener('resize', function() {
+        if (isMobile()) {
+            cleanupHeaderBehavior();
+        } else {
+            initializeHeaderBehavior();
+        }
+    });
+
     function hideHeader() {
+        if (isMobile()) return; // Never hide on mobile
         if (isHeaderVisible) {
             header.style.transform = 'translateY(-100%)';
             isHeaderVisible = false;
@@ -45,6 +96,8 @@
     
     // Handle scroll behavior
     function handleScroll() {
+        if (isMobile()) return; // Skip on mobile
+        
         const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         // Don't hide header if we're near the top of the page
@@ -73,6 +126,8 @@
     
     // Handle mouse movement near top of page
     function handleMouseMove(e) {
+        if (isMobile()) return; // Skip on mobile
+        
         const mouseY = e.clientY;
         const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
@@ -84,6 +139,8 @@
     
     // Handle mouse leave from top area
     function handleMouseLeave(e) {
+        if (isMobile()) return; // Skip on mobile
+        
         const mouseY = e.clientY;
         const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
@@ -107,6 +164,7 @@
     
     // Throttle scroll events for better performance
     function throttledScroll() {
+        if (isMobile()) return; // Skip on mobile
         if (scrollTimer) return;
         
         scrollTimer = setTimeout(() => {
@@ -114,14 +172,11 @@
             scrollTimer = null;
         }, 16); // ~60fps
     }
-    
-    // Event listeners
-    window.addEventListener('scroll', throttledScroll, { passive: true });
-    document.addEventListener('mousemove', handleMouseMove, { passive: true });
-    document.addEventListener('mouseleave', handleMouseLeave, { passive: true });
-    
-    // Handle header hover - keep visible when hovering over header itself
-    header.addEventListener('mouseenter', showHeader);
+
+    // Initialize behavior based on current screen size
+    if (!isMobile()) {
+        initializeHeaderBehavior();
+    }
     
     // Special handling for Tarkov page if it exists
     if (document.body.classList.contains('tarkov-page')) {
@@ -133,15 +188,9 @@
         });
     }
     
-    // Initialize header state based on current scroll position
-    const initialScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (initialScrollTop > scrollThreshold) {
-        hideHeader();
-    }
-    
-    // Handle page visibility change
+    // Handle page visibility change (only on desktop)
     document.addEventListener('visibilitychange', function() {
-        if (document.visibilityState === 'visible') {
+        if (!isMobile() && document.visibilityState === 'visible') {
             // Recalculate header state when page becomes visible
             const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
             if (currentScrollTop <= scrollThreshold) {
@@ -150,4 +199,4 @@
         }
     });
     
-})();
+});

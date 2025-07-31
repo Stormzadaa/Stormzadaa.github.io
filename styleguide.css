@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap');
 
 :root {
+  /* --- Noir Industrial Palette for Index/About --- */
+  --ni-background: #1C1C1C;
+  --ni-header-footer: #2A2B2D;
+  --ni-polygon: #7C8B92;
+  --ni-main-title: #A3A3A3;
+  --ni-main-title-about: #C9BFA4;
+  --ni-header-button: #B6B0A0;
+  --ni-light-text: #D0D0D0; /* Used for card titles and about page text */
+  --ni-footer-header: #D0D0D0;
+  --ni-footer-text: #7C8B92;
+  --ni-carousel: #A3A3A3;
+  --ni-image-name: #B66B2D;
+  --ni-underline: #B6B0A0;
+  --ni-white: #fcf9f7;
+
+  /* --- Existing Foundation & Tarkov Palette (do not remove, used by Tarkov page) --- */
   --foundation-greylight: rgba(238, 238, 238, 1);
   --foundation-greylight-hover: rgba(229, 229, 229, 1);
   --foundation-greylight-active: rgba(201, 201, 201, 1);

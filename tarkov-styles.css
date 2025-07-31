@@ -561,6 +561,7 @@
 
 /* Problem & Goals header - outside the box */
 .ProblemGoalsContext {
+  font-family: var(--heading-font-family);
   color: var(--TarkovTitles) !important;
   border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 13px;
@@ -597,6 +598,7 @@
 }
 
 .RnDHeader {
+  font-family: var(--heading-font-family);
   color: var(--TarkovTitles) !important;
   border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 13px;
@@ -604,12 +606,14 @@
 }
 
 .RnDSubHeader {
+  font-family: var(--heading-font-family);
   color: var(--TarkovSecondaryLink) !important;
   margin-top: 34px !important;
   text-align: left;
 }
 
 .DefineTarkovHeader {
+  font-family: var(--heading-font-family);
   color: var(--TarkovTitles) !important;
   border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 13px;
@@ -617,6 +621,7 @@
 }
 
 .DefineTarkovSubHeader {
+  font-family: var(--heading-font-family);
   color: var(--TarkovSecondaryLink) !important;
   margin-top: 34px !important;
   text-align: left;
@@ -764,12 +769,14 @@
 }
 
 .persona-name-role h2 {
+  font-family: var(--heading-font-family);
   color: var(--TarkovSecondaryLink) !important;
   margin: 0 !important;
   font-size: 1.4em;
 }
 
 .persona-name-role .role {
+  font-family: var(--body-font-family);
   color: var(--TarkovSecondaryLink) !important;
   margin: 5px 0 0 0 !important;
   font-weight: 600;
@@ -800,6 +807,7 @@
 }
 
 .persona-section h3 {
+  font-family: var(--heading-font-family);
   color: var(--TarkovSecondaryLink) !important;
   font-size: 1.1em;
   margin: 0 0 13px 0 !important;
@@ -827,6 +835,7 @@
 }
 
 .persona-quote blockquote {
+  font-family: var(--body-font-family);
   background: rgba(196, 170, 122, 0.1);
   border-left: 4px solid var(--TarkovTitles);
   padding: 13px;
@@ -844,6 +853,7 @@
 }
 
 .journey-map h3 {
+  font-family: var(--heading-font-family);
   color: var(--TarkovTitles) !important;
   margin-bottom: 21px !important;
 }
@@ -857,6 +867,7 @@
 }
 
 .journey-map th {
+  font-family: var(--heading-font-family);
   background: rgba(196, 170, 122, 0.2);
   color: #ffffff;
   padding: 12px;
@@ -899,6 +910,7 @@
 }
 
 .table-container th {
+  font-family: var(--heading-font-family);
   background: rgba(196, 170, 122, 0.2);
   color: #ffffff;
   padding: 15px;
@@ -993,7 +1005,7 @@
   padding: 15px 22px;
   min-width: 160px;
   text-align: center;
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: var(--body-font-family);
   font-size: 16px;
   font-weight: 500;
   color: #2d3748;
@@ -1025,7 +1037,7 @@
 
 .decision-text {
   transform: rotate(-45deg);
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: var(--body-font-family);
   font-size: 14px;
   font-weight: 600;
   color: #742a2a;
@@ -1066,7 +1078,7 @@
 }
 
 .branch-label {
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: var(--body-font-family);
   font-size: 14px;
   font-weight: 600;
   color: var(--TarkovSecondaryLink);
@@ -1223,6 +1235,7 @@
 
 .IdeateAndDesignHeader,
 .HighFidelityHeader {
+  font-family: var(--heading-font-family);
   color: var(--TarkovTitles) !important;
   border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 13px;
@@ -1231,6 +1244,7 @@
 
 .IdeateAndDesignSubHeader,
 .HighFidelitySubHeader {
+  font-family: var(--heading-font-family);
   color: var(--TarkovSecondaryLink) !important;
   margin-top: 34px !important;
   text-align: left;
