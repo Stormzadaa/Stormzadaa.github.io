@@ -1281,45 +1281,47 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
+    // Always show navigator when case study is visible, but respect boundaries
+    sideNavigator.classList.add('active');
+    
     const problemGoalsRect = problemGoalsSection.getBoundingClientRect();
     const thankYouRect = thankYouSection.getBoundingClientRect();
     
-    // Show navigator when Problem & Goals section is approaching the viewport
-    // Hide when Thank You section reaches the middle of screen
-    const isProblemGoalsArea = problemGoalsRect.top <= window.innerHeight * 0.8; // Show when section is 80% up the screen
-    const isBeforeThankYou = thankYouRect.top > window.innerHeight * 0.3; // Hide when thank you is 30% down
-    
-    if (isProblemGoalsArea && isBeforeThankYou) {
-      sideNavigator.classList.add('active');
-      // Only update position for ultra-wide mode; medium desktop stays centered
-      if (isUltraWideMode()) {
-        updateNavigatorPosition(problemGoalsRect, thankYouRect);
-      }
-    } else {
-      sideNavigator.classList.remove('active');
-    }
+    // Update position for both modes, with boundary respect
+    updateNavigatorPosition(problemGoalsRect, thankYouRect);
   }
   
-  // Update navigator position to stay within section boundaries (ultra-wide mode only)
+  // Update navigator position to stay within section boundaries (both modes)
   function updateNavigatorPosition(problemGoalsRect, thankYouRect) {
     const viewportHeight = window.innerHeight;
     const navigatorHeight = sideNavigator.offsetHeight;
     
-    // Calculate the available space between Problem & Goals top and Thank You section top
-    const topBoundary = Math.max(0, problemGoalsRect.top);
-    const bottomBoundary = Math.min(viewportHeight, thankYouRect.top);
-    const availableHeight = bottomBoundary - topBoundary;
+    // Define the minimum top position - never go above Problem & Goals section
+    const minTopPosition = Math.max(100, problemGoalsRect.top); // 100px minimum for header clearance
     
-    // If navigator fits within boundaries, center it
+    // Define the bottom boundary - respect Thank You section
+    const bottomBoundary = Math.min(viewportHeight - 50, thankYouRect.top - 20); // 50px from bottom, 20px from thank you
+    
+    // Calculate available space
+    const availableHeight = bottomBoundary - minTopPosition;
+    
+    // Calculate the ideal center position
+    const idealCenterPosition = minTopPosition + (availableHeight - navigatorHeight) / 2;
+    
+    // Ensure the navigator stays within bounds
+    let finalPosition;
+    
     if (navigatorHeight <= availableHeight && availableHeight > 0) {
-      const centerPosition = topBoundary + (availableHeight - navigatorHeight) / 2;
-      sideNavigator.style.top = `${centerPosition}px`;
-      sideNavigator.style.transform = 'translateY(0)';
-    } else if (availableHeight > 0) {
-      // If navigator is too tall, stick it to the top boundary
-      sideNavigator.style.top = `${topBoundary}px`;
-      sideNavigator.style.transform = 'translateY(0)';
+      // Navigator fits within boundaries, use centered position but never go above min
+      finalPosition = Math.max(minTopPosition, idealCenterPosition);
+    } else {
+      // Navigator is too tall or no space, stick to minimum position
+      finalPosition = minTopPosition;
     }
+    
+    // Apply the position
+    sideNavigator.style.top = `${finalPosition}px`;
+    sideNavigator.style.transform = 'translateY(0)';
   }
   
   // Update active section based on scroll position
@@ -1413,12 +1415,6 @@ document.addEventListener('DOMContentLoaded', function() {
       sideNavigator.classList.remove('active');
     } else {
       updateNavigatorVisibility();
-      
-      // Reset positioning styles when switching between modes
-      if (!isUltraWideMode()) {
-        sideNavigator.style.top = '';
-        sideNavigator.style.transform = '';
-      }
     }
   });
   
