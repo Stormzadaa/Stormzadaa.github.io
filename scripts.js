@@ -1061,6 +1061,166 @@ document.addEventListener("DOMContentLoaded", () => {
   arrangeCards();
   updateSubtitle(currentIndex);
   createClickAreas();
+
+  // Mobile touch/swipe functionality (now includes tablet and tablet normal)
+  function initializeMobileCarousel() {
+    if (window.innerWidth > 1279) return; // Only for mobile, tablet, and tablet normal screens
+    
+    const scene = document.querySelector('.tarkov-3d-carousel-section .scene');
+    const carouselSection = document.querySelector('.tarkov-3d-carousel-section');
+    
+    if (!scene || !carouselSection) return;
+
+    // Create mobile navigation arrows beside subtitle
+    const subtitle = document.querySelector('.tarkov-3d-carousel-section .carousel-subtitle');
+    if (subtitle && !subtitle.querySelector('.mobile-nav-arrow')) {
+      const subtitleText = subtitle.textContent;
+      subtitle.innerHTML = `
+        <div class="mobile-nav-arrow left" data-direction="left"></div>
+        <span class="subtitle-text">${subtitleText}</span>
+        <div class="mobile-nav-arrow right" data-direction="right"></div>
+      `;
+
+      // Add click handlers for mobile arrows
+      const leftArrow = subtitle.querySelector('.mobile-nav-arrow.left');
+      const rightArrow = subtitle.querySelector('.mobile-nav-arrow.right');
+      
+      leftArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        arrangeCards();
+      });
+      
+      rightArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % totalCards;
+        arrangeCards();
+      });
+    }
+
+    // Add swipe indicator
+    if (!carouselSection.querySelector('.swipe-indicator')) {
+      const swipeIndicator = document.createElement('div');
+      swipeIndicator.className = 'swipe-indicator';
+      swipeIndicator.textContent = 'Swipe to navigate';
+      carouselSection.appendChild(swipeIndicator);
+    }
+
+    // Touch/swipe variables
+    let startX = 0;
+    let startY = 0;
+    let endX = 0;
+    let endY = 0;
+    let isDragging = false;
+    let startTime = 0;
+
+    // Touch event handlers
+    function handleTouchStart(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      startTime = Date.now();
+      isDragging = true;
+      
+      // Add visual feedback
+      carousel.style.cursor = 'grabbing';
+      carousel.style.transition = 'none';
+    }
+
+    function handleTouchMove(e) {
+      if (!isDragging) return;
+      
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      const deltaX = currentX - startX;
+      const deltaY = currentY - startY;
+      
+      // Prevent vertical scrolling if horizontal movement is detected
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+        e.preventDefault();
+      }
+    }
+
+    function handleTouchEnd(e) {
+      if (!isDragging) return;
+      
+      endX = e.changedTouches[0].clientX;
+      endY = e.changedTouches[0].clientY;
+      const deltaX = endX - startX;
+      const deltaY = endY - startY;
+      const deltaTime = Date.now() - startTime;
+      
+      // Restore cursor and transition
+      carousel.style.cursor = 'grab';
+      carousel.style.transition = 'transform 0.6s ease-out';
+      
+      // Determine if it's a valid swipe
+      const minSwipeDistance = 50; // Minimum distance for swipe
+      const maxSwipeTime = 500; // Maximum time for swipe
+      const maxVerticalMovement = 100; // Maximum vertical movement allowed
+      
+      const isHorizontalSwipe = Math.abs(deltaX) > minSwipeDistance;
+      const isQuickSwipe = deltaTime < maxSwipeTime;
+      const isNotVerticalScroll = Math.abs(deltaY) < maxVerticalMovement;
+      const isMainlyHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
+      
+      if (isHorizontalSwipe && isQuickSwipe && isNotVerticalScroll && isMainlyHorizontal) {
+        if (deltaX > 0) {
+          // Swipe right - go to previous card
+          currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        } else {
+          // Swipe left - go to next card  
+          currentIndex = (currentIndex + 1) % totalCards;
+        }
+        arrangeCards();
+        
+        // Hide swipe indicator after first use
+        const indicator = carouselSection.querySelector('.swipe-indicator');
+        if (indicator) {
+          indicator.style.opacity = '0';
+          setTimeout(() => indicator.remove(), 300);
+        }
+      }
+      
+      isDragging = false;
+    }
+
+    // Add touch event listeners to carousel
+    carousel.addEventListener('touchstart', handleTouchStart, { passive: false });
+    carousel.addEventListener('touchmove', handleTouchMove, { passive: false });
+    carousel.addEventListener('touchend', handleTouchEnd, { passive: false });
+    
+    // Also add to scene for better coverage
+    scene.addEventListener('touchstart', handleTouchStart, { passive: false });
+    scene.addEventListener('touchmove', handleTouchMove, { passive: false });
+    scene.addEventListener('touchend', handleTouchEnd, { passive: false });
+  }
+
+  // Initialize mobile carousel if on mobile, tablet, or tablet normal
+  initializeMobileCarousel();
+  
+  // Re-initialize on window resize
+  window.addEventListener('resize', () => {
+    // Remove existing mobile elements if switching away from mobile/tablet/tablet normal
+    if (window.innerWidth > 1279) {
+      const existingArrows = document.querySelectorAll('.mobile-nav-arrow');
+      const existingIndicator = document.querySelector('.swipe-indicator');
+      
+      existingArrows.forEach(arrow => arrow.remove());
+      if (existingIndicator) existingIndicator.remove();
+      
+      // Restore original subtitle
+      const subtitle = document.querySelector('.tarkov-3d-carousel-section .carousel-subtitle');
+      const subtitleText = subtitle?.querySelector('.subtitle-text');
+      if (subtitle && subtitleText) {
+        subtitle.textContent = subtitleText.textContent;
+      }
+    } else {
+      // Re-initialize for mobile/tablet/tablet normal
+      initializeMobileCarousel();
+    }
+  });
 });
 
 // Show full case study and hide button on click

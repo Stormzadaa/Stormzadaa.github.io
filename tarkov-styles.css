@@ -1365,10 +1365,14 @@ img,
    MEDIUM SCREEN - 769px to 1279px
    ============================================= */
 @media (min-width: 769px) and (max-width: 1279px) {
-  /* Main container with medium screen padding */
+  /* Main container with medium screen padding - ensure proper width constraints */
   .TarkovCaseStudy {
     padding-left: 55px;
     padding-right: 55px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal overflow */
   }
 
   /* Typography adjustments */
@@ -1392,7 +1396,7 @@ img,
     font-size: 1.2em;
   }
 
-  /* Containers with consistent padding */
+  /* Containers with consistent padding - respect width constraints */
   .problemAndGoalsContext,
   .tarkovKeyFindings,
   .RetrospectiveAndLearnings,
@@ -1400,17 +1404,25 @@ img,
     padding: 34px;
     margin-left: 0;
     margin-right: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-  /* Persona cards stack vertically */
+  /* Persona cards respect container width */
   .persona-cards-row {
     flex-direction: column;
     gap: 21px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .persona-card {
-    min-width: 100%;
+    width: 100%;
     max-width: 100%;
+    min-width: 0; /* Allow shrinking */
+    box-sizing: border-box;
   }
 
   /* Flow diagrams stack vertically */
@@ -1435,42 +1447,187 @@ img,
     max-width: 100%;
   }
 
-  /* Tables with smaller text and better mobile handling */
+  /* Tables respect container width with proper overflow handling */
   .responsive-table,
   .table-container,
   .journey-map table {
     font-size: 0.9em;
     width: 100%;
-    overflow-x: auto;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .table-container {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     margin-left: 0;
     margin-right: 0;
+    box-sizing: border-box;
   }
 
-  /* Images scale properly */
+  .journey-map {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .journey-map table {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0; /* Allow table to shrink if needed */
+    box-sizing: border-box;
+  }
+
+  /* Images scale properly within container */
   .design-concept-image,
   .responsive-table img,
   img {
     max-width: 100%;
     height: auto;
+    box-sizing: border-box;
   }
 
-  /* 3D Carousel adjustments */
+  /* Ensure no element exceeds container width */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Special handling for tables and cards to respect container */
+  .table-container,
+  .journey-map,
+  .persona-cards-row,
+  .user-flow-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  /* 3D Carousel for tablet normal - use mobile carousel implementation */
+  .tarkov-3d-carousel-section {
+    margin: 34px 0 21px 0; /* Fib: 34, 21 */
+    position: relative; /* Required for absolute positioning of swipe indicator */
+  }
+  
   .tarkov-3d-carousel-section .scene {
-    max-width: calc(100vw - 110px); /* Account for 55px padding each side */
+    max-width: 100vw;
+    width: 100%;
+    transform: none; /* Remove scaling for full width */
+    transform-origin: center center;
+    padding: 0;
+    margin: 0;
+    position: relative; /* Ensure scene is positioned for indicator overlay */
   }
 
   .tarkov-3d-carousel-section .carousel {
-    transform: translateZ(-350px);
+    transform: translateZ(-200px); /* Reduced Z depth for tablet */
+    transition: transform 0.6s ease-out;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    touch-action: pan-x; /* Enable horizontal touch gestures */
   }
 
   .tarkov-3d-carousel-section .card {
-    transform: translateX(-50%) translateZ(350px);
-    width: 280px;
-    height: 175px;
+    transform: translateX(-50%) translateZ(200px);
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    transition: transform 0.6s ease-out;
+    cursor: grab;
+  }
+  
+  .tarkov-3d-carousel-section .card:active {
+    cursor: grabbing;
+  }
+
+  /* Hide desktop click areas on tablet normal */
+  .tarkov-3d-carousel-section .click-area.left-area,
+  .tarkov-3d-carousel-section .click-area.right-area,
+  .tarkov-3d-carousel-section .click-area.center-area {
+    display: none;
+  }
+
+  /* Tablet normal carousel subtitle with side arrows */
+  .tarkov-3d-carousel-section .carousel-subtitle {
+    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    margin-top: 21px; /* Fib: 21 */
+    margin-bottom: 21px; /* Fib: 21 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 21px; /* Fib: 21 */
+    position: relative;
+    flex-wrap: wrap;
+  }
+  
+  /* Subtitle text wrapper */
+  .tarkov-3d-carousel-section .subtitle-text {
+    flex: 0 1 auto;
+    text-align: center;
+  }
+  
+  /* Tablet normal navigation arrows beside subtitle */
+  .tarkov-3d-carousel-section .mobile-nav-arrow {
+    font-size: 1.5em;
+    color: var(--TarkovButton);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    padding: 8px; /* Fib: 8 */
+    border-radius: 50%;
+    background: rgba(196, 170, 122, 0.1);
+    border: 1px solid rgba(196, 170, 122, 0.3);
+    min-width: 34px; /* Fib: 34 */
+    height: 34px; /* Fib: 34 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow:hover,
+  .tarkov-3d-carousel-section .mobile-nav-arrow:active {
+    color: var(--TarkovButtonHover);
+    background: rgba(196, 170, 122, 0.2);
+    border-color: rgba(196, 170, 122, 0.5);
+    transform: scale(1.1);
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow.left::before {
+    content: "‹";
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow.right::before {
+    content: "›";
+  }
+
+  /* Tablet normal swipe indicator - positioned on top of carousel */
+  .tarkov-3d-carousel-section .swipe-indicator {
+    position: absolute;
+    top: 13px; /* Fib: 13 - positioned at top */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75em; /* Fib: 12/16 = 0.75 */
+    color: rgba(255, 255, 255, 0.95);
+    font-style: italic;
+    opacity: 1;
+    animation: fadeInOut 3s ease-in-out infinite;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 5px 13px; /* Fib: 5, 13 */
+    border-radius: 13px; /* Fib: 13 */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(196, 170, 122, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
   }
 
   /* Buttons and navigation for medium screens */
@@ -1498,10 +1655,14 @@ img,
    TABLET - 430px to 768px
    ============================================= */
 @media (min-width: 430px) and (max-width: 768px) {
-  /* Main container with tablet padding */
+  /* Main container with tablet padding - ensure proper width constraints */
   .TarkovCaseStudy {
     padding-left: 21px;
     padding-right: 21px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal overflow */
   }
 
   /* Typography for tablet */
@@ -1533,7 +1694,7 @@ img,
     margin-bottom: 13px;
   }
 
-  /* Containers with tablet padding */
+  /* Containers with tablet padding - respect width constraints */
   .problemAndGoalsContext,
   .tarkovKeyFindings,
   .RetrospectiveAndLearnings,
@@ -1541,19 +1702,27 @@ img,
     padding: 21px;
     margin-left: 0;
     margin-right: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-  /* Persona cards full width */
+  /* Persona cards respect container width */
   .persona-cards-row {
     flex-direction: column;
     gap: 21px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .persona-card {
-    min-width: 100%;
+    width: 100%;
     max-width: 100%;
+    min-width: 0; /* Allow shrinking */
     min-height: 600px;
     padding: 15px;
+    box-sizing: border-box;
   }
 
   .persona-header {
@@ -1614,24 +1783,32 @@ img,
     max-width: 100%;
   }
 
-  /* Tables responsive with better overflow handling */
+  /* Tables respect container width with proper overflow handling */
   .responsive-table,
   .table-container,
   .journey-map table {
     font-size: 0.8em;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .table-container {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     margin-left: 0;
     margin-right: 0;
     -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
   }
 
   .responsive-table,
   .journey-map table {
-    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0; /* Allow shrinking */
+    box-sizing: border-box;
   }
 
   .responsive-table td,
@@ -1659,41 +1836,139 @@ img,
     box-sizing: border-box;
   }
 
-  /* 3D Carousel for tablet */
+  /* Special handling for tables and cards to respect container */
+  .table-container,
+  .journey-map,
+  .persona-cards-row,
+  .user-flow-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  /* 3D Carousel for tablet - use mobile carousel implementation */
+  .tarkov-3d-carousel-section {
+    margin: 34px 0 21px 0; /* Fib: 34, 21 */
+    position: relative; /* Required for absolute positioning of swipe indicator */
+  }
+  
   .tarkov-3d-carousel-section .scene {
-    max-width: calc(100vw - 42px); /* Account for 21px padding each side */
+    max-width: 100vw;
+    width: 100%;
+    transform: none; /* Remove scaling for full width */
+    transform-origin: center center;
+    padding: 0;
+    margin: 0;
+    position: relative; /* Ensure scene is positioned for indicator overlay */
   }
 
   .tarkov-3d-carousel-section .carousel {
-    transform: translateZ(-300px);
-    transition: transform 1.5s;
+    transform: translateZ(-200px); /* Reduced Z depth for tablet */
+    transition: transform 0.6s ease-out;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    touch-action: pan-x; /* Enable horizontal touch gestures */
   }
 
   .tarkov-3d-carousel-section .card {
-    transform: translateX(-50%) translateZ(300px);
-    width: 220px;
-    height: 140px;
-    transition: transform 1.5s;
+    transform: translateX(-50%) translateZ(200px);
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    transition: transform 0.6s ease-out;
+    cursor: grab;
+  }
+  
+  .tarkov-3d-carousel-section .card:active {
+    cursor: grabbing;
   }
 
-  /* Carousel navigation for tablet */
-  .tarkov-3d-carousel-section .click-area.left-area {
-    left: -5.5%;
-    width: 5%;
-  }
-
-  .tarkov-3d-carousel-section .click-area.right-area {
-    right: -5.5%;
-    width: 5%;
-  }
-
+  /* Hide desktop click areas on tablet */
+  .tarkov-3d-carousel-section .click-area.left-area,
+  .tarkov-3d-carousel-section .click-area.right-area,
   .tarkov-3d-carousel-section .click-area.center-area {
-    width: 70%;
-    height: 85%;
+    display: none;
   }
 
-  .tarkov-3d-carousel-section .click-area:before {
-    font-size: 2rem;
+  /* Tablet carousel subtitle with side arrows */
+  .tarkov-3d-carousel-section .carousel-subtitle {
+    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    margin-top: 21px; /* Fib: 21 */
+    margin-bottom: 21px; /* Fib: 21 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 21px; /* Fib: 21 */
+    position: relative;
+    flex-wrap: wrap;
+  }
+  
+  /* Subtitle text wrapper */
+  .tarkov-3d-carousel-section .subtitle-text {
+    flex: 0 1 auto;
+    text-align: center;
+  }
+  
+  /* Tablet navigation arrows beside subtitle */
+  .tarkov-3d-carousel-section .mobile-nav-arrow {
+    font-size: 1.5em;
+    color: var(--TarkovButton);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    padding: 8px; /* Fib: 8 */
+    border-radius: 50%;
+    background: rgba(196, 170, 122, 0.1);
+    border: 1px solid rgba(196, 170, 122, 0.3);
+    min-width: 34px; /* Fib: 34 */
+    height: 34px; /* Fib: 34 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow:hover,
+  .tarkov-3d-carousel-section .mobile-nav-arrow:active {
+    color: var(--TarkovButtonHover);
+    background: rgba(196, 170, 122, 0.2);
+    border-color: rgba(196, 170, 122, 0.5);
+    transform: scale(1.1);
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow.left::before {
+    content: "‹";
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow.right::before {
+    content: "›";
+  }
+
+  /* Tablet swipe indicator - positioned on top of carousel */
+  .tarkov-3d-carousel-section .swipe-indicator {
+    position: absolute;
+    top: 13px; /* Fib: 13 - positioned at top */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75em; /* Fib: 12/16 = 0.75 */
+    color: rgba(255, 255, 255, 0.95);
+    font-style: italic;
+    opacity: 1;
+    animation: fadeInOut 3s ease-in-out infinite;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 5px 13px; /* Fib: 5, 13 */
+    border-radius: 13px; /* Fib: 13 */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(196, 170, 122, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
   }
 
   /* Margins and spacing adjustments */
@@ -1731,183 +2006,200 @@ img,
 }
 
 /* =============================================
-   MOBILE - max 429px
+   MOBILE - max 429px - FIBONACCI TYPOGRAPHY
    ============================================= */
 @media (max-width: 429px) {
-  /* Main container with mobile padding */
+  /* Main container with Fibonacci padding */
   .TarkovCaseStudy {
-    padding-left: 21px;
-    padding-right: 21px;
+    padding-left: 21px; /* Fib: 21 */
+    padding-right: 21px; /* Fib: 21 */
   }
 
-  /* Typography for mobile */
+  /* Typography for mobile - Fibonacci scaling */
   .tarkovStudy-headline {
-    font-size: 1.6em;
-    margin-top: 21px;
-    line-height: 1.1;
+    font-size: 2.125em; /* Fib: 34/16 = 2.125 */
+    margin-top: 21px; /* Fib: 21 */
+    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
+    letter-spacing: 0.125em; /* Fib: 2/16 = 0.125 */
   }
 
   .tarkovStudy-goal {
-    font-size: 0.9em;
-    margin-bottom: 21px;
-    line-height: 1.5;
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    margin-bottom: 21px; /* Fib: 21 */
+    line-height: 1.618; /* Golden ratio (Fib derived) */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
   .full-case-study-tarkov h2 {
-    font-size: 1.6em;
-    margin-top: 34px;
-    margin-bottom: 13px;
+    font-size: 1.75em; /* Fib: 28/16 ≈ 1.75 (interpolated) */
+    margin-top: 34px; /* Fib: 34 */
+    margin-bottom: 13px; /* Fib: 13 */
+    letter-spacing: 0.125em; /* Fib: 2/16 = 0.125 */
   }
 
   .full-case-study-tarkov h3 {
-    font-size: 1.3em;
-    margin-top: 21px;
-    margin-bottom: 13px;
+    font-size: 1.3125em; /* Fib: 21/16 = 1.3125 */
+    margin-top: 21px; /* Fib: 21 */
+    margin-bottom: 13px; /* Fib: 13 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
   .full-case-study-tarkov h4 {
-    font-size: 1em;
-    margin-top: 21px;
-    margin-bottom: 13px;
+    font-size: 1.125em; /* Fib: 18/16 ≈ 1.125 (interpolated) */
+    margin-top: 21px; /* Fib: 21 */
+    margin-bottom: 8px; /* Fib: 8 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
   .full-case-study-tarkov p,
   .full-case-study-tarkov li {
-    font-size: 0.9em;
-    line-height: 1.5;
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    line-height: 1.618; /* Golden ratio */
+    margin-bottom: 13px; /* Fib: 13 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
   }
 
-  /* Containers with mobile padding */
+  /* Containers with Fibonacci padding and spacing */
   .problemAndGoalsContext,
   .tarkovKeyFindings,
   .RetrospectiveAndLearnings,
   .user-flow-container {
-    padding: 15px;
+    padding: 21px; /* Fib: 21 */
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 34px; /* Fib: 34 */
   }
 
-  /* Persona cards optimized for mobile */
+  /* Persona cards optimized for mobile with Fibonacci sizing */
   .persona-cards-row {
     flex-direction: column;
-    gap: 15px;
+    gap: 21px; /* Fib: 21 */
   }
 
   .persona-card {
     min-width: 100%;
     max-width: 100%;
-    min-height: 500px;
-    padding: 13px;
+    min-height: 377px; /* Fib: 377 for larger content area */
+    padding: 13px; /* Fib: 13 */
   }
 
   .persona-header {
-    min-height: 80px;
-    gap: 8px;
+    min-height: 89px; /* Fib: 89 */
+    gap: 8px; /* Fib: 8 */
+    margin-bottom: 13px; /* Fib: 13 */
   }
 
   .persona-name-role h2 {
-    font-size: 1.2em;
+    font-size: 1.25em; /* Fib: 20/16 = 1.25 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
   .persona-section {
-    margin-bottom: 15px;
-    min-height: 80px;
+    margin-bottom: 13px; /* Fib: 13 */
+    min-height: 55px; /* Fib: 55 */
   }
 
   .persona-section:nth-child(3),
   .persona-section:nth-child(4),
   .persona-section:nth-child(5),
   .persona-section:nth-child(6) {
-    min-height: 70px;
+    min-height: 55px; /* Fib: 55 */
   }
 
   .persona-section h3 {
-    font-size: 1em;
-    margin-bottom: 8px;
+    font-size: 1.125em; /* Fib: 18/16 ≈ 1.125 */
+    margin-bottom: 8px; /* Fib: 8 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
   .persona-section ul {
-    padding-left: 15px;
+    padding-left: 21px; /* Fib: 21 */
   }
 
   .persona-section li {
-    font-size: 0.9em;
-    margin-bottom: 5px;
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    margin-bottom: 5px; /* Fib: 5 */
+    line-height: 1.618; /* Golden ratio */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
   }
 
-  /* Flow diagrams for mobile */
+  /* Flow diagrams for mobile with Fibonacci sizing */
   .branch-container {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 13px; /* Fib: 13 */
   }
 
   .branch-path {
     min-width: 100%;
-    max-width: 250px;
+    max-width: 233px; /* Fib: 233 */
   }
 
   .flow-box {
-    min-width: 100px;
-    padding: 10px 12px;
-    font-size: 12px;
-    line-height: 1.2;
+    min-width: 89px; /* Fib: 89 */
+    padding: 13px 21px; /* Fib: 13, 21 */
+    font-size: 0.875em; /* Fib: 14/16 = 0.875 */
+    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
   }
 
   .decision-box {
-    width: 60px;
-    height: 60px;
-    margin: 10px 0;
+    width: 55px; /* Fib: 55 */
+    height: 55px; /* Fib: 55 */
+    margin: 13px 0; /* Fib: 13 */
   }
 
   .decision-text {
-    font-size: 10px;
-    max-width: 45px;
+    font-size: 0.75em; /* Fib: 12/16 = 0.75 */
+    max-width: 34px; /* Fib: 34 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
   }
 
   .flow-arrow {
-    font-size: 14px;
-    margin: 4px 0;
+    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    margin: 5px 0; /* Fib: 5 */
   }
 
   .sub-branch {
     flex-direction: column;
-    gap: 10px;
+    gap: 13px; /* Fib: 13 */
     align-items: center;
   }
 
   .converge-line {
-    width: 80px;
+    width: 89px; /* Fib: 89 */
   }
 
   .branch-label {
-    font-size: 12px;
-    padding: 3px 8px;
+    font-size: 0.875em; /* Fib: 14/16 = 0.875 */
+    padding: 5px 8px; /* Fib: 5, 8 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
   }
 
-  /* Design images stack */
+  /* Design images stack with Fibonacci spacing */
   .design-images-row {
     flex-direction: column;
-    gap: 13px;
+    gap: 13px; /* Fib: 13 */
   }
 
   .design-images-row .design-concept-image {
     max-width: 100%;
   }
 
-  /* Tables very responsive with horizontal scroll */
+  /* Tables very responsive with horizontal scroll - Fibonacci sizing */
   .responsive-table,
   .table-container,
   .journey-map table {
-    font-size: 0.7em;
+    font-size: 0.875em; /* Fib: 14/16 = 0.875 */
     width: 100%;
-    min-width: 600px; /* Ensures table doesn't get too compressed */
+    min-width: 377px; /* Fib: 377 - ensures table doesn't get too compressed */
   }
 
   .table-container {
     overflow-x: auto;
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 21px; /* Fib: 21 */
     -webkit-overflow-scrolling: touch;
     background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
     border-radius: 6.5px;
@@ -1917,6 +2209,7 @@ img,
   .journey-map {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    margin-bottom: 21px; /* Fib: 21 */
   }
 
   .responsive-table,
@@ -1930,17 +2223,18 @@ img,
   .table-container th,
   .journey-map td,
   .journey-map th {
-    padding: 6px;
+    padding: 8px; /* Fib: 8 */
     white-space: nowrap;
-    min-width: 80px;
+    min-width: 55px; /* Fib: 55 */
+    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
   }
 
   .responsive-table td:first-child,
   .responsive-table th:first-child,
   .table-container td:first-child,
   .table-container th:first-child {
-    padding: 8px;
-    min-width: 100px;
+    padding: 13px; /* Fib: 13 */
+    min-width: 89px; /* Fib: 89 */
   }
 
   /* Images and media scale properly on mobile */
@@ -1975,103 +2269,188 @@ img,
     overflow-x: auto;
   }
 
-  /* Priority labels smaller */
+  /* Priority labels smaller with Fibonacci sizing */
   .priority-Must-Have,
   .priority-Should-Have,
   .priority-Could-Have,
   .priority-Wont-Have {
-    font-size: 0.7em;
-    padding: 2px 4px;
+    font-size: 0.75em; /* Fib: 12/16 = 0.75 */
+    padding: 3px 5px; /* Fib: 3, 5 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
   }
 
-  /* 3D Carousel for mobile */
+  /* 3D Carousel for mobile - full width with touch controls */
+  .tarkov-3d-carousel-section {
+    margin: 34px 0 21px 0; /* Fib: 34, 21 */
+    position: relative; /* Required for absolute positioning of swipe indicator */
+  }
+  
   .tarkov-3d-carousel-section .scene {
-    max-width: calc(100vw - 42px);
+    max-width: 100vw;
+    width: 100%;
+    transform: none; /* Remove scaling for full width */
+    transform-origin: center center;
+    padding: 0;
+    margin: 0;
+    position: relative; /* Ensure scene is positioned for indicator overlay */
   }
 
   .tarkov-3d-carousel-section .carousel {
-    transform: translateZ(-200px);
-    transition: transform 2s;
+    transform: translateZ(-200px); /* Reduced Z depth for mobile */
+    transition: transform 0.6s ease-out;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    touch-action: pan-x; /* Enable horizontal touch gestures */
   }
 
   .tarkov-3d-carousel-section .card {
     transform: translateX(-50%) translateZ(200px);
-    width: 160px;
-    height: 100px;
-    transition: transform 2s;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    transition: transform 0.6s ease-out;
+    cursor: grab;
+  }
+  
+  .tarkov-3d-carousel-section .card:active {
+    cursor: grabbing;
   }
 
-  /* Carousel navigation for mobile */
-  .tarkov-3d-carousel-section .click-area.left-area {
-    left: -4.5%;
-    width: 3.75%;
-  }
-
-  .tarkov-3d-carousel-section .click-area.right-area {
-    right: -4.5%;
-    width: 3.75%;
-  }
-
+  /* Hide desktop click areas on mobile */
+  .tarkov-3d-carousel-section .click-area.left-area,
+  .tarkov-3d-carousel-section .click-area.right-area,
   .tarkov-3d-carousel-section .click-area.center-area {
-    width: 80%;
-    height: 90%;
+    display: none;
   }
 
-  .tarkov-3d-carousel-section .click-area:before {
-    font-size: 1.5rem;
-  }
-
+  /* Mobile carousel subtitle with side arrows */
   .tarkov-3d-carousel-section .carousel-subtitle {
-    font-size: 1rem;
-    margin-top: 21px;
-    margin-bottom: 21px;
+    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    margin-top: 21px; /* Fib: 21 */
+    margin-bottom: 21px; /* Fib: 21 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 21px; /* Fib: 21 */
+    position: relative;
+    flex-wrap: wrap;
+  }
+  
+  /* Subtitle text wrapper */
+  .tarkov-3d-carousel-section .subtitle-text {
+    flex: 0 1 auto;
+    text-align: center;
+  }
+  
+  /* Mobile navigation arrows beside subtitle */
+  .tarkov-3d-carousel-section .mobile-nav-arrow {
+    font-size: 1.5em;
+    color: var(--TarkovButton);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    padding: 8px; /* Fib: 8 */
+    border-radius: 50%;
+    background: rgba(196, 170, 122, 0.1);
+    border: 1px solid rgba(196, 170, 122, 0.3);
+    min-width: 34px; /* Fib: 34 */
+    height: 34px; /* Fib: 34 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow:hover,
+  .tarkov-3d-carousel-section .mobile-nav-arrow:active {
+    color: var(--TarkovButtonHover);
+    background: rgba(196, 170, 122, 0.2);
+    border-color: rgba(196, 170, 122, 0.5);
+    transform: scale(1.1);
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow.left::before {
+    content: "‹";
+  }
+  
+  .tarkov-3d-carousel-section .mobile-nav-arrow.right::before {
+    content: "›";
   }
 
-  /* Buttons and navigation */
+  /* Mobile swipe indicator - positioned on top of carousel */
+  .tarkov-3d-carousel-section .swipe-indicator {
+    position: absolute;
+    top: 13px; /* Fib: 13 - positioned at top */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75em; /* Fib: 12/16 = 0.75 */
+    color: rgba(255, 255, 255, 0.95);
+    font-style: italic;
+    opacity: 1;
+    animation: fadeInOut 3s ease-in-out infinite;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 5px 13px; /* Fib: 5, 13 */
+    border-radius: 13px; /* Fib: 13 */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(196, 170, 122, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  /* Buttons and navigation with Fibonacci sizing */
   .view-case-study-btn,
   .nav-button {
-    font-size: 0.8em;
-    padding: 8px 12px;
-    letter-spacing: 0.5px;
+    font-size: 0.875em; /* Fib: 14/16 = 0.875 */
+    padding: 8px 13px; /* Fib: 8, 13 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
   .case-study-navigation {
     flex-direction: column;
-    gap: 10px;
-    margin: 34px 0 0 0;
+    gap: 13px; /* Fib: 13 */
+    margin: 34px 0 0 0; /* Fib: 34 */
   }
 
   .case-study-navigation .nav-button {
     width: 100%;
-    max-width: 200px;
+    max-width: 233px; /* Fib: 233 */
     text-align: center;
   }
 
-  /* Knight quote adjustments */
+  /* Knight quote adjustments with Fibonacci spacing */
   .knight-quote {
-    padding: 15px 21px 0 21px;
-    margin: 21px 0;
+    padding: 21px 34px 0 34px; /* Fib: 21, 34 */
+    margin: 21px 0; /* Fib: 21 */
   }
 
   .knight-quote p {
-    font-size: 1em;
+    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    line-height: 1.618; /* Golden ratio */
   }
 
   .knight-quote cite {
-    font-size: 0.9em;
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
   }
 
-  /* Margins and spacing adjustments */
+  /* Margins and spacing adjustments using Fibonacci */
   .subTitleTarkov {
-    margin-top: 34px;
-    margin-bottom: 34px;
+    margin-top: 34px; /* Fib: 34 */
+    margin-bottom: 34px; /* Fib: 34 */
   }
 
   .researchAndDiscovery,
   .journey-map,
   .design-concepts-container,
   .design-wireframes-container {
-    margin: 21px 0;
+    margin: 21px 0; /* Fib: 21 */
   }
 
   .ProblemGoalsContext,
@@ -2080,14 +2459,16 @@ img,
   .IdeateAndDesignHeader,
   .HighFidelityHeader,
   .RnLHeader {
-    font-size: 1.3em;
+    font-size: 1.3125em; /* Fib: 21/16 = 1.3125 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
   .RnDSubHeader,
   .DefineTarkovSubHeader,
   .IdeateAndDesignSubHeader,
   .HighFidelitySubHeader {
-    font-size: 1.1em;
+    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 }
 
@@ -2102,4 +2483,70 @@ h1.main-titleAbout {
   margin-bottom: 0 !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
+}
+
+/* =============================================
+   MOBILE TABLE REPLACEMENT - TARKOV SPECIFIC
+   ============================================= */
+
+/* Hide bullet points on desktop, show tables */
+@media (min-width: 1280px) {
+  .mobile-bullet-points {
+    display: none !important;
+  }
+  
+  .responsive-table,
+  .table-container table,
+  .journey-map table,
+  table {
+    display: table !important;
+  }
+}
+
+/* Hide tables on tablet and mobile, show bullet points with Fibonacci typography */
+@media (max-width: 1279px) {
+  .responsive-table,
+  .table-container table,
+  .journey-map table,
+  table {
+    display: none !important;
+  }
+  
+  .mobile-bullet-points {
+    display: block !important;
+    padding: 21px 0; /* Fib: 21 */
+  }
+  
+  .mobile-bullet-points h5 {
+    margin-bottom: 13px; /* Fib: 13 */
+    color: #c4aa7a;
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
+  }
+  
+  .mobile-bullet-points ul {
+    list-style-type: disc;
+    padding-left: 21px; /* Fib: 21 */
+    margin-bottom: 13px; /* Fib: 13 */
+  }
+  
+  .mobile-bullet-points li {
+    margin-bottom: 8px; /* Fib: 8 */
+    line-height: 1.618; /* Golden ratio */
+    color: var(--ni-light-text);
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+  }
+  
+  .mobile-bullet-points p {
+    margin-top: 13px; /* Fib: 13 */
+    font-style: italic;
+    color: var(--ni-light-text);
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    line-height: 1.618; /* Golden ratio */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+  }
 }
