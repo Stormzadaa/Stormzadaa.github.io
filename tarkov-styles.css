@@ -345,7 +345,7 @@ img,
 
 .tarkov-3d-carousel-section .click-area.left-area:hover:before {
   opacity: 1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 1);
   transform: scale(1.8);
 }
 
@@ -377,7 +377,7 @@ img,
 
 .tarkov-3d-carousel-section .click-area.right-area:hover:before {
   opacity: 1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 1);
   transform: scale(1.8);
 }
 
@@ -489,7 +489,7 @@ img,
 }
 
 .full-case-study-tarkov h2 {
-  font-size: 2.2em;
+  font-size: 1.8em;
   border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 10px;
 }
@@ -2548,5 +2548,198 @@ h1.main-titleAbout {
     font-size: 1em; /* Fib: 16/16 = 1 */
     line-height: 1.618; /* Golden ratio */
     letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+  }
+}
+
+/* =============================================
+   SIDE NAVIGATOR (DESKTOP ONLY)
+   ============================================= */
+
+.side-navigator {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: none; /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, top 0.2s ease, transform 0.2s ease;
+}
+
+/* Compact Navigator - Medium Desktop Screens (1378px - 1849px) */
+@media (min-width: 1378px) and (max-width: 1849px) {
+  .side-navigator {
+    left: calc(50% - 600px - 80px); /* 28px distance from Tarkov case study left border */
+  }
+
+  .tarkov-page .side-navigator.active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .side-nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 13px; /* Fib: 13 - tighter spacing */
+    padding: 13px 8px; /* Fib: 13, 8 - smaller padding */
+    background: transparent;
+    border: none;
+    border-radius: 5px; /* Fib: 5 */
+    backdrop-filter: none;
+    box-shadow: none;
+    max-width: 55px; /* Compact width for dots + triangles */
+  }
+
+  .side-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Fib: 5 - small gap between dot and triangle */
+    padding: 5px 3px; /* Fib: 5, 3 - minimal padding */
+    cursor: pointer;
+    border-radius: 3px; /* Fib: 3 */
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .side-nav-item:not(:last-child)::after {
+    display: none; /* Remove divider lines in compact mode */
+  }
+
+  .side-nav-item:hover {
+    background: transparent;
+  }
+
+  .side-nav-item.active {
+    background: transparent;
+  }
+
+  .nav-dot {
+    display: block;
+    width: 8px; /* Fib: 8 */
+    height: 8px; /* Fib: 8 */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .side-nav-item:hover .nav-dot,
+  .side-nav-item.active .nav-dot {
+    background-color: #c4aa7a;
+    transform: scale(1.2);
+  }
+
+  .nav-label {
+    display: none; /* Hide text labels in compact mode */
+  }
+
+  /* Triangle pointer */
+  .side-nav-item::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid rgba(255, 255, 255, 0.4); /* Fib: 5 */
+    border-top: 3px solid transparent; /* Fib: 3 */
+    border-bottom: 3px solid transparent; /* Fib: 3 */
+    transition: all 0.3s ease;
+  }
+
+  .side-nav-item:hover::before,
+  .side-nav-item.active::before {
+    border-left-color: #c4aa7a;
+    transform: scale(1.2);
+  }
+}
+
+/* Full Navigator - Large Desktop Screens (1850px+) */
+@media (min-width: 1850px) {
+  .side-navigator {
+    left: calc(50% - 600px - 280px); /* Position relative to content left border (1200px/2 = 600px) */
+  }
+
+  .tarkov-page .side-navigator.active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .side-nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 21px; /* Fib: 21 */
+    padding: 21px 13px; /* Fib: 21, 13 */
+    background: transparent;
+    border: none;
+    border-radius: 8px; /* Fib: 8 */
+    backdrop-filter: none;
+    box-shadow: none;
+    max-width: 233px; /* Fib: 233 */
+  }
+
+  .side-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 13px; /* Fib: 13 */
+    padding: 8px 13px; /* Fib: 8, 13 */
+    cursor: pointer;
+    border-radius: 5px; /* Fib: 5 */
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .side-nav-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(196, 170, 122, 0.3) 50%, transparent);
+  }
+
+  .side-nav-item:hover {
+    background: transparent;
+  }
+
+  .side-nav-item.active {
+    background: transparent;
+  }
+
+  .nav-dot {
+    display: none;
+  }
+
+  .nav-label {
+    font-family: var(--heading-font-family);
+    font-size: 20px; /* Same as headerTypography (h6-font-size) */
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+    letter-spacing: 0.025em;
+    transition: color 0.3s ease;
+  }
+
+  .side-nav-item:hover .nav-label,
+  .side-nav-item.active .nav-label {
+    color: #c4aa7a;
+  }
+
+  /* Hide triangle in full mode */
+  .side-nav-item::before {
+    display: none;
+  }
+}
+
+/* Hide on screens smaller than 1378px */
+@media (max-width: 1377px) {
+  .side-navigator {
+    display: none !important;
+  }
+}
+
+/* Hide case study navigation buttons on screens wider than 1850px */
+@media (min-width: 1850px) {
+  .case-study-navigation {
+    display: none !important;
   }
 }

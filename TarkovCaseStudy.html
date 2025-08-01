@@ -53,11 +53,6 @@
           <a href="#contact" id="hamburgerContactLink" class="headerTypo">CONTACT</a>
           <div class="contact-underline" id="hamburgerContactUnderline"></div>
         </li>
-        <li>
-          <button class="return-arrow" id="returnArrow">
-            <img src="Assets/arrow-right-from-line.svg" alt="Return">
-          </button>
-        </li>
       </ul>
     </div>
     <div class="body">
@@ -122,9 +117,40 @@
             </div>
           </div>
           <!-- Tarkov 3D Image Carousel END -->
+          
+          <!-- Side Navigator for Desktop -->
+          <nav class="side-navigator" id="sideNavigator">
+            <div class="side-nav-content">
+              <div class="side-nav-item" data-target="problem-goals">
+                <span class="nav-dot"></span>
+                <span class="nav-label">Problem & Goals</span>
+              </div>
+              <div class="side-nav-item" data-target="research-discovery">
+                <span class="nav-dot"></span>
+                <span class="nav-label">Research & Discovery</span>
+              </div>
+              <div class="side-nav-item" data-target="define-synthesis">
+                <span class="nav-dot"></span>
+                <span class="nav-label">Define (Synthesis)</span>
+              </div>
+              <div class="side-nav-item" data-target="ideate-design">
+                <span class="nav-dot"></span>
+                <span class="nav-label">Ideate and Design</span>
+              </div>
+              <div class="side-nav-item" data-target="high-fidelity-design">
+                <span class="nav-dot"></span>
+                <span class="nav-label">High-Fidelity Design</span>
+              </div>
+              <div class="side-nav-item" data-target="retrospective-learnings">
+                <span class="nav-dot"></span>
+                <span class="nav-label">Retrospective and Learnings</span>
+              </div>
+            </div>
+          </nav>
+          
           <button id="viewCaseStudyBtn" class="view-case-study-btn headerTypography">View Full Case Study</button>
           <section id="fullCaseStudyTarkov" class="full-case-study-tarkov" style="display: none;">
-            <h3 class="ProblemGoalsContext subTitleTypography">
+            <h2 id="problem-goals" class="ProblemGoalsContext subTitleTypography">
               Problem & Goals
             </h3>
             <div class="problemAndGoalsContext">
@@ -144,7 +170,7 @@
               </ul>
             </div>
             <div class="researchAndDiscovery">
-              <h3 class="RnDHeader subTitleTypography">
+              <h2 id="research-discovery" class="RnDHeader subTitleTypography">
                 Research & Discovery
               </h3>
               <p class="RnDResearchGoals textTypography">
@@ -232,7 +258,7 @@
               </div>
             </div>
             <div class="defineSynthesisTarkov">
-              <h3 class="DefineTarkovHeader subTitleTypography">
+              <h2 id="define-synthesis" class="DefineTarkovHeader subTitleTypography">
                 Define (Syntesis)
               </h3>
               <h4 class="DefineTarkovSubHeader headerTypography">
@@ -474,7 +500,7 @@
             </div>
             </div>
               <div class="IdeateAndDesignTarkov">
-              <h2 class="IdeateAndDesignHeader subTitleTypography">Ideate and Design</h2>
+              <h2 id="ideate-design" class="IdeateAndDesignHeader subTitleTypography">Ideate and Design</h2>
               <h4 class="DefineTarkovSubHeader headerTypography">UX User Flow</h4>
               <p class="textTypography">This flow starts with game launch and loadout prep, followed by combat decisions. If the player is shot, they can quickly heal via a shortcut-activated wheel. Grenade selection is also streamlined through a radial menu. These adjustments reduce downtime, increase responsiveness, and enhance focus during critical gameplay moments.</p>
              <div class="user-flow-container">
@@ -678,7 +704,7 @@
                 </div>
               </div>
               <div class="design-wireframes-container">
-              <h2 class="HighFidelityHeader subTitleTypography">High-Fidelity Design</h2>
+              <h2 id="high-fidelity-design" class="HighFidelityHeader subTitleTypography">High-Fidelity Design</h2>
               <h4 class="DefineTarkovSubHeader headerTypography">Refined Design Solutions & Implementation</h4>
               <p class="textTypography">Building on the early concepts, these high-fidelity designs showcase the final visual direction and detailed interactions. Each solution addresses specific user pain points identified during research, with refined aesthetics that maintain Tarkov's authentic feel while dramatically improving usability and workflow efficiency.</p>
               <h4 id="friend-system-overhaul" class="CaptionLowFidelitySketchesTarkov headerTypography">Friend System Overhaul</h4>
@@ -758,7 +784,7 @@
                 <img src="Assets/Tarkov/Working_Bench.jpg" alt="Workbench Layout" class="design-concept-image" />
               </div>
               </div>
-              <h2 class="RnLHeader subTitleTypography">Retrospective and Learnings</h2>
+              <h2 id="retrospective-learnings" class="RnLHeader subTitleTypography">Retrospective and Learnings</h2>
               <p class="textTypography">This project started as a visual polish effort but quickly evolved into a broader UX rethink. By focusing on real user friction points — from tedious item management to frustrating raid interactions — I prioritized meaningful changes that enhanced both usability and immersion. The process highlighted the importance of user feedback, smart scope management, and iterating with purpose.</p>
               <div class="RetrospectiveAndLearnings">
               
@@ -796,7 +822,7 @@
                 <img src="Assets/Tarkov/TheGoons.jpg" alt="The Goons" class="goons-image" />
               </blockquote>
               
-              <p style="text-align: center; margin: 40px 0 20px 0; color: #cccccc; font-size: 1.1em; font-style: italic;">
+              <p id="thank-you-section" style="text-align: center; margin: 40px 0 20px 0; color: #cccccc; font-size: 1.1em; font-style: italic;">
                 Thank you for reviewing this case study! If you'd like to discuss this project or explore my portfolio further, please don't hesitate to get in touch.
               </p>
               

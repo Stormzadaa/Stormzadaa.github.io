@@ -433,19 +433,43 @@
   }
 
   .main-titleAbout {
-    font-family: var(--heading-font-family);
     align-self: center;
     margin-top: 55px;
-    margin-bottom: 0px;
+    margin-bottom: 55px;
     max-width: 100%;
     z-index: 0;
-    margin-bottom: 55px;
     line-height: 1.5;
     text-align: center;
     letter-spacing: 21px;
     margin-left: 89px;
     margin-right: 89px;
     color: var(--ni-main-title-about);
+  }
+
+  .subTitleAbout {
+    color: var(--ni-main-title-about);
+  }
+
+  .subTitleAbout2 {
+    color: var(--ni-main-title-about);
+  }
+
+  .firstTextAbout {
+    align-self: center;
+    margin: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-left: 89px;
+    margin-right: 89px;
+  }
+
+  .secondTextAbout {
+    align-self: center;
+    margin: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-left: 89px;
+    margin-right: 89px;
   }
 
 }
@@ -1027,8 +1051,8 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
-    height: 100%;
+    width: 380px;
+    height: 350px;
     background: linear-gradient(
       to bottom,
       var(--ni-header-footer) 45%,
@@ -1039,6 +1063,7 @@
     transform: translateX(100%);
     transition: transform var(--menu-transition-duration) ease,
       background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
+    clip-path: polygon(100% 0%, 100% 100%, 15% 0%);
   }
 
   .hamburger-menu::before {
@@ -1113,10 +1138,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end; /* Align items to the right */
-    justify-content: top;
+    justify-content: flex-start;
     height: 100%;
-    padding-right: 20px; /* Add padding to align text properly */
-    padding-top: 40px; /* Add top padding */
+    padding-right: 40px; /* Add padding to align text properly */
+    padding-top: 70px; /* Add top padding */
+    padding-left: 140px; /* Add left padding to keep text within triangle */
     z-index: 2; /* Ensure ul is above the SVG background */
   }
 
@@ -1148,11 +1174,22 @@
     filter: brightness(0) saturate(100%) invert(75%) sepia(15%) saturate(312%) hue-rotate(26deg) brightness(88%) contrast(91%);
   }
 
-  .no-scroll {
-    overflow: hidden;
+  /* Centered hierarchy for tablet - consistent with desktop */
+  .title-line-1,
+  .title-line-2,
+  .title-line-3 {
+    display: block;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  /* -------- ABOUT PAGE---------- */
+  .title-line-1::after,
+  .title-line-2::after {
+    content: none;
+  }
+
+  /* -------- ABOUT PAGE - TABLET---------- */
 
   .hold-titleAbout {
     display: flex;
@@ -1161,9 +1198,9 @@
     justify-content: center;
     width: 100%;
     min-height: 100%;
-    padding-bottom: 21px;
-    padding-left: 21px;
-    padding-right: 21px;
+    padding-bottom: 34px;
+    padding-left: 55px;
+    padding-right: 55px;
     box-sizing: border-box;
     z-index: 1;
   }
@@ -1178,78 +1215,48 @@
   }
 
   .main-titleAbout {
-    font-family: var(--heading-font-family);
     align-self: center;
-    margin-top: 21px;
-    margin-bottom: 0px;
+    margin-top: 34px;
+    margin-bottom: 34px;
     max-width: 100%;
     z-index: 0;
-    margin-bottom: 21px;
     line-height: 1.5;
     text-align: center;
-    letter-spacing: 8px;
-    margin-left: 21px;
-    margin-right: 21px;
+    letter-spacing: 13px;
+    margin-left: 55px;
+    margin-right: 55px;
     color: var(--ni-main-title-about);
   }
 
   .subTitleAbout {
-    font-family: var(--heading-font-family);
-    align-self: center;
-    margin-top: 21px;
-    margin-bottom: 0px;
-    max-width: 100%;
-    z-index: 0;
-    margin-bottom: 21px;
-    color: var(--ni-header-button);
-  }
-
-  .firstTextAbout {
-    font-family: var(--body-font-family);
-    align-self: center;
-    margin: 0px;
-    max-width: 100%;
-    z-index: 0;
-    margin-left: 21px;
-    margin-right: 21px;
-    color: var(--ni-light-text);
-  }
-
-  .secondTextAbout {
-    font-family: var(--body-font-family);
-    align-self: center;
-    margin: 0px;
-    max-width: 100%;
-    z-index: 0;
-    margin-left: 21px;
-    margin-right: 21px;
-    color: var(--ni-light-text);
+    color: var(--ni-main-title-about);
   }
 
   .subTitleAbout2 {
-    font-family: var(--heading-font-family);
     align-self: center;
     margin-top: 21px;
-    margin-bottom: 0px;
+    margin-bottom: 21px;
     max-width: 100%;
     z-index: 0;
-    margin-bottom: 21px;
-    color: var(--ni-header-button);
+    color: var(--ni-main-title-about);
   }
 
-  /* Centered hierarchy for tablet - consistent with desktop */
-  .title-line-1,
-  .title-line-2,
-  .title-line-3 {
-    display: block;
-    text-align: center;
-    margin-left: 0;
-    margin-right: 0;
+  .firstTextAbout {
+    align-self: center;
+    margin: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-left: 55px;
+    margin-right: 55px;
   }
 
-  .title-line-1::after,
-  .title-line-2::after {
-    content: none;
+  .secondTextAbout {
+    align-self: center;
+    margin: 0px;
+    max-width: 100%;
+    z-index: 0;
+    margin-left: 55px;
+    margin-right: 55px;
   }
 }
 
@@ -1853,8 +1860,8 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
-    height: 100%;
+    width: 340px;
+    height: 320px;
     background: linear-gradient(
       to bottom,
       var(--ni-header-footer) 45%,
@@ -1865,6 +1872,7 @@
     transform: translateX(100%);
     transition: transform var(--menu-transition-duration) ease,
       background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
+    clip-path: polygon(100% 0%, 100% 100%, 12% 0%);
   }
 
   .hamburger-menu::before {
@@ -1939,15 +1947,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end; /* Align items to the right */
-    justify-content: top;
+    justify-content: flex-start;
     height: 100%;
-    padding-right: 20px; /* Add padding to align text properly */
-    padding-top: 40px; /* Add top padding */
+    padding-right: 35px; /* Add padding to align text properly */
+    padding-top: 65px; /* Add top padding */
+    padding-left: 110px; /* Add left padding to keep text within triangle */
     z-index: 2; /* Ensure ul is above the SVG background */
   }
 
   .hamburger-menu li {
-    margin: 20px 0;
+    margin: 18px 0;
     z-index: 2; /* Ensure li elements are above the SVG background */
   }
 
@@ -1955,6 +1964,23 @@
     color: var(--ni-header-button);
     text-decoration: none;
     z-index: 2; /* Ensure a elements are above the SVG background */
+  }
+
+  /* Return arrow button styling */
+  .return-arrow {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 0;
+    background: none;
+    border: none; /* Remove border */
+  }
+
+  .return-arrow img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(75%) sepia(15%) saturate(312%) hue-rotate(26deg) brightness(88%) contrast(91%);
   }
 
   /* Return arrow button styling */
@@ -2004,13 +2030,11 @@
   }
 
   .main-titleAbout {
-    font-family: var(--heading-font-family);
     align-self: center;
     margin-top: 21px;
-    margin-bottom: 0px;
+    margin-bottom: 21px;
     max-width: 100%;
     z-index: 0;
-    margin-bottom: 21px;
     line-height: 1.5;
     text-align: center;
     letter-spacing: 8px;
@@ -2019,19 +2043,20 @@
     color: var(--ni-main-title-about);
   }
 
+  .subTitleAbout {
+    color: var(--ni-main-title-about);
+  }
+
   .subTitleAbout2 {
-    font-family: var(--heading-font-family);
     align-self: center;
     margin-top: 21px;
-    margin-bottom: 0px;
+    margin-bottom: 21px;
     max-width: 100%;
     z-index: 0;
-    margin-bottom: 21px;
-    color: var(--ni-header-button);
+    color: var(--ni-main-title-about);
   }
 
   .firstTextAbout {
-    font-family: var(--body-font-family);
     align-self: center;
     margin: 0px;
     max-width: 100%;
@@ -2041,23 +2066,12 @@
   }
 
   .secondTextAbout {
-    font-family: var(--body-font-family);
     align-self: center;
     margin: 0px;
     max-width: 100%;
     z-index: 0;
     margin-left: 21px;
     margin-right: 21px;
-  }
-
-  .subTitleAbout2 {
-    align-self: center;
-    margin-top: 21px;
-    margin-bottom: 0px;
-    max-width: 100%;
-    z-index: 0;
-    margin-bottom: 21px;
-    color: var(--ni-header-button);
   }
 }
 

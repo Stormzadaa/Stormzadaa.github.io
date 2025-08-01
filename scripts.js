@@ -437,7 +437,6 @@ window.addEventListener("scroll", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-svg");
   const hamburgerMenu = document.getElementById("hamburgerMenu");
-  const returnArrow = document.getElementById("returnArrow");
 
   // Define custom properties for transition durations
   const openDuration = "0.9s";
@@ -488,9 +487,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburgerMenu.style.display = "none"; // Hide the menu after the animation
     }, 600); // Wait for the close animation to complete before removing the active class
   }
-
-  // Close the menu when clicking the return arrow and unlock scroll
-  returnArrow.addEventListener("click", closeMenu);
 
   // Close the menu when clicking outside of it and unlock scroll
   document.addEventListener("click", (event) => {
@@ -621,7 +617,6 @@ function smoothScrollTo(target, duration) {
 document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-svg");
   const hamburgerMenu = document.getElementById("hamburgerMenu");
-  const returnArrow = document.getElementById("returnArrow");
 
   // Define custom properties for transition durations
   const openDuration = "0.9s";
@@ -1234,6 +1229,202 @@ document.addEventListener("DOMContentLoaded", function () {
       section.scrollIntoView({ behavior: "smooth" });
     });
   }
+});
+
+// Side Navigator Functionality (Desktop Only)
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize side navigator for screens wider than 1378px
+  if (window.innerWidth < 1378) return;
+  
+  const sideNavigator = document.getElementById('sideNavigator');
+  const navItems = document.querySelectorAll('.side-nav-item');
+  const fullCaseStudy = document.getElementById('fullCaseStudyTarkov');
+  
+  if (!sideNavigator || !fullCaseStudy) return;
+  
+  // Define sections in order
+  const sections = [
+    'problem-goals',
+    'research-discovery', 
+    'define-synthesis',
+    'ideate-design',
+    'high-fidelity-design',
+    'retrospective-learnings'
+  ];
+  
+  // Check if current screen is ultra-wide (1850px+) or medium desktop (1280px-1849px)
+  function isUltraWideMode() {
+    return window.innerWidth >= 1850;
+  }
+  
+  function isMediumDesktopMode() {
+    return window.innerWidth >= 1378 && window.innerWidth < 1850;
+  }
+  
+  // Show/hide navigator based on section boundaries and screen size
+  function updateNavigatorVisibility() {
+    // Only show on screens wider than 1378px (both medium and ultra-wide)
+    if (window.innerWidth < 1378) {
+      sideNavigator.classList.remove('active');
+      return;
+    }
+    
+    const problemGoalsSection = document.getElementById('problem-goals');
+    const thankYouSection = document.getElementById('thank-you-section');
+    
+    if (!problemGoalsSection || !thankYouSection) return;
+    
+    // Only show if case study is visible
+    const isCaseStudyVisible = fullCaseStudy.style.display !== 'none';
+    if (!isCaseStudyVisible) {
+      sideNavigator.classList.remove('active');
+      return;
+    }
+    
+    const problemGoalsRect = problemGoalsSection.getBoundingClientRect();
+    const thankYouRect = thankYouSection.getBoundingClientRect();
+    
+    // Show navigator when Problem & Goals section is approaching the viewport
+    // Hide when Thank You section reaches the middle of screen
+    const isProblemGoalsArea = problemGoalsRect.top <= window.innerHeight * 0.8; // Show when section is 80% up the screen
+    const isBeforeThankYou = thankYouRect.top > window.innerHeight * 0.3; // Hide when thank you is 30% down
+    
+    if (isProblemGoalsArea && isBeforeThankYou) {
+      sideNavigator.classList.add('active');
+      // Only update position for ultra-wide mode; medium desktop stays centered
+      if (isUltraWideMode()) {
+        updateNavigatorPosition(problemGoalsRect, thankYouRect);
+      }
+    } else {
+      sideNavigator.classList.remove('active');
+    }
+  }
+  
+  // Update navigator position to stay within section boundaries (ultra-wide mode only)
+  function updateNavigatorPosition(problemGoalsRect, thankYouRect) {
+    const viewportHeight = window.innerHeight;
+    const navigatorHeight = sideNavigator.offsetHeight;
+    
+    // Calculate the available space between Problem & Goals top and Thank You section top
+    const topBoundary = Math.max(0, problemGoalsRect.top);
+    const bottomBoundary = Math.min(viewportHeight, thankYouRect.top);
+    const availableHeight = bottomBoundary - topBoundary;
+    
+    // If navigator fits within boundaries, center it
+    if (navigatorHeight <= availableHeight && availableHeight > 0) {
+      const centerPosition = topBoundary + (availableHeight - navigatorHeight) / 2;
+      sideNavigator.style.top = `${centerPosition}px`;
+      sideNavigator.style.transform = 'translateY(0)';
+    } else if (availableHeight > 0) {
+      // If navigator is too tall, stick it to the top boundary
+      sideNavigator.style.top = `${topBoundary}px`;
+      sideNavigator.style.transform = 'translateY(0)';
+    }
+  }
+  
+  // Update active section based on scroll position
+  function updateActiveSection() {
+    if (!sideNavigator.classList.contains('active')) return;
+    
+    let activeSection = null;
+    
+    // Get the navigator's position to use as reference point
+    const navigatorRect = sideNavigator.getBoundingClientRect();
+    const referencePoint = navigatorRect.top + 50; // Use navigator's top + small offset as reference
+    
+    // Find which section we're currently in by checking if we're past its start
+    // and before the next section's start
+    for (let i = 0; i < sections.length; i++) {
+      const currentSectionId = sections[i];
+      const currentElement = document.getElementById(currentSectionId);
+      
+      if (currentElement) {
+        const currentRect = currentElement.getBoundingClientRect();
+        
+        // Check if we've scrolled to this section (section top is at or above reference point)
+        if (currentRect.top <= referencePoint) {
+          // Check if there's a next section
+          if (i < sections.length - 1) {
+            const nextSectionId = sections[i + 1];
+            const nextElement = document.getElementById(nextSectionId);
+            
+            if (nextElement) {
+              const nextRect = nextElement.getBoundingClientRect();
+              
+              // If we haven't reached the next section yet, this is our active section
+              if (nextRect.top > referencePoint) {
+                activeSection = currentSectionId;
+              }
+            }
+          } else {
+            // This is the last section, so it's active if we've passed its top
+            activeSection = currentSectionId;
+          }
+        }
+      }
+    }
+    
+    // Update active states
+    navItems.forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    if (activeSection) {
+      const activeItem = document.querySelector(`[data-target="${activeSection}"]`);
+      if (activeItem) {
+        activeItem.classList.add('active');
+      }
+    }
+  }
+  
+  // Handle navigation item clicks
+  navItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        // Calculate offset to position section title at top of screen
+        const rect = targetElement.getBoundingClientRect();
+        const currentScroll = window.pageYOffset;
+        const targetPosition = currentScroll + rect.top - 100; // 100px offset for header
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // Listen for scroll events
+  let scrollTimeout;
+  window.addEventListener('scroll', function() {
+    updateNavigatorVisibility();
+    
+    // Throttle the active section update for better performance
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(updateActiveSection, 50);
+  });
+  
+  // Listen for window resize to hide/show navigator
+  window.addEventListener('resize', function() {
+    if (window.innerWidth < 1378) {
+      sideNavigator.classList.remove('active');
+    } else {
+      updateNavigatorVisibility();
+      
+      // Reset positioning styles when switching between modes
+      if (!isUltraWideMode()) {
+        sideNavigator.style.top = '';
+        sideNavigator.style.transform = '';
+      }
+    }
+  });
+  
+  // Initial check
+  updateNavigatorVisibility();
+  updateActiveSection();
 });
 
 // Smart Header Behavior - Hide on scroll down, show on scroll up or top hover
