@@ -110,21 +110,12 @@
     max-width: 100%;
     padding-left: 89px;
     padding-right: 89px;
-    padding-top: 21px;
-    padding-bottom: 21px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     justify-content: space-between;
+    align-items: center;
     box-sizing: border-box;
-  }
-
-  .headerBox {
-    display: flex;
-    max-width: 100%;
-    padding-left: 89px;
-    padding-right: 89px;
-    padding-top: 21px;
-    padding-bottom: 21px;
-    justify-content: space-between;
-    box-sizing: border-box;
+    height: 100%;
   }
 
   .logo {
@@ -204,9 +195,24 @@
     max-width: 100%;
     z-index: 0;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
     letter-spacing: 21px;
     text-transform: uppercase;
+  }
+
+  /* Option 1: Centered Hierarchy - elegant focal point */
+  .title-line-1,
+  .title-line-2,
+  .title-line-3 {
+    display: block;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .title-line-1::after,
+  .title-line-2::after {
+    content: none;
   }
 
   .hold-title {
@@ -298,7 +304,7 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    text-align: left;
+    text-align: center;
     gap: 34px;
   }
 
@@ -306,14 +312,14 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns */
     gap: 21px; /* Adds 20px gap between the items */
-    text-align: left;
+    text-align: center;
   }
 
   .get-in-touch-grid {
     display: grid;
     grid-template-rows: repeat(2, 1fr); /* Two rows, each equal height */
     gap: 21px;
-    text-align: left;
+    text-align: center;
   }
 
 .social-media-grid a,
@@ -345,7 +351,7 @@
 
   .image-item {
     text-align: center;
-    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+    transition: transform 0.5s ease; /* Smooth transition */
     cursor: pointer;
   }
 
@@ -358,7 +364,6 @@
 
   .image-item:hover {
     transform: scale(1.02); /* Scale up the image item */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
   }
 
   /* Click effect - Shrink the image item */
@@ -436,7 +441,7 @@
     z-index: 0;
     margin-bottom: 55px;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
     letter-spacing: 21px;
     margin-left: 89px;
     margin-right: 89px;
@@ -581,11 +586,13 @@
     max-width: 100%;
     padding-left: 55px;
     padding-right: 55px;
-    padding-top: 13px;
-    padding-bottom: 13px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     justify-content: space-between;
+    align-items: center;
     z-index: 1;
     box-sizing: border-box;
+    height: 100%;
   }
 
   .logo {
@@ -708,7 +715,7 @@
     max-width: 100%;
     z-index: 0;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
     letter-spacing: 13px;
     text-transform: uppercase;
   }
@@ -855,13 +862,13 @@
 
   .image-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 21px;
   }
 
   .image-item {
     text-align: center;
-    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+    transition: transform 0.5s ease; /* Smooth transition */
     cursor: pointer;
   }
 
@@ -874,7 +881,6 @@
 
   .image-item:hover {
     transform: scale(1.02); /* Scale up the image item */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
   }
 
   /* Click effect - Shrink the image item */
@@ -917,7 +923,7 @@
 
     .image-item {
       text-align: center;
-      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+      transition: transform 0.5s ease; /* Smooth transition */
       cursor: pointer;
     }
 
@@ -930,7 +936,7 @@
 
     .image-item:hover {
       transform: scale(1.02); /* Scale up the image item */
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+
     }
 
     /* Click effect - Shrink the image item */
@@ -955,6 +961,30 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    /* Main title styling for small tablet - optimized size */
+    .main-title {
+      font-size: var(--h2-font-size);
+      letter-spacing: 10px;
+      margin-top: 25px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    /* Centered hierarchy for 430-768px range */
+    .title-line-1,
+    .title-line-2,
+    .title-line-3 {
+      display: block;
+      text-align: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .title-line-1::after,
+    .title-line-2::after {
+      content: none;
     }
   }
 
@@ -1156,7 +1186,7 @@
     z-index: 0;
     margin-bottom: 21px;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
     letter-spacing: 8px;
     margin-left: 21px;
     margin-right: 21px;
@@ -1205,6 +1235,21 @@
     z-index: 0;
     margin-bottom: 21px;
     color: var(--ni-header-button);
+  }
+
+  /* Centered hierarchy for tablet - consistent with desktop */
+  .title-line-1,
+  .title-line-2,
+  .title-line-3 {
+    display: block;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .title-line-1::after,
+  .title-line-2::after {
+    content: none;
   }
 }
 
@@ -1344,13 +1389,13 @@
     max-width: 100%;
     padding-left: 21px;
     padding-right: 21px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     justify-content: space-between;
     align-items: center;
-    justify-content: space-between;
     z-index: 1;
     box-sizing: border-box;
+    height: 100%;
   }
 
   .logo {
@@ -1388,15 +1433,71 @@
   .menu-svg {
     background-color: transparent;
     border: none;
-    order: 2;
-    padding: 0;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    min-width: 40px;
+    min-height: 40px;
   }
 
-  .menu-svg img {
-    height: 25px;
-    width: 50px;
-    filter: brightness(0) saturate(100%) invert(75%) sepia(15%) saturate(312%) hue-rotate(26deg) brightness(88%) contrast(91%);
+  .menu-svg:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.1);
   }
+
+  .menu-svg:active {
+    transform: scale(0.95);
+  }
+
+  /* Enhanced hamburger icon styling */
+  .menu-svg img {
+    height: 18px;
+    width: 18px;
+    filter: brightness(0) saturate(100%) invert(75%) sepia(15%) saturate(312%) hue-rotate(26deg) brightness(88%) contrast(91%);
+    transition: all 0.3s ease;
+  }
+
+  .menu-svg:hover img {
+    filter: brightness(0) saturate(100%) invert(100%);
+  }
+
+  /* Alternative: CSS-only hamburger menu (replace img with div.hamburger-lines) 
+  .hamburger-lines {
+    width: 18px;
+    height: 2px;
+    background-color: var(--ni-header-button);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-lines::before,
+  .hamburger-lines::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    background-color: var(--ni-header-button);
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-lines::before {
+    top: -6px;
+  }
+
+  .hamburger-lines::after {
+    top: 6px;
+  }
+
+  .menu-svg:hover .hamburger-lines,
+  .menu-svg:hover .hamburger-lines::before,
+  .menu-svg:hover .hamburger-lines::after {
+    background-color: white;
+  }
+  */
 
   .fundo-poligonos {
     position: absolute;
@@ -1429,9 +1530,26 @@
     padding-left: 21px;
     padding-right: 21px;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
     letter-spacing: 8px;
     text-transform: uppercase;
+  }
+
+  /* Keep Vinicius Pim always on separate line - mobile */
+  .title-line-1,
+  .title-line-2 {
+    display: inline; /* First two lines can be inline */
+  }
+
+  .title-line-3 {
+    display: block; /* Vinicius Pim always on separate line */
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .title-line-1::after {
+    content: " "; /* Add space between first two inline elements */
   }
 
   .hold-title {
@@ -1576,7 +1694,7 @@
 
   .image-item {
     text-align: center;
-    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+    transition: transform 0.5s ease; /* Smooth transition */
     cursor: pointer;
   }
 
@@ -1589,7 +1707,6 @@
 
   .image-item:hover {
     transform: scale(1.02); /* Scale up the image item */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
   }
 
   /* Click effect - Shrink the image item */
@@ -1632,7 +1749,7 @@
 
     .image-item {
       text-align: center;
-      transition: transform 0.5s ease, box-shadow 0.3s ease; /* Smooth transition */
+      transition: transform 0.5s ease; /* Smooth transition */
       cursor: pointer;
     }
 
@@ -1645,7 +1762,7 @@
 
     .image-item:hover {
       transform: scale(1.02); /* Scale up the image item */
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+
     }
 
     /* Click effect - Shrink the image item */
@@ -1670,6 +1787,30 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    /* Main title styling for small tablet - optimized size */
+    .main-title {
+      font-size: var(--h2-font-size);
+      letter-spacing: 10px;
+      margin-top: 25px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    /* Centered hierarchy for 430-768px range */
+    .title-line-1,
+    .title-line-2,
+    .title-line-3 {
+      display: block;
+      text-align: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .title-line-1::after,
+    .title-line-2::after {
+      content: none;
     }
   }
 
@@ -1871,7 +2012,7 @@
     z-index: 0;
     margin-bottom: 21px;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
     letter-spacing: 8px;
     margin-left: 21px;
     margin-right: 21px;
