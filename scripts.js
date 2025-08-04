@@ -1,122 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ---- Infinite Text Carousel Animation Logic ----
-  const textCarouselContent = document.getElementById("carouselContent");
-  if (textCarouselContent) {
-    // Duplicate the content for seamless infinite effect
-    const textClone = textCarouselContent.cloneNode(true);
-    textClone.id = "carouselContentClone";
-    textCarouselContent.parentNode.appendChild(textClone);
-
-    // Set up positioning and animation variables
-    let textBaseSpeed = getTextCarouselSpeed();
-    let textSpeed = textBaseSpeed;
-    let animationRunning = true;
-
-    // 4 speeds for 4 breakpoints matching your CSS media queries
-    function getTextCarouselSpeed() {
-      const width = window.innerWidth;
-      if (width <= 430) return 0.4;
-      if (width <= 768) return 0.6;
-      if (width <= 1279) return 0.7;
-      return 0.8;
-    }
-
-    // Set up the carousel container and positioning
-    function setupCarousel() {
-      const container = textCarouselContent.parentNode;
-      
-      // Set container styles
-      container.style.position = "relative";
-      container.style.overflow = "hidden";
-      container.style.whiteSpace = "nowrap";
-      
-      // Set original content styles
-      textCarouselContent.style.display = "inline-flex";
-      textCarouselContent.style.whiteSpace = "nowrap";
-      textCarouselContent.style.transform = "translateX(0px)";
-      
-      // Set clone styles
-      textClone.style.display = "inline-flex";
-      textClone.style.whiteSpace = "nowrap";
-      textClone.style.position = "absolute";
-      textClone.style.left = "0";
-      textClone.style.top = "0";
-      textClone.style.transform = `translateX(${textCarouselContent.offsetWidth}px)`;
-    }
-
-    // Animation function with improved logic
-    function animateTextCarousel() {
-      if (!animationRunning) return;
-
-      const contentWidth = textCarouselContent.offsetWidth;
-      const currentTransform1 = parseFloat(textCarouselContent.style.transform.replace(/[^\d.-]/g, '')) || 0;
-      const currentTransform2 = parseFloat(textClone.style.transform.replace(/[^\d.-]/g, '')) || contentWidth;
-
-      // Move both elements
-      const newPos1 = currentTransform1 - textSpeed;
-      const newPos2 = currentTransform2 - textSpeed;
-
-      // Reset positions when they go completely off screen
-      if (newPos1 <= -contentWidth) {
-        textCarouselContent.style.transform = `translateX(${newPos2 + contentWidth}px)`;
-        textClone.style.transform = `translateX(${newPos2}px)`;
-      } else if (newPos2 <= -contentWidth) {
-        textClone.style.transform = `translateX(${newPos1 + contentWidth}px)`;
-        textCarouselContent.style.transform = `translateX(${newPos1}px)`;
-      } else {
-        textCarouselContent.style.transform = `translateX(${newPos1}px)`;
-        textClone.style.transform = `translateX(${newPos2}px)`;
-      }
-
-      requestAnimationFrame(animateTextCarousel);
-    }
-
-    // Initialize the carousel
-    setupCarousel();
-
-    // Responsive: update on resize
-    window.addEventListener("resize", () => {
-      textBaseSpeed = getTextCarouselSpeed();
-      textSpeed = textBaseSpeed;
-      
-      // Reset the carousel setup
-      setupCarousel();
-    });
-
-    // --- Hover effect for individual spans and speed ---
-    function handleSpanHover(span) {
-      textSpeed = textBaseSpeed / 2;
-      span.style.transition = "font-size 0.5s";
-      span.style.fontSize = "1.05em";
-    }
-
-    function handleSpanLeave(span) {
-      textSpeed = textBaseSpeed;
-      span.style.fontSize = "";
-    }
-
-    // Attach listeners to all spans in both original and clone
-    function attachSpanListeners(container) {
-      const spans = container.querySelectorAll("span");
-      spans.forEach((span) => {
-        // Set display and min-width to prevent shifting
-        span.style.display = "inline-block";
-        // Optionally, set min-width based on the span's initial width
-        if (!span.style.minWidth) {
-          span.style.minWidth = `${span.offsetWidth}px`;
-        }
-        span.addEventListener("mouseenter", () => handleSpanHover(span));
-        span.addEventListener("mouseleave", () => handleSpanLeave(span));
-      });
-    }
-
-    attachSpanListeners(textCarouselContent);
-    attachSpanListeners(textClone);
-
-    // Start the animation
-    animateTextCarousel();
-  }
-
   // ---- Infinite Background Loop Animation Logic ----
   const fundoPoligonos = document.querySelector(".fundo-poligonos");
   let bgAnimationFrameId;
@@ -344,6 +226,366 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call the function initially and whenever the window is resized
   adjustToggleSwitchPlacement();
   window.addEventListener("resize", adjustToggleSwitchPlacement);
+
+  // ============================================================================
+  // ---- INFINITE TEXT CAROUSEL ANIMATION LOGIC ----
+  // ============================================================================
+  
+  const carouselContent = document.getElementById("carouselContent");
+  
+  if (carouselContent) {
+    console.log("Carousel script loaded, starting initialization...");
+
+    // Configuration
+    const config = {
+      speed: 1, // Base speed (pixels per frame)
+      responsive: {
+        mobile: { maxWidth: 430, speed: 0.8 },
+        tablet: { maxWidth: 768, speed: 1.0 },
+        tabletLarge: { maxWidth: 1279, speed: 1.2 },
+        desktop: { minWidth: 1280, speed: 1.5 }
+      }
+    };
+
+    // State variables
+    let animationId = null;
+    let currentPosition = 0;
+    let carouselWidth = 0;
+    let containerWidth = 0;
+    let speed = config.speed;
+    let isRunning = true;
+    let isInitialized = false;
+    let initializationAttempts = 0;
+
+    // Much more aggressive layout detection
+    function isLayoutReady() {
+      const container = carouselContent.parentElement;
+      const contentWidth = carouselContent.offsetWidth;
+      const containerWidthCheck = container.offsetWidth;
+      const contentHeight = carouselContent.offsetHeight;
+      
+      // Check computed styles are applied
+      const computedStyle = window.getComputedStyle(carouselContent);
+      const hasComputedStyles = computedStyle.display !== '' && computedStyle.fontSize !== '';
+      
+      console.log(`Layout check ${initializationAttempts + 1}:`, {
+        contentWidth,
+        containerWidthCheck,
+        contentHeight,
+        hasComputedStyles,
+        displayStyle: computedStyle.display,
+        fontSize: computedStyle.fontSize
+      });
+      
+      return (
+        contentWidth > 0 && 
+        containerWidthCheck > 0 && 
+        contentWidth > 100 && 
+        contentHeight > 0 &&
+        hasComputedStyles
+      );
+    }
+
+    // Robust initialization with multiple strategies
+    function attemptInitialization() {
+      initializationAttempts++;
+      console.log(`Initialization attempt ${initializationAttempts}`);
+      
+      if (isLayoutReady()) {
+        console.log("Layout is ready, initializing carousel...");
+        actuallyInitialize();
+        return true;
+      } else if (initializationAttempts < 20) {
+        // Try again with increasing delays
+        const delay = Math.min(50 + (initializationAttempts * 25), 500);
+        console.log(`Layout not ready, retrying in ${delay}ms...`);
+        setTimeout(attemptInitialization, delay);
+        return false;
+      } else {
+        console.warn("Failed to detect proper layout after 20 attempts, forcing initialization");
+        actuallyInitialize();
+        return true;
+      }
+    }
+
+    // The actual initialization function
+    function actuallyInitialize() {
+      if (isInitialized) {
+        console.log("Already initialized, skipping...");
+        return;
+      }
+      
+      console.log("Running actual initialization...");
+      
+      // Set up the carousel structure
+      setupCarousel();
+      
+      // Set up hover effects
+      setupHoverEffects();
+      
+      // Start animation
+      start();
+      
+      // Mark as initialized
+      isInitialized = true;
+      
+      console.log("Carousel initialization complete!");
+    }
+
+    // Create seamless infinite effect by duplicating content
+    function setupCarousel() {
+      console.log("Setting up carousel...");
+      const container = carouselContent.parentElement;
+      
+      // Clear any existing clones
+      const existingClones = container.querySelectorAll('[id*="carouselContentClone"]');
+      existingClones.forEach(clone => clone.remove());
+      
+      // Get dimensions
+      containerWidth = container.offsetWidth;
+      carouselWidth = carouselContent.offsetWidth;
+      
+      console.log("Carousel dimensions:", { containerWidth, carouselWidth });
+      
+      // If still no dimensions, force a reflow
+      if (carouselWidth === 0) {
+        container.style.visibility = 'hidden';
+        container.offsetHeight; // Force reflow
+        container.style.visibility = 'visible';
+        carouselWidth = carouselContent.offsetWidth;
+        console.log("After forced reflow, carouselWidth:", carouselWidth);
+      }
+      
+      // Create enough clones to ensure seamless scrolling
+      // We need enough clones so that when one set scrolls off-screen, the next set is already visible
+      const clonesNeeded = Math.max(3, Math.ceil((containerWidth * 2) / carouselWidth));
+      console.log(`Creating ${clonesNeeded} clones`);
+      
+      for (let i = 1; i <= clonesNeeded; i++) {
+        const clone = carouselContent.cloneNode(true);
+        clone.id = `carouselContentClone${i}`;
+        clone.style.position = 'absolute';
+        clone.style.left = '0';
+        clone.style.top = '0';
+        clone.style.whiteSpace = 'nowrap';
+        clone.style.display = 'inline-flex';
+        container.appendChild(clone);
+      }
+      
+      // Set initial positions
+      resetPositions();
+      
+      // Update speed based on screen size
+      updateSpeed();
+      
+      console.log("Carousel setup complete");
+    }
+
+    // Reset all element positions
+    function resetPositions() {
+      const container = carouselContent.parentElement;
+      const allElements = container.querySelectorAll('#carouselContent, [id*="carouselContentClone"]');
+      
+      allElements.forEach((element, index) => {
+        const xPos = index * carouselWidth;
+        element.style.transform = `translateX(${xPos}px)`;
+      });
+      
+      currentPosition = 0;
+    }
+
+    // Update speed based on screen size
+    function updateSpeed() {
+      const width = window.innerWidth;
+      
+      if (width <= config.responsive.mobile.maxWidth) {
+        speed = config.responsive.mobile.speed;
+      } else if (width <= config.responsive.tablet.maxWidth) {
+        speed = config.responsive.tablet.speed;
+      } else if (width <= config.responsive.tabletLarge.maxWidth) {
+        speed = config.responsive.tabletLarge.speed;
+      } else {
+        speed = config.responsive.desktop.speed;
+      }
+    }
+
+    // Main animation loop - COMPLETELY REWRITTEN for true infinite scroll
+    function animate() {
+      if (!isRunning) return;
+      
+      // Move the global position
+      currentPosition -= speed;
+      
+      // Get all carousel elements
+      const container = carouselContent.parentElement;
+      const allElements = container.querySelectorAll('#carouselContent, [id*="carouselContentClone"]');
+      
+      // Simple infinite loop: when currentPosition goes too far left, reset it
+      if (currentPosition <= -carouselWidth) {
+        currentPosition = 0; // Reset to start position
+      }
+      
+      // Position all elements in a continuous line
+      allElements.forEach((element, index) => {
+        // Each element is positioned at currentPosition + (index * carouselWidth)
+        const elementPosition = currentPosition + (index * carouselWidth);
+        element.style.transform = `translateX(${elementPosition}px)`;
+      });
+      
+      animationId = requestAnimationFrame(animate);
+    }
+
+    // Start the carousel
+    function start() {
+      if (isRunning && animationId) {
+        console.log("Carousel already running");
+        return;
+      }
+      isRunning = true;
+      console.log("Starting carousel animation");
+      animate();
+    }
+
+    // Stop the carousel
+    function stop() {
+      console.log("Stopping carousel animation");
+      isRunning = false;
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    }
+
+    // Handle window resize
+    function handleResize() {
+      if (!isInitialized) return;
+      
+      console.log("Window resized, reinitializing carousel...");
+      stop();
+      
+      // Reset initialization flag and attempt counter
+      isInitialized = false;
+      initializationAttempts = 0;
+      
+      // Wait for layout to settle after resize
+      setTimeout(() => {
+        attemptInitialization();
+      }, 150);
+    }
+
+    // Handle visibility change (pause when tab is not visible)
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    }
+
+    // Add hover effects for individual spans
+    function setupHoverEffects() {
+      const container = carouselContent.parentElement;
+      
+      // Use event delegation for better performance
+      container.addEventListener('mouseenter', (e) => {
+        if (e.target.tagName === 'SPAN') {
+          // Slow down on hover
+          speed = speed * 0.3;
+          
+          // Visual feedback
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'scale(1.05)';
+        }
+      }, true);
+      
+      container.addEventListener('mouseleave', (e) => {
+        if (e.target.tagName === 'SPAN') {
+          // Restore normal speed
+          updateSpeed();
+          
+          // Reset visual feedback
+          e.target.style.opacity = '0.5';
+          e.target.style.transform = 'scale(1)';
+        }
+      }, true);
+    }
+
+    // Public API (if needed)
+    window.CarouselAPI = {
+      start,
+      stop,
+      restart: () => {
+        console.log("Manual restart requested");
+        stop();
+        isInitialized = false;
+        initializationAttempts = 0;
+        attemptInitialization();
+      },
+      forceInit: () => {
+        console.log("Force initialization requested");
+        isInitialized = false;
+        initializationAttempts = 0;
+        actuallyInitialize();
+      }
+    };
+
+    // Set up event listeners
+    window.addEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Multiple initialization strategies with more aggressive timing
+    console.log("Setting up initialization strategies...");
+    
+    // Strategy 1: Immediate attempt
+    setTimeout(() => {
+      console.log("Strategy 1: Immediate attempt");
+      attemptInitialization();
+    }, 0);
+    
+    // Strategy 2: After requestAnimationFrame (ensures DOM is painted)
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        console.log("Strategy 2: After RAF + 50ms");
+        if (!isInitialized) attemptInitialization();
+      }, 50);
+    });
+    
+    // Strategy 3: After a short delay
+    setTimeout(() => {
+      console.log("Strategy 3: After 200ms");
+      if (!isInitialized) attemptInitialization();
+    }, 200);
+    
+    // Strategy 4: After images and fonts load
+    window.addEventListener('load', () => {
+      console.log("Strategy 4: After window load");
+      if (!isInitialized) attemptInitialization();
+    });
+    
+    // Strategy 5: After a longer delay as ultimate fallback
+    setTimeout(() => {
+      console.log("Strategy 5: Ultimate fallback after 1000ms");
+      if (!isInitialized) {
+        console.warn("Using ultimate fallback initialization");
+        actuallyInitialize();
+      }
+    }, 1000);
+
+    // Strategy 6: Use ResizeObserver if available to detect layout changes
+    if (window.ResizeObserver) {
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.target === carouselContent && !isInitialized) {
+            console.log("Strategy 6: ResizeObserver detected layout change");
+            if (entry.contentRect.width > 100) {
+              attemptInitialization();
+            }
+          }
+        }
+      });
+      resizeObserver.observe(carouselContent);
+    }
+  }
 });
 
 // Check if the current page is index.html

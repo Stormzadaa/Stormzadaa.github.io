@@ -241,9 +241,12 @@
 
   /* Carousel word styling */
   .carousel-content span {
-    padding: 0 13px;
+    padding: 0 15px;
     opacity: 0.5;
     color: var(--ni-header-button);
+    display: inline-block;
+    white-space: nowrap;
+    transition: opacity 0.3s, transform 0.3s;
   }
 
   .project-overlay {
