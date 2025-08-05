@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (fundoPoligonos) {
     let bgContentHeight = fundoPoligonos.scrollHeight;
-    let bgScrollSpeed = 0.1;
+    let bgScrollSpeed = 0.05;
 
     const fundoClone = fundoPoligonos.cloneNode(true);
     fundoClone.classList.add("fundo-poligonos-clone");
@@ -238,12 +238,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Configuration
     const config = {
-      speed: 1, // Base speed (pixels per frame)
+      speed: 0.5, // Base speed (pixels per frame)
       responsive: {
-        mobile: { maxWidth: 430, speed: 0.8 },
-        tablet: { maxWidth: 768, speed: 1.0 },
-        tabletLarge: { maxWidth: 1279, speed: 1.2 },
-        desktop: { minWidth: 1280, speed: 1.5 }
+        mobile: { maxWidth: 430, speed: 0.4 },
+        tablet: { maxWidth: 768, speed: 0.5 },
+        tabletLarge: { maxWidth: 1279, speed: 0.6 },
+        desktop: { minWidth: 1280, speed: 0.75 }
       }
     };
 
