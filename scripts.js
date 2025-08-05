@@ -980,24 +980,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const body = document.body;
-
-  // Check if the page is the Tarkov page
-  if (body.classList.contains("tarkov-page")) {
-    const portfolioSection = document.querySelector(".portfolio-section");
-    const header = document.querySelector(".header");
-    const footer = document.querySelector("footer");
-
-    // Simulate the color change after a delay
-    setTimeout(() => {
-      portfolioSection?.classList.add("tarkov-active");
-      header?.classList.add("tarkov-active");
-      footer?.classList.add("tarkov-active");
-    }, 1000); // Adjust the delay as needed
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
   const contactLink = document.getElementById("contactLink");
   const footer = document.querySelector("footer");
 
@@ -1037,23 +1019,111 @@ function smoothScrollTo(target, duration) {
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
-  // Check if the page is the Tarkov page
+  // Enhanced Tarkov Page Color Theme Activation
   if (body.classList.contains("tarkov-page")) {
     const portfolioSection = document.querySelector(".portfolio-section");
     const header = document.querySelector(".header");
     const footer = document.querySelector("footer");
     const hamburgerMenu = document.getElementById("hamburgerMenu");
 
-    // Simulate the color change after a delay
+    // Create a smooth loading animation effect
+    // First, ensure elements are visible, then apply the theme
     setTimeout(() => {
+      // Add visual loading feedback with much slower transitions
+      if (portfolioSection) {
+        portfolioSection.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }
+      if (header) {
+        // Include transform transition for header behavior AND background-color for theme
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease';
+      }
+      if (footer) {
+        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease';
+      }
+
+      // Apply Tarkov theme classes
       portfolioSection?.classList.add("tarkov-active");
       header?.classList.add("tarkov-active");
       footer?.classList.add("tarkov-active");
-      // Change hamburger menu color for Tarkov page (especially on mobile)
+      
+      // Change hamburger menu color for mobile
       if (hamburgerMenu) {
+        hamburgerMenu.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         hamburgerMenu.classList.add("tarkov-active");
       }
-    }, 1000); // Adjust the delay as needed
+
+      // Add subtle fade-in effect for enhanced immersion
+      document.body.style.opacity = '1';
+    }, 1500); // Longer delay before starting the transition
+
+    // Set initial state for smooth transition
+    document.body.style.opacity = '0.92';
+    document.body.style.transition = 'opacity 1s ease';
+  }
+
+  // Enhanced Grocery Page Color Theme Activation
+  if (body.classList.contains("grocery-page")) {
+    const portfolioSection = document.querySelector(".portfolio-section");
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+    // Create a smooth loading animation effect for grocery theme
+    setTimeout(() => {
+      // Add visual loading feedback with smooth transitions
+      if (portfolioSection) {
+        portfolioSection.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }
+      if (header) {
+        // Include transform transition for header behavior AND background-color for theme
+        header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease';
+      }
+      if (footer) {
+        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease';
+      }
+
+      // Add text color transitions for all typography elements
+      const typographyElements = document.querySelectorAll('.headerTypography, .nav-link, .titleTypography, .subTitleTypography, .textTypography, .footerTitleTypography, .footerTextTypography, .grocery-main-title, .grocery-subtitle, .grocery-description, .detail-title, .detail-text, .feature-title, .feature-description, .step-title, .step-description, .design-group-title, .result-number, .result-label, .learnings-title, .learnings-list li, .next-project-title, .next-project-name, .next-project-description');
+      typographyElements.forEach(element => {
+        element.style.transition = 'color 5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      // Add background transitions for all container elements
+      const containerElements = document.querySelectorAll('.grocery-features-section, .grocery-process-section, .grocery-designs-section, .grocery-results-section, .grocery-next-project');
+      containerElements.forEach(element => {
+        element.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      // Add transitions for cards and interactive elements
+      const cardElements = document.querySelectorAll('.feature-card, .next-project-card, .design-image');
+      cardElements.forEach(element => {
+        element.style.transition = element.style.transition + ', background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      // Add transitions for special elements
+      const specialElements = document.querySelectorAll('.step-number, .process-step:not(:last-child)::after, .learnings-list li::before');
+      specialElements.forEach(element => {
+        element.style.transition = element.style.transition + ', background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      // Apply Grocery theme classes
+      portfolioSection?.classList.add("grocery-active");
+      header?.classList.add("grocery-active");
+      footer?.classList.add("grocery-active");
+      
+      // Change hamburger menu color for mobile
+      if (hamburgerMenu) {
+        hamburgerMenu.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        hamburgerMenu.classList.add("grocery-active");
+      }
+
+      // Add subtle fade-in effect
+      document.body.style.opacity = '1';
+    }, 1000); // Smooth activation timing
+
+    // Set initial state for smooth transition
+    document.body.style.opacity = '0.95';
+    document.body.style.transition = 'opacity 0.8s ease';
   }
 });
 
@@ -1686,8 +1756,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function initializeHeaderBehavior() {
         if (isInitialized || isMobile()) return;
         
-        // Add CSS transition for smooth header animation
-        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        // Add CSS transition for smooth header animation - include background-color for theme compatibility
+        const body = document.body;
+        if (body.classList.contains("grocery-page")) {
+            header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        } else if (body.classList.contains("tarkov-page")) {
+            header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        } else {
+            header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        }
         header.style.position = 'fixed';
         header.style.top = '0';
         header.style.left = '0';
@@ -1865,4 +1942,139 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+});
+
+// =============================================
+// TARKOV PAGE SPECIFIC HEADER BEHAVIOR - INDEPENDENT OF COLOR SYSTEM
+// =============================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Only run on Tarkov page
+    if (!document.body.classList.contains('tarkov-page')) return;
+    
+    const header = document.querySelector('.header');
+    if (!header) return;
+
+    let lastScrollTop = 0;
+    let isHeaderVisible = true;
+    let scrollThreshold = 100;
+    let hoverZoneHeight = 80;
+    let scrollTimer = null;
+    
+    // Check if mobile
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+    
+    // Show header function
+    function showTarkovHeader() {
+        if (!isHeaderVisible && !isMobile()) {
+            header.style.transform = 'translateY(0)';
+            isHeaderVisible = true;
+        }
+    }
+    
+    // Hide header function  
+    function hideTarkovHeader() {
+        if (isHeaderVisible && !isMobile()) {
+            header.style.transform = 'translateY(-100%)';
+            isHeaderVisible = false;
+        }
+    }
+    
+    // Throttled scroll handler
+    function throttledTarkovScroll() {
+        if (scrollTimer) return;
+        scrollTimer = setTimeout(() => {
+            handleTarkovScroll();
+            scrollTimer = null;
+        }, 16); // ~60fps
+    }
+    
+    // Handle scroll behavior
+    function handleTarkovScroll() {
+        if (isMobile()) return;
+        
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Show header if near top
+        if (currentScrollTop < scrollThreshold) {
+            showTarkovHeader();
+            lastScrollTop = currentScrollTop;
+            return;
+        }
+        
+        // Determine scroll direction
+        const scrollingDown = currentScrollTop > lastScrollTop;
+        const scrollingUp = currentScrollTop < lastScrollTop;
+        
+        // Prevent jitter - minimum scroll difference
+        const scrollDifference = Math.abs(currentScrollTop - lastScrollTop);
+        if (scrollDifference < 5) return;
+        
+        if (scrollingDown && isHeaderVisible) {
+            hideTarkovHeader();
+        } else if (scrollingUp && !isHeaderVisible) {
+            showTarkovHeader();
+        }
+        
+        lastScrollTop = currentScrollTop;
+    }
+    
+    // Handle mouse movement near top
+    function handleTarkovMouseMove(e) {
+        if (isMobile()) return;
+        
+        const mouseY = e.clientY;
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (mouseY <= hoverZoneHeight && currentScrollTop > scrollThreshold) {
+            showTarkovHeader();
+        }
+    }
+    
+    // Initialize Tarkov header behavior
+    function initTarkovHeaderBehavior() {
+        if (isMobile()) return;
+        
+        // Add smooth transition for both header animation and color changes
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        
+        window.addEventListener('scroll', throttledTarkovScroll, { passive: true });
+        document.addEventListener('mousemove', handleTarkovMouseMove, { passive: true });
+        header.addEventListener('mouseenter', showTarkovHeader);
+        
+        // Set initial state
+        const initialScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (initialScrollTop > scrollThreshold) {
+            hideTarkovHeader();
+        } else {
+            showTarkovHeader();
+        }
+    }
+    
+    // Cleanup Tarkov header behavior
+    function cleanupTarkovHeaderBehavior() {
+        window.removeEventListener('scroll', throttledTarkovScroll);
+        document.removeEventListener('mousemove', handleTarkovMouseMove);
+        header.removeEventListener('mouseenter', showTarkovHeader);
+        
+        // Reset header transform but preserve all transitions
+        header.style.transform = 'translateY(0)';
+        // Keep both transitions - transform for header behavior and background-color for theme
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        
+        isHeaderVisible = true;
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (isMobile()) {
+            cleanupTarkovHeaderBehavior();
+        } else {
+            initTarkovHeaderBehavior();
+        }
+    });
+    
+    // Initialize
+    initTarkovHeaderBehavior();
 });

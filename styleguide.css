@@ -39,10 +39,19 @@
   --foundation-browndarker: rgba(79, 69, 61, 1);
   --Background-DM: rgba(27, 27, 27);
   --Background-FT: rgb(37, 37, 37);
-  --TarkovFooterBackground: rgb(52, 52, 52);
+  
+  /* Enhanced Tarkov Game-Inspired Color Palette */
+  --TarkovPageBackground: rgb(28, 28, 28); /* Default dark */
+  --TarkovPageBackgroundActive: #1a1a18; /* Dark military green-tinted */
+  --TarkovHeaderBackground: rgb(42, 42, 42); /* Default */
+  --TarkovHeaderBackgroundActive: #2d3328; /* Dark olive */
+  --TarkovFooterBackground: rgb(52, 52, 52); /* Default */
+  --TarkovFooterBackgroundActive: #252823; /* Dark forest */
+  --TarkovAccentGreen: #9fb986; /* Military green accent */
+  --TarkovBorderGreen: #4a5f3a; /* Darker green for borders */
+  --TarkovTextSand: #d4c5a9; /* Warm sand color for primary text */
+  --TarkovTextMutedSand: #a89979; /* Muted sand for secondary text */
   --TarkovText: rgb(255, 255, 255);
-  --TarkovHeaderBackground: rgb(42, 42, 42);
-  --TarkovPageBackground: rgb(28, 28, 28);
   --TarkovCardBackground: rgb(60, 63, 65);
   --TarkovSecondaryLink: rgb(190, 181, 162);
   --TarkovTitles: rgb(164, 140, 95);

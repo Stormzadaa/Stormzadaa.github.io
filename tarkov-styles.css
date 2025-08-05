@@ -3,34 +3,145 @@
    ============================================= */
 
 /* =============================================
-   TARKOV PAGE BODY & LAYOUT
+   TARKOV COLOR ACTIVATION AFTER PAGE LOAD
    ============================================= */
 
+/* Base Tarkov Page Styling */
 .tarkov-page .portfolio-section {
-  background-color: var(
-    --TarkovPageBackground
-  ); /* Set background color - no transitions */
+  background-color: var(--TarkovPageBackground);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+.tarkov-page .header {
+  background-color: var(--TarkovHeaderBackground);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tarkov-page footer {
+  background-color: var(--TarkovFooterBackground);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced Tarkov Theme Activation */
+.tarkov-page .portfolio-section.tarkov-active {
+  background-color: #1a1a18; /* Dark military green-tinted background */
+}
+
+.tarkov-page .header.tarkov-active {
+  background-color: #2d3328; /* Dark olive header */
+  border-bottom: 1px solid #4a5f3a;
+}
+
+.tarkov-page footer.tarkov-active {
+  background-color: #252823; /* Dark forest footer */
+  border-top: 1px solid #4a5f3a;
+}
+
+.tarkov-page .hamburger-menu.tarkov-active {
+  background-color: #252823; /* Match footer color */
+}
+
+/* Typography color changes for Tarkov theme */
+.tarkov-page .tarkov-active .headerTypography,
+.tarkov-page .tarkov-active .nav-link,
+.tarkov-page .hamburger-menu.tarkov-active .headerTypography,
+.tarkov-page .hamburger-menu.tarkov-active a {
+  color: #d4c5a9; /* Warm sand color for text */
+}
+
+/* Header elements color transitions */
+.tarkov-page .header .nav-link,
+.tarkov-page .header .headerTypo,
+.tarkov-page .menu-icon {
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Logo color transition */
+.tarkov-page .header .logo {
+  transition: filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Tarkov active state colors */
+.tarkov-page .header.tarkov-active .nav-link,
+.tarkov-page .header.tarkov-active .headerTypo {
+  color: #d4c5a9 !important; /* Warm sand color for navigation text */
+}
+
+/* Logo color change for Tarkov theme */
+.tarkov-page .header.tarkov-active .logo {
+  filter: brightness(0) saturate(100%) invert(87%) sepia(14%) saturate(534%) hue-rotate(15deg) brightness(98%) contrast(89%);
+  /* This filter converts the logo to the warm sand color #d4c5a9 */
+}
+
+/* Menu icon color change for Tarkov theme */
+.tarkov-page .header.tarkov-active .menu-icon {
+  filter: brightness(0) saturate(100%) invert(87%) sepia(14%) saturate(534%) hue-rotate(15deg) brightness(98%) contrast(89%);
+  /* Same warm sand color as logo */
+}
+
+/* Hamburger menu content colors */
+.tarkov-page .hamburger-menu a {
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tarkov-page .hamburger-menu.tarkov-active a {
+  color: #d4c5a9 !important; /* Warm sand color for hamburger menu links */
+}
+
+.tarkov-page .footer.tarkov-active .footerTitleTypography {
+  color: #d4c5a9; /* Sand color for footer titles */
+}
+
+/* Keep original footer link colors - remove these lines */
+/* .tarkov-page .footer.tarkov-active .footerTextTypography,
+.tarkov-page .footer.tarkov-active a {
+  color: #a89979;
+} */
+
+/* Navigation underlines for Tarkov theme */
+.tarkov-page .header.tarkov-active .nav-underline.active,
+.tarkov-page .hamburger-menu.tarkov-active .work-underline,
+.tarkov-page .hamburger-menu.tarkov-active .about-underline,
+.tarkov-page .hamburger-menu.tarkov-active .contact-underline {
+  background-color: #9fb986; /* Military green accent */
+  border-color: #9fb986;
+}
+
+/* =============================================
+   TARKOV PAGE BODY & LAYOUT
+   ============================================= */
 
 /* =============================================
    TARKOV HEADER - WITH SCROLL BEHAVIOR
    ============================================= */
 
 /* Header with smooth scroll animations and basic styling */
+/* =============================================
+   TARKOV PAGE HEADER BEHAVIOR - INDEPENDENT OF COLOR THEME
+   ============================================= */
+
+/* Base header behavior - separate from color transitions */
 .tarkov-page .header {
-  background-color: var(--TarkovHeaderBackground);
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
 }
 
-/* Header box styling for Tarkov page */
-.tarkov-page .headerBox {
+/* Header scroll animation classes - independent of color theme */
+.tarkov-page .header.tarkov-hide-header {
+  transform: translateY(-100%);
+}
+
+.tarkov-page .header.tarkov-show-header {
+  transform: translateY(0);
+}
+
+/* Header box styling for Tarkov page - removed extra padding */
+/* .tarkov-page .headerBox {
   padding: 25px 89px;
-}
+} */
 
-/* Body padding to account for fixed header */
-.tarkov-page .body {
-  padding-top: 100px;
-}
+/* Body padding - let JavaScript handle this dynamically for header behavior */
 
 /* Navigation visibility on Tarkov page */
 .tarkov-page .menu-svg {
@@ -41,25 +152,13 @@
   display: flex;
 }
 
-/* Responsive styles */
+/* Responsive styles - removed extra padding */
 @media (min-width: 769px) and (max-width: 1279px) {
-  .tarkov-page .headerBox {
-    padding: 15px 55px;
-  }
-  
-  .tarkov-page .body {
-    padding-top: 70px;
-  }
+  /* Let scripts.js handle body padding dynamically */
 }
 
 @media (max-width: 768px) {
-  .tarkov-page .headerBox {
-    padding: 15px 21px;
-  }
-  
-  .tarkov-page .body {
-    padding-top: 70px;
-  }
+  /* Let scripts.js handle body padding and navigation visibility dynamically */
   
   .tarkov-page .menu-svg {
     display: flex;
@@ -1365,10 +1464,10 @@ img,
    MEDIUM SCREEN - 769px to 1279px
    ============================================= */
 @media (min-width: 769px) and (max-width: 1279px) {
-  /* Main container with medium screen padding - ensure proper width constraints */
+  /* Main container with medium screen padding - removed extra padding */
   .TarkovCaseStudy {
-    padding-left: 55px;
-    padding-right: 55px;
+    /* padding-left: 55px;
+    padding-right: 55px; */
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -1655,10 +1754,10 @@ img,
    TABLET - 430px to 768px
    ============================================= */
 @media (min-width: 430px) and (max-width: 768px) {
-  /* Main container with tablet padding - ensure proper width constraints */
+  /* Main container with tablet padding - removed extra padding */
   .TarkovCaseStudy {
-    padding-left: 21px;
-    padding-right: 21px;
+    /* padding-left: 21px;
+    padding-right: 21px; */
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -2009,11 +2108,7 @@ img,
    MOBILE - max 429px - FIBONACCI TYPOGRAPHY
    ============================================= */
 @media (max-width: 429px) {
-  /* Main container with Fibonacci padding */
-  .TarkovCaseStudy {
-    padding-left: 21px; /* Fib: 21 */
-    padding-right: 21px; /* Fib: 21 */
-  }
+  /* Main container padding removed - now uses standard page padding */
 
   /* Typography for mobile - Fibonacci scaling */
   .tarkovStudy-headline {
@@ -2741,5 +2836,123 @@ h1.main-titleAbout {
 @media (min-width: 1850px) {
   .case-study-navigation {
     display: none !important;
+  }
+}
+
+/* =============================================
+   OTHER PROJECTS SECTION
+   ============================================= */
+
+.tarkov-other-projects {
+  margin-top: 60px;
+  padding: 60px 0 0 0; /* Remove bottom padding since it's inside content */
+  border-top: 1px solid #4a5f3a;
+}
+
+.other-projects-title {
+  color: #c4aa7a; /* Military gold */
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2.2rem;
+  letter-spacing: 0.02em;
+}
+
+.other-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background: rgba(45, 51, 40, 0.3); /* More subtle background */
+  border: 1px solid #4a5f3a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: #c4aa7a;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(45, 51, 40, 0.5);
+}
+
+.project-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 25px;
+  text-align: center;
+}
+
+.project-name {
+  color: #c4aa7a; /* Military gold */
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.project-description {
+  color: #d4c5a9; /* Warm sand */
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .tarkov-other-projects {
+    margin-top: 40px;
+    padding: 40px 0 0 0;
+  }
+  
+  .other-projects-title {
+    font-size: 1.8rem;
+    margin-bottom: 35px;
+  }
+  
+  .other-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .project-content {
+    padding: 20px;
+  }
+  
+  .project-name {
+    font-size: 1.2rem;
+  }
+  
+  .project-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .other-projects-grid {
+    gap: 20px;
+  }
+  
+  .project-image {
+    height: 180px;
+  }
+  
+  .project-content {
+    padding: 18px;
   }
 }
