@@ -1063,67 +1063,161 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Enhanced Grocery Page Color Theme Activation
   if (body.classList.contains("grocery-page")) {
-    const portfolioSection = document.querySelector(".portfolio-section");
-    const header = document.querySelector(".header");
-    const footer = document.querySelector("footer");
-    const hamburgerMenu = document.getElementById("hamburgerMenu");
-
     // Create a smooth loading animation effect for grocery theme
     setTimeout(() => {
-      // Add visual loading feedback with smooth transitions
-      if (portfolioSection) {
-        portfolioSection.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      }
-      if (header) {
-        // Include transform transition for header behavior AND background-color for theme
-        header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease';
-      }
-      if (footer) {
-        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease';
-      }
+      // Grocery color variables
+      const groceryColors = {
+        primary: '#2ECC71',
+        secondary: '#27AE60',
+        accent: '#F39C12',
+        light: '#F8F9FA',
+        lighter: '#FFFFFF',
+        textDark: '#2C3E50',
+        textMedium: '#34495E',
+        textLight: '#7F8C8D',
+        border: '#E8F5E8',
+        shadow: 'rgba(46, 204, 113, 0.1)'
+      };
 
-      // Add text color transitions for all typography elements
-      const typographyElements = document.querySelectorAll('.headerTypography, .nav-link, .titleTypography, .subTitleTypography, .textTypography, .footerTitleTypography, .footerTextTypography, .grocery-main-title, .grocery-subtitle, .grocery-description, .detail-title, .detail-text, .feature-title, .feature-description, .step-title, .step-description, .design-group-title, .result-number, .result-label, .learnings-title, .learnings-list li, .next-project-title, .next-project-name, .next-project-description');
-      typographyElements.forEach(element => {
-        element.style.transition = 'color 5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      });
+      // Apply all color transitions with 3s duration
+      const transitionStyle = 'all 3s ease-in-out';
 
-      // Add background transitions for all container elements
-      const containerElements = document.querySelectorAll('.grocery-features-section, .grocery-process-section, .grocery-designs-section, .grocery-results-section, .grocery-next-project');
-      containerElements.forEach(element => {
-        element.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      });
-
-      // Add transitions for cards and interactive elements
-      const cardElements = document.querySelectorAll('.feature-card, .next-project-card, .design-image');
-      cardElements.forEach(element => {
-        element.style.transition = element.style.transition + ', background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      });
-
-      // Add transitions for special elements
-      const specialElements = document.querySelectorAll('.step-number, .process-step:not(:last-child)::after, .learnings-list li::before');
-      specialElements.forEach(element => {
-        element.style.transition = element.style.transition + ', background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      });
-
-      // Apply Grocery theme classes
-      portfolioSection?.classList.add("grocery-active");
-      header?.classList.add("grocery-active");
-      footer?.classList.add("grocery-active");
+      // Page backgrounds
+      document.body.style.transition = transitionStyle;
+      document.body.style.backgroundColor = groceryColors.light;
       
-      // Change hamburger menu color for mobile
-      if (hamburgerMenu) {
-        hamburgerMenu.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        hamburgerMenu.classList.add("grocery-active");
+      const portfolioSection = document.querySelector('.portfolio-section');
+      if (portfolioSection) {
+        portfolioSection.style.transition = transitionStyle;
+        portfolioSection.style.backgroundColor = groceryColors.light;
       }
 
-      // Add subtle fade-in effect
-      document.body.style.opacity = '1';
-    }, 1000); // Smooth activation timing
+      // Header
+      const header = document.querySelector('.header');
+      if (header) {
+        header.style.transition = transitionStyle;
+        header.style.backgroundColor = groceryColors.lighter;
+        header.style.borderBottom = `1px solid ${groceryColors.border}`;
+        header.style.boxShadow = `0 2px 12px ${groceryColors.shadow}`;
+      }
 
-    // Set initial state for smooth transition
+      // Header navigation links
+      const navLinks = document.querySelectorAll('.header .nav-link');
+      navLinks.forEach(link => {
+        link.style.transition = transitionStyle;
+        link.style.color = groceryColors.textDark;
+      });
+
+      // Logo filter for dark appearance on white background
+      const logo = document.querySelector('.header .logo');
+      if (logo) {
+        logo.style.transition = transitionStyle;
+        logo.style.filter = 'brightness(0) saturate(100%) invert(17%) sepia(11%) saturate(923%) hue-rotate(169deg) brightness(95%) contrast(86%)';
+      }
+
+      // Menu icon filter for dark appearance
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) {
+        menuIcon.style.transition = transitionStyle;
+        menuIcon.style.filter = 'brightness(0) saturate(100%) invert(17%) sepia(11%) saturate(923%) hue-rotate(169deg) brightness(95%) contrast(86%)';
+      }
+
+      // Hamburger menu
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      if (hamburgerMenu) {
+        hamburgerMenu.style.transition = transitionStyle;
+        hamburgerMenu.style.backgroundColor = groceryColors.lighter;
+      }
+
+      // Hamburger menu links
+      const hamburgerLinks = document.querySelectorAll('.hamburger-menu a');
+      hamburgerLinks.forEach(link => {
+        link.style.transition = transitionStyle;
+        link.style.color = groceryColors.textDark;
+      });
+
+      // Footer
+      const footer = document.querySelector('.footer');
+      if (footer) {
+        footer.style.transition = transitionStyle;
+        footer.style.backgroundColor = groceryColors.lighter;
+      }
+
+      // Footer content - make background transparent
+      const footerContent = document.querySelector('.footer-content');
+      if (footerContent) {
+        footerContent.style.transition = transitionStyle;
+        footerContent.style.backgroundColor = 'transparent';
+      }
+
+      // Fundo footer (background element) - make transparent
+      const fundoFooter = document.querySelector('.fundo-footer');
+      if (fundoFooter) {
+        fundoFooter.style.transition = transitionStyle;
+        fundoFooter.style.backgroundColor = 'transparent';
+      }
+
+      // Footer sections - make transparent
+      const footerSections = document.querySelectorAll('.footer-section');
+      footerSections.forEach(section => {
+        section.style.transition = transitionStyle;
+        section.style.backgroundColor = 'transparent';
+      });
+
+      // Footer titles (h2 elements)
+      const footerTitles = document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title');
+      footerTitles.forEach(title => {
+        title.style.transition = transitionStyle;
+        title.style.color = groceryColors.textDark;
+      });
+
+      // Footer text and all links (including social media links)
+      const footerText = document.querySelectorAll('.footer .footerTextTypography, .footer a, .footer .get-in-touch-grid a, .footer .social-media-grid a');
+      footerText.forEach(text => {
+        text.style.transition = transitionStyle;
+        text.style.color = groceryColors.textMedium;
+      });
+
+      // Footer grid containers - make transparent
+      const footerGrids = document.querySelectorAll('.get-in-touch-grid, .social-media-grid');
+      footerGrids.forEach(grid => {
+        grid.style.transition = transitionStyle;
+        grid.style.backgroundColor = 'transparent';
+        grid.style.color = groceryColors.textMedium;
+      });
+
+      // Typography elements
+      const titleElements = document.querySelectorAll('.titleTypography');
+      titleElements.forEach(title => {
+        title.style.transition = transitionStyle;
+        title.style.color = groceryColors.textDark;
+      });
+
+      const subTitleElements = document.querySelectorAll('.subTitleTypography');
+      subTitleElements.forEach(subtitle => {
+        subtitle.style.transition = transitionStyle;
+        subtitle.style.color = groceryColors.secondary;
+      });
+
+      const textElements = document.querySelectorAll('.textTypography');
+      textElements.forEach(text => {
+        text.style.transition = transitionStyle;
+        text.style.color = groceryColors.textMedium;
+      });
+
+      const headerElements = document.querySelectorAll('.headerTypography');
+      headerElements.forEach(header => {
+        header.style.transition = transitionStyle;
+        header.style.color = groceryColors.textDark;
+      });
+
+      // Add subtle fade-in effect with same timing
+      document.body.style.opacity = '1';
+    }, 1000); // 1 second delay for color transition
+
+    // Set initial state for smooth transition with same timing
     document.body.style.opacity = '0.95';
-    document.body.style.transition = 'opacity 0.8s ease';
+    document.body.style.transition = 'opacity 3s ease-in-out';
   }
 });
 
@@ -1759,7 +1853,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add CSS transition for smooth header animation - include background-color for theme compatibility
         const body = document.body;
         if (body.classList.contains("grocery-page")) {
-            header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            // For grocery page, maintain both transform and color transitions
+            header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3s ease-in-out, box-shadow 3s ease-in-out, border-bottom 3s ease-in-out, color 3s ease-in-out';
         } else if (body.classList.contains("tarkov-page")) {
             header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         } else {
