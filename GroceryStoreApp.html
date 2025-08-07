@@ -66,22 +66,24 @@
             </video>
           </div>
           
-          <div class="hero-content">
-            <h1 class="hero-title">Fresh Market</h1>
-            <p class="hero-tagline">A fresh way to shop for groceries</p>
+          <div class="hero-content-wrapper">
+            <div class="hero-text-content">
+              <h1 class="hero-title">Fresh Market</h1>
+              <p class="hero-tagline">A fresh way to shop for groceries</p>
+            </div>
+            
+            <div class="hero-phone">
+              <img src="Assets/GroceryStoreApp/iPhone Mockup 1.svg" alt="Fresh Market App on iPhone" class="hero-phone-mockup" />
+            </div>
           </div>
           
-          <div class="hero-phone">
-            <!-- Phone mockup placeholder -->
-          </div>
-          
-          <div class="scroll-arrow">
+          <div class="scroll-arrow" onclick="scrollToOverview()">
             <div class="arrow-down"></div>
           </div>
         </section>
 
         <!-- Project Overview Section -->
-        <section class="overview-section">
+        <section class="overview-section" id="overview-section">
           <div class="overview-container">
             <h2 class="overview-title">Project Overview</h2>
             <p class="overview-description">
@@ -110,34 +112,116 @@
               <!-- Color Palette Side -->
               <div class="color-palette-side">
                 <h3 class="palette-subtitle">Color Palette</h3>
+                <p class="palette-rule-description">The 60-30-10 rule creates visual balance: 60% neutral backgrounds, 30% secondary colors for structure, and 10% bold accents for highlights.</p>
                 <div class="color-swatches">
-                  <div class="color-swatch green-primary"></div>
-                  <div class="color-swatch green-secondary"></div>
-                  <div class="color-swatch orange-primary"></div>
-                  <div class="color-swatch orange-secondary"></div>
-                  <div class="color-swatch neutral-light"></div>
-                  <div class="color-swatch neutral-dark"></div>
+                  <!-- 60% Group -->
+                  <div class="color-group">
+                    <div class="color-group-left">
+                      <span class="color-group-label">60%</span>
+                      <div class="color-row">
+                        <div class="color-item">
+                          <div class="color-swatch color-white"></div>
+                          <span class="color-code">#FFFFFF</span>
+                        </div>
+                        <div class="color-item">
+                          <div class="color-swatch color-light-gray"></div>
+                          <span class="color-code">#F1F1F1</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="color-group-description">
+                      <p>Clean, neutral backgrounds for readability</p>
+                    </div>
+                  </div>
+                  
+                  <!-- 30% Group -->
+                  <div class="color-group">
+                    <div class="color-group-left">
+                      <span class="color-group-label">30%</span>
+                      <div class="color-row">
+                        <div class="color-item">
+                          <div class="color-swatch color-medium-gray"></div>
+                          <span class="color-code">#A4A4A4</span>
+                        </div>
+                        <div class="color-item">
+                          <div class="color-swatch color-dark-gray"></div>
+                          <span class="color-code">#383838</span>
+                        </div>
+                        <div class="color-item">
+                          <div class="color-swatch color-very-dark"></div>
+                          <span class="color-code">#191919</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="color-group-description">
+                      <p>Text and structural elements</p>
+                    </div>
+                  </div>
+                  
+                  <!-- 10% Group -->
+                  <div class="color-group">
+                    <div class="color-group-left">
+                      <span class="color-group-label">10%</span>
+                      <div class="color-row">
+                        <div class="color-item">
+                          <div class="color-swatch color-green"></div>
+                          <span class="color-code">#6DA920</span>
+                        </div>
+                        <div class="color-item">
+                          <div class="color-swatch color-orange"></div>
+                          <span class="color-code">#FFA400</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="color-group-description">
+                      <p>Brand colors for buttons and highlights</p>
+                    </div>
+                  </div>
                 </div>
-                <p class="palette-description">
-                  Green evokes freshness and trust, while orange adds energy and appetite appeal.
-                </p>
               </div>
               
               <!-- Typography Side -->
               <div class="typography-side">
                 <h3 class="typography-subtitle">Typography Hierarchy</h3>
+                <div class="typography-main-font">
+                  <h2 class="typography-font-name">Myriad Pro</h2>
+                </div>
                 <div class="typography-samples">
+                  <!-- H1 Sample -->
                   <div class="type-sample">
-                    <h4 class="sample-heading-montserrat">Montserrat</h4>
-                    <p class="sample-label">Headings & Titles</p>
+                    <div class="type-label-container">
+                      <span class="type-label-tag">H1 - 31px</span>
+                    </div>
+                    <h1 class="sample-h1-myriad">Clean, modern typography that ensures readability across all interface elements</h1>
                   </div>
+                  
+                  <!-- H2 Sample -->
                   <div class="type-sample">
-                    <p class="sample-body-roboto">Roboto</p>
-                    <p class="sample-label">Body Text & Interface</p>
+                    <div class="type-label-container">
+                      <span class="type-label-tag">H2 - 19px</span>
+                    </div>
+                    <h2 class="sample-h2-myriad">Clean, modern typography that ensures readability across all interface elements</h2>
+                  </div>
+                  
+                  <!-- H3 Sample -->
+                  <div class="type-sample">
+                    <div class="type-label-container">
+                      <span class="type-label-tag">H3 - 12px</span>
+                    </div>
+                    <h3 class="sample-h3-myriad">Clean, modern typography that ensures readability across all interface elements</h3>
+                  </div>
+                  
+                  <!-- Font Weight Samples -->
+                  <div class="type-sample font-weight-samples">
+                    <div class="weight-comparison">
+                      <span class="myriad-regular">Mm</span>
+                      <span class="myriad-bold">Mm</span>
+                    </div>
+                    <p class="sample-label">Regular & Bold Weights</p>
                   </div>
                 </div>
                 <p class="typography-description">
-                  Clean, modern typography that ensures readability across all interface elements.
+                  Myriad Pro provides excellent readability and a professional appearance throughout the entire application interface.
                 </p>
               </div>
             </div>
@@ -392,6 +476,15 @@
     </footer>
   </section>
   <script src="scripts.js"></script>
+  <script>
+    function scrollToOverview() {
+      const overviewSection = document.getElementById('overview-section');
+      overviewSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  </script>
 </body>
 
 </html>
