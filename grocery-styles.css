@@ -475,13 +475,16 @@
    ================================= */
 
 .ui-mockups-section {
-  padding: 80px 89px;
+  padding: 0 40px;
   background: var(--grocery-app-white);
   position: relative;
   background-image: url('../Assets/GroceryStoreApp/Japanese style.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .ui-mockups-section::before {
@@ -496,69 +499,103 @@
 }
 
 .ui-mockups-container {
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   position: relative;
   z-index: 2;
   text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  padding: 40px 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow-left {
+  left: 20px;
+}
+
+.carousel-arrow-right {
+  right: 20px;
 }
 
 .ui-mockups-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
-  color: var(--grocery-app-subheaders);
+  color: white;
   margin: 0 0 21px 0;
   text-align: center;
-  background: rgba(255,255,255,0.9);
-  padding: 16px 24px;
-  border-radius: 8px;
-  display: inline-block;
-  width: auto;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .ui-mockups-subtitle {
   font-family: var(--body-font-family);
   font-size: var(--h6-font-size);
-  color: #2a2a2a;
+  color: white;
   text-align: center;
   margin: 24px 0 63px 0;
-  opacity: 1;
-  background: rgba(255,255,255,0.85);
-  padding: 12px 20px;
-  border-radius: 6px;
-  display: inline-block;
-  width: auto;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  opacity: 0.9;
 }
 
 .mockups-scroll-container {
   display: flex;
-  gap: 32px;
-  overflow-x: auto;
-  padding: 21px 0 32px 0;
-  scroll-snap-type: x mandatory;
+  gap: 24px;
+  overflow: hidden;
+  padding: 21px 80px 32px 80px;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: nowrap;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.mockups-scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
 .mockup-item {
-  flex: none;
-  width: 280px;
+  flex: 0 0 240px;
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
   scroll-snap-align: center;
-  background: white;
+  background: transparent;
   border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  padding: 24px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 .mockup-item:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.18);
 }
 
 .mockup-phone {
@@ -569,7 +606,7 @@
 .mockup-image {
   width: 100%;
   height: auto;
-  max-width: 200px;
+  max-width: 160px;
   border-radius: 12px;
 }
 
@@ -577,25 +614,17 @@
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
   font-size: var(--h4-font-size);
-  color: #1a1a1a;
+  color: white;
   margin: 0 0 12px 0;
-  text-shadow: 0 0 6px rgba(255,255,255,0.8);
-  background: rgba(255,255,255,0.9);
-  padding: 8px 16px;
-  border-radius: 6px;
 }
 
 .mockup-description {
   font-family: var(--body-font-family);
   font-size: var(--h6-font-size);
-  color: #2a2a2a;
+  color: white;
   line-height: 1.5;
   margin: 0;
-  opacity: 1;
-  text-shadow: 0 0 4px rgba(255,255,255,0.7);
-  background: rgba(255,255,255,0.85);
-  padding: 8px 12px;
-  border-radius: 4px;
+  opacity: 0.9;
 }
 
 .scroll-indicators {
@@ -1080,8 +1109,8 @@
   .ui-mockups-section,
   .closing-section,
   .other-projects-section {
-    padding-left: 65px;
-    padding-right: 65px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
   
   .prototype-container {
@@ -1127,8 +1156,8 @@
   .ui-mockups-section,
   .closing-section,
   .other-projects-section {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   
   .prototype-container {
@@ -1208,7 +1237,7 @@
   .prototype-section,
   .closing-section,
   .other-projects-section {
-    padding: 60px 21px;
+    padding: 60px 15px;
   }
   
   .prototype-container {

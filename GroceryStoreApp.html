@@ -239,8 +239,20 @@
             <h2 class="ui-mockups-title">User Interface Highlights</h2>
             <p class="ui-mockups-subtitle">Designed for quick browsing and one-handed interaction.</p>
             
-            <div class="mockups-scroll-container">
-              <div class="mockup-item">
+            <!-- Navigation arrows -->
+            <button class="carousel-arrow carousel-arrow-left" id="carouselPrev">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="carousel-arrow carousel-arrow-right" id="carouselNext">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <div class="mockups-scroll-container" id="mockupsCarousel">
+              <div class="mockup-item" data-index="0">
                 <div class="mockup-phone">
                   <img src="Assets/GroceryStoreApp/Home.svg" alt="Home Screen" class="mockup-image" />
                 </div>
@@ -250,7 +262,7 @@
                 </div>
               </div>
               
-              <div class="mockup-item">
+              <div class="mockup-item" data-index="1">
                 <div class="mockup-phone">
                   <img src="Assets/GroceryStoreApp/Product info.svg" alt="Product Detail" class="mockup-image" />
                 </div>
@@ -260,7 +272,7 @@
                 </div>
               </div>
               
-              <div class="mockup-item">
+              <div class="mockup-item" data-index="2">
                 <div class="mockup-phone">
                   <img src="Assets/GroceryStoreApp/Home with cart item.svg" alt="Shopping Cart" class="mockup-image" />
                 </div>
@@ -270,7 +282,7 @@
                 </div>
               </div>
               
-              <div class="mockup-item">
+              <div class="mockup-item" data-index="3">
                 <div class="mockup-phone">
                   <img src="Assets/GroceryStoreApp/Purchases.svg" alt="Purchases" class="mockup-image" />
                 </div>
@@ -280,7 +292,7 @@
                 </div>
               </div>
               
-              <div class="mockup-item">
+              <div class="mockup-item" data-index="4">
                 <div class="mockup-phone">
                   <img src="Assets/GroceryStoreApp/Store info.svg" alt="Store Information" class="mockup-image" />
                 </div>
@@ -484,6 +496,121 @@
         block: 'start'
       });
     }
+
+    // Carousel functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.getElementById('mockupsCarousel');
+      const items = document.querySelectorAll('.mockup-item');
+      const indicators = document.querySelectorAll('.scroll-indicator');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      let currentIndex = 0;
+
+      function updateCarousel(index) {
+        if (index < 0) index = items.length - 1;
+        if (index >= items.length) index = 0;
+        
+        currentIndex = index;
+        
+        // Scroll to the selected item
+        const item = items[index];
+        const itemWidth = item.offsetWidth + 32; // width + gap
+        const scrollLeft = (itemWidth * index) - (carousel.offsetWidth / 2) + (itemWidth / 2);
+        
+        carousel.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
+        });
+        
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+          indicator.classList.toggle('active', i === index);
+        });
+      }
+
+      // Click on mockup items
+      items.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          updateCarousel(index);
+        });
+      });
+
+      // Navigation arrows
+      prevBtn.addEventListener('click', () => {
+        updateCarousel(currentIndex - 1);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        updateCarousel(currentIndex + 1);
+      });
+
+      // Click on indicators
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          updateCarousel(index);
+        });
+        indicator.style.cursor = 'pointer';
+      });
+
+      // Touch/drag functionality
+      let isDown = false;
+      let startX;
+      let scrollLeftStart;
+
+      carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carousel.style.cursor = 'grabbing';
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeftStart = carousel.scrollLeft;
+      });
+
+      carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        carousel.style.cursor = 'grab';
+      });
+
+      carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        carousel.style.cursor = 'grab';
+      });
+
+      carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2;
+        carousel.scrollLeft = scrollLeftStart - walk;
+      });
+
+      // Touch events for mobile
+      carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].pageX - carousel.offsetLeft;
+        scrollLeftStart = carousel.scrollLeft;
+      });
+
+      carousel.addEventListener('touchmove', (e) => {
+        const x = e.touches[0].pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2;
+        carousel.scrollLeft = scrollLeftStart - walk;
+      });
+
+      // Update active indicator based on scroll position
+      carousel.addEventListener('scroll', () => {
+        const itemWidth = items[0].offsetWidth + 32;
+        const scrollPosition = carousel.scrollLeft + (carousel.offsetWidth / 2);
+        const newIndex = Math.round(scrollPosition / itemWidth);
+        
+        if (newIndex !== currentIndex && newIndex >= 0 && newIndex < items.length) {
+          currentIndex = newIndex;
+          indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === currentIndex);
+          });
+        }
+      });
+
+      // Set cursor style
+      carousel.style.cursor = 'grab';
+    });
   </script>
 </body>
 
