@@ -2173,3 +2173,163 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize
     initTarkovHeaderBehavior();
 });
+
+// ---- Carousel Grocery Functionality ----
+let currentSlide = 0;
+let totalSlides = 5;
+let autoSlideInterval;
+let isDragging = false;
+let startX = 0;
+let currentX = 0;
+let threshold = 50;
+
+function initializeCarousel() {
+    const carouselTrack = document.getElementById('carouselTrack');
+    if (!carouselTrack) return;
+    
+    // Initialize first slide as active
+    updateCarousel();
+    
+    // Start auto-slide
+    startAutoSlide();
+    
+    // Add drag functionality
+    addDragFunctionality();
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', handleKeyDown);
+}
+
+function updateCarousel() {
+    const slides = document.querySelectorAll('.mockup-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const carouselTrack = document.getElementById('carouselTrack');
+    
+    if (!carouselTrack) return;
+    
+    // Update slides
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active', 'clickable');
+        if (index === currentSlide) {
+            slide.classList.add('active');
+        } else if (index === currentSlide - 1 || index === currentSlide + 1) {
+            slide.classList.add('clickable');
+        }
+    });
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
+    });
+    
+    // Move carousel track
+    const slideWidth = 50; // 50% width per slide
+    const offset = -currentSlide * slideWidth;
+    carouselTrack.style.transform = `translateX(${offset}%)`;
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+    resetAutoSlide();
+}
+
+function previousSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+    resetAutoSlide();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+    resetAutoSlide();
+}
+
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        if (!isDragging) {
+            nextSlide();
+        }
+    }, 5000);
+}
+
+function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+}
+
+function addDragFunctionality() {
+    const carouselTrack = document.getElementById('carouselTrack');
+    if (!carouselTrack) return;
+    
+    // Mouse events
+    carouselTrack.addEventListener('mousedown', handleDragStart);
+    carouselTrack.addEventListener('mousemove', handleDragMove);
+    carouselTrack.addEventListener('mouseup', handleDragEnd);
+    carouselTrack.addEventListener('mouseleave', handleDragEnd);
+    
+    // Touch events
+    carouselTrack.addEventListener('touchstart', handleDragStart, { passive: false });
+    carouselTrack.addEventListener('touchmove', handleDragMove, { passive: false });
+    carouselTrack.addEventListener('touchend', handleDragEnd);
+}
+
+function handleDragStart(e) {
+    isDragging = true;
+    const carouselTrack = document.getElementById('carouselTrack');
+    carouselTrack.classList.add('dragging');
+    
+    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    startX = clientX;
+    currentX = clientX;
+}
+
+function handleDragMove(e) {
+    if (!isDragging) return;
+    
+    e.preventDefault();
+    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    currentX = clientX;
+}
+
+function handleDragEnd() {
+    if (!isDragging) return;
+    
+    isDragging = false;
+    const carouselTrack = document.getElementById('carouselTrack');
+    carouselTrack.classList.remove('dragging');
+    
+    const deltaX = currentX - startX;
+    
+    if (Math.abs(deltaX) > threshold) {
+        if (deltaX > 0) {
+            previousSlide();
+        } else {
+            nextSlide();
+        }
+    }
+    
+    startX = 0;
+    currentX = 0;
+}
+
+function handleKeyDown(e) {
+    if (e.key === 'ArrowLeft') {
+        previousSlide();
+    } else if (e.key === 'ArrowRight') {
+        nextSlide();
+    }
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeCarousel);
+
+// Pause auto-slide when page is not visible
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        clearInterval(autoSlideInterval);
+    } else {
+        startAutoSlide();
+    }
+});

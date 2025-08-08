@@ -73,7 +73,7 @@
             </div>
             
             <div class="hero-phone">
-              <img src="Assets/GroceryStoreApp/iPhone Mockup 1.svg" alt="Fresh Market App on iPhone" class="hero-phone-mockup" />
+              <img src="Assets/GroceryStoreApp/Pink.svg" alt="Fresh Market App on iPhone" class="hero-phone-mockup" />
             </div>
           </div>
           
@@ -95,6 +95,83 @@
               <span class="tag">UI/UX Design</span>
               <span class="tag">High Fidelity</span>
               <span class="tag">Concept Project</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- UI Mockups Section -->
+        <section class="ui-mockups-section">
+          <div class="ui-mockups-container">
+            <h2 class="ui-mockups-title">User Interface Highlights</h2>
+            <p class="ui-mockups-subtitle">Designed for quick browsing and one-handed interaction.</p>
+            
+            <div class="mockups-carousel">
+              <!-- Navigation Arrows -->
+              <button class="carousel-nav prev" onclick="previousSlide()"></button>
+              <button class="carousel-nav next" onclick="nextSlide()"></button>
+              
+              <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                  <div class="mockup-slide" onclick="goToSlide(0)">
+                    <div class="mockup-image-container">
+                      <img src="Assets/GroceryStoreApp/Home.svg" alt="Home Screen" class="mockup-image" />
+                    </div>
+                    <div class="mockup-content">
+                      <h3 class="mockup-title">Home Screen</h3>
+                      <p class="mockup-description">Clean navigation with featured products and quick category access.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="mockup-slide" onclick="goToSlide(1)">
+                    <div class="mockup-image-container">
+                      <img src="Assets/GroceryStoreApp/Product info.svg" alt="Product Detail" class="mockup-image" />
+                    </div>
+                    <div class="mockup-content">
+                      <h3 class="mockup-title">Product Detail</h3>
+                      <p class="mockup-description">Rich product information with nutritional facts and reviews.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="mockup-slide" onclick="goToSlide(2)">
+                    <div class="mockup-image-container">
+                      <img src="Assets/GroceryStoreApp/Home with cart item.svg" alt="Shopping Cart" class="mockup-image" />
+                    </div>
+                    <div class="mockup-content">
+                      <h3 class="mockup-title">Cart</h3>
+                      <p class="mockup-description">Easy quantity adjustments and instant price calculations.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="mockup-slide" onclick="goToSlide(3)">
+                    <div class="mockup-image-container">
+                      <img src="Assets/GroceryStoreApp/Purchases.svg" alt="Purchases" class="mockup-image" />
+                    </div>
+                    <div class="mockup-content">
+                      <h3 class="mockup-title">Purchases</h3>
+                      <p class="mockup-description">Order history and tracking with easy reorder functionality.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="mockup-slide" onclick="goToSlide(4)">
+                    <div class="mockup-image-container">
+                      <img src="Assets/GroceryStoreApp/Store info.svg" alt="Store Information" class="mockup-image" />
+                    </div>
+                    <div class="mockup-content">
+                      <h3 class="mockup-title">Store Info</h3>
+                      <p class="mockup-description">Store details, hours, and location information at a glance.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Carousel Indicators -->
+              <div class="carousel-indicators">
+                <div class="indicator active" onclick="goToSlide(0)"></div>
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+              </div>
             </div>
           </div>
         </section>
@@ -232,87 +309,6 @@
         <div class="background-divider fruit-collage-bg">
           <div class="fruit-overlay"></div>
         </div>
-
-        <!-- UI Mockups Section -->
-        <section class="ui-mockups-section">
-          <div class="ui-mockups-container">
-            <h2 class="ui-mockups-title">User Interface Highlights</h2>
-            <p class="ui-mockups-subtitle">Designed for quick browsing and one-handed interaction.</p>
-            
-            <!-- Navigation arrows -->
-            <button class="carousel-arrow carousel-arrow-left" id="carouselPrev">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <button class="carousel-arrow carousel-arrow-right" id="carouselNext">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            
-            <div class="mockups-scroll-container" id="mockupsCarousel">
-              <div class="mockup-item" data-index="0">
-                <div class="mockup-phone">
-                  <img src="Assets/GroceryStoreApp/Home.svg" alt="Home Screen" class="mockup-image" />
-                </div>
-                <div class="mockup-info">
-                  <h3 class="mockup-title">Home Screen</h3>
-                  <p class="mockup-description">Clean navigation with featured products and quick category access.</p>
-                </div>
-              </div>
-              
-              <div class="mockup-item" data-index="1">
-                <div class="mockup-phone">
-                  <img src="Assets/GroceryStoreApp/Product info.svg" alt="Product Detail" class="mockup-image" />
-                </div>
-                <div class="mockup-info">
-                  <h3 class="mockup-title">Product Detail</h3>
-                  <p class="mockup-description">Rich product information with nutritional facts and reviews.</p>
-                </div>
-              </div>
-              
-              <div class="mockup-item" data-index="2">
-                <div class="mockup-phone">
-                  <img src="Assets/GroceryStoreApp/Home with cart item.svg" alt="Shopping Cart" class="mockup-image" />
-                </div>
-                <div class="mockup-info">
-                  <h3 class="mockup-title">Cart</h3>
-                  <p class="mockup-description">Easy quantity adjustments and instant price calculations.</p>
-                </div>
-              </div>
-              
-              <div class="mockup-item" data-index="3">
-                <div class="mockup-phone">
-                  <img src="Assets/GroceryStoreApp/Purchases.svg" alt="Purchases" class="mockup-image" />
-                </div>
-                <div class="mockup-info">
-                  <h3 class="mockup-title">Purchases</h3>
-                  <p class="mockup-description">Order history and tracking with easy reorder functionality.</p>
-                </div>
-              </div>
-              
-              <div class="mockup-item" data-index="4">
-                <div class="mockup-phone">
-                  <img src="Assets/GroceryStoreApp/Store info.svg" alt="Store Information" class="mockup-image" />
-                </div>
-                <div class="mockup-info">
-                  <h3 class="mockup-title">Store Info</h3>
-                  <p class="mockup-description">Store details, hours, and location information at a glance.</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Scroll indicators -->
-            <div class="scroll-indicators">
-              <div class="scroll-indicator active"></div>
-              <div class="scroll-indicator"></div>
-              <div class="scroll-indicator"></div>
-              <div class="scroll-indicator"></div>
-              <div class="scroll-indicator"></div>
-            </div>
-          </div>
-        </section>
 
         <!-- Grocery Stand Background Divider -->
         <div class="background-divider grocery-stand-bg">

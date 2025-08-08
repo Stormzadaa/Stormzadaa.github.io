@@ -475,16 +475,18 @@
    ================================= */
 
 .ui-mockups-section {
-  padding: 0 40px;
+  padding: 100px 40px;
   background: var(--grocery-app-white);
-  position: relative;
-  background-image: url('../Assets/GroceryStoreApp/Japanese style.png');
+  background-image: url('../Assets/GroceryStoreApp/vegetables-fruits-meat.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .ui-mockups-section::before {
@@ -494,59 +496,39 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0);
+  background-image: url('../Assets/GroceryStoreApp/vegetables-fruits-meat.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(6px);
   z-index: 1;
 }
 
-.ui-mockups-container {
-  max-width: none;
-  margin: 0;
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 16px;
-  padding: 40px 0;
-  width: 100%;
-  overflow: hidden;
-}
-
-.carousel-arrow {
+.ui-mockups-section::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 2;
 }
 
-.carousel-arrow:hover {
-  background: rgba(0, 0, 0, 0.7);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-arrow-left {
-  left: 20px;
-}
-
-.carousel-arrow-right {
-  right: 20px;
+.ui-mockups-container {
+  position: relative;
+  z-index: 3;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
 
 .ui-mockups-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
-  color: white;
+  color: var(--grocery-app-subheaders);
   margin: 0 0 21px 0;
   text-align: center;
 }
@@ -554,97 +536,197 @@
 .ui-mockups-subtitle {
   font-family: var(--body-font-family);
   font-size: var(--h6-font-size);
-  color: white;
+  color: var(--grocery-app-text);
   text-align: center;
-  margin: 24px 0 63px 0;
-  opacity: 0.9;
+  margin: 24px auto 80px auto;
+  opacity: 0.8;
+  max-width: 600px;
 }
 
-.mockups-scroll-container {
-  display: flex;
-  gap: 24px;
-  overflow: hidden;
-  padding: 21px 80px 32px 80px;
+/* Carousel Container */
+.mockups-carousel {
   position: relative;
-  width: 100%;
-  max-width: 100%;
-  flex-wrap: nowrap;
-  scroll-snap-type: none;
-  scroll-behavior: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 80px;
 }
 
-/* Hide scrollbar for WebKit browsers */
-.mockups-scroll-container::-webkit-scrollbar {
-  display: none;
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
-.mockup-item {
-  flex: 0 0 240px;
-  width: 240px;
-  min-width: 240px;
-  max-width: 240px;
-  scroll-snap-align: center;
-  background: transparent;
-  border-radius: 16px;
-  padding: 24px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel-track:active {
+  cursor: grabbing;
+}
+
+.carousel-track.dragging {
+  transition: none;
+}
+
+/* Carousel Items */
+.mockup-slide {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 30px;
   box-sizing: border-box;
+  opacity: 0.6;
+  transform: scale(0.85);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.mockup-item:hover {
-  transform: translateY(-8px);
+.mockup-slide.active {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.mockup-phone {
-  margin-bottom: 20px;
-  text-align: center;
+.mockup-slide.clickable {
+  cursor: pointer;
+}
+
+.mockup-slide:first-child {
+  margin-left: 25%;
+}
+
+/* Mockup Image */
+.mockup-image-container {
+  position: relative;
+  margin-bottom: 40px;
+  max-width: 240px;
+  width: 100%;
 }
 
 .mockup-image {
   width: 100%;
   height: auto;
-  max-width: 160px;
-  border-radius: 12px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease;
+}
+
+.mockup-slide.active .mockup-image {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+}
+
+/* Mockup Content */
+.mockup-content {
+  text-align: center;
+  max-width: 400px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mockup-slide.active .mockup-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .mockup-title {
   font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   font-size: var(--h4-font-size);
-  color: white;
-  margin: 0 0 12px 0;
+  color: var(--grocery-app-text);
+  margin: 0 0 16px 0;
 }
 
 .mockup-description {
   font-family: var(--body-font-family);
   font-size: var(--h6-font-size);
-  color: white;
-  line-height: 1.5;
+  color: var(--grocery-app-text);
+  line-height: 1.6;
   margin: 0;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
-.scroll-indicators {
+/* Navigation Arrows */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--grocery-app-secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-nav:hover {
+  background: var(--grocery-app-secondary);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 24px rgba(139, 195, 74, 0.3);
+}
+
+.carousel-nav.prev {
+  left: 20px;
+}
+
+.carousel-nav.next {
+  right: 20px;
+}
+
+.carousel-nav::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border: solid var(--grocery-app-secondary);
+  border-width: 0 3px 3px 0;
+  transition: border-color 0.3s ease;
+}
+
+.carousel-nav:hover::before {
+  border-color: white;
+}
+
+.carousel-nav.prev::before {
+  transform: rotate(135deg);
+  margin-left: 4px;
+}
+
+.carousel-nav.next::before {
+  transform: rotate(-45deg);
+  margin-right: 4px;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 40px;
 }
 
-.scroll-indicator {
+.indicator {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #E0E0E0;
-  transition: background 0.3s ease;
+  background: rgba(139, 195, 74, 0.3);
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.scroll-indicator.active {
-  background: var(--grocery-app-primary);
+.indicator.active {
+  background: var(--grocery-app-secondary);
+  transform: scale(1.2);
 }
 
 /* =================================
@@ -970,7 +1052,7 @@
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
   font-size: var(--h5-font-size);
-  background: var(--grocery-app-success);
+  background: var(--grocery-app-secondary);
   color: white;
   padding: 16px 32px;
   border-radius: 30px;
@@ -980,9 +1062,9 @@
 }
 
 .cta-button:hover {
-  background: var(--grocery-app-secondary);
+  background: var(--grocery-app-primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 169, 39, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 118, 255, 0.4);
 }
 
 /* =================================
@@ -1075,7 +1157,7 @@
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
   font-size: var(--h7-font-size);
-  background: var(--grocery-app-secondary);
+  background: var(--grocery-app-success);
   color: white;
   padding: 6px 12px;
   border-radius: 15px;
@@ -1113,6 +1195,10 @@
     padding-right: 30px;
   }
   
+  .mockups-carousel {
+    padding: 0 60px;
+  }
+  
   .prototype-container {
     padding: 0 65px;
   }
@@ -1126,8 +1212,30 @@
     border-radius: 14px;
   }
   
-  .mockup-item {
-    width: 260px;
+  .mockups-carousel {
+    padding: 0 60px;
+  }
+  
+  .mockup-slide {
+    flex: 0 0 70%;
+    padding: 0 30px;
+  }
+  
+  .mockup-image-container {
+    max-width: 280px;
+  }
+  
+  .carousel-nav {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .carousel-nav.prev {
+    left: 15px;
+  }
+  
+  .carousel-nav.next {
+    right: 15px;
   }
 }
 
@@ -1160,6 +1268,10 @@
     padding-right: 20px;
   }
   
+  .mockups-carousel {
+    padding: 0 40px;
+  }
+  
   .prototype-container {
     padding: 0 30px;
   }
@@ -1187,9 +1299,45 @@
     padding: 32px;
   }
   
-  .mockup-item {
-    width: 240px;
-    padding: 24px;
+  .mockups-carousel {
+    padding: 0 40px;
+  }
+  
+  .mockup-slide {
+    flex: 0 0 80%;
+    padding: 0 20px;
+  }
+  
+  .mockup-slide:first-child {
+    margin-left: 10%;
+  }
+  
+  .mockup-image-container {
+    max-width: 250px;
+    margin-bottom: 30px;
+  }
+  
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .carousel-nav.prev {
+    left: 10px;
+  }
+  
+  .carousel-nav.next {
+    right: 10px;
+  }
+  
+  .carousel-nav::before {
+    width: 10px;
+    height: 10px;
+    border-width: 0 2px 2px 0;
+  }
+  
+  .ui-mockups-section {
+    padding: 80px 20px;
   }
   
   .interactions-grid {
@@ -1238,6 +1386,10 @@
   .closing-section,
   .other-projects-section {
     padding: 60px 15px;
+  }
+  
+  .mockups-carousel {
+    padding: 0 20px;
   }
   
   .prototype-container {
@@ -1317,9 +1469,64 @@
     height: 50px;
   }
   
-  .mockup-item {
-    width: 240px;
-    padding: 24px;
+  .mockups-carousel {
+    padding: 0 20px;
+  }
+  
+  .mockup-slide {
+    flex: 0 0 90%;
+    padding: 0 15px;
+  }
+  
+  .mockup-slide:first-child {
+    margin-left: 5%;
+  }
+  
+  .mockup-image-container {
+    max-width: 220px;
+    margin-bottom: 24px;
+  }
+  
+  .mockup-title {
+    font-size: var(--h5-font-size);
+    margin-bottom: 12px;
+  }
+  
+  .mockup-description {
+    font-size: var(--h7-font-size);
+  }
+  
+  .carousel-nav {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .carousel-nav.prev {
+    left: 5px;
+  }
+  
+  .carousel-nav.next {
+    right: 5px;
+  }
+  
+  .carousel-nav::before {
+    width: 8px;
+    height: 8px;
+    border-width: 0 2px 2px 0;
+  }
+  
+  .carousel-indicators {
+    margin-top: 30px;
+    gap: 8px;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .ui-mockups-section {
+    padding: 60px 15px;
   }
   
   .interactions-grid {
