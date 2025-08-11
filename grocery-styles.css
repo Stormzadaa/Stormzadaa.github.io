@@ -471,6 +471,42 @@
 }
 
 /* =================================
+   NEW CONTENT SECTION
+   ================================= */
+
+.new-content-section {
+  padding: 100px 89px;
+  background: #FFFFFF !important;
+  border: 3px solid red !important;
+  min-height: 200px !important;
+}
+
+.new-content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.new-content-title {
+  font-family: Arial, sans-serif !important;
+  font-weight: bold !important;
+  font-size: 32px !important;
+  color: #FF0000 !important;
+  margin: 0 0 42px 0;
+  text-align: center;
+}
+
+.new-content-description {
+  font-family: Arial, sans-serif !important;
+  font-size: 18px !important;
+  color: #000000 !important;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* =================================
    UI MOCKUPS SECTION
    ================================= */
 
@@ -1188,6 +1224,7 @@
   
   .overview-section,
   .style-guide-section,
+  .new-content-section,
   .ui-mockups-section,
   .closing-section,
   .other-projects-section {
@@ -1261,6 +1298,7 @@
   
   .overview-section,
   .style-guide-section,
+  .new-content-section,
   .ui-mockups-section,
   .closing-section,
   .other-projects-section {
@@ -1381,6 +1419,7 @@
   
   .overview-section,
   .style-guide-section,
+  .new-content-section,
   .ui-mockups-section,
   .prototype-section,
   .closing-section,
