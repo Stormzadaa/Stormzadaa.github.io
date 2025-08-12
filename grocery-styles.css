@@ -1705,3 +1705,25 @@
     padding: 24px;
   }
 }
+
+/* =================================
+   FOOTER FIXES FOR GROCERY PAGE
+   ================================= */
+
+/* Override footer styles specifically for grocery page */
+.grocery-page .footer {
+  overflow: visible;
+  height: auto;
+  min-height: 200px;
+}
+
+.grocery-page .footer-content {
+  height: auto;
+  min-height: 200px;
+}
+
+.grocery-page .footer-sections {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
