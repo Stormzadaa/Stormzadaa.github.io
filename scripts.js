@@ -2175,7 +2175,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ---- Carousel Grocery Functionality ----
-let currentSlide = 0;
+let currentSlide = 2;
 let totalSlides = 5;
 let autoSlideInterval;
 let isDragging = false;
@@ -2228,18 +2228,6 @@ function updateCarousel() {
     carouselTrack.style.transform = `translateX(${offset}%)`;
 }
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-    resetAutoSlide();
-}
-
-function previousSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-    resetAutoSlide();
-}
-
 function goToSlide(index) {
     currentSlide = index;
     updateCarousel();
@@ -2249,7 +2237,8 @@ function goToSlide(index) {
 function startAutoSlide() {
     autoSlideInterval = setInterval(() => {
         if (!isDragging) {
-            nextSlide();
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
         }
     }, 5000);
 }
@@ -2304,9 +2293,15 @@ function handleDragEnd() {
     
     if (Math.abs(deltaX) > threshold) {
         if (deltaX > 0) {
-            previousSlide();
+            // Go to previous slide
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoSlide();
         } else {
-            nextSlide();
+            // Go to next slide
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            resetAutoSlide();
         }
     }
     
@@ -2316,9 +2311,15 @@ function handleDragEnd() {
 
 function handleKeyDown(e) {
     if (e.key === 'ArrowLeft') {
-        previousSlide();
+        // Go to previous slide
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+        resetAutoSlide();
     } else if (e.key === 'ArrowRight') {
-        nextSlide();
+        // Go to next slide
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+        resetAutoSlide();
     }
 }
 

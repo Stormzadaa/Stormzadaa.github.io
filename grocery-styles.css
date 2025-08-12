@@ -471,39 +471,154 @@
 }
 
 /* =================================
-   NEW CONTENT SECTION
+   LOW-FIDELITY SKETCHES SECTION
    ================================= */
 
-.new-content-section {
+.low-fidelity-sketches-section {
   padding: 100px 89px;
-  background: #FFFFFF !important;
-  border: 3px solid red !important;
-  min-height: 200px !important;
+  background-image: url('../Assets/GroceryStoreApp/Watermelon.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: auto;
+  height: auto;
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.new-content-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.low-fidelity-sketches-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.92);
+  z-index: 1;
+}
+
+.low-fidelity-sketches-container {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   text-align: center;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.new-content-title {
+.low-fidelity-sketches-title {
   font-family: Arial, sans-serif !important;
   font-weight: bold !important;
   font-size: 32px !important;
-  color: #FF0000 !important;
+  color: #FFA927 !important;
   margin: 0 0 42px 0;
   text-align: center;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
-.new-content-description {
+.low-fidelity-sketches-description {
   font-family: Arial, sans-serif !important;
   font-size: 18px !important;
-  color: #000000 !important;
+  color: #1a1a1a !important;
   line-height: 1.6;
   text-align: center;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 60px auto;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.sketches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+  padding: 20px 20px 40px 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+  z-index: 2;
+  position: relative;
+}
+
+.sketch-item {
+  background-image: url('../Assets/GroceryStoreApp/Watermelon.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(180, 35, 50, 0.25);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.sketch-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sketch-image {
+  width: 100%;
+  height: 600px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: transparent;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.sketch-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sketch-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(180, 35, 50, 0.35);
+  z-index: 10;
+}
+
+.sketch-label {
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333333;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  background: white;
+  position: relative;
+  z-index: 2;
 }
 
 /* =================================
@@ -513,12 +628,13 @@
 .ui-mockups-section {
   padding: 100px 40px;
   background: var(--grocery-app-white);
-  background-image: url('../Assets/GroceryStoreApp/vegetables-fruits-meat.jpg');
+  background-image: url('../Assets/GroceryStoreApp/lemon_slice_pattern_background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -532,7 +648,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('../Assets/GroceryStoreApp/vegetables-fruits-meat.jpg');
+  background-image: url('../Assets/GroceryStoreApp/lemon_slice_pattern_background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -547,7 +663,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.88);
   z-index: 2;
 }
 
@@ -582,15 +698,14 @@
 /* Carousel Container */
 .mockups-carousel {
   position: relative;
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 120px;
 }
 
 .carousel-wrapper {
   position: relative;
-  overflow: hidden;
-  border-radius: 20px;
+  overflow: visible;
 }
 
 .carousel-track {
@@ -617,12 +732,19 @@
   padding: 0 30px;
   box-sizing: border-box;
   opacity: 0.6;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mockup-slide .mockup-image-container {
   transform: scale(0.85);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mockup-slide.active {
   opacity: 1;
+}
+
+.mockup-slide.active .mockup-image-container {
   transform: scale(1);
 }
 
@@ -638,8 +760,10 @@
 .mockup-image-container {
   position: relative;
   margin-bottom: 40px;
-  max-width: 240px;
+  max-width: 320px;
   width: 100%;
+  border-radius: 40px;
+  overflow: hidden;
 }
 
 .mockup-image {
@@ -648,6 +772,7 @@
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease;
+  background: transparent;
 }
 
 .mockup-slide.active .mockup-image {
@@ -660,14 +785,14 @@
   max-width: 400px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
+  transform: translateY(20px) scale(1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mockup-slide.active .mockup-content {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .mockup-title {
@@ -685,62 +810,6 @@
   line-height: 1.6;
   margin: 0;
   opacity: 0.8;
-}
-
-/* Navigation Arrows */
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid var(--grocery-app-secondary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-nav:hover {
-  background: var(--grocery-app-secondary);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 24px rgba(139, 195, 74, 0.3);
-}
-
-.carousel-nav.prev {
-  left: 20px;
-}
-
-.carousel-nav.next {
-  right: 20px;
-}
-
-.carousel-nav::before {
-  content: '';
-  width: 12px;
-  height: 12px;
-  border: solid var(--grocery-app-secondary);
-  border-width: 0 3px 3px 0;
-  transition: border-color 0.3s ease;
-}
-
-.carousel-nav:hover::before {
-  border-color: white;
-}
-
-.carousel-nav.prev::before {
-  transform: rotate(135deg);
-  margin-left: 4px;
-}
-
-.carousel-nav.next::before {
-  transform: rotate(-45deg);
-  margin-right: 4px;
 }
 
 /* Carousel Indicators */
@@ -770,7 +839,7 @@
    ================================= */
 
 .prototype-section {
-  padding: 100px 0;
+  padding: 60px 0;
   background: var(--grocery-app-section-bg);
   width: 100%;
   overflow: hidden;
@@ -814,15 +883,15 @@
 .prototype-content {
   display: flex;
   flex-direction: column;
-  gap: 63px;
+  gap: 0;
 }
 
 .figma-embed {
   background: white;
   border-radius: 16px;
-  padding: 42px;
+  padding: 0;
   box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-  margin-bottom: 63px;
+  margin-bottom: 0;
 }
 
 /* =================================
@@ -895,7 +964,7 @@
 }
 
 .figma-frame {
-  text-align: center;
+  position: relative;
   width: 100%;
   margin: 0 auto;
 }
@@ -903,10 +972,27 @@
 .figma-frame iframe {
   border-radius: 12px;
   width: 100%;
-  height: 500px;
-  max-width: 1000px;
+  height: 100%;
+  min-height: 800px;
   border: 1px solid var(--grocery-app-border);
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.figma-frame::before {
+  content: 'figma';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #F24E1E;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--body-font-family);
+  z-index: 10;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
 }
 
 .figma-note {
@@ -914,12 +1000,9 @@
   font-size: var(--h6-font-size);
   color: var(--grocery-app-text);
   text-align: center;
-  margin: 24px 0 0 0;
+  margin: 8px auto 40px auto;
   opacity: 0.8;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 24px;
 }
 
 .video-description {
@@ -1224,7 +1307,7 @@
   
   .overview-section,
   .style-guide-section,
-  .new-content-section,
+  .low-fidelity-sketches-section,
   .ui-mockups-section,
   .closing-section,
   .other-projects-section {
@@ -1298,7 +1381,7 @@
   
   .overview-section,
   .style-guide-section,
-  .new-content-section,
+  .low-fidelity-sketches-section,
   .ui-mockups-section,
   .closing-section,
   .other-projects-section {
@@ -1387,6 +1470,15 @@
     grid-template-columns: 1fr;
   }
   
+  .sketches-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .sketch-image {
+    height: 350px;
+  }
+  
   .figma-frame iframe {
     height: 350px;
   }
@@ -1419,7 +1511,7 @@
   
   .overview-section,
   .style-guide-section,
-  .new-content-section,
+  .low-fidelity-sketches-section,
   .ui-mockups-section,
   .prototype-section,
   .closing-section,
@@ -1590,6 +1682,23 @@
   
   .projects-grid {
     gap: 32px;
+  }
+  
+  .sketches-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .sketch-image {
+    height: 320px;
+  }
+  
+  .low-fidelity-sketches-title {
+    font-size: 28px !important;
+  }
+  
+  .low-fidelity-sketches-description {
+    font-size: 16px !important;
   }
   
   .project-info {

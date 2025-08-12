@@ -106,10 +106,6 @@
             <p class="ui-mockups-subtitle">Designed for quick browsing and one-handed interaction.</p>
             
             <div class="mockups-carousel">
-              <!-- Navigation Arrows -->
-              <button class="carousel-nav prev" onclick="previousSlide()"></button>
-              <button class="carousel-nav next" onclick="nextSlide()"></button>
-              
               <div class="carousel-wrapper">
                 <div class="carousel-track" id="carouselTrack">
                   <div class="mockup-slide" onclick="goToSlide(0)">
@@ -305,13 +301,30 @@
           </div>
         </section>
 
-        <!-- New Section -->
-        <section class="new-content-section">
-          <div class="new-content-container">
-            <h2 class="new-content-title">Section Header</h2>
-            <p class="new-content-description">
-              This is placeholder text for the new section. You can replace this with your actual content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <!-- Low-Fidelity Planning Section -->
+        <section class="low-fidelity-sketches-section">
+          <div class="low-fidelity-sketches-container">
+            <h2 class="low-fidelity-sketches-title">Low-Fidelity Planning</h2>
+            <p class="low-fidelity-sketches-description">
+              These initial sketches formed the foundation for the high-fidelity designs shown above. Through rapid low-fidelity explorations, I validated core layout structures and navigation patterns, allowing me to iterate quickly and identify the most intuitive user flows before investing time in detailed visual design.
             </p>
+            
+            <div class="sketches-grid">
+              <div class="sketch-item">
+                <img src="Assets/GroceryStoreApp/Home SKETCH.svg" alt="Home screen initial sketch" class="sketch-image" />
+                <h3 class="sketch-label">Home Layout Exploration</h3>
+              </div>
+              
+              <div class="sketch-item">
+                <img src="Assets/GroceryStoreApp/Using search bar SKETCH.svg" alt="Search functionality sketch" class="sketch-image" />
+                <h3 class="sketch-label">Search & Navigation Flow</h3>
+              </div>
+              
+              <div class="sketch-item">
+                <img src="Assets/GroceryStoreApp/SKETCH.svg" alt="General interface sketch" class="sketch-image" />
+                <h3 class="sketch-label">Interface Structure</h3>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -334,17 +347,16 @@
             <div class="prototype-content">
               <!-- Figma Embed -->
               <div class="figma-embed">
-                <h3 class="embed-title">Interactive Prototype</h3>
                 <div class="figma-frame">
                   <iframe 
                     width="800" 
                     height="450" 
-                    src="https://www.figma.com/embed?embed_host=share&url=YOUR_FIGMA_PROTOTYPE_URL" 
+                    src="[PASTE_YOUR_FIGMA_EMBED_URL_HERE]" 
                     allowfullscreen>
                   </iframe>
-                  <p class="figma-note">Click to interact with the live prototype</p>
                 </div>
               </div>
+              <p class="figma-note">Click to interact with the live prototype</p>
               
               <!-- Video Demo -->
               <div class="video-demo">
@@ -359,36 +371,36 @@
                   Watch the complete user journey from browsing to checkout in under 2 minutes.
                 </p>
               </div>
-              
-              <!-- Key Interactions -->
-              <div class="key-interactions">
-                <h3 class="interactions-title">Key Interactions</h3>
-                <div class="interactions-grid">
-                  <div class="interaction-item">
-                    <div class="interaction-icon">🏠</div>
-                    <h4>Home Navigation</h4>
-                    <p>Swipe through featured products and categories</p>
-                  </div>
-                  <div class="interaction-item">
-                    <div class="interaction-icon">🔍</div>
-                    <h4>Search & Filter</h4>
-                    <p>Smart search with category filtering</p>
-                  </div>
-                  <div class="interaction-item">
-                    <div class="interaction-icon">🛒</div>
-                    <h4>Add to Cart</h4>
-                    <p>One-tap adding with quantity controls</p>
-                  </div>
-                  <div class="interaction-item">
-                    <div class="interaction-icon">💳</div>
-                    <h4>Quick Checkout</h4>
-                    <p>Streamlined payment process</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
+
+        <!-- Key Interactions Section -->
+        <section class="key-interactions-section">
+          <div class="key-interactions-container">
+            <h2 class="interactions-title">Key Interactions</h2>
+            <div class="interactions-grid">
+              <div class="interaction-item">
+                <div class="interaction-icon">🏠</div>
+                <h4>Home Navigation</h4>
+                <p>Swipe through featured products and categories</p>
+              </div>
+              <div class="interaction-item">
+                <div class="interaction-icon">🔍</div>
+                <h4>Search & Filter</h4>
+                <p>Smart search with category filtering</p>
+              </div>
+              <div class="interaction-item">
+                <div class="interaction-icon">🛒</div>
+                <h4>Add to Cart</h4>
+                <p>One-tap adding with quantity controls</p>
+              </div>
+              <div class="interaction-item">
+                <div class="interaction-icon">💳</div>
+                <h4>Quick Checkout</h4>
+                <p>Streamlined payment process</p>
+              </div>
+            </div>
 
         <!-- Closing Section -->
         <section class="closing-section">
