@@ -111,43 +111,6 @@
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
 }
 
-.scroll-arrow {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.scroll-arrow:hover {
-  transform: translateX(-50%) translateY(-3px);
-  opacity: 1;
-}
-
-.arrow-down {
-  width: 24px;
-  height: 24px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-  opacity: 0.7;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: rotate(45deg) translateY(0);
-  }
-  40% {
-    transform: rotate(45deg) translateY(-10px);
-  }
-  60% {
-    transform: rotate(45deg) translateY(-5px);
-  }
-}
-
 /* =================================
    PROJECT OVERVIEW SECTION
    ================================= */
@@ -496,7 +459,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0);
   z-index: 1;
 }
 
@@ -517,25 +480,35 @@
 }
 
 .low-fidelity-sketches-title {
-  font-family: Arial, sans-serif !important;
-  font-weight: bold !important;
-  font-size: 32px !important;
-  color: #FFA927 !important;
-  margin: 0 0 42px 0;
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h3-font-size);
+  color: var(--grocery-app-subheaders);
+  margin: 0 0 21px 0;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.6);
+  background: rgba(255,255,255,1);
+  padding: 16px 24px;
+  border-radius: 8px;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 21px;
 }
 
 .low-fidelity-sketches-description {
-  font-family: Arial, sans-serif !important;
-  font-size: 18px !important;
-  color: #1a1a1a !important;
-  line-height: 1.6;
+  font-family: var(--body-font-family);
+  font-size: var(--h6-font-size);
+  color: var(--grocery-app-text);
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto 60px auto;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-  font-weight: 500;
+  margin: 24px auto 80px auto;
+  opacity: 1;
+  max-width: 600px;
+  line-height: 1.6;
+  background: rgba(255,255,255,1);
+  padding: 12px 20px;
+  border-radius: 6px;
 }
 
 .sketches-grid {
@@ -559,7 +532,11 @@
   background-repeat: no-repeat;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(180, 35, 50, 0.25);
+  box-shadow: 
+    0 4px 16px rgba(180, 35, 50, 0.25),
+    0 8px 12px rgba(0, 0, 0, 0.3),
+    -4px 8px 12px rgba(0, 0, 0, 0.2),
+    4px 8px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
@@ -572,7 +549,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.75);
+  background-image: url('../Assets/GroceryStoreApp/Watermelon.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(0.5px);
   z-index: 1;
   pointer-events: none;
 }
@@ -597,7 +578,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0);
   z-index: 1;
   pointer-events: none;
 }
@@ -652,7 +633,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(6px);
+  /* filter: blur(6px); */
   z-index: 1;
 }
 
@@ -663,7 +644,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0);
   z-index: 2;
 }
 
@@ -683,6 +664,15 @@
   color: var(--grocery-app-subheaders);
   margin: 0 0 21px 0;
   text-align: center;
+  background: rgba(255,255,255,1);
+  padding: 16px 24px;
+  border-radius: 8px;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 21px;
 }
 
 .ui-mockups-subtitle {
@@ -691,8 +681,12 @@
   color: var(--grocery-app-text);
   text-align: center;
   margin: 24px auto 80px auto;
-  opacity: 0.8;
+  opacity: 1;
   max-width: 600px;
+  background: rgba(255,255,255,1);
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: normal;
 }
 
 /* Carousel Container */
@@ -746,6 +740,8 @@
 
 .mockup-slide.active .mockup-image-container {
   transform: scale(1);
+  max-width: 100%;
+  width: 100%;
 }
 
 .mockup-slide.clickable {
@@ -777,6 +773,8 @@
 
 .mockup-slide.active .mockup-image {
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: auto;
 }
 
 /* Mockup Content */
@@ -801,6 +799,9 @@
   font-size: var(--h4-font-size);
   color: var(--grocery-app-text);
   margin: 0 0 16px 0;
+  background: rgba(255,255,255,1);
+  padding: 10px 14px;
+  border-radius: 6px;
 }
 
 .mockup-description {
@@ -809,7 +810,11 @@
   color: var(--grocery-app-text);
   line-height: 1.6;
   margin: 0;
-  opacity: 0.8;
+  opacity: 1;
+  background: rgba(255,255,255,1);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: normal;
 }
 
 /* Carousel Indicators */
@@ -818,6 +823,12 @@
   justify-content: center;
   gap: 12px;
   margin-top: 40px;
+  background: rgba(255,255,255,1);
+  padding: 16px 24px;
+  border-radius: 24px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .indicator {
@@ -943,8 +954,7 @@
   padding: 0 89px;
 }
 
-.demo-title,
-.interactions-title {
+.demo-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
@@ -952,7 +962,7 @@
   margin: 0 0 42px 0;
   text-align: center;
   padding: 0;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,1);
   padding: 16px 24px;
   border-radius: 8px;
   display: inline-block;
@@ -961,6 +971,18 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 42px;
+}
+
+.interactions-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h3-font-size);
+  color: var(--grocery-app-subheaders);
+  margin: 0 auto 42px auto;
+  text-align: center;
+  background: transparent;
+  display: block;
+  width: 100%;
 }
 
 .figma-frame {
@@ -1018,7 +1040,7 @@
   margin-top: 24px;
   padding: 12px 20px;
   text-shadow: 0 0 4px rgba(255,255,255,0.7);
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,1);
   border-radius: 6px;
 }
 
@@ -1036,7 +1058,6 @@
 .video-frame video {
   width: 100%;
   height: auto;
-  max-width: 900px;
   aspect-ratio: 16 / 9;
   border-radius: 16px;
   object-fit: cover;
@@ -1694,11 +1715,11 @@
   }
   
   .low-fidelity-sketches-title {
-    font-size: 28px !important;
+    font-size: 28px;
   }
   
   .low-fidelity-sketches-description {
-    font-size: 16px !important;
+    font-size: 16px;
   }
   
   .project-info {
@@ -1726,4 +1747,34 @@
   position: relative;
   z-index: 2;
   width: 100%;
+}
+
+/* Make Figma embed container background and borders invisible */
+.figma-embed,
+.figma-frame {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* =================================
+   OTHER PROJECTS SECTION - PORTFOLIO SVG
+   ================================= */
+
+.portfolio-svg-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ni-header-footer);
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.portfolio-logo-svg {
+  width: 60%;
+  height: 60%;
+  max-width: 150px;
+  max-height: 150px;
+  filter: brightness(0) saturate(100%) invert(75%) sepia(15%) saturate(312%) hue-rotate(26deg) brightness(88%) contrast(91%);
 }
