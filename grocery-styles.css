@@ -1157,8 +1157,6 @@
   width: 100%;
   max-width: 600px;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.15);
 }
 
 .closing-text {
