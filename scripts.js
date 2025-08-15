@@ -1095,7 +1095,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Header
       const header = document.querySelector('.header');
       if (header) {
-        header.style.transition = transitionStyle;
+        // Use fast transform transition for header behavior, but slow for color changes
+        header.style.transition = 'transform 0.25s ease-out, background-color 3s ease-in-out, border-bottom 3s ease-in-out, box-shadow 3s ease-in-out';
         header.style.backgroundColor = groceryColors.lighter;
         header.style.borderBottom = `1px solid ${groceryColors.border}`;
         header.style.boxShadow = `0 2px 12px ${groceryColors.shadow}`;
@@ -1218,6 +1219,94 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set initial state for smooth transition with same timing
     document.body.style.opacity = '0.95';
     document.body.style.transition = 'opacity 3s ease-in-out';
+    
+    // Grocery page header scroll behavior
+    let lastScrollTop = 0;
+    let isHeaderVisible = true;
+    const scrollThreshold = 100;
+    const header = document.querySelector('.header');
+    
+    if (header) {
+      // Set initial header styles for grocery page - but apply after color theme loads
+      function setFastHeaderTransition() {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3s ease-in-out, border-bottom 3s ease-in-out, box-shadow 3s ease-in-out';
+      }
+      
+      // Set immediately
+      setFastHeaderTransition();
+      
+      // Set again after color theme has loaded (1000ms + buffer)
+      setTimeout(setFastHeaderTransition, 1200);
+      
+      // Throttle scroll events for better performance
+      let ticking = false;
+      
+      function handleGroceryScroll() {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Don't hide header if we're near the top of the page
+        if (currentScrollTop < scrollThreshold) {
+          showGroceryHeader();
+          lastScrollTop = currentScrollTop;
+          return;
+        }
+        
+        // Determine scroll direction
+        const scrollingDown = currentScrollTop > lastScrollTop;
+        
+        if (scrollingDown && isHeaderVisible) {
+          hideGroceryHeader();
+        } else if (!scrollingDown && !isHeaderVisible) {
+          showGroceryHeader();
+        }
+        
+        lastScrollTop = currentScrollTop;
+      }
+      
+      function hideGroceryHeader() {
+        if (isHeaderVisible) {
+          // Ensure fast transition is set to match index page
+          header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3s ease-in-out, border-bottom 3s ease-in-out, box-shadow 3s ease-in-out';
+          header.classList.add('hide');
+          header.classList.remove('show');
+          header.style.transform = 'translateY(-100%)';
+          isHeaderVisible = false;
+        }
+      }
+      
+      function showGroceryHeader() {
+        if (!isHeaderVisible) {
+          // Ensure fast transition is set to match index page
+          header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3s ease-in-out, border-bottom 3s ease-in-out, box-shadow 3s ease-in-out';
+          header.classList.add('show');
+          header.classList.remove('hide');
+          header.style.transform = 'translateY(0)';
+          isHeaderVisible = true;
+        }
+      }
+      
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(handleGroceryScroll);
+          ticking = true;
+        }
+      }
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', () => {
+        requestTick();
+        ticking = false;
+      }, { passive: true });
+      
+      // Mouse hover to show header when hidden
+      header.addEventListener('mouseenter', showGroceryHeader);
+      
+      // Initialize header state based on current scroll position
+      const initialScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (initialScrollTop > scrollThreshold) {
+        hideGroceryHeader();
+      }
+    }
   }
 });
 
