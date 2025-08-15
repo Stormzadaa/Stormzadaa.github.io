@@ -2261,165 +2261,419 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize
     initTarkovHeaderBehavior();
+
+    // Initialize Smooth Carousel
+    initSmoothCarousel();
 });
 
-// ---- Carousel Grocery Functionality ----
-let currentSlide = 2;
-let totalSlides = 5;
-let autoSlideInterval;
+function initSmoothCarousel() {
+    console.log('Initializing smooth carousel...');
+    
+    const carousel = document.querySelector('.smooth-carousel');
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const items = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    
+    console.log('Carousel elements found:', {
+        carousel: !!carousel,
+        wrapper: !!wrapper,
+        items: items.length,
+        indicators: indicators.length
+    });
+    
+    if (!carousel || !wrapper || items.length === 0) {
+        console.log('Missing carousel elements, aborting...');
+        return;
+    }
+    
+    let currentIndex = 1; // Start at second item (first real item)
+    let isTransitioning = false;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    let threshold = 50; // Reduced threshold for easier triggering
+    
+    console.log('Setting initial position...');
+    // Set initial position to show first real item
+    wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    function updateCarousel(animate = true) {
+        console.log('Updating carousel, index:', currentIndex, 'animate:', animate);
+        
+        if (animate) {
+            wrapper.style.transition = 'transform 0.3s ease-out';
+        } else {
+            wrapper.style.transition = 'none';
+        }
+        
+        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Update indicators (map to real items: 0-4)
+        const realIndex = getRealIndex(currentIndex);
+        console.log('Real index:', realIndex);
+        
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === realIndex);
+        });
+        
+        // Update center class for scaling effect
+        items.forEach((item, index) => {
+            item.classList.toggle('center', index === currentIndex);
+        });
+        
+        // Update description
+        updateDescription(realIndex);
+    }
+    
+    function getRealIndex(index) {
+        // Convert wrapper index to real item index (0-4)
+        if (index === 0) return 4; // Last duplicate -> last real item
+        if (index === 6) return 0; // First duplicate -> first real item
+        return index - 1; // Regular items
+    }
+    
+    function updateDescription(realIndex) {
+        const descriptions = [
+            { title: 'Home Screen', text: 'Clean, intuitive homepage with easy navigation and quick access to product categories.' },
+            { title: 'Product Details', text: 'Comprehensive product information with high-quality images and clear pricing.' },
+            { title: 'Shopping Cart', text: 'Streamlined cart experience with item management and quick checkout access.' },
+            { title: 'Purchase History', text: 'Easy access to previous orders with reorder functionality and order tracking.' },
+            { title: 'Store Information', text: 'Store details, hours, location, and contact information in one convenient place.' }
+        ];
+
+        const descriptionTitle = document.querySelector('.description-title');
+        const descriptionText = document.querySelector('.description-text');
+        
+        if (descriptionTitle && descriptionText && descriptions[realIndex]) {
+            descriptionTitle.textContent = descriptions[realIndex].title;
+            descriptionText.textContent = descriptions[realIndex].text;
+        }
+    }
+    
+    function goToSlide(index, animate = true) {
+        console.log('Going to slide:', index);
+        if (isTransitioning) {
+            console.log('Already transitioning, skipping...');
+            return;
+        }
+        
+        isTransitioning = true;
+        currentIndex = index;
+        updateCarousel(animate);
+        
+        setTimeout(() => {
+            // Handle infinite loop
+            if (currentIndex === 0) {
+                console.log('Looping to end...');
+                currentIndex = 5; // Jump to last real item
+                updateCarousel(false);
+            } else if (currentIndex === 6) {
+                console.log('Looping to start...');
+                currentIndex = 1; // Jump to first real item
+                updateCarousel(false);
+            }
+            isTransitioning = false;
+        }, animate ? 300 : 0);
+    }
+    
+    function nextSlide() {
+        console.log('Next slide');
+        goToSlide(currentIndex + 1);
+    }
+    
+    function prevSlide() {
+        console.log('Previous slide');
+        goToSlide(currentIndex - 1);
+    }
+    
+    // Touch and mouse drag functionality
+    function handleStart(e) {
+        console.log('Drag start');
+        if (isTransitioning) return;
+        
+        isDragging = true;
+        startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+        currentX = startX;
+        
+        carousel.style.cursor = 'grabbing';
+        wrapper.style.transition = 'none';
+        
+        e.preventDefault(); // Prevent text selection
+    }
+    
+    function handleMove(e) {
+        if (!isDragging) return;
+        
+        e.preventDefault();
+        currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+        const deltaX = currentX - startX;
+        const translateX = -currentIndex * 100 + (deltaX / carousel.offsetWidth) * 100;
+        
+        wrapper.style.transform = `translateX(${translateX}%)`;
+    }
+    
+    function handleEnd() {
+        if (!isDragging) return;
+        
+        console.log('Drag end');
+        isDragging = false;
+        carousel.style.cursor = 'grab';
+        
+        const deltaX = currentX - startX;
+        const dragDistance = Math.abs(deltaX);
+        
+        console.log('Drag distance:', dragDistance, 'threshold:', threshold);
+        
+        if (dragDistance > threshold) {
+            if (deltaX > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        } else {
+            // Snap back to current position
+            console.log('Snapping back to current position');
+            updateCarousel(true);
+        }
+    }
+    
+    // Event listeners
+    console.log('Adding event listeners...');
+    
+    // Mouse events
+    carousel.addEventListener('mousedown', handleStart);
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleEnd);
+    
+    // Touch events
+    carousel.addEventListener('touchstart', handleStart, { passive: false });
+    carousel.addEventListener('touchmove', handleMove, { passive: false });
+    carousel.addEventListener('touchend', handleEnd);
+    
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            console.log('Indicator clicked:', index);
+            goToSlide(index + 1); // +1 because wrapper has duplicate at start
+        });
+    });
+    
+    // Test buttons for debugging
+    console.log('Adding test keyboard events...');
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            console.log('Left arrow pressed');
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            console.log('Right arrow pressed');
+            nextSlide();
+        }
+    });
+    
+    // Prevent text selection during drag
+    carousel.addEventListener('selectstart', (e) => e.preventDefault());
+    
+    // Initialize
+    console.log('Initializing carousel position...');
+    updateCarousel(false);
+    console.log('Carousel initialization complete');
+}
+
+// Global test functions
+let testCurrentIndex = 0;
+
+// Drag functionality variables
 let isDragging = false;
 let startX = 0;
 let currentX = 0;
-let threshold = 50;
+let dragStartIndex = 0;
+let dragThreshold = 50; // Minimum distance to trigger slide change
 
-function initializeCarousel() {
-    const carouselTrack = document.getElementById('carouselTrack');
-    if (!carouselTrack) return;
+// Description data for each mockup
+const mockupDescriptions = [
+    { title: 'Home Screen', text: 'Clean, intuitive homepage with easy navigation and quick access to product categories.' },
+    { title: 'Categories', text: 'Browse products by category with intuitive filtering and easy navigation between sections.' },
+    { title: 'Product Details', text: 'Comprehensive product information with high-quality images and clear pricing.' },
+    { title: 'Purchase History', text: 'Easy access to previous orders with reorder functionality and order tracking.' },
+    { title: 'Store Information', text: 'Store details, hours, location, and contact information in one convenient place.' }
+];
+
+function updateDescription(index) {
+    const descriptionTitle = document.querySelector('.description-title');
+    const descriptionText = document.querySelector('.description-text');
     
-    // Initialize first slide as active
-    updateCarousel();
-    
-    // Start auto-slide
-    startAutoSlide();
-    
-    // Add drag functionality
-    addDragFunctionality();
-    
-    // Add keyboard navigation
-    document.addEventListener('keydown', handleKeyDown);
+    if (descriptionTitle && descriptionText && mockupDescriptions[index]) {
+        descriptionTitle.textContent = mockupDescriptions[index].title;
+        descriptionText.textContent = mockupDescriptions[index].text;
+    }
 }
 
-function updateCarousel() {
-    const slides = document.querySelectorAll('.mockup-slide');
-    const indicators = document.querySelectorAll('.indicator');
-    const carouselTrack = document.getElementById('carouselTrack');
-    
-    if (!carouselTrack) return;
-    
-    // Update slides
-    slides.forEach((slide, index) => {
-        slide.classList.remove('active', 'clickable');
-        if (index === currentSlide) {
-            slide.classList.add('active');
-        } else if (index === currentSlide - 1 || index === currentSlide + 1) {
-            slide.classList.add('clickable');
-        }
-    });
-    
-    // Update indicators
+function updateIndicators(activeIndex) {
+    const indicators = document.querySelectorAll('.carousel-indicator');
     indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentSlide);
+        indicator.classList.toggle('active', index === activeIndex);
     });
+}
+
+function goToSlide(targetIndex) {
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const items = document.querySelectorAll('.carousel-item');
     
-    // Move carousel track
-    const slideWidth = 50; // 50% width per slide
-    const offset = -currentSlide * slideWidth;
-    carouselTrack.style.transform = `translateX(${offset}%)`;
+    if (wrapper && items.length > 0) {
+        testCurrentIndex = targetIndex;
+        
+        // Center the target item
+        const translateX = -testCurrentIndex * 60 + 20;
+        wrapper.style.transform = `translateX(${translateX}%)`;
+        wrapper.style.transition = 'transform 0.3s ease-out';
+        
+        // Update center class
+        items.forEach((item, index) => {
+            item.classList.toggle('center', index === testCurrentIndex);
+        });
+        
+        // Update description and indicators
+        updateDescription(testCurrentIndex);
+        updateIndicators(testCurrentIndex);
+        
+        console.log('Moved to index:', testCurrentIndex);
+    }
 }
 
-function goToSlide(index) {
-    currentSlide = index;
-    updateCarousel();
-    resetAutoSlide();
-}
-
-function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-        if (!isDragging) {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }
-    }, 5000);
-}
-
-function resetAutoSlide() {
-    clearInterval(autoSlideInterval);
-    startAutoSlide();
-}
-
-function addDragFunctionality() {
-    const carouselTrack = document.getElementById('carouselTrack');
-    if (!carouselTrack) return;
-    
-    // Mouse events
-    carouselTrack.addEventListener('mousedown', handleDragStart);
-    carouselTrack.addEventListener('mousemove', handleDragMove);
-    carouselTrack.addEventListener('mouseup', handleDragEnd);
-    carouselTrack.addEventListener('mouseleave', handleDragEnd);
-    
-    // Touch events
-    carouselTrack.addEventListener('touchstart', handleDragStart, { passive: false });
-    carouselTrack.addEventListener('touchmove', handleDragMove, { passive: false });
-    carouselTrack.addEventListener('touchend', handleDragEnd);
-}
-
+// Drag functionality
 function handleDragStart(e) {
     isDragging = true;
-    const carouselTrack = document.getElementById('carouselTrack');
-    carouselTrack.classList.add('dragging');
+    dragStartIndex = testCurrentIndex;
+    startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    currentX = startX;
     
-    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-    startX = clientX;
-    currentX = clientX;
+    const wrapper = document.querySelector('.carousel-wrapper');
+    if (wrapper) {
+        wrapper.style.transition = 'none'; // Disable transition during drag
+    }
+    
+    // Prevent text selection during drag
+    e.preventDefault();
 }
 
 function handleDragMove(e) {
     if (!isDragging) return;
     
+    currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const deltaX = currentX - startX;
+    const wrapper = document.querySelector('.carousel-wrapper');
+    
+    if (wrapper) {
+        // Calculate the base position for current slide
+        const baseTranslateX = -testCurrentIndex * 60 + 20;
+        // Add drag offset (convert pixel movement to percentage)
+        const dragOffset = (deltaX / window.innerWidth) * 100;
+        wrapper.style.transform = `translateX(${baseTranslateX + dragOffset}%)`;
+    }
+    
     e.preventDefault();
-    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-    currentX = clientX;
 }
 
-function handleDragEnd() {
+function handleDragEnd(e) {
     if (!isDragging) return;
     
     isDragging = false;
-    const carouselTrack = document.getElementById('carouselTrack');
-    carouselTrack.classList.remove('dragging');
-    
     const deltaX = currentX - startX;
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const items = document.querySelectorAll('.carousel-item');
     
-    if (Math.abs(deltaX) > threshold) {
-        if (deltaX > 0) {
-            // Go to previous slide
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-            resetAutoSlide();
+    if (wrapper) {
+        wrapper.style.transition = 'transform 0.3s ease-out'; // Re-enable transition
+    }
+    
+    // Determine if drag was significant enough to change slides
+    if (Math.abs(deltaX) > dragThreshold) {
+        if (deltaX > 0 && testCurrentIndex > 0) {
+            // Dragged right, go to previous slide
+            goToSlide(testCurrentIndex - 1);
+        } else if (deltaX < 0 && testCurrentIndex < items.length - 1) {
+            // Dragged left, go to next slide
+            goToSlide(testCurrentIndex + 1);
         } else {
-            // Go to next slide
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-            resetAutoSlide();
+            // Not enough movement or at boundary, snap back to current slide
+            goToSlide(testCurrentIndex);
         }
-    }
-    
-    startX = 0;
-    currentX = 0;
-}
-
-function handleKeyDown(e) {
-    if (e.key === 'ArrowLeft') {
-        // Go to previous slide
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-        resetAutoSlide();
-    } else if (e.key === 'ArrowRight') {
-        // Go to next slide
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
-        resetAutoSlide();
-    }
-}
-
-// Initialize carousel when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeCarousel);
-
-// Pause auto-slide when page is not visible
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        clearInterval(autoSlideInterval);
     } else {
-        startAutoSlide();
+        // Not enough movement, snap back to current slide
+        goToSlide(testCurrentIndex);
     }
+}
+
+function testNext() {
+    console.log('Test Next clicked');
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const items = document.querySelectorAll('.carousel-item');
+    if (wrapper && items.length > 0) {
+        testCurrentIndex = (testCurrentIndex + 1) % items.length;
+        goToSlide(testCurrentIndex);
+    }
+}
+
+function testPrev() {
+    console.log('Test Prev clicked');
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const items = document.querySelectorAll('.carousel-item');
+    if (wrapper && items.length > 0) {
+        testCurrentIndex = testCurrentIndex === 0 ? items.length - 1 : testCurrentIndex - 1;
+        goToSlide(testCurrentIndex);
+    }
+}
+
+// Initialize the carousel position on page load
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        const wrapper = document.querySelector('.carousel-wrapper');
+        const items = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        
+        if (wrapper && items.length > 0) {
+            // Set initial position and center class
+            wrapper.style.transform = 'translateX(20%)';
+            wrapper.style.transition = 'transform 0.3s ease-out';
+            items[0].classList.add('center');
+            
+            // Set initial description and indicators
+            updateDescription(0);
+            updateIndicators(0);
+            
+            console.log('Carousel initialized with proper centering');
+        }
+        
+        // Add click event listeners to indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                console.log('Indicator clicked:', index);
+                goToSlide(index);
+            });
+        });
+        
+        console.log('Indicator event listeners added');
+        
+        // Add drag event listeners to carousel wrapper
+        if (wrapper) {
+            // Mouse events
+            wrapper.addEventListener('mousedown', handleDragStart);
+            document.addEventListener('mousemove', handleDragMove);
+            document.addEventListener('mouseup', handleDragEnd);
+            
+            // Touch events
+            wrapper.addEventListener('touchstart', handleDragStart, { passive: false });
+            document.addEventListener('touchmove', handleDragMove, { passive: false });
+            document.addEventListener('touchend', handleDragEnd);
+            
+            // Prevent context menu on right click during drag
+            wrapper.addEventListener('contextmenu', (e) => {
+                if (isDragging) e.preventDefault();
+            });
+            
+            console.log('Drag event listeners added');
+        }
+    }, 100);
 });

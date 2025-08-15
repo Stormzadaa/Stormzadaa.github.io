@@ -98,72 +98,46 @@
         <!-- UI Mockups Section -->
         <section class="ui-mockups-section">
           <div class="ui-mockups-container">
-            <h2 class="ui-mockups-title">User Interface Highlights</h2>
-            <p class="ui-mockups-subtitle">Designed for quick browsing and one-handed interaction.</p>
+            <h2>User Interface Highlights</h2>
+            <p>Designed for quick browsing and one-handed interaction.</p>
             
-            <div class="mockups-carousel">
+            <!-- Simple Test Carousel -->
+            <div class="smooth-carousel">
               <div class="carousel-wrapper">
-                <div class="carousel-track" id="carouselTrack">
-                  <div class="mockup-slide" onclick="goToSlide(0)">
-                    <div class="mockup-image-container">
-                      <img src="Assets/GroceryStoreApp/Home.svg" alt="Home Screen" class="mockup-image" />
-                    </div>
-                    <div class="mockup-content">
-                      <h3 class="mockup-title">Home Screen</h3>
-                      <p class="mockup-description">Clean navigation with featured products and quick category access.</p>
-                    </div>
-                  </div>
-                  
-                  <div class="mockup-slide" onclick="goToSlide(1)">
-                    <div class="mockup-image-container">
-                      <img src="Assets/GroceryStoreApp/Product info.svg" alt="Product Detail" class="mockup-image" />
-                    </div>
-                    <div class="mockup-content">
-                      <h3 class="mockup-title">Product Detail</h3>
-                      <p class="mockup-description">Rich product information with nutritional facts and reviews.</p>
-                    </div>
-                  </div>
-                  
-                  <div class="mockup-slide" onclick="goToSlide(2)">
-                    <div class="mockup-image-container">
-                      <img src="Assets/GroceryStoreApp/Home with cart item.svg" alt="Shopping Cart" class="mockup-image" />
-                    </div>
-                    <div class="mockup-content">
-                      <h3 class="mockup-title">Cart</h3>
-                      <p class="mockup-description">Easy quantity adjustments and instant price calculations.</p>
-                    </div>
-                  </div>
-                  
-                  <div class="mockup-slide" onclick="goToSlide(3)">
-                    <div class="mockup-image-container">
-                      <img src="Assets/GroceryStoreApp/Purchases.svg" alt="Purchases" class="mockup-image" />
-                    </div>
-                    <div class="mockup-content">
-                      <h3 class="mockup-title">Purchases</h3>
-                      <p class="mockup-description">Order history and tracking with easy reorder functionality.</p>
-                    </div>
-                  </div>
-                  
-                  <div class="mockup-slide" onclick="goToSlide(4)">
-                    <div class="mockup-image-container">
-                      <img src="Assets/GroceryStoreApp/Store info.svg" alt="Store Information" class="mockup-image" />
-                    </div>
-                    <div class="mockup-content">
-                      <h3 class="mockup-title">Store Info</h3>
-                      <p class="mockup-description">Store details, hours, and location information at a glance.</p>
-                    </div>
-                  </div>
+                <div class="carousel-item">
+                  <img src="Assets/GroceryStoreApp/Home.svg" alt="Home Screen" class="carousel-image">
+                </div>
+                <div class="carousel-item">
+                  <img src="Assets/GroceryStoreApp/Categories.svg" alt="Categories" class="carousel-image">
+                </div>
+                <div class="carousel-item">
+                  <img src="Assets/GroceryStoreApp/Product info.svg" alt="Product Detail" class="carousel-image">
+                </div>
+                <div class="carousel-item">
+                  <img src="Assets/GroceryStoreApp/Purchases.svg" alt="Purchases" class="carousel-image">
+                </div>
+                <div class="carousel-item">
+                  <img src="Assets/GroceryStoreApp/Store info.svg" alt="Store Information" class="carousel-image">
                 </div>
               </div>
-              
-              <!-- Carousel Indicators -->
-              <div class="carousel-indicators">
-                <div class="indicator active" onclick="goToSlide(0)"></div>
-                <div class="indicator" onclick="goToSlide(1)"></div>
-                <div class="indicator" onclick="goToSlide(2)"></div>
-                <div class="indicator" onclick="goToSlide(3)"></div>
-                <div class="indicator" onclick="goToSlide(4)"></div>
-              </div>
+              <!-- Navigation Arrows -->
+              <button class="carousel-arrow carousel-prev" onclick="testPrev()" aria-label="Previous mockup">‹</button>
+              <button class="carousel-arrow carousel-next" onclick="testNext()" aria-label="Next mockup">›</button>
+            </div>
+            
+            <!-- Mockup Description -->
+            <div class="mockup-description">
+              <h3 class="description-title">Home Screen</h3>
+              <p class="description-text">Clean navigation with featured products and quick category access.</p>
+            </div>
+            
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+              <div class="carousel-indicator active"></div>
+              <div class="carousel-indicator"></div>
+              <div class="carousel-indicator"></div>
+              <div class="carousel-indicator"></div>
+              <div class="carousel-indicator"></div>
             </div>
           </div>
         </section>
@@ -504,122 +478,6 @@
     </footer>
 
   <script src="scripts.js"></script>
-  <script>
-    // Carousel functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const carousel = document.getElementById('mockupsCarousel');
-      const items = document.querySelectorAll('.mockup-item');
-      const indicators = document.querySelectorAll('.scroll-indicator');
-      const prevBtn = document.getElementById('carouselPrev');
-      const nextBtn = document.getElementById('carouselNext');
-      let currentIndex = 0;
-
-      function updateCarousel(index) {
-        if (index < 0) index = items.length - 1;
-        if (index >= items.length) index = 0;
-        
-        currentIndex = index;
-        
-        // Scroll to the selected item
-        const item = items[index];
-        const itemWidth = item.offsetWidth + 32; // width + gap
-        const scrollLeft = (itemWidth * index) - (carousel.offsetWidth / 2) + (itemWidth / 2);
-        
-        carousel.scrollTo({
-          left: scrollLeft,
-          behavior: 'smooth'
-        });
-        
-        // Update indicators
-        indicators.forEach((indicator, i) => {
-          indicator.classList.toggle('active', i === index);
-        });
-      }
-
-      // Click on mockup items
-      items.forEach((item, index) => {
-        item.addEventListener('click', () => {
-          updateCarousel(index);
-        });
-      });
-
-      // Navigation arrows
-      prevBtn.addEventListener('click', () => {
-        updateCarousel(currentIndex - 1);
-      });
-
-      nextBtn.addEventListener('click', () => {
-        updateCarousel(currentIndex + 1);
-      });
-
-      // Click on indicators
-      indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-          updateCarousel(index);
-        });
-        indicator.style.cursor = 'pointer';
-      });
-
-      // Touch/drag functionality
-      let isDown = false;
-      let startX;
-      let scrollLeftStart;
-
-      carousel.addEventListener('mousedown', (e) => {
-        isDown = true;
-        carousel.style.cursor = 'grabbing';
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeftStart = carousel.scrollLeft;
-      });
-
-      carousel.addEventListener('mouseleave', () => {
-        isDown = false;
-        carousel.style.cursor = 'grab';
-      });
-
-      carousel.addEventListener('mouseup', () => {
-        isDown = false;
-        carousel.style.cursor = 'grab';
-      });
-
-      carousel.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2;
-        carousel.scrollLeft = scrollLeftStart - walk;
-      });
-
-      // Touch events for mobile
-      carousel.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].pageX - carousel.offsetLeft;
-        scrollLeftStart = carousel.scrollLeft;
-      });
-
-      carousel.addEventListener('touchmove', (e) => {
-        const x = e.touches[0].pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2;
-        carousel.scrollLeft = scrollLeftStart - walk;
-      });
-
-      // Update active indicator based on scroll position
-      carousel.addEventListener('scroll', () => {
-        const itemWidth = items[0].offsetWidth + 32;
-        const scrollPosition = carousel.scrollLeft + (carousel.offsetWidth / 2);
-        const newIndex = Math.round(scrollPosition / itemWidth);
-        
-        if (newIndex !== currentIndex && newIndex >= 0 && newIndex < items.length) {
-          currentIndex = newIndex;
-          indicators.forEach((indicator, i) => {
-            indicator.classList.toggle('active', i === currentIndex);
-          });
-        }
-      });
-
-      // Set cursor style
-      carousel.style.cursor = 'grab';
-    });
-  </script>
 </body>
 
 </html>

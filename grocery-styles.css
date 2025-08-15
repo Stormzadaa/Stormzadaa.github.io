@@ -622,7 +622,6 @@
    ================================= */
 
 .ui-mockups-section {
-  padding: 100px 40px;
   background: var(--grocery-app-white);
   background-image: url('../Assets/GroceryStoreApp/lemon_slice_pattern_background.jpg');
   background-size: cover;
@@ -630,12 +629,10 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
-  min-height: 100vh;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -644,206 +641,223 @@
   position: relative;
   z-index: 3;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
   width: 100%;
   height: 100vh;
+  padding: 40px 0 20px 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 2vh 0;
+  justify-content: flex-start;
   box-sizing: border-box;
 }
 
-.ui-mockups-title {
+.ui-mockups-container h2 {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
-  font-size: clamp(20px, 3vh, 32px);
+  font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 1vh 0;
+  margin: 0 0 20px 0;
   text-align: center;
-  background: rgba(255,255,255,1);
-  padding: 1vh 2vh;
+  background: rgba(255, 255, 255, 1);
+  padding: 10px 20px;
   border-radius: 8px;
   display: inline-block;
-  width: auto;
-  max-width: 90%;
 }
 
-.ui-mockups-subtitle {
+.ui-mockups-container p {
   font-family: var(--body-font-family);
-  font-size: clamp(14px, 2vh, 24px);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
+  margin: 0;
   text-align: center;
-  margin: 1vh auto 3vh auto;
-  opacity: 1;
-  max-width: 80%;
-  background: rgba(255,255,255,1);
-  padding: 1vh 2vh;
+  background: rgba(255, 255, 255, 1);
+  padding: 8px 15px;
   border-radius: 6px;
-  font-weight: normal;
+  display: inline-block;
 }
 
-/* Carousel Container */
-.mockups-carousel {
-  position: relative;
-  width: clamp(400px, 70vw, 900px);
-  height: 60vh;
-  margin: 0 auto;
-  padding: 0 clamp(40px, 8vw, 120px);
+/* Smooth Scrolling Carousel */
+.smooth-carousel {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.carousel-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   position: relative;
-  overflow: visible;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: grab;
   user-select: none;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
 }
 
-.carousel-track:active {
+.smooth-carousel:active {
   cursor: grabbing;
 }
 
-.carousel-track.dragging {
-  transition: none;
+.carousel-wrapper {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
 }
 
-/* Carousel Items */
-.mockup-slide {
-  flex: 0 0 50%;
+.carousel-item {
+  flex-shrink: 0;
+  width: 60%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 0 3vw;
+  padding: 0;
   box-sizing: border-box;
   opacity: 0.6;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.3s ease;
 }
 
-.mockup-slide .mockup-image-container {
-  transform: scale(0.85);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mockup-slide.active {
+.carousel-item.center {
   opacity: 1;
+  z-index: 2;
 }
 
-.mockup-slide.active .mockup-image-container {
-  transform: scale(1);
-  max-width: clamp(250px, 30vh, 450px);
-  width: 100%;
+.carousel-image {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  pointer-events: none;
 }
 
-.mockup-slide.clickable {
+/* Scale effect for center image */
+.carousel-item.center {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Navigation Arrows - positioned over the side images */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--grocery-app-accent);
   cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.mockup-slide:first-child {
-  margin-left: 25%;
+.carousel-arrow:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.05);
 }
 
-/* Mockup Image */
-.mockup-image-container {
-  position: relative;
-  margin-bottom: 2vh;
-  max-width: clamp(180px, 25vh, 350px);
-  width: 100%;
-  border-radius: 40px;
-  overflow: hidden;
+.carousel-prev {
+  left: 25%;
 }
 
-.mockup-image {
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s ease;
-  background: transparent;
+.carousel-next {
+  right: 25%;
 }
 
-.mockup-slide.active .mockup-image {
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
-  width: 100%;
-  height: auto;
+/* Responsive arrow positioning */
+@media (max-width: 768px) {
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .carousel-prev {
+    left: 20%;
+  }
+  
+  .carousel-next {
+    right: 20%;
+  }
 }
 
-/* Mockup Content */
-.mockup-content {
+@media (max-width: 480px) {
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+  
+  .carousel-prev {
+    left: 15%;
+  }
+  
+  .carousel-next {
+    right: 15%;
+  }
+}
+
+/* Mockup Description */
+.mockup-description {
+  background: rgba(255, 255, 255, 1);
+  padding: 10px 15px;
+  border-radius: 12px;
   text-align: center;
-  max-width: clamp(250px, 35vw, 400px);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(1vh) scale(1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 600px;
+  margin-top: auto;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.mockup-slide.active .mockup-content {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-}
-
-.mockup-title {
+.description-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
-  font-size: clamp(12px, 2vh, 20px);
+  font-size: var(--h5-font-size);
   color: var(--grocery-app-text);
-  margin: 0 0 1vh 0;
-  background: rgba(255,255,255,1);
-  padding: 0.8vh 1.2vh;
-  border-radius: 6px;
+  margin: 0 0 8px 0;
 }
 
-.mockup-description {
+.description-text {
   font-family: var(--body-font-family);
-  font-size: clamp(10px, 1.5vh, 16px);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
-  line-height: 1.4;
   margin: 0;
-  opacity: 1;
-  background: rgba(255,255,255,1);
-  padding: 0.8vh 1.2vh;
-  border-radius: 6px;
-  font-weight: normal;
+  line-height: 1.6;
 }
 
 /* Carousel Indicators */
 .carousel-indicators {
   display: flex;
   justify-content: center;
-  gap: 1vw;
-  margin-top: 2vh;
-  background: rgba(255,255,255,1);
-  padding: 1vh 2vh;
+  gap: 12px;
+  background: rgba(255, 255, 255, 1);
+  padding: 16px 24px;
   border-radius: 24px;
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
-.indicator {
-  width: clamp(6px, 1.2vh, 14px);
-  height: clamp(6px, 1.2vh, 14px);
+.carousel-indicator {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: rgba(139, 195, 74, 0.3);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.indicator.active {
+.carousel-indicator.active {
   background: var(--grocery-app-secondary);
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
 
 /* =================================
@@ -1671,7 +1685,7 @@
     gap: 8px;
   }
   
-  .indicator {
+  .carousel-indicator {
     width: 10px;
     height: 10px;
   }
