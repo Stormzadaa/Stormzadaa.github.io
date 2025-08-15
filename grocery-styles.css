@@ -452,7 +452,7 @@
    LOW-FIDELITY SKETCHES SECTION
    ================================= */
 
-.low-fidelity-sketches-section {
+.low-fidelity-sketches-container {
   padding: 100px 89px;
   background-image: url('../Assets/GroceryStoreApp/Watermelon.jpg');
   background-size: cover;
@@ -465,28 +465,7 @@
   max-width: 100vw;
   box-sizing: border-box;
   overflow-x: hidden;
-}
-
-.low-fidelity-sketches-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0);
-  z-index: 1;
-}
-
-.low-fidelity-sketches-container {
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
   text-align: center;
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1341,7 +1320,7 @@
   
   .overview-section,
   .style-guide-section,
-  .low-fidelity-sketches-section,
+  .low-fidelity-sketches-container,
   .ui-mockups-section,
   .closing-section,
   .other-projects-section {
@@ -1415,7 +1394,7 @@
   
   .overview-section,
   .style-guide-section,
-  .low-fidelity-sketches-section,
+  .low-fidelity-sketches-container,
   .ui-mockups-section,
   .closing-section,
   .other-projects-section {
@@ -1545,7 +1524,7 @@
   
   .overview-section,
   .style-guide-section,
-  .low-fidelity-sketches-section,
+  .low-fidelity-sketches-container,
   .ui-mockups-section,
   .prototype-section,
   .closing-section,
