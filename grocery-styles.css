@@ -111,7 +111,7 @@
    ================================= */
 
 .overview-section {
-  padding: 100px 89px;
+  padding: 55px 89px;
   background: var(--grocery-app-white);
 }
 
@@ -125,7 +125,7 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 42px 0;
+  margin: 0 0 34px 0;
   text-align: center;
 }
 
@@ -136,7 +136,7 @@
   line-height: 1.6;
   text-align: center;
   max-width: 800px;
-  margin: 0 auto 42px auto;
+  margin: 0 auto 34px auto;
   opacity: 0.8;
 }
 
@@ -168,7 +168,7 @@
    ================================= */
 
 .style-guide-section {
-  padding: 100px 89px;
+  padding: 55px 89px;
   background: var(--grocery-app-section-bg);
 }
 
@@ -182,21 +182,21 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 42px 0;
+  margin: 0 0 55px 0;
   text-align: center;
 }
 
 .style-guide-content {
   display: flex;
   flex-direction: column;
-  gap: 42px;
+  gap: 55px;
   align-items: stretch;
 }
 
 .color-palette-side,
 .typography-side {
   background: white;
-  padding: 42px;
+  padding: 55px 34px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
@@ -207,7 +207,7 @@
   font-weight: var(--font-weight-semibold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-text);
-  margin: 0 0 16px 0;
+  margin: 0 0 34px 0;
 }
 
 .palette-rule-description {
@@ -215,7 +215,7 @@
   font-size: var(--h6-font-size);
   color: var(--grocery-app-text);
   line-height: 1.5;
-  margin: 0 0 32px 0;
+  margin: 0 0 34px 0;
   opacity: 0.8;
   font-style: italic;
 }
@@ -223,16 +223,15 @@
 .color-swatches {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  margin-bottom: 32px;
+  gap: 34px;
 }
 
 .color-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: flex-start;
-  gap: 48px;
-  padding-bottom: 32px;
+  align-items: center;
+  gap: 21px;
+  padding-bottom: 34px;
   border-bottom: 1px solid var(--grocery-app-border);
 }
 
@@ -281,7 +280,7 @@
 
 .color-group-description {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
 }
 
@@ -330,7 +329,7 @@
 }
 
 .typography-main-font {
-  margin-bottom: 24px;
+  margin-bottom: 34px;
 }
 
 .typography-font-name {
@@ -343,11 +342,11 @@
 }
 
 .type-sample {
-  margin-bottom: 32px;
+  margin-bottom: 34px;
 }
 
 .type-label-container {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .type-label-tag {
@@ -399,7 +398,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 13px;
   margin-bottom: 8px;
 }
 
@@ -433,7 +432,7 @@
    ================================= */
 
 .low-fidelity-sketches-container {
-  padding: 100px 89px;
+  padding: 55px 89px;
   background-image: url('../Assets/GroceryStoreApp/Watermelon.jpg');
   background-size: cover;
   background-position: center;
@@ -454,17 +453,6 @@
   justify-content: center;
 }
 
-.low-fidelity-sketches-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
-  z-index: 1;
-}
-
 .low-fidelity-sketches-title,
 .low-fidelity-sketches-description,
 .sketches-grid {
@@ -477,17 +465,16 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 21px 0;
+  margin: 0;
   text-align: center;
   background: rgba(255,255,255,1);
-  padding: 16px 24px;
+  padding: 13px 21px;
   border-radius: 8px;
   display: inline-block;
   width: auto;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 21px;
 }
 
 .low-fidelity-sketches-description {
@@ -495,21 +482,19 @@
   font-size: var(--h6-font-size);
   color: var(--grocery-app-text);
   text-align: center;
-  margin: 24px auto 80px auto;
+  margin: 34px auto 34px auto;
   opacity: 1;
   max-width: 600px;
   line-height: 1.6;
   background: rgba(255,255,255,1);
-  padding: 12px 20px;
+  padding: 13px 21px;
   border-radius: 6px;
 }
 
 .sketches-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 40px;
-  margin-top: 40px;
-  padding: 20px 20px 40px 20px;
+  gap: 34px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -535,22 +520,6 @@
   z-index: 1;
 }
 
-.sketch-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('../Assets/GroceryStoreApp/Watermelon.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(0.5px);
-  z-index: 1;
-  pointer-events: none;
-}
-
 .sketch-image {
   width: 100%;
   height: 600px;
@@ -564,18 +533,6 @@
   z-index: 2;
 }
 
-.sketch-image::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0);
-  z-index: 1;
-  pointer-events: none;
-}
-
 .sketch-item:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(180, 35, 50, 0.35);
@@ -585,10 +542,10 @@
 .sketch-label {
   font-family: Arial, sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: var(--h8-font-size);
   color: #333333;
   margin: 0;
-  padding: 20px;
+  padding: 21px;
   text-align: center;
   background: white;
   position: relative;
@@ -623,7 +580,7 @@
   text-align: center;
   width: 100%;
   height: min(100vh, 1550px);
-  padding: 40px 0 20px 0;
+  padding: 34px 0 34px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -636,10 +593,10 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 20px 0;
+  margin: 0 0 34px 0;
   text-align: center;
   background: rgba(255, 255, 255, 1);
-  padding: 10px 20px;
+  padding: 13px 21px;
   border-radius: 8px;
   display: inline-block;
 }
@@ -651,8 +608,8 @@
   margin: 0;
   text-align: center;
   background: rgba(255, 255, 255, 1);
-  padding: 8px 15px;
-  border-radius: 6px;
+  padding: 0;
+  border-radius: 0;
   display: inline-block;
 }
 
@@ -666,7 +623,7 @@
   position: relative;
   cursor: grab;
   user-select: none;
-  margin: 20px 0;
+  margin: 34px 0;
   display: flex;
   align-items: center;
 }
@@ -788,12 +745,12 @@
 /* Mockup Description */
 .mockup-description {
   background: rgba(255, 255, 255, 1);
-  padding: 10px 15px;
+  padding: 13px 21px;
   border-radius: 12px;
   text-align: center;
   max-width: 600px;
   margin-top: auto;
-  margin-bottom: 20px;
+  margin-bottom: 34px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -803,7 +760,7 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h5-font-size);
   color: var(--grocery-app-text);
-  margin: 0 0 8px 0;
+  margin: 0 0 13px 0;
 }
 
 .description-text {
@@ -811,6 +768,7 @@
   font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   margin: 0;
+  padding: 0;
   line-height: 1.6;
 }
 
@@ -818,9 +776,9 @@
 .carousel-indicators {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 13px;
   background: rgba(255, 255, 255, 1);
-  padding: 16px 24px;
+  padding: 13px 21px;
   border-radius: 24px;
   width: fit-content;
   margin: 0 auto;
@@ -841,27 +799,35 @@
 }
 
 /* =================================
-   PROTOTYPE SECTION
+   TRY EXPERIENCE SECTION
    ================================= */
 
-.prototype-section {
-  padding: 60px 0;
+.try-experience-section {
+  padding: 55px 0 0 0;
   background: var(--grocery-app-section-bg);
   width: 100%;
   overflow: hidden;
 }
 
-.prototype-container {
+.try-experience-wrapper {
   width: 100vw;
   max-width: 100vw;
   margin: 0;
   padding: 0 89px;
   box-sizing: border-box;
   text-align: center;
+  height: fit-content;
 }
 
-.prototype-container.full-width {
+/* =================================
+   USER FLOW SECTION
+   ================================= */
+
+.user-flow-section {
   padding: 0;
+  background: transparent;
+  width: 100%;
+  overflow: hidden;
 }
 
 .prototype-title {
@@ -869,7 +835,7 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 21px 0;
+  margin: 0 0 34px 0;
   text-align: center;
 }
 
@@ -878,18 +844,22 @@
   font-size: var(--h6-font-size);
   color: var(--grocery-app-text);
   text-align: center;
-  margin: 0 0 63px 0;
+  margin: 0 0 34px 0;
   opacity: 0.8;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 63px;
+  margin-bottom: 34px;
 }
 
 .prototype-content {
   display: flex;
   flex-direction: column;
   gap: 0;
+  margin: 0;
+  padding: 0;
+  height: fit-content;
+  min-height: 0;
 }
 
 .figma-embed {
@@ -918,23 +888,12 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   border-radius: 0;
-  padding: 80px 89px;
+  padding: 55px 89px;
   box-shadow: none;
-  margin-bottom: 63px;
+  margin-bottom: 0;
   box-sizing: border-box;
   text-align: center;
   overflow-x: hidden;
-}
-
-.video-demo::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0);
-  z-index: 1;
 }
 
 .video-demo > * {
@@ -960,26 +919,14 @@
   text-align: center;
   padding: 0;
   background: rgba(255,255,255,1);
-  padding: 16px 24px;
+  padding: 13px 21px;
   border-radius: 8px;
   display: inline-block;
   width: auto;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 42px;
-}
-
-.interactions-title {
-  font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--h3-font-size);
-  color: var(--grocery-app-subheaders);
-  margin: 0 auto 42px auto;
-  text-align: center;
-  background: transparent;
-  display: block;
-  width: 100%;
+  margin-bottom: 34px;
 }
 
 .figma-frame {
@@ -997,29 +944,12 @@
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
-.figma-frame::before {
-  content: 'figma';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: #F24E1E;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: 600;
-  font-family: var(--body-font-family);
-  z-index: 10;
-  text-transform: lowercase;
-  letter-spacing: 0.5px;
-}
-
 .figma-note {
   font-family: var(--body-font-family);
   font-size: var(--h6-font-size);
   color: var(--grocery-app-text);
   text-align: center;
-  margin: 8px auto 40px auto;
+  margin: 21px auto 55px auto;
   opacity: 0.8;
   max-width: 600px;
 }
@@ -1029,13 +959,13 @@
   font-size: var(--h6-font-size);
   color: #2a2a2a;
   text-align: center;
-  margin: 24px 0 0 0;
+  margin: 34px 0 0 0;
   opacity: 1;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 24px;
-  padding: 12px 20px;
+  margin-top: 34px;
+  padding: 13px 21px;
   text-shadow: 0 0 4px rgba(255,255,255,0.7);
   background: rgba(255,255,255,1);
   border-radius: 6px;
@@ -1045,7 +975,7 @@
   width: 100%;
   text-align: center;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 0;
   background: transparent;
   display: flex;
   justify-content: center;
@@ -1070,22 +1000,22 @@
 .key-interactions {
   background: white;
   border-radius: 16px;
-  padding: 42px;
+  padding: 34px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-  margin: 63px 0;
+  margin: 55px 0;
   text-align: center;
 }
 
 .interactions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 32px;
-  margin-top: 32px;
+  gap: 34px;
+  margin-top: 0;
 }
 
 .interaction-item {
   text-align: center;
-  padding: 24px;
+  padding: 21px;
   border-radius: 12px;
   transition: background 0.3s ease;
 }
@@ -1096,7 +1026,7 @@
 
 .interaction-icon {
   font-size: 48px;
-  margin: 0 auto 16px auto;
+  margin: 0 auto 21px auto;
   line-height: 1;
   height: 48px;
   width: 48px;
@@ -1104,6 +1034,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .interaction-item h4 {
@@ -1111,7 +1043,7 @@
   font-weight: var(--font-weight-semibold);
   font-size: var(--h4-font-size);
   color: var(--grocery-app-text);
-  margin: 0 0 12px 0;
+  margin: 0 0 13px 0;
 }
 
 .interaction-item p {
@@ -1128,7 +1060,7 @@
    ================================= */
 
 .key-interactions-section {
-  padding: 100px 89px;
+  padding: 55px 89px;
   background: var(--grocery-app-white);
 }
 
@@ -1141,7 +1073,7 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 50px 0;
+  margin: 0 0 34px 0;
   text-align: center;
 }
 
@@ -1150,14 +1082,14 @@
    ================================= */
 
 .closing-section {
-  padding: 100px 89px;
+  padding: 0 89px 55px 89px;
   background: var(--grocery-app-white);
   text-align: center;
 }
 
 .closing-container {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .closing-title {
@@ -1165,11 +1097,11 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 63px 0;
+  margin: 0 0 34px 0;
 }
 
 .closing-image {
-  margin-bottom: 63px;
+  margin-bottom: 34px;
 }
 
 .context-image {
@@ -1183,7 +1115,7 @@
   font-size: var(--h6-font-size);
   color: var(--grocery-app-text);
   line-height: 1.6;
-  margin: 0 0 42px 0;
+  margin: 0 0 34px 0;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -1194,7 +1126,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 21px;
+  gap: 34px;
 }
 
 .cta-text {
@@ -1229,7 +1161,7 @@
    ================================= */
 
 .other-projects-section {
-  padding: 100px 89px;
+  padding: 55px 89px;
   background: var(--grocery-app-section-bg);
 }
 
@@ -1243,7 +1175,7 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 63px 0;
+  margin: 0 0 34px 0;
   text-align: center;
 }
 
@@ -1361,7 +1293,7 @@
     padding: 0 60px;
   }
   
-  .prototype-container {
+  .try-experience-wrapper {
     padding: 0 65px;
   }
   
@@ -1436,7 +1368,7 @@
     padding: 0 40px;
   }
   
-  .prototype-container {
+  .try-experience-wrapper {
     padding: 0 30px;
   }
   
@@ -1556,7 +1488,8 @@
   .style-guide-section,
   .low-fidelity-sketches-container,
   .ui-mockups-section,
-  .prototype-section,
+  .try-experience-section,
+  .user-flow-section,
   .key-interactions-section,
   .closing-section,
   .other-projects-section {
@@ -1567,7 +1500,7 @@
     padding: 0 20px;
   }
   
-  .prototype-container {
+  .try-experience-wrapper {
     padding: 0 21px;
   }
   

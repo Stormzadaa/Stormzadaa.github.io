@@ -62,7 +62,7 @@
   /* --- Fresh Market Grocery App Palette --- */
   --grocery-app-primary: #0076FF;      /* App titles, primary CTAs */
   --grocery-app-secondary: #8BC34A;    /* Green for buttons, interactables, highlights */
-  --grocery-app-subheaders: #FFA927;   /* Orange for subheaders */
+  --grocery-app-subheaders: #D17509;   /* Darker orange for better contrast while keeping freshness */
   --grocery-app-success: #FF4757;      /* Strawberry red for category tags, success alerts */
   --grocery-app-background: #F2F2F2;   /* Card backgrounds, UI spacing */
   --grocery-app-text: #1A1A1A;         /* Headings and body text */
