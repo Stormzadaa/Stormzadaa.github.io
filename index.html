@@ -11,16 +11,6 @@
 </head>
 
 <body>
-  <!-- Loading Overlay -->
-  <div id="loading-overlay" class="loading-overlay">
-    <div class="loading-content">
-      <div class="loading-spinner"></div>
-      <p class="loading-text">Loading Portfolio...</p>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <div id="main-content" class="main-content">
   <section class="portfolio-section">
     <header class="header headerTypography">
       <div class="headerBox">
@@ -155,54 +145,9 @@
         </div>
       </div>
     </footer>
-  </section>
-  </div>
 
-  <script>
-    // Loading functionality
-    window.addEventListener('load', function() {
-      // Ensure all images and resources are loaded
-      const images = document.querySelectorAll('img');
-      const loadingOverlay = document.getElementById('loading-overlay');
-      const mainContent = document.getElementById('main-content');
-      
-      let imagesLoaded = 0;
-      const totalImages = images.length;
-      
-      if (totalImages === 0) {
-        // If no images, show content immediately
-        hideLoader();
-        return;
-      }
-      
-      function checkAllImagesLoaded() {
-        imagesLoaded++;
-        if (imagesLoaded === totalImages) {
-          // Add a small delay for smooth transition
-          setTimeout(hideLoader, 300);
-        }
-      }
-      
-      function hideLoader() {
-        loadingOverlay.style.opacity = '0';
-        mainContent.style.opacity = '1';
-        
-        setTimeout(() => {
-          loadingOverlay.style.display = 'none';
-        }, 500);
-      }
-      
-      // Check if images are already loaded (cached)
-      images.forEach(img => {
-        if (img.complete && img.naturalWidth !== 0) {
-          checkAllImagesLoaded();
-        } else {
-          img.addEventListener('load', checkAllImagesLoaded);
-          img.addEventListener('error', checkAllImagesLoaded); // Handle broken images
-        }
-      });
-    });
-  </script>
+    </div>
+  </section>
   <script src="scripts.js"></script>
 </body>
 

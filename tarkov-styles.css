@@ -2701,14 +2701,6 @@ h1.main-titleAbout {
     display: none; /* Remove divider lines in compact mode */
   }
 
-  .side-nav-item:hover {
-    background: transparent;
-  }
-
-  .side-nav-item.active {
-    background: transparent;
-  }
-
   .nav-dot {
     display: block;
     width: 8px; /* Fib: 8 */
@@ -2716,12 +2708,6 @@ h1.main-titleAbout {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.4);
     transition: all 0.3s ease;
-  }
-
-  .side-nav-item:hover .nav-dot,
-  .side-nav-item.active .nav-dot {
-    background-color: #c4aa7a;
-    transform: scale(1.2);
   }
 
   .nav-label {
@@ -2737,12 +2723,6 @@ h1.main-titleAbout {
     border-top: 3px solid transparent; /* Fib: 3 */
     border-bottom: 3px solid transparent; /* Fib: 3 */
     transition: all 0.3s ease;
-  }
-
-  .side-nav-item:hover::before,
-  .side-nav-item.active::before {
-    border-left-color: #c4aa7a;
-    transform: scale(1.2);
   }
 }
 
@@ -2792,14 +2772,6 @@ h1.main-titleAbout {
     background: linear-gradient(to right, transparent, rgba(196, 170, 122, 0.3) 50%, transparent);
   }
 
-  .side-nav-item:hover {
-    background: transparent;
-  }
-
-  .side-nav-item.active {
-    background: transparent;
-  }
-
   .nav-dot {
     display: none;
   }
@@ -2812,11 +2784,6 @@ h1.main-titleAbout {
     line-height: 1.4;
     letter-spacing: 0.025em;
     transition: color 0.3s ease;
-  }
-
-  .side-nav-item:hover .nav-label,
-  .side-nav-item.active .nav-label {
-    color: #c4aa7a;
   }
 
   /* Hide triangle in full mode */

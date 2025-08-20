@@ -1861,21 +1861,106 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // Update active states
+    // Update active states - remove from all first
     navItems.forEach(item => {
       item.classList.remove('active');
+      resetNavItemStyles(item);
     });
     
+    // Add active state to current section
     if (activeSection) {
       const activeItem = document.querySelector(`[data-target="${activeSection}"]`);
       if (activeItem) {
         activeItem.classList.add('active');
+        setNavItemActive(activeItem);
       }
     }
   }
+
+  // Helper function to set active styles
+  function setNavItemActive(item) {
+    const dot = item.querySelector('.nav-dot');
+    const label = item.querySelector('.nav-label');
+    const arrow = item;
+    
+    if (dot) {
+      dot.style.backgroundColor = '#c4aa7a';
+      dot.style.transform = 'scale(1.2)';
+    }
+    
+    if (label) {
+      label.style.color = '#c4aa7a';
+    }
+    
+    // Set arrow color (::before pseudo-element handled via style property)
+    arrow.style.setProperty('--arrow-color', '#c4aa7a');
+    arrow.style.setProperty('--arrow-scale', '1.2');
+    
+    // Apply arrow styles using CSS custom properties
+    const beforeStyle = window.getComputedStyle(arrow, '::before');
+    arrow.style.position = 'relative';
+    // We need to handle the arrow with a custom approach
+    updateArrowStyle(arrow, '#c4aa7a', '1.2');
+  }
+
+  // Helper function to set hover styles
+  function setNavItemHover(item) {
+    const dot = item.querySelector('.nav-dot');
+    const label = item.querySelector('.nav-label');
+    
+    if (dot) {
+      dot.style.backgroundColor = '#c4aa7a';
+      dot.style.transform = 'scale(1.2)';
+    }
+    
+    if (label) {
+      label.style.color = '#c4aa7a';
+    }
+    
+    updateArrowStyle(item, '#c4aa7a', '1.2');
+  }
+
+  // Helper function to reset styles
+  function resetNavItemStyles(item) {
+    const dot = item.querySelector('.nav-dot');
+    const label = item.querySelector('.nav-label');
+    
+    if (dot) {
+      dot.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+      dot.style.transform = 'scale(1)';
+    }
+    
+    if (label) {
+      label.style.color = 'rgba(255, 255, 255, 0.7)';
+    }
+    
+    updateArrowStyle(item, 'rgba(255, 255, 255, 0.4)', '1');
+  }
+
+  // Helper function to update arrow (::before) styles
+  function updateArrowStyle(item, color, scale) {
+    // Since we can't directly modify ::before pseudo-elements with JS,
+    // we'll use a CSS custom property approach
+    item.style.setProperty('--nav-arrow-color', color);
+    item.style.setProperty('--nav-arrow-scale', scale);
+    
+    // Add a CSS rule if it doesn't exist
+    if (!document.getElementById('nav-dynamic-styles')) {
+      const style = document.createElement('style');
+      style.id = 'nav-dynamic-styles';
+      style.textContent = `
+        .side-nav-item::before {
+          border-left-color: var(--nav-arrow-color, rgba(255, 255, 255, 0.4)) !important;
+          transform: scale(var(--nav-arrow-scale, 1)) !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
   
-  // Handle navigation item clicks
+  // Handle navigation item clicks and hover events
   navItems.forEach(item => {
+    // Click handler
     item.addEventListener('click', function() {
       const targetId = this.getAttribute('data-target');
       const targetElement = document.getElementById(targetId);
@@ -1890,6 +1975,32 @@ document.addEventListener('DOMContentLoaded', function() {
           top: targetPosition,
           behavior: 'smooth'
         });
+      }
+    });
+
+    // Hover handlers
+    item.addEventListener('mouseenter', function() {
+      // Reset all items to default state
+      navItems.forEach(navItem => {
+        if (navItem !== this) {
+          resetNavItemStyles(navItem);
+        }
+      });
+      
+      // Set this item to hover state
+      setNavItemHover(this);
+    });
+
+    item.addEventListener('mouseleave', function() {
+      // Reset all items first
+      navItems.forEach(navItem => {
+        resetNavItemStyles(navItem);
+      });
+      
+      // Reapply active state to currently active section
+      const activeItem = document.querySelector('.side-nav-item.active');
+      if (activeItem) {
+        setNavItemActive(activeItem);
       }
     });
   });
