@@ -1,3 +1,52 @@
+/* Loading Overlay Styles */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--ni-header-footer);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.loading-content {
+  text-align: center;
+  color: var(--ni-main-title-about);
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(196, 170, 122, 0.3);
+  border-top: 3px solid var(--ni-main-title-about);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.loading-text {
+  font-family: var(--heading-font-family);
+  font-size: var(--h5-font-size);
+  font-weight: var(--font-weight-regular);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.main-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .toggle-switch {
   display: flex; /* Enable flexbox for alignment */
   justify-content: center; /* Center horizontally */
