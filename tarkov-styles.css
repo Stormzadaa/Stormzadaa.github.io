@@ -578,27 +578,27 @@ img,
   line-height: 1.6;
 }
 
-.full-case-study-tarkov h2,
-.full-case-study-tarkov h3,
-.full-case-study-tarkov h4 {
+.full-case-study-tarkov h2:not(.other-projects-title),
+.full-case-study-tarkov h3:not(.project-title),
+.full-case-study-tarkov h4:not(.project-title) {
   color: var(--TarkovMainTitle);
   margin-top: 55px;
   margin-bottom: 21px;
   text-align: center;
 }
 
-.full-case-study-tarkov h2 {
+.full-case-study-tarkov h2:not(.other-projects-title) {
   font-size: 1.8em;
   border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 10px;
 }
 
-.full-case-study-tarkov h3 {
+.full-case-study-tarkov h3:not(.project-title) {
   font-size: 1.8em;
   color: var(--TarkovTitles);
 }
 
-.full-case-study-tarkov h4 {
+.full-case-study-tarkov h4:not(.project-title) {
   font-size: 1.4em;
   color: var(--TarkovSecondaryLink);
   text-align: left;
@@ -1483,15 +1483,15 @@ img,
     font-size: var(--body-font-size);
   }
 
-  .full-case-study-tarkov h2 {
+  .full-case-study-tarkov h2:not(.other-projects-title) {
     font-size: 2em;
   }
 
-  .full-case-study-tarkov h3 {
+  .full-case-study-tarkov h3:not(.project-title) {
     font-size: 1.6em;
   }
 
-  .full-case-study-tarkov h4 {
+  .full-case-study-tarkov h4:not(.project-title) {
     font-size: 1.2em;
   }
 
@@ -1775,19 +1775,19 @@ img,
     margin-bottom: 21px;
   }
 
-  .full-case-study-tarkov h2 {
+  .full-case-study-tarkov h2:not(.other-projects-title) {
     font-size: 1.8em;
     margin-top: 34px;
     margin-bottom: 13px;
   }
 
-  .full-case-study-tarkov h3 {
+  .full-case-study-tarkov h3:not(.project-title) {
     font-size: 1.4em;
     margin-top: 21px;
     margin-bottom: 13px;
   }
 
-  .full-case-study-tarkov h4 {
+  .full-case-study-tarkov h4:not(.project-title) {
     font-size: 1.1em;
     margin-top: 21px;
     margin-bottom: 13px;
@@ -2125,21 +2125,21 @@ img,
     letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
-  .full-case-study-tarkov h2 {
+  .full-case-study-tarkov h2:not(.other-projects-title) {
     font-size: 1.75em; /* Fib: 28/16 ≈ 1.75 (interpolated) */
     margin-top: 34px; /* Fib: 34 */
     margin-bottom: 13px; /* Fib: 13 */
     letter-spacing: 0.125em; /* Fib: 2/16 = 0.125 */
   }
 
-  .full-case-study-tarkov h3 {
+  .full-case-study-tarkov h3:not(.project-title) {
     font-size: 1.3125em; /* Fib: 21/16 = 1.3125 */
     margin-top: 21px; /* Fib: 21 */
     margin-bottom: 13px; /* Fib: 13 */
     letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
-  .full-case-study-tarkov h4 {
+  .full-case-study-tarkov h4:not(.project-title) {
     font-size: 1.125em; /* Fib: 18/16 ≈ 1.125 (interpolated) */
     margin-top: 21px; /* Fib: 21 */
     margin-bottom: 8px; /* Fib: 8 */
@@ -2825,10 +2825,12 @@ h1.main-titleAbout {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
-  color: #c4aa7a; /* Military gold */
+  color: white;
   margin: 0 0 34px 0;
   text-align: center;
   letter-spacing: 0.02em;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
 }
 
 .projects-grid {
@@ -2844,6 +2846,9 @@ h1.main-titleAbout {
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-item:hover {
@@ -2854,9 +2859,11 @@ h1.main-titleAbout {
 }
 
 .project-link {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
+  height: 100%;
 }
 
 .project-image {
@@ -2878,13 +2885,17 @@ h1.main-titleAbout {
 
 .project-info {
   padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .project-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
   font-size: var(--h4-font-size);
-  color: #c4aa7a; /* Military gold */
+  color: white;
   margin: 0 0 12px 0;
   letter-spacing: 0.02em;
 }
@@ -2896,6 +2907,7 @@ h1.main-titleAbout {
   margin: 0 0 16px 0;
   line-height: 1.5;
   opacity: 0.9;
+  flex: 1;
 }
 
 .project-tag {
@@ -2908,6 +2920,8 @@ h1.main-titleAbout {
   border-radius: 15px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 .portfolio-svg-container {
