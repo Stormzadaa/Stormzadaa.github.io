@@ -2845,96 +2845,144 @@ h1.main-titleAbout {
 
 .tarkov-other-projects {
   margin-top: 60px;
-  padding: 60px 0 0 0; /* Remove bottom padding since it's inside content */
+  padding: 55px 89px;
   border-top: 1px solid #4a5f3a;
 }
 
-.other-projects-title {
-  color: #c4aa7a; /* Military gold */
-  text-align: center;
-  margin-bottom: 50px;
-  font-size: 2.2rem;
-  letter-spacing: 0.02em;
-}
-
-.other-projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
-  max-width: 1000px;
+.other-projects-container {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.project-card {
-  background: rgba(45, 51, 40, 0.3); /* More subtle background */
-  border: 1px solid #4a5f3a;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  text-decoration: none;
-  display: block;
-  cursor: pointer;
+.other-projects-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h3-font-size);
+  color: #c4aa7a; /* Military gold */
+  margin: 0 0 34px 0;
+  text-align: center;
+  letter-spacing: 0.02em;
 }
 
-.project-card:hover {
-  transform: translateY(-6px);
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 42px;
+}
+
+.project-item {
+  background: rgba(45, 51, 40, 0.3);
+  border: 1px solid #4a5f3a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-8px);
   border-color: #c4aa7a;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
   background: rgba(45, 51, 40, 0.5);
+}
+
+.project-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .project-image {
   width: 100%;
-  height: 220px;
+  height: 240px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.3s ease;
 }
 
-.project-card:hover .project-image {
-  transform: scale(1.05);
+.project-item:hover .project-image img {
+  transform: scale(1.1);
 }
 
-.project-content {
-  padding: 25px;
-  text-align: center;
+.project-info {
+  padding: 32px;
 }
 
-.project-name {
+.project-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--h4-font-size);
   color: #c4aa7a; /* Military gold */
-  margin-bottom: 10px;
-  font-size: 1.3rem;
+  margin: 0 0 12px 0;
   letter-spacing: 0.02em;
 }
 
 .project-description {
+  font-family: var(--body-font-family);
+  font-size: var(--h6-font-size);
   color: #d4c5a9; /* Warm sand */
-  font-size: 0.95rem;
+  margin: 0 0 16px 0;
   line-height: 1.5;
   opacity: 0.9;
+}
+
+.project-tag {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--h7-font-size);
+  background: #c4aa7a; /* Military gold */
+  color: #2d3328;
+  padding: 6px 12px;
+  border-radius: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.portfolio-svg-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(45, 51, 40, 0.8);
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.portfolio-logo-svg {
+  width: 60%;
+  height: 60%;
+  max-width: 150px;
+  max-height: 150px;
+  filter: brightness(0) saturate(100%) invert(75%) sepia(15%) saturate(312%) hue-rotate(26deg) brightness(88%) contrast(91%);
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .tarkov-other-projects {
     margin-top: 40px;
-    padding: 40px 0 0 0;
+    padding: 30px;
   }
   
   .other-projects-title {
     font-size: 1.8rem;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
   }
   
-  .other-projects-grid {
+  .projects-grid {
     grid-template-columns: 1fr;
     gap: 25px;
   }
   
-  .project-content {
+  .project-info {
     padding: 20px;
   }
   
-  .project-name {
+  .project-title {
     font-size: 1.2rem;
   }
   
@@ -2944,15 +2992,15 @@ h1.main-titleAbout {
 }
 
 @media (max-width: 480px) {
-  .other-projects-grid {
+  .projects-grid {
     gap: 20px;
   }
   
   .project-image {
-    height: 180px;
+    height: 200px;
   }
   
-  .project-content {
+  .project-info {
     padding: 18px;
   }
 }
