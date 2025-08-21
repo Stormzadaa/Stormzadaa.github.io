@@ -1692,19 +1692,21 @@
 /* Override footer styles specifically for grocery page */
 .grocery-page .footer {
   overflow: visible;
-  height: auto;
+  height: 100vh; /* Maintain 100vh like other pages */
   min-height: 200px;
 }
 
 .grocery-page .footer-content {
-  height: auto;
+  height: 100%; /* Full height for proper vertical centering */
   min-height: 200px;
+  align-items: center; /* Ensure vertical centering like other pages */
 }
 
 .grocery-page .footer-sections {
   position: relative;
   z-index: 2;
   width: 100%;
+  /* Preserve responsive footer styling from styles.css */
 }
 
 /* Make Figma embed container background and borders invisible */
