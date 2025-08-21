@@ -1,3 +1,26 @@
+// ---- Loading Screen Logic ----
+window.addEventListener('load', function() {
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) {
+    // Add fade-out class to trigger transition
+    loadingScreen.classList.add('fade-out');
+    
+    // Remove the element completely after transition and start video
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+      
+      // Start video playback on grocery store page after loading screen disappears
+      const heroVideo = document.querySelector('.hero-video video');
+      if (heroVideo) {
+        heroVideo.play().catch(e => {
+          // Handle autoplay restrictions gracefully
+          console.log('Video autoplay was prevented:', e);
+        });
+      }
+    }, 500); // Match the transition duration in CSS
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   // ---- Infinite Background Loop Animation Logic ----
   const fundoPoligonos = document.querySelector(".fundo-poligonos");

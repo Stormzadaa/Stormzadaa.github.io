@@ -12,6 +12,13 @@
 </head>
 
 <body class="grocery-page">
+  <!-- Loading screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <!-- You can add a spinner or logo here if desired -->
+    </div>
+  </div>
+
   <section class="portfolio-section">
     <header class="header headerTypography">
       <div class="headerBox">
@@ -60,14 +67,14 @@
         <!-- Hero Section -->
         <section class="hero-section">
           <div class="hero-video">
-            <video autoplay muted loop>
+            <video muted loop>
               <source src="Assets/GroceryStoreApp/Fragola.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
           
           <div class="hero-container">
-            <h1 class="hero-title">Fresh Market</h1>
+            <h1 class="hero-title"><span class="pacifico-text">Fresh</span> <span class="green-text">Market</span></h1>
             <p class="hero-tagline">A fresh way to shop for groceries</p>
             <img src="Assets/GroceryStoreApp/Pink.svg" alt="Fresh Market App on iPhone" class="hero-phone-mockup" />
           </div>

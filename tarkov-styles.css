@@ -2,6 +2,18 @@
    TARKOV CASE STUDY - DEDICATED STYLES
    ============================================= */
 
+/* Import Russo One font */
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+/* =============================================
+   RUSSO ONE TYPEFACE STYLING
+   ============================================= */
+
+.russo-one-text {
+  font-family: 'Russo One', sans-serif !important;
+  font-weight: normal;
+}
+
 /* =============================================
    TARKOV COLOR ACTIVATION AFTER PAGE LOAD
    ============================================= */
