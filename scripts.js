@@ -2811,3 +2811,113 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 100);
 });
+
+// ---- Project Filter Positioning Logic ----
+document.addEventListener('DOMContentLoaded', function() {
+  const projectFilter = document.querySelector('.project-filter-section');
+  const footer = document.querySelector('.footer');
+  const holdTitle = document.querySelector('.hold-title');
+  
+  if (!projectFilter || !footer) return;
+  
+  function updateFilterPosition() {
+    const windowHeight = window.innerHeight;
+    
+    // Get footer position relative to viewport
+    const footerRect = footer.getBoundingClientRect();
+    const footerHeight = footerRect.height;
+    const footerTop = footerRect.top;
+    
+    // Calculate how much of the footer is visible
+    const footerVisibleHeight = Math.max(0, Math.min(footerHeight, windowHeight - footerTop));
+    const footerVisiblePercentage = (footerVisibleHeight / footerHeight) * 100;
+    
+    let shouldHide = false;
+    
+    // Hide if footer is at least 50% visible on screen
+    if (footerVisiblePercentage >= 50) {
+      shouldHide = true;
+    }
+    
+    // Also hide if buttons would overlap with hold-title area
+    if (holdTitle) {
+      const holdTitleRect = holdTitle.getBoundingClientRect();
+      const filterRect = projectFilter.getBoundingClientRect();
+      
+      // Check if hold-title is visible and would overlap with filter
+      if (holdTitleRect.bottom > 0 && holdTitleRect.top < windowHeight) {
+        // Check if there's vertical overlap
+        const holdTitleBottom = holdTitleRect.bottom;
+        const filterTop = filterRect.top;
+        
+        if (holdTitleBottom > filterTop) {
+          shouldHide = true;
+        }
+      }
+    }
+    
+    if (shouldHide) {
+      projectFilter.style.transform = 'translateY(100%)';
+    } else {
+      projectFilter.style.transform = 'translateY(0)';
+    }
+  }
+  
+  // Update on scroll and resize
+  window.addEventListener('scroll', updateFilterPosition);
+  window.addEventListener('resize', updateFilterPosition);
+  
+  // Initial check
+  updateFilterPosition();
+});
+
+// ---- Project Filter Functionality ----
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const imageItems = document.querySelectorAll('.image-item');
+  
+  // Set "All" button as active by default and show all items
+  function initializeFilter() {
+    const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+    if (allButton) {
+      allButton.classList.add('active');
+    }
+    
+    // Show all items by default
+    imageItems.forEach(item => {
+      item.classList.remove('hidden');
+    });
+  }
+  
+  // Simple filter functionality (no animations for now)
+  function filterItems(category) {
+    imageItems.forEach(item => {
+      const itemCategory = item.getAttribute('data-category');
+      
+      if (category === 'all' || itemCategory === category) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  }
+  
+  // Button click handlers
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const filterCategory = this.getAttribute('data-filter');
+      
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active class to clicked button
+      this.classList.add('active');
+      
+      // Filter items based on selected category
+      filterItems(filterCategory);
+    });
+  });
+  
+  // Initialize filter on page load
+  initializeFilter();
+});

@@ -469,6 +469,60 @@
     position: static;
   }
 
+  /* =================================
+     PROJECT FILTER SECTION
+     ================================= */
+
+  .project-filter-section {
+    background: transparent;
+    padding: 60px 89px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    transition: transform 0.3s ease;
+  }
+
+  .project-filter-container {
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: #1C1C1C;
+    border: 2px solid transparent;
+    color: var(--ni-light-text);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--heading-font-family);
+    font-size: var(--h7-font-size);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--ni-header-button);
+    color: var(--ni-main-background);
+    border-color: var(--ni-header-button);
+    transform: translateY(-2px);
+  }
+
   .hamburger-menu {
     display: none; /* Hidden by default */
   }
@@ -1112,6 +1166,15 @@
     object-position: top; /* Adjusts the position between the top and center */
   }
 
+  /* Center the Fresh Market App SVG properly on medium screens */
+  .image-item:nth-child(2) .image-container img {
+    object-fit: contain;
+    object-position: center;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
   .image-item p {
     font-size: var(--h8-font-size); /* 14px */
     font-weight: var(--font-weight-semibold); /* 600 */
@@ -1137,6 +1200,60 @@
     font-family: 'Fredoka', sans-serif;
     font-weight: bold;
     letter-spacing: 2px;
+  }
+
+  /* =================================
+     PROJECT FILTER SECTION - MEDIUM
+     ================================= */
+
+  .project-filter-section {
+    background: transparent;
+    padding: 40px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    transition: transform 0.3s ease;
+  }
+
+  .project-filter-container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: #1C1C1C;
+    border: 2px solid transparent;
+    color: var(--ni-light-text);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: var(--heading-font-family);
+    font-size: var(--h8-font-size);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--ni-header-button);
+    color: var(--ni-main-background);
+    border-color: var(--ni-header-button);
+    transform: translateY(-2px);
   }
 
   .hamburger-menu {
@@ -1947,6 +2064,15 @@
     object-position: top; /* Adjusts the position between the top and center */
   }
 
+  /* Center the Fresh Market App SVG properly on mobile screens */
+  .image-item:nth-child(2) .image-container img {
+    object-fit: contain;
+    object-position: center;
+    margin: 0;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
   .image-item p {
     font-size: var(--h7-font-size); /* 15px */
     font-weight: var(--font-weight-semibold); /* 600 */
@@ -1972,6 +2098,60 @@
     font-family: 'Fredoka', sans-serif;
     font-weight: bold;
     letter-spacing: 2px;
+  }
+
+  /* =================================
+     PROJECT FILTER SECTION - MOBILE
+     ================================= */
+
+  .project-filter-section {
+    background: transparent;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    transition: transform 0.3s ease;
+  }
+
+  .project-filter-container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: #1C1C1C;
+    border: 2px solid transparent;
+    color: var(--ni-light-text);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: var(--heading-font-family);
+    font-size: var(--h9-font-size);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--ni-header-button);
+    color: var(--ni-main-background);
+    border-color: var(--ni-header-button);
+    transform: translateY(-1px);
   }
 
   .hamburger-menu {
@@ -2192,6 +2372,20 @@
     margin-left: 21px;
     margin-right: 21px;
   }
+}
+
+/* ===================================
+   PROJECT FILTER ANIMATIONS - PLACEHOLDER
+   =================================== */
+
+.image-item {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  position: relative;
+}
+
+.image-item.hidden {
+  display: none;
 }
 
 
