@@ -49,56 +49,20 @@
   border-top: 1px solid #4a5f3a;
 }
 
-.tarkov-page .hamburger-menu.tarkov-active {
-  background-color: #252823; /* Match footer color */
+/* Tarkov-specific hamburger menu - remove CSS background transition to allow JS control */
+.tarkov-page .hamburger-menu {
+  transition: transform var(--menu-transition-duration) ease !important;
+  /* Background transition removed - controlled by JavaScript for smooth 3.5s timing */
 }
 
-/* Typography color changes for Tarkov theme */
-.tarkov-page .tarkov-active .headerTypography,
-.tarkov-page .tarkov-active .nav-link,
-.tarkov-page .hamburger-menu.tarkov-active .headerTypography,
-.tarkov-page .hamburger-menu.tarkov-active a {
-  color: #d4c5a9; /* Warm sand color for text */
-}
-
-/* Header elements color transitions */
-.tarkov-page .header .nav-link,
-.tarkov-page .header .headerTypo,
-.tarkov-page .menu-icon {
-  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Logo color transition */
-.tarkov-page .header .logo {
-  transition: filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Tarkov active state colors */
-.tarkov-page .header.tarkov-active .nav-link,
-.tarkov-page .header.tarkov-active .headerTypo {
-  color: #d4c5a9 !important; /* Warm sand color for navigation text */
-}
-
-/* Logo color change for Tarkov theme */
-.tarkov-page .header.tarkov-active .logo {
-  filter: brightness(0) saturate(100%) invert(87%) sepia(14%) saturate(534%) hue-rotate(15deg) brightness(98%) contrast(89%);
-  /* This filter converts the logo to the warm sand color #d4c5a9 */
-}
-
-/* Menu icon color change for Tarkov theme */
-.tarkov-page .header.tarkov-active .menu-icon {
-  filter: brightness(0) saturate(100%) invert(87%) sepia(14%) saturate(534%) hue-rotate(15deg) brightness(98%) contrast(89%);
-  /* Same warm sand color as logo */
-}
-
-/* Hamburger menu content colors */
-.tarkov-page .hamburger-menu a {
-  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.tarkov-page .hamburger-menu.tarkov-active a {
-  color: #d4c5a9 !important; /* Warm sand color for hamburger menu links */
+/* Hamburger menu underlines - basic structure only (colors handled by JS) */
+.tarkov-page .hamburger-menu .work-underline,
+.tarkov-page .hamburger-menu .about-underline,
+.tarkov-page .hamburger-menu .contact-underline {
+  height: 2px;
+  width: 100%;
+  margin-top: 2px;
+  display: block; /* Make underlines visible */
 }
 
 .tarkov-page .footer.tarkov-active .footerTitleTypography {
@@ -111,11 +75,8 @@
   color: #a89979;
 } */
 
-/* Navigation underlines for Tarkov theme */
-.tarkov-page .header.tarkov-active .nav-underline.active,
-.tarkov-page .hamburger-menu.tarkov-active .work-underline,
-.tarkov-page .hamburger-menu.tarkov-active .about-underline,
-.tarkov-page .hamburger-menu.tarkov-active .contact-underline {
+/* Navigation underlines for Tarkov theme - header only */
+.tarkov-page .header.tarkov-active .nav-underline.active {
   background-color: #9fb986; /* Military green accent */
   border-color: #9fb986;
 }

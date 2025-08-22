@@ -707,7 +707,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const openDuration = "0.9s";
   const closeDuration = "0.5s";
 
-  // Function to close the menu if screen width is greater than 768px
+  // Enhanced function to close the menu if screen width is greater than 768px
   function closeMenuOnLargeScreens() {
     const screenWidth = window.innerWidth;
     if (screenWidth > 768) {
@@ -715,6 +715,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "--menu-transition-duration",
         closeDuration
       );
+      // Ensure transform transition works regardless of theme state
+      hamburgerMenu.style.transition = `background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${closeDuration} ease`;
       hamburgerMenu.classList.add("hidden");
       document.body.classList.remove("no-scroll"); // Enable scrolling
       setTimeout(() => {
@@ -728,23 +730,54 @@ document.addEventListener("DOMContentLoaded", () => {
   closeMenuOnLargeScreens();
   window.addEventListener("resize", closeMenuOnLargeScreens);
 
-  // Toggle the menu visibility and lock/unlock scroll
+  // Enhanced toggle menu visibility with color-state-independent animations
   menuButton.addEventListener("click", () => {
+    // Ensure transform transition is always set regardless of color state
     hamburgerMenu.style.setProperty("--menu-transition-duration", openDuration);
+    hamburgerMenu.style.transition = `background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${openDuration} ease`;
     hamburgerMenu.style.display = "block"; // Ensure the menu is displayed
     document.body.classList.add("no-scroll"); // Disable scrolling
     setTimeout(() => {
       hamburgerMenu.classList.add("active");
       hamburgerMenu.classList.remove("hidden");
+      
+      // Check if this is the Tarkov page and should trigger color change
+      if (document.body.classList.contains('tarkov-page')) {
+        console.log('Tarkov hamburger menu opened, starting color transition...');
+        // Trigger Tarkov color change with the same timing as header (1.5s delay)
+        setTimeout(() => {
+          console.log('Applying Tarkov colors to hamburger menu...');
+          const hamburgerLinks = hamburgerMenu.querySelectorAll('a');
+          const hamburgerUnderlines = hamburgerMenu.querySelectorAll('.work-underline, .about-underline, .contact-underline');
+          
+          // Change to Tarkov colors simultaneously with header timing
+          requestAnimationFrame(() => {
+            hamburgerMenu.style.background = 'linear-gradient(to bottom, #252823 45%, #1a1f1b 100%)';
+            
+            hamburgerLinks.forEach(link => {
+              link.style.color = '#d4c5a9'; // Warm sand - matches header text
+            });
+            
+            hamburgerUnderlines.forEach(underline => {
+              underline.style.backgroundColor = '#d4c5a9'; // Match text color
+            });
+            console.log('Tarkov colors applied to hamburger menu');
+          });
+        }, 1500); // Same 1.5s delay as header
+      } else {
+        console.log('Hamburger menu opened, but not Tarkov page');
+      }
     }, 10); // Slight delay to ensure the display property is set before applying the class
   });
 
-  // Function to close the menu
+  // Enhanced function to close the menu with color-state-independent animations
   function closeMenu() {
     hamburgerMenu.style.setProperty(
       "--menu-transition-duration",
       closeDuration
     );
+    // Ensure transform transition works regardless of theme state
+    hamburgerMenu.style.transition = `background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${closeDuration} ease`;
     hamburgerMenu.classList.add("hidden");
     document.body.classList.remove("no-scroll"); // Enable scrolling
     setTimeout(() => {
@@ -769,7 +802,7 @@ document.addEventListener("DOMContentLoaded", () => {
     option.addEventListener("click", closeMenu);
   });
 
-  // Close the menu when clicking outside of it and unlock scroll
+  // Enhanced close menu when clicking outside of it and unlock scroll
   document.addEventListener("click", (event) => {
     if (
       !hamburgerMenu.contains(event.target) &&
@@ -779,6 +812,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "--menu-transition-duration",
         closeDuration
       );
+      // Ensure transform transition works regardless of theme state
+      hamburgerMenu.style.transition = `background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${closeDuration} ease`;
       hamburgerMenu.classList.add("hidden");
       document.body.classList.remove("no-scroll"); // Enable scrolling
       setTimeout(() => {
@@ -1069,10 +1104,28 @@ document.addEventListener("DOMContentLoaded", () => {
       header?.classList.add("tarkov-active");
       footer?.classList.add("tarkov-active");
       
-      // Change hamburger menu color for mobile
+      // Set up hamburger menu to use default colors initially - NO automatic color change
       if (hamburgerMenu) {
-        hamburgerMenu.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        hamburgerMenu.classList.add("tarkov-active");
+        const hamburgerLinks = hamburgerMenu.querySelectorAll('a');
+        const hamburgerUnderlines = hamburgerMenu.querySelectorAll('.work-underline, .about-underline, .contact-underline');
+        
+        // Set hamburger menu to use default index page colors initially
+        hamburgerLinks.forEach(link => {
+          link.style.color = '#B6B0A0'; // Default index page color
+          link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        });
+        
+        hamburgerUnderlines.forEach(underline => {
+          underline.style.backgroundColor = '#B6B0A0'; // Default index page color  
+          underline.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        });
+        
+        // Set initial background with default colors (no automatic change)
+        hamburgerMenu.style.transition = 'background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease';
+        hamburgerMenu.style.background = 'linear-gradient(to bottom, #2A2B2D 45%, #1C1C1C 100%)'; // Default index colors
+        
+        // Mark that this hamburger menu should change colors when opened
+        hamburgerMenu.setAttribute('data-should-change-to-tarkov', 'true');
       }
 
       // Add subtle fade-in effect for enhanced immersion
