@@ -482,7 +482,9 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100%;
+    box-sizing: border-box;
     z-index: 10;
     transition: transform 0.3s ease;
   }
@@ -1215,7 +1217,9 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100%;
+    box-sizing: border-box;
     z-index: 10;
     transition: transform 0.3s ease;
   }
@@ -2113,7 +2117,9 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100%;
+    box-sizing: border-box;
     z-index: 10;
     transition: transform 0.3s ease;
   }
@@ -2375,14 +2381,8 @@
 }
 
 /* ===================================
-   PROJECT FILTER ANIMATIONS - PLACEHOLDER
+   PROJECT FILTER - NO ANIMATIONS
    =================================== */
-
-.image-item {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  position: relative;
-}
 
 .image-item.hidden {
   display: none;

@@ -2871,7 +2871,7 @@ document.addEventListener('DOMContentLoaded', function() {
   updateFilterPosition();
 });
 
-// ---- Project Filter Functionality ----
+// ---- Project Filter Functionality - No Animations ----
 document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const imageItems = document.querySelectorAll('.image-item');
@@ -2884,12 +2884,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Show all items by default
-    imageItems.forEach(item => {
+    imageItems.forEach((item) => {
       item.classList.remove('hidden');
     });
   }
   
-  // Simple filter functionality (no animations for now)
+  // Basic filter functionality
   function filterItems(category) {
     imageItems.forEach(item => {
       const itemCategory = item.getAttribute('data-category');
@@ -2913,7 +2913,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Add active class to clicked button
       this.classList.add('active');
       
-      // Filter items based on selected category
+      // Filter items instantly
       filterItems(filterCategory);
     });
   });
@@ -2921,3 +2921,4 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize filter on page load
   initializeFilter();
 });
+
