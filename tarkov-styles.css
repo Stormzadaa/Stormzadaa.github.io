@@ -1573,106 +1573,150 @@ img,
     box-sizing: border-box;
   }
 
-  /* 3D Carousel for tablet normal - use mobile carousel implementation */
+  /* 3D Carousel for medium screen - use desktop carousel implementation with click areas */
   .tarkov-3d-carousel-section {
     margin: 34px 0 21px 0; /* Fib: 34, 21 */
-    position: relative; /* Required for absolute positioning of swipe indicator */
+    position: relative;
   }
   
   .tarkov-3d-carousel-section .scene {
-    max-width: 100vw;
     width: 100%;
-    transform: none; /* Remove scaling for full width */
-    transform-origin: center center;
-    padding: 0;
-    margin: 0;
-    position: relative; /* Ensure scene is positioned for indicator overlay */
+    max-width: calc(100vw - 120px); /* Less margin than desktop but still constrained */
+    height: auto;
+    perspective: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .tarkov-3d-carousel-section .carousel {
-    transform: translateZ(-200px); /* Reduced Z depth for tablet */
-    transition: transform 0.6s ease-out;
     width: 100%;
+    height: 0;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    touch-action: pan-x; /* Enable horizontal touch gestures */
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-400px); /* Match desktop Z positioning for proper 3D carousel */
+    transition: transform 1s;
   }
 
   .tarkov-3d-carousel-section .card {
-    transform: translateX(-50%) translateZ(200px);
     width: 100%;
     height: 100%;
     aspect-ratio: 16 / 9;
-    transition: transform 0.6s ease-out;
-    cursor: grab;
-  }
-  
-  .tarkov-3d-carousel-section .card:active {
-    cursor: grabbing;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(400px);
+    perspective: 1000px;
+    transition: transform 1s;
+    cursor: pointer;
   }
 
-  /* Hide desktop click areas on tablet normal */
-  .tarkov-3d-carousel-section .click-area.left-area,
-  .tarkov-3d-carousel-section .click-area.right-area,
+  /* Enable desktop click areas for medium screen */
+  .tarkov-3d-carousel-section .carousel-click-areas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .tarkov-3d-carousel-section .click-area {
+    position: absolute;
+    pointer-events: auto;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease, opacity 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem; /* Slightly smaller for medium screens */
+    color: var(--TarkovButton);
+    background: transparent;
+  }
+
+  .tarkov-3d-carousel-section .click-area:hover {
+    color: var(--TarkovButtonHover);
+  }
+
+  .tarkov-3d-carousel-section .click-area.left-area {
+    left: -35%; /* Further out towards screen edge for larger image space */
+    width: 25%;
+    top: 0%;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
+    z-index: 5;
+    justify-content: flex-end;
+    padding-right: 15px; /* More padding to keep arrow away from image */
+  }
+
+  .tarkov-3d-carousel-section .click-area.left-area:before {
+    content: "‹";
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transition: all 0.3s ease;
+    transform: scale(1);
+  }
+
+  .tarkov-3d-carousel-section .click-area.left-area:hover:before {
+    opacity: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 1);
+    transform: scale(1.6); /* Slightly smaller scale for medium screens */
+  }
+
+  .tarkov-3d-carousel-section .click-area.right-area {
+    right: -35%; /* Further out towards screen edge for larger image space */
+    width: 25%;
+    top: 0%;
+    height: 100%;
+    border-radius: 0 12px 12px 0;
+    z-index: 5;
+    justify-content: flex-start;
+    padding-left: 15px; /* More padding to keep arrow away from image */
+  }
+
+  .tarkov-3d-carousel-section .click-area.right-area:before {
+    content: "›";
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transition: all 0.3s ease;
+    transform: scale(1);
+  }
+
+  .tarkov-3d-carousel-section .click-area.right-area:hover:before {
+    opacity: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 1);
+    transform: scale(1.6); /* Slightly smaller scale for medium screens */
+  }
+
   .tarkov-3d-carousel-section .click-area.center-area {
-    display: none;
+    left: 15%;
+    width: 70%;
+    top: 0%;
+    height: 100%;
+    z-index: 1;
   }
 
-  /* Tablet normal carousel subtitle with side arrows */
+  /* Medium screen carousel subtitle - simple centered text */
   .tarkov-3d-carousel-section .carousel-subtitle {
     font-size: 1.125em; /* Fib: 18/16 = 1.125 */
     margin-top: 21px; /* Fib: 21 */
     margin-bottom: 21px; /* Fib: 21 */
     letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 21px; /* Fib: 21 */
-    position: relative;
-    flex-wrap: wrap;
-  }
-  
-  /* Subtitle text wrapper */
-  .tarkov-3d-carousel-section .subtitle-text {
-    flex: 0 1 auto;
     text-align: center;
   }
-  
-  /* Tablet normal navigation arrows beside subtitle */
+
+  /* Hide mobile navigation arrows on medium screen */
   .tarkov-3d-carousel-section .mobile-nav-arrow {
-    font-size: 1.5em;
-    color: var(--TarkovButton);
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.3s ease;
-    padding: 8px; /* Fib: 8 */
-    border-radius: 50%;
-    background: rgba(196, 170, 122, 0.1);
-    border: 1px solid rgba(196, 170, 122, 0.3);
-    min-width: 34px; /* Fib: 34 */
-    height: 34px; /* Fib: 34 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-  }
-  
-  .tarkov-3d-carousel-section .mobile-nav-arrow:hover,
-  .tarkov-3d-carousel-section .mobile-nav-arrow:active {
-    color: var(--TarkovButtonHover);
-    background: rgba(196, 170, 122, 0.2);
-    border-color: rgba(196, 170, 122, 0.5);
-    transform: scale(1.1);
-  }
-  
-  .tarkov-3d-carousel-section .mobile-nav-arrow.left::before {
-    content: "‹";
-  }
-  
-  .tarkov-3d-carousel-section .mobile-nav-arrow.right::before {
-    content: "›";
+    display: none;
   }
 
-  /* Tablet normal swipe indicator - centered on carousel image */
+  /* Medium screen swipe indicator - centered on carousel image */
   .tarkov-3d-carousel-section .swipe-indicator {
     position: absolute;
     top: 45%; /* Slightly higher to account for visual centering */

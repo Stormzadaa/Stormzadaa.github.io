@@ -1428,69 +1428,100 @@ document.addEventListener("DOMContentLoaded", () => {
           // Force higher z-index and ensure visibility
           card.style.zIndex = '25';
           card.style.pointerEvents = 'auto';
-          card.style.cursor = 'pointer';
           
-          // Apply special styling to all child elements
-          const allChildren = card.querySelectorAll('*');
-          allChildren.forEach(child => {
-            child.style.pointerEvents = 'auto';
-            child.style.cursor = 'pointer';
-          });
-          
-          // Remove any existing click handlers to avoid duplicates
-          const clonedCard = card.cloneNode(true);
-          card.parentNode.replaceChild(clonedCard, card);
-          
-          clonedCard.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+          // Only enable click functionality on big screens (1280px+)
+          const screenWidth = window.innerWidth;
+          if (screenWidth >= 1280) {
+            card.style.cursor = 'pointer';
             
-            // First show the full case study if it's not visible
-            const btn = document.getElementById("viewCaseStudyBtn");
-            const section = document.getElementById("fullCaseStudyTarkov");
-            if (btn && btn.style.display !== "none") {
-              btn.style.display = "none";
-              section.style.display = "block";
-            }
+            // Apply special styling to all child elements
+            const allChildren = card.querySelectorAll('*');
+            allChildren.forEach(child => {
+              child.style.pointerEvents = 'auto';
+              child.style.cursor = 'pointer';
+            });
             
-            // Navigate to appropriate section based on card index
-            let targetSection;
-            if (index === 0) {
-              // Settings & PostFX card
-              console.log('Settings card clicked, navigating to Settings Enhancements section');
-              targetSection = document.getElementById('settings-enhancements');
-            } else if (index === 1) {
-              // Menu with Friend List card
-              console.log('Friend List card clicked, navigating to Friend System Overhaul section');
-              targetSection = document.getElementById('friend-system-overhaul');
-            } else if (index === 2) {
-              // Selection Wheel card
-              console.log('Selection Wheel card clicked, navigating to Raid UI Enhancements section');
-              targetSection = document.getElementById('raid-ui-enhancements');
-            } else if (index === 3) {
-              // Selection Page card
-              console.log('Selection Page card clicked, navigating to Pre-Raid Group Coordination section');
-              targetSection = document.getElementById('pre-raid-group-coordination');
-            } else if (index === 4) {
-              // Flea Market card
-              console.log('Flea Market card clicked, navigating to Flea Market section');
-              targetSection = document.getElementById('flea-market');
-            }
+            // Remove any existing click handlers to avoid duplicates
+            const clonedCard = card.cloneNode(true);
+            card.parentNode.replaceChild(clonedCard, card);
             
-            if (targetSection) {
-              // Center the title in the viewport
-              const rect = targetSection.getBoundingClientRect();
-              const viewportHeight = window.innerHeight;
-              const elementHeight = rect.height;
-              // Calculate offset to center the element in the viewport
-              const yOffset = -(viewportHeight / 2) + (elementHeight / 2);
-              const y = rect.top + window.pageYOffset + yOffset;
+            clonedCard.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
               
-              window.scrollTo({top: y, behavior: 'smooth'});
-            }
-          });
-          
-          console.log(`Clickable card ${index} arranged at angle: ${angle}, position: center (active)`);
+              // First show the full case study if it's not visible
+              const btn = document.getElementById("viewCaseStudyBtn");
+              const section = document.getElementById("fullCaseStudyTarkov");
+              if (btn && btn.style.display !== "none") {
+                btn.style.display = "none";
+                section.style.display = "block";
+              }
+              
+              // Navigate to appropriate section based on card index
+              let targetSection;
+              if (index === 0) {
+                // Settings & PostFX card
+                console.log('Settings card clicked, navigating to Settings Enhancements section');
+                targetSection = document.getElementById('settings-enhancements');
+              } else if (index === 1) {
+                // Menu with Friend List card
+                console.log('Friend List card clicked, navigating to Friend System Overhaul section');
+                targetSection = document.getElementById('friend-system-overhaul');
+              } else if (index === 2) {
+                // Selection Wheel card
+                console.log('Selection Wheel card clicked, navigating to Raid UI Enhancements section');
+                targetSection = document.getElementById('raid-ui-enhancements');
+              } else if (index === 3) {
+                // Selection Page card
+                console.log('Selection Page card clicked, navigating to Pre-Raid Group Coordination section');
+                targetSection = document.getElementById('pre-raid-group-coordination');
+              } else if (index === 4) {
+                // Flea Market card
+                console.log('Flea Market card clicked, navigating to Flea Market section');
+                targetSection = document.getElementById('flea-market');
+              }
+              
+              if (targetSection) {
+                // Center the title in the viewport
+                const rect = targetSection.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const elementHeight = rect.height;
+                // Calculate offset to center the element in the viewport
+                const yOffset = -(viewportHeight / 2) + (elementHeight / 2);
+                const y = rect.top + window.pageYOffset + yOffset;
+                
+                window.scrollTo({top: y, behavior: 'smooth'});
+              }
+            });
+            
+            console.log(`Clickable card ${index} arranged at angle: ${angle}, position: center (active)`);
+          } else {
+            // For medium and small screens, completely disable click functionality
+            card.style.cursor = 'default';
+            card.style.pointerEvents = 'none';
+            
+            // Remove any existing click listeners by cloning the card
+            const clonedCard = card.cloneNode(true);
+            card.parentNode.replaceChild(clonedCard, card);
+            
+            // Completely disable all interactions on the cloned card
+            clonedCard.style.cursor = 'default';
+            clonedCard.style.pointerEvents = 'none';
+            
+            // Ensure all child elements are non-clickable
+            const allChildren = clonedCard.querySelectorAll('*');
+            allChildren.forEach(child => {
+              child.style.pointerEvents = 'none';
+              child.style.cursor = 'default';
+              // Remove any onclick attributes that might exist
+              child.removeAttribute('onclick');
+            });
+            
+            // Also remove any onclick from the main card
+            clonedCard.removeAttribute('onclick');
+            
+            console.log(`Clickable card ${index} arranged at angle: ${angle}, position: center (active) - click completely disabled on medium/small screen`);
+          }
         } else {
           // When not active, remove special styling and click functionality
           card.style.zIndex = '';
@@ -1773,6 +1804,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Re-initialize for mobile/tablet/tablet normal
       initializeMobileCarousel();
     }
+    
+    // Always re-arrange cards to update click behavior based on current screen size
+    arrangeCards();
   });
 });
 

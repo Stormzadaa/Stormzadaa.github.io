@@ -533,7 +533,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Changed from center to top alignment */
     width: 100%;
     min-height: 100vh; /* Fixed: use 100vh instead of 100% */
     padding-bottom: 55px;
@@ -1405,7 +1405,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Changed from center to top alignment */
     width: 100%;
     min-height: 100vh; /* Fixed: use 100vh instead of 100% */
     padding-bottom: 34px;
@@ -2307,7 +2307,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Changed from center to top alignment */
     width: 100%;
     min-height: 100vh; /* Fixed: use 100vh instead of 100% */
     padding-bottom: 21px;
