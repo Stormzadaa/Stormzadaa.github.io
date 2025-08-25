@@ -21,7 +21,25 @@
 /* Base Tarkov Page Styling */
 .tarkov-page .portfolio-section {
   background-color: var(--TarkovPageBackground);
-  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+/* NWU pattern as background overlay */
+.tarkov-page .portfolio-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('Assets/Tarkov/NWU.svg');
+  background-repeat: repeat;
+  background-size: 900px 900px; /* 3x bigger individual pattern elements */
+  background-position: 0 0;
+  opacity: 0; /* Start 100% transparent */
+  pointer-events: none; /* Don't interfere with content */
+  transition: opacity 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0; /* Above portfolio background, below portfolio content */
 }
 
 .tarkov-page .header {
@@ -35,8 +53,14 @@
 }
 
 /* Enhanced Tarkov Theme Activation */
-.tarkov-page .portfolio-section.tarkov-active {
-  background-color: #1a1a18; /* Dark military green-tinted background */
+.tarkov-page .portfolio-section.tarkov-active::before {
+  opacity: 0.1; /* Make NWU pattern 10% visible - very subtle */
+}
+
+/* Ensure portfolio content appears above the NWU pattern */
+.tarkov-page .portfolio-section > *:not(.hamburger-menu):not(.header):not(.footer) {
+  position: relative;
+  z-index: 1;
 }
 
 .tarkov-page .header.tarkov-active {
@@ -1504,14 +1528,16 @@ img,
     max-width: 400px;
   }
 
-  /* Design images stack vertically */
+  /* Design images display sideways on medium screens - keep horizontal layout */
   .design-images-row {
-    flex-direction: column;
+    flex-direction: row; /* Keep horizontal layout like desktop */
     gap: 21px;
+    justify-content: space-between;
   }
 
   .design-images-row .design-concept-image {
-    max-width: 100%;
+    max-width: 48%; /* Ensure both images fit side by side */
+    flex: 1;
   }
 
   /* Tables respect container width with proper overflow handling */

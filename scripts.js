@@ -1080,9 +1080,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // First, ensure elements are visible, then apply the theme
     setTimeout(() => {
       // Add visual loading feedback with much slower transitions
-      if (portfolioSection) {
-        portfolioSection.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      }
       if (header) {
         // Include transform transition for header behavior AND background-color for theme
         header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease';
@@ -1103,7 +1100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Trigger theme change simultaneously with header/footer
         requestAnimationFrame(() => {
-          // Remove initial class and add active theme class
+          // Remove initial class and add active theme class to hamburger menu
           hamburgerMenu.classList.remove('tarkov-initial');
           hamburgerMenu.classList.add('tarkov-theme-active');
           
