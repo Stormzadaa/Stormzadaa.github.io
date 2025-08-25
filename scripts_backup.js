@@ -1063,8 +1063,9 @@ function smoothScrollTo(target, duration) {
   requestAnimationFrame(animation);
 }
 
-// Global variable to track Tarkov theme state
+// Global variables to track theme states
 let tarkovThemeActive = false;
+let groceryThemeActive = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
@@ -1128,19 +1129,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (body.classList.contains("grocery-page")) {
     // Create a smooth loading animation effect for grocery theme
     setTimeout(() => {
-      // Grocery color variables
-      const groceryColors = {
-        primary: '#2ECC71',
-        secondary: '#27AE60',
-        accent: '#F39C12',
-        light: '#F8F9FA',
-        lighter: '#FFFFFF',
-        textDark: '#2C3E50',
-        textMedium: '#34495E',
-        textLight: '#7F8C8D',
-        border: '#E8F5E8',
-        shadow: 'rgba(46, 204, 113, 0.1)'
-      };
+      // Apply Grocery theme using CSS class
+      body.classList.add("grocery-theme-active");
+      
+      // Update global theme state
+      groceryThemeActive = true;
+      
+      // Add subtle fade-in effect
+      document.body.style.opacity = '1';
+    }, 1000); // 1 second delay for color transition
+
+    // Set initial state for smooth transition
+    document.body.style.opacity = '0.95';
+    document.body.style.transition = 'opacity 3s ease-in-out';
+  } else {
+    // Initialize theme state for non-Grocery pages
+    groceryThemeActive = false;
+  }
 
       // Apply all color transitions with 3s duration
       const transitionStyle = 'all 3s ease-in-out';
@@ -1657,7 +1662,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!carouselSection.querySelector('.swipe-indicator')) {
       const swipeIndicator = document.createElement('div');
       swipeIndicator.className = 'swipe-indicator';
-      swipeIndicator.textContent = 'Swipe sideways to navigate';
+      swipeIndicator.textContent = 'Swipe to navigate';
       carouselSection.appendChild(swipeIndicator);
     }
 

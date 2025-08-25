@@ -535,7 +535,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh; /* Fixed: use 100vh instead of 100% */
     padding-bottom: 55px;
     padding-left: 89px;
     padding-right: 89px;
@@ -1267,16 +1267,12 @@
     right: 0;
     width: 380px;
     height: 500px;
-    background: linear-gradient(
-      to bottom,
-      var(--ni-header-footer) 45%,
-      var(--ni-background) 100%
-    );
+    /* background removed - controlled by JavaScript */
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     z-index: 3;
     transform: translateX(100%);
-    transition: transform var(--menu-transition-duration) ease,
-      background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
+    transition: transform var(--menu-transition-duration) ease;
+    /* Background transition removed - handled entirely by JavaScript */
     clip-path: polygon(100% 0%, 100% 100%, 30% 0%);
   }
 
@@ -1297,7 +1293,7 @@
 
   .hamburger-menu .active-underline {
     height: 2px;
-    background-color: var(--ni-underline); /* Adjust the color as needed */
+    /* background-color removed - controlled by JavaScript */
     width: 100%;
     margin-top: 2px; /* Adjust the spacing as needed */
   }
@@ -1411,7 +1407,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh; /* Fixed: use 100vh instead of 100% */
     padding-bottom: 34px;
     padding-left: 55px;
     padding-right: 55px;
@@ -2167,16 +2163,12 @@
     right: 0;
     width: 340px;
     height: 450px;
-    background: linear-gradient(
-      to bottom,
-      var(--ni-header-footer) 45%,
-      var(--ni-background) 100%
-    );
+    /* background removed - controlled by JavaScript */
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     z-index: 3;
     transform: translateX(100%);
-    transition: transform var(--menu-transition-duration) ease,
-      background 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Add background transition */
+    transition: transform var(--menu-transition-duration) ease;
+    /* Background transition removed - handled entirely by JavaScript */
     clip-path: polygon(100% 0%, 100% 100%, 25% 0%);
   }
 
@@ -2317,7 +2309,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh; /* Fixed: use 100vh instead of 100% */
     padding-bottom: 21px;
     padding-left: 21px;
     padding-right: 21px;
