@@ -3117,7 +3117,8 @@ h1.main-titleAbout {
 /* Default hamburger menu state */
 .hamburger-menu.tarkov-initial {
   background: #2a2a2a;
-  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+  border-right: 2px solid #2a2a2a;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-right 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
 }
 
 .hamburger-menu.tarkov-initial a {
@@ -3135,7 +3136,8 @@ h1.main-titleAbout {
 /* Active Tarkov theme hamburger menu state */
 .hamburger-menu.tarkov-theme-active {
   background: #2d3328;
-  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+  border-right: 2px solid #2d3328;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-right 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
 }
 
 .hamburger-menu.tarkov-theme-active a {

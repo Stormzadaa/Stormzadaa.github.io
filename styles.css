@@ -1264,7 +1264,7 @@
     display: none; /* Hidden by default */
     position: fixed;
     top: 0;
-    right: 0;
+    right: -1px; /* Slightly overlap to ensure no gap */
     width: 380px;
     height: 500px;
     /* background removed - controlled by JavaScript */
@@ -1273,7 +1273,7 @@
     transform: translateX(100%);
     transition: transform var(--menu-transition-duration) ease;
     /* Background transition removed - handled entirely by JavaScript */
-    clip-path: polygon(100% 0%, 100% 100%, 30% 0%);
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 30% 0%);
   }
 
   .hamburger-menu::before {
