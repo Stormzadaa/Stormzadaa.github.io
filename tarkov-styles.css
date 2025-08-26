@@ -19,13 +19,15 @@
    ============================================= */
 
 /* Base Tarkov Page Styling */
-.tarkov-page .portfolio-section {
+.tarkov-page .portfolio-section,
+.grocery-page .portfolio-section {
   background-color: var(--TarkovPageBackground);
   position: relative;
 }
 
 /* NWU pattern as background overlay */
-.tarkov-page .portfolio-section::before {
+.tarkov-page .portfolio-section::before,
+.grocery-page .portfolio-section::before {
   content: '';
   position: absolute;
   top: 0;
@@ -42,33 +44,39 @@
   z-index: 0; /* Above portfolio background, below portfolio content */
 }
 
-.tarkov-page .header {
+.tarkov-page .header,
+.grocery-page .header {
   background-color: var(--TarkovHeaderBackground);
   transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.tarkov-page footer {
+.tarkov-page footer,
+.grocery-page footer {
   background-color: var(--TarkovFooterBackground);
   transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Enhanced Tarkov Theme Activation */
-.tarkov-page .portfolio-section.tarkov-active::before {
+.tarkov-page .portfolio-section.tarkov-active::before,
+.grocery-page .portfolio-section.tarkov-active::before {
   opacity: 0.1; /* Make NWU pattern 10% visible - very subtle */
 }
 
 /* Ensure portfolio content appears above the NWU pattern */
-.tarkov-page .portfolio-section > *:not(.hamburger-menu):not(.header):not(.footer) {
+.tarkov-page .portfolio-section > *:not(.hamburger-menu):not(.header):not(.footer),
+.grocery-page .portfolio-section > *:not(.hamburger-menu):not(.header):not(.footer) {
   position: relative;
   z-index: 1;
 }
 
-.tarkov-page .header.tarkov-active {
+.tarkov-page .header.tarkov-active,
+.grocery-page .header.tarkov-active {
   background-color: #2d3328; /* Dark olive header */
   border-bottom: 1px solid #4a5f3a;
 }
 
-.tarkov-page footer.tarkov-active {
+.tarkov-page footer.tarkov-active,
+.grocery-page footer.tarkov-active {
   background-color: #252823; /* Dark forest footer */
   border-top: 1px solid #4a5f3a;
 }
@@ -76,14 +84,18 @@
 /* Hamburger menu underlines - basic structure only (colors handled by JS) */
 .tarkov-page .hamburger-menu .work-underline,
 .tarkov-page .hamburger-menu .about-underline,
-.tarkov-page .hamburger-menu .contact-underline {
+.tarkov-page .hamburger-menu .contact-underline,
+.grocery-page .hamburger-menu .work-underline,
+.grocery-page .hamburger-menu .about-underline,
+.grocery-page .hamburger-menu .contact-underline {
   height: 2px;
   width: 100%;
   margin-top: 2px;
   display: block; /* Make underlines visible */
 }
 
-.tarkov-page .footer.tarkov-active .footerTitleTypography {
+.tarkov-page .footer.tarkov-active .footerTitleTypography,
+.grocery-page .footer.tarkov-active .footerTitleTypography {
   color: #d4c5a9; /* Sand color for footer titles */
 }
 
@@ -94,7 +106,8 @@
 } */
 
 /* Navigation underlines for Tarkov theme - header only */
-.tarkov-page .header.tarkov-active .nav-underline.active {
+.tarkov-page .header.tarkov-active .nav-underline.active,
+.grocery-page .header.tarkov-active .nav-underline.active {
   background-color: #9fb986; /* Military green accent */
   border-color: #9fb986;
 }
@@ -113,17 +126,21 @@
    ============================================= */
 
 /* Base header behavior - separate from color transitions */
-.tarkov-page .header {
+.tarkov-page .header,
+.grocery-page .header {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform: translateY(0);
+  z-index: 998; /* Lower than hamburger menu z-index: 10000 in styles.css */
 }
 
 /* Header scroll animation classes - independent of color theme */
-.tarkov-page .header.tarkov-hide-header {
+.tarkov-page .header.tarkov-hide-header,
+.grocery-page .header.tarkov-hide-header {
   transform: translateY(-100%);
 }
 
-.tarkov-page .header.tarkov-show-header {
+.tarkov-page .header.tarkov-show-header,
+.grocery-page .header.tarkov-show-header {
   transform: translateY(0);
 }
 
@@ -3117,8 +3134,7 @@ h1.main-titleAbout {
 /* Default hamburger menu state */
 .hamburger-menu.tarkov-initial {
   background: #2a2a2a;
-  border-right: 2px solid #2a2a2a;
-  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-right 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
 }
 
 .hamburger-menu.tarkov-initial a {
@@ -3136,8 +3152,7 @@ h1.main-titleAbout {
 /* Active Tarkov theme hamburger menu state */
 .hamburger-menu.tarkov-theme-active {
   background: #2d3328;
-  border-right: 2px solid #2d3328;
-  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-right 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
 }
 
 .hamburger-menu.tarkov-theme-active a {
@@ -3150,4 +3165,20 @@ h1.main-titleAbout {
 .hamburger-menu.tarkov-theme-active .contact-underline {
   background-color: #d4c5a9;
   transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* =============================================
+   GROCERY PAGE Z-INDEX FIXES
+   ============================================= */
+
+/* Ensure hamburger menu is above header on grocery page */
+.grocery-page .hamburger-menu {
+  z-index: 10000;
+}
+
+/* Grocery page hamburger menu underline colors - use red from buttons */
+.grocery-page .hamburger-menu .work-underline,
+.grocery-page .hamburger-menu .about-underline,
+.grocery-page .hamburger-menu .contact-underline {
+  background-color: #FF4757; /* Strawberry red color matching grocery app success color */
 }

@@ -526,7 +526,8 @@
   }
 
   .hamburger-menu {
-    display: none; /* Hidden by default */
+  display: none; /* Hidden by default */
+  z-index: 10000; /* Ensure menu appears above header and all content */
   }
 
   .hold-titleAbout {
@@ -1261,19 +1262,19 @@
   }
 
   .hamburger-menu {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0;
-    right: -1px; /* Slightly overlap to ensure no gap */
-    width: 380px;
-    height: 500px;
-    /* background removed - controlled by JavaScript */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    z-index: 3;
-    transform: translateX(100%);
-    transition: transform var(--menu-transition-duration) ease;
-    /* Background transition removed - handled entirely by JavaScript */
-    clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 30% 0%);
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 500px;
+  /* background removed - controlled by JavaScript */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 10000; /* Ensure menu appears above header and all content */
+  transform: translateX(100%);
+  transition: transform var(--menu-transition-duration) ease;
+  /* Background transition removed - handled entirely by JavaScript */
+  clip-path: polygon(100% 0%, 100% 100%, 30% 0%);
   }
 
   .hamburger-menu::before {
@@ -1287,7 +1288,7 @@
     background-repeat: repeat; /* Repeats the background image vertically */
     background-size: 60% auto;
     background-position: center; /* Center the SVG image */
-    z-index: 1; /* Place it behind the ul */
+  z-index: 9999; /* Place it behind the menu content but above most content */
     opacity: 60%;
   }
 
@@ -1353,18 +1354,18 @@
     padding-right: 40px; /* Add padding to align text properly */
     padding-top: 70px; /* Add top padding */
     padding-left: 140px; /* Add left padding to keep text within triangle */
-    z-index: 2; /* Ensure ul is above the SVG background */
+  z-index: 10001; /* Ensure ul is above everything */
   }
 
   .hamburger-menu li {
     margin: 20px 0;
-    z-index: 2; /* Ensure li elements are above the SVG background */
+  z-index: 10001; /* Ensure li elements are above everything */
   }
 
   .hamburger-menu a {
     color: var(--ni-header-button);
     text-decoration: none;
-    z-index: 2; /* Ensure a elements are above the SVG background */
+  z-index: 10001; /* Ensure a elements are above everything */
   }
 
   /* Return arrow button styling */
@@ -2165,7 +2166,7 @@
     height: 450px;
     /* background removed - controlled by JavaScript */
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    z-index: 3;
+    z-index: 10000; /* Ensure menu appears above header and all content */
     transform: translateX(100%);
     transition: transform var(--menu-transition-duration) ease;
     /* Background transition removed - handled entirely by JavaScript */

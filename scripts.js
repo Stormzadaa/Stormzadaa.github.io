@@ -1,7 +1,3 @@
-// Global theme state variables
-let tarkovThemeActive = false;
-let groceryThemeActive = false;
-
 // ---- Loading Screen Logic ----
 window.addEventListener('load', function() {
   const loadingScreen = document.getElementById('loading-screen');
@@ -741,7 +737,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburgerMenu.style.display = "block"; // Ensure the menu is displayed
     
     // Apply the correct theme class based on current state
-    if (document.body.classList.contains('tarkov-page')) {
+    if (document.body.classList.contains('tarkov-page') || document.body.classList.contains('grocery-page')) {
       // Clear any existing theme classes first
       hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active');
       
@@ -751,22 +747,9 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         hamburgerMenu.classList.add('tarkov-initial');
       }
-    } else if (document.body.classList.contains('grocery-page')) {
-      // Clear any existing theme classes first
-      hamburgerMenu.classList.remove('grocery-initial', 'grocery-theme-active');
-      
-      // Apply the appropriate class based on current theme state
-      if (groceryThemeActive) {
-        hamburgerMenu.classList.add('grocery-theme-active');
-      } else {
-        hamburgerMenu.classList.add('grocery-initial');
-      }
     } else {
       // Other pages: use default background via inline style (existing behavior)
-      // BUT NOT for tarkov page - that uses CSS classes
-      if (!document.body.classList.contains('tarkov-page')) {
-        hamburgerMenu.style.background = 'linear-gradient(to bottom, #2A2B2D 45%, #1C1C1C 100%)';
-      }
+      hamburgerMenu.style.background = 'linear-gradient(to bottom, #2A2B2D 45%, #1C1C1C 100%)';
     }
     
     document.body.classList.add("no-scroll"); // Disable scrolling
@@ -1080,11 +1063,14 @@ function smoothScrollTo(target, duration) {
   requestAnimationFrame(animation);
 }
 
+// Global variable to track Tarkov theme state
+let tarkovThemeActive = false;
+
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
   // Enhanced Tarkov Page Color Theme Activation
-  if (body.classList.contains("tarkov-page")) {
+  if (body.classList.contains("tarkov-page") || body.classList.contains("grocery-page")) {
     const portfolioSection = document.querySelector(".portfolio-section");
     const header = document.querySelector(".header");
     const footer = document.querySelector("footer");
@@ -1127,183 +1113,259 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.opacity = '1';
     }, 1500); // Longer delay before starting the transition
 
-    // Set initial state for smooth transition - very subtle fade-in effect
-    document.body.style.opacity = '0.98';
+    // Set initial state for smooth transition
+    document.body.style.opacity = '0.92';
     document.body.style.transition = 'opacity 1s ease';
   } else {
     // Initialize theme state for non-Tarkov pages
     tarkovThemeActive = false;
   }
 
-  // Enhanced Grocery Page Color Theme Activation (exact copy of Tarkov system)
+  // Enhanced Grocery Page Color Theme Activation
   if (body.classList.contains("grocery-page")) {
-    const portfolioSection = document.querySelector(".portfolio-section");
-    const header = document.querySelector(".header");
-    const footer = document.querySelector("footer");
-    const hamburgerMenu = document.getElementById("hamburgerMenu");
-
-    // Create a smooth loading animation effect
-    // First, ensure elements are visible, then apply the theme
+    // Create a smooth loading animation effect for grocery theme
     setTimeout(() => {
-      // Add visual loading feedback with much slower transitions
-      if (header) {
-        // Include transform transition for header behavior AND background-color for theme
-        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease';
-      }
-      if (footer) {
-        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease';
-      }
+      // Grocery color variables
+      const groceryColors = {
+        primary: '#2ECC71',
+        secondary: '#27AE60',
+        accent: '#F39C12',
+        light: '#F8F9FA',
+        lighter: '#FFFFFF',
+        textDark: '#2C3E50',
+        textMedium: '#34495E',
+        textLight: '#7F8C8D',
+        border: '#E8F5E8',
+        shadow: 'rgba(46, 204, 113, 0.1)'
+      };
 
-      // Apply Grocery theme classes
-      portfolioSection?.classList.add("grocery-active");
-      header?.classList.add("grocery-active");
-      footer?.classList.add("grocery-active");
+      // Apply all color transitions with 3s duration
+      const transitionStyle = 'all 3s ease-in-out';
+
+      // Page backgrounds
+      document.body.style.transition = transitionStyle;
+      document.body.style.backgroundColor = groceryColors.light;
       
-      // Set up hamburger menu using CSS classes for theme states
-      if (hamburgerMenu) {
-        // Start with initial theme class
-        hamburgerMenu.classList.add('grocery-initial');
-        
-        // Trigger theme change simultaneously with header/footer
-        requestAnimationFrame(() => {
-          // Remove initial class and add active theme class to hamburger menu
-          hamburgerMenu.classList.remove('grocery-initial');
-          hamburgerMenu.classList.add('grocery-theme-active');
-          
-          // Update global theme state
-          groceryThemeActive = true;
-        });
-      }
-
-      // Add subtle fade-in effect for enhanced immersion
-      document.body.style.opacity = '1';
-    }, 1500); // Longer delay before starting the transition
-
-    // Set initial state for smooth transition
-    document.body.style.opacity = '0.92';
-    document.body.style.transition = 'opacity 1s ease';
-  } else {
-    // Initialize theme state for non-Grocery pages
-    groceryThemeActive = false;
-  }
-});
-
-// Complete Tarkov-style header system for Grocery page
-document.addEventListener("DOMContentLoaded", () => {
-  const isGroceryPage = document.body.classList.contains('grocery-page');
-  
-  if (isGroceryPage) {
-    const header = document.querySelector('.header');
-    const footer = document.querySelector('.footer');
-    const portfolioSection = document.querySelector('.portfolio');
-    
-    // Apply initial theme state immediately (grocery colors)
-    if (header) {
-      header.classList.remove('theme-active');
-      header.classList.add('grocery-initial');
-    }
-    
-    if (footer) {
-      footer.classList.remove('theme-active');
-      footer.classList.add('grocery-initial');
-    }
-    
-    if (portfolioSection) {
-      portfolioSection.classList.remove('theme-active');
-      portfolioSection.classList.add('grocery-initial');
-    }
-    
-    // Set up hamburger menu with initial state
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    if (hamburgerMenu) {
-      hamburgerMenu.classList.add('grocery-initial');
-    }
-    
-    // Activate grocery theme after delay (matching Tarkov timing)
-    setTimeout(() => {
-      // Activate theme for all elements simultaneously
-      if (header) {
-        header.classList.remove('grocery-initial');
-        header.classList.add('grocery-theme-active');
-      }
-      
-      if (footer) {
-        footer.classList.remove('grocery-initial');
-        footer.classList.add('grocery-theme-active');
-      }
-      
+      const portfolioSection = document.querySelector('.portfolio-section');
       if (portfolioSection) {
-        portfolioSection.classList.remove('grocery-initial');
-        portfolioSection.classList.add('grocery-theme-active');
+        portfolioSection.style.transition = transitionStyle;
+        portfolioSection.style.backgroundColor = groceryColors.light;
       }
-      
-      // Activate hamburger menu theme with requestAnimationFrame for smooth transition
+
+      // Header
+      const header = document.querySelector('.header');
+      if (header) {
+        // Use fast transform transition for header behavior, but slow for color changes
+        header.style.transition = 'transform 0.25s ease-out, background-color 3s ease-in-out, border-bottom 3s ease-in-out, box-shadow 3s ease-in-out';
+        header.style.backgroundColor = groceryColors.lighter;
+        header.style.borderBottom = `1px solid ${groceryColors.border}`;
+        header.style.boxShadow = `0 2px 12px ${groceryColors.shadow}`;
+      }
+
+      // Header navigation links
+      const navLinks = document.querySelectorAll('.header .nav-link');
+      navLinks.forEach(link => {
+        link.style.transition = transitionStyle;
+        link.style.color = groceryColors.textDark;
+      });
+
+      // Logo filter for dark appearance on white background
+      const logo = document.querySelector('.header .logo');
+      if (logo) {
+        logo.style.transition = transitionStyle;
+        logo.style.filter = 'brightness(0) saturate(100%) invert(17%) sepia(11%) saturate(923%) hue-rotate(169deg) brightness(95%) contrast(86%)';
+      }
+
+      // Menu icon filter for dark appearance
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) {
+        menuIcon.style.transition = transitionStyle;
+        menuIcon.style.filter = 'brightness(0) saturate(100%) invert(17%) sepia(11%) saturate(923%) hue-rotate(169deg) brightness(95%) contrast(86%)';
+      }
+
+      // Hamburger menu
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
       if (hamburgerMenu) {
-        requestAnimationFrame(() => {
-          hamburgerMenu.classList.remove('grocery-initial');
-          hamburgerMenu.classList.add('grocery-theme-active');
-        });
+        hamburgerMenu.style.transition = transitionStyle;
+        hamburgerMenu.style.backgroundColor = groceryColors.lighter;
       }
-      
-      // Set grocery theme active state
-      groceryThemeActive = true;
-      
-    }, 1500); // 1.5 second delay matching Tarkov
+
+      // Hamburger menu links
+      const hamburgerLinks = document.querySelectorAll('.hamburger-menu a');
+      hamburgerLinks.forEach(link => {
+        link.style.transition = transitionStyle;
+        link.style.color = groceryColors.textDark;
+      });
+
+      // Footer
+      const footer = document.querySelector('.footer');
+      if (footer) {
+        footer.style.transition = transitionStyle;
+        footer.style.backgroundColor = groceryColors.lighter;
+      }
+
+      // Footer content - make background transparent
+      const footerContent = document.querySelector('.footer-content');
+      if (footerContent) {
+        footerContent.style.transition = transitionStyle;
+        footerContent.style.backgroundColor = 'transparent';
+      }
+
+      // Fundo footer (background element) - make transparent
+      const fundoFooter = document.querySelector('.fundo-footer');
+      if (fundoFooter) {
+        fundoFooter.style.transition = transitionStyle;
+        fundoFooter.style.backgroundColor = 'transparent';
+      }
+
+      // Footer sections - make transparent
+      const footerSections = document.querySelectorAll('.footer-section');
+      footerSections.forEach(section => {
+        section.style.transition = transitionStyle;
+        section.style.backgroundColor = 'transparent';
+      });
+
+      // Footer titles (h2 elements)
+      const footerTitles = document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title');
+      footerTitles.forEach(title => {
+        title.style.transition = transitionStyle;
+        title.style.color = groceryColors.textDark;
+      });
+
+      // Footer text and all links (including social media links)
+      const footerText = document.querySelectorAll('.footer .footerTextTypography, .footer a, .footer .get-in-touch-grid a, .footer .social-media-grid a');
+      footerText.forEach(text => {
+        text.style.transition = transitionStyle;
+        text.style.color = groceryColors.textMedium;
+      });
+
+      // Footer grid containers - make transparent
+      const footerGrids = document.querySelectorAll('.get-in-touch-grid, .social-media-grid');
+      footerGrids.forEach(grid => {
+        grid.style.transition = transitionStyle;
+        grid.style.backgroundColor = 'transparent';
+        grid.style.color = groceryColors.textMedium;
+      });
+
+      // Typography elements
+      const titleElements = document.querySelectorAll('.titleTypography');
+      titleElements.forEach(title => {
+        title.style.transition = transitionStyle;
+        title.style.color = groceryColors.textDark;
+      });
+
+      const subTitleElements = document.querySelectorAll('.subTitleTypography');
+      subTitleElements.forEach(subtitle => {
+        subtitle.style.transition = transitionStyle;
+        subtitle.style.color = groceryColors.secondary;
+      });
+
+      const textElements = document.querySelectorAll('.textTypography');
+      textElements.forEach(text => {
+        text.style.transition = transitionStyle;
+        text.style.color = groceryColors.textMedium;
+      });
+
+      const headerElements = document.querySelectorAll('.headerTypography');
+      headerElements.forEach(header => {
+        header.style.transition = transitionStyle;
+        header.style.color = groceryColors.textDark;
+      });
+
+      // Add subtle fade-in effect with same timing
+      document.body.style.opacity = '1';
+    }, 1000); // 1 second delay for color transition
+
+    // Set initial state for smooth transition with same timing
+    document.body.style.opacity = '0.95';
+    document.body.style.transition = 'opacity 3s ease-in-out';
     
-    // Initialize header scroll behavior for grocery page
+    // Grocery page header scroll behavior
     let lastScrollTop = 0;
     let isHeaderVisible = true;
     const scrollThreshold = 100;
+    const header = document.querySelector('.header');
     
     if (header) {
-      function hideHeader() {
-        if (isHeaderVisible) {
-          header.style.transform = 'translateY(-100%)';
-          isHeaderVisible = false;
-        }
+      // Set initial header styles for grocery page - but apply after color theme loads
+      function setFastHeaderTransition() {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3s ease-in-out, border-bottom 3s ease-in-out, box-shadow 3s ease-in-out';
       }
       
-      function showHeader() {
-        if (!isHeaderVisible) {
-          header.style.transform = 'translateY(0)';
-          isHeaderVisible = true;
-        }
-      }
+      // Set immediately
+      setFastHeaderTransition();
       
+      // Set again after color theme has loaded (1000ms + buffer)
+      setTimeout(setFastHeaderTransition, 1200);
+      
+      // Throttle scroll events for better performance
       let ticking = false;
-      function handleScroll() {
+      
+      function handleGroceryScroll() {
         const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
+        // Don't hide header if we're near the top of the page
         if (currentScrollTop < scrollThreshold) {
-          showHeader();
+          showGroceryHeader();
           lastScrollTop = currentScrollTop;
           return;
         }
         
+        // Determine scroll direction
         const scrollingDown = currentScrollTop > lastScrollTop;
         
         if (scrollingDown && isHeaderVisible) {
-          hideHeader();
+          hideGroceryHeader();
         } else if (!scrollingDown && !isHeaderVisible) {
-          showHeader();
+          showGroceryHeader();
         }
         
         lastScrollTop = currentScrollTop;
       }
       
+      function hideGroceryHeader() {
+        if (isHeaderVisible) {
+          // Ensure fast transition is set to match index page
+          header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3s ease-in-out, border-bottom 3s ease-in-out, box-shadow 3s ease-in-out';
+          header.classList.add('hide');
+          header.classList.remove('show');
+          header.style.transform = 'translateY(-100%)';
+          isHeaderVisible = false;
+        }
+      }
+      
+      function showGroceryHeader() {
+        if (!isHeaderVisible) {
+          // Ensure fast transition is set to match index page
+          header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3s ease-in-out, border-bottom 3s ease-in-out, box-shadow 3s ease-in-out';
+          header.classList.add('show');
+          header.classList.remove('hide');
+          header.style.transform = 'translateY(0)';
+          isHeaderVisible = true;
+        }
+      }
+      
       function requestTick() {
         if (!ticking) {
-          requestAnimationFrame(handleScroll);
+          requestAnimationFrame(handleGroceryScroll);
           ticking = true;
         }
       }
       
+      // Add scroll event listener
       window.addEventListener('scroll', () => {
         requestTick();
         ticking = false;
       }, { passive: true });
       
-      header.addEventListener('mouseenter', showHeader);
+      // Mouse hover to show header when hidden
+      header.addEventListener('mouseenter', showGroceryHeader);
+      
+      // Initialize header state based on current scroll position
+      const initialScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (initialScrollTop > scrollThreshold) {
+        hideGroceryHeader();
+      }
     }
   }
 });
@@ -2087,7 +2149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (body.classList.contains("grocery-page")) {
             // For grocery page, maintain both transform and color transitions
             header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3s ease-in-out, box-shadow 3s ease-in-out, border-bottom 3s ease-in-out, color 3s ease-in-out';
-        } else if (body.classList.contains("tarkov-page")) {
+        } else if (body.classList.contains("tarkov-page") || body.classList.contains("grocery-page")) {
             header.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         } else {
             header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
@@ -2096,7 +2158,7 @@ document.addEventListener('DOMContentLoaded', function() {
         header.style.top = '0';
         header.style.left = '0';
         header.style.right = '0';
-        header.style.zIndex = '1000';
+        header.style.zIndex = '999'; // Lower than hamburger menu z-index: 10000
         
         // Remove any existing body padding
         document.body.style.paddingTop = '0';
@@ -2250,7 +2312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Special handling for Tarkov page if it exists
-    if (document.body.classList.contains('tarkov-page')) {
+    if (document.body.classList.contains('tarkov-page') || document.body.classList.contains('grocery-page')) {
         // Ensure header transitions work with Tarkov theme
         header.addEventListener('transitionend', function(e) {
             if (e.propertyName === 'transform' && !isHeaderVisible) {
@@ -2276,7 +2338,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
     // Only run on Tarkov page
-    if (!document.body.classList.contains('tarkov-page')) return;
+    if (!document.body.classList.contains('tarkov-page') && !document.body.classList.contains('grocery-page')) return;
     
     const header = document.querySelector('.header');
     if (!header) return;
