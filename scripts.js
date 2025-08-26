@@ -1645,6 +1645,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Mobile touch/swipe functionality (now includes tablet and tablet normal)
   function initializeMobileCarousel() {
+    // Only run on non-grocery pages
+    if (document.querySelector('.grocery-page')) {
+      console.log('Skipping mobile carousel - grocery page detected');
+      return;
+    }
     if (window.innerWidth > 1279) return; // Only for mobile, tablet, and tablet normal screens
     
     const scene = document.querySelector('.tarkov-3d-carousel-section .scene');
@@ -1778,8 +1783,10 @@ document.addEventListener("DOMContentLoaded", () => {
     scene.addEventListener('touchend', handleTouchEnd, { passive: false });
   }
 
-  // Initialize mobile carousel if on mobile, tablet, or tablet normal
-  initializeMobileCarousel();
+  // Initialize mobile carousel if on mobile, tablet, or tablet normal (only for NON-grocery pages)
+  if (!document.querySelector('.grocery-page')) {
+    initializeMobileCarousel();
+  }
   
   // Re-initialize on window resize
   window.addEventListener('resize', () => {
@@ -1799,7 +1806,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } else {
       // Re-initialize for mobile/tablet/tablet normal
-      initializeMobileCarousel();
+      if (!document.querySelector('.grocery-page')) {
+        initializeMobileCarousel();
+      }
     }
     
     // Always re-arrange cards to update click behavior based on current screen size
@@ -2467,12 +2476,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize
     initTarkovHeaderBehavior();
 
-    // Initialize Smooth Carousel
-    initSmoothCarousel();
+    // Initialize Smooth Carousel (only for NON-grocery pages)
+    if (!document.querySelector('.grocery-page')) {
+        initSmoothCarousel();
+    }
 });
 
 function initSmoothCarousel() {
-    console.log('Initializing smooth carousel...');
+    // Only run on non-grocery pages
+    if (document.querySelector('.grocery-page')) {
+        console.log('Skipping smooth carousel - grocery page detected');
+        return;
+    }
+    
+    console.log('Initializing smooth carousel (non-grocery pages)...');
     
     const carousel = document.querySelector('.smooth-carousel');
     const wrapper = document.querySelector('.carousel-wrapper');
@@ -2686,15 +2703,16 @@ function initSmoothCarousel() {
     console.log('Carousel initialization complete');
 }
 
-// Global test functions
+// ---- NEW CAROUSEL IMPLEMENTATION ----
+// Global carousel state
 let testCurrentIndex = 0;
+let totalSlides = 0;
 
 // Drag functionality variables
 let isDragging = false;
 let startX = 0;
 let currentX = 0;
-let dragStartIndex = 0;
-let dragThreshold = 50; // Minimum distance to trigger slide change
+let dragThreshold = 100; // Increased threshold for more deliberate swipes
 
 // Description data for each mockup
 const mockupDescriptions = [
@@ -2706,12 +2724,12 @@ const mockupDescriptions = [
 ];
 
 function updateDescription(index) {
-    const descriptionTitle = document.querySelector('.description-title');
-    const descriptionText = document.querySelector('.description-text');
+    const titleElement = document.querySelector('.description-title');
+    const textElement = document.querySelector('.description-text');
     
-    if (descriptionTitle && descriptionText && mockupDescriptions[index]) {
-        descriptionTitle.textContent = mockupDescriptions[index].title;
-        descriptionText.textContent = mockupDescriptions[index].text;
+    if (titleElement && textElement && mockupDescriptions[index]) {
+        titleElement.textContent = mockupDescriptions[index].title;
+        textElement.textContent = mockupDescriptions[index].text;
     }
 }
 
@@ -2722,35 +2740,151 @@ function updateIndicators(activeIndex) {
     });
 }
 
+function isDesktopScreen() {
+    return window.innerWidth >= 1280;
+}
+
+function isMobileOrMediumScreen() {
+    return window.innerWidth < 1280;
+}
+
+// Different positioning for desktop vs mobile/medium
+function getTranslateValue(index) {
+    const isMobile = isMobileOrMediumScreen();
+    
+    if (isMobile) {
+        // Mobile/Medium: Each slide takes 65% width, so move by 65% per slide with 17.5% offset for centering
+        const translateX = -index * 65 + 17.5;
+        console.log('Mobile transform calculation:', {
+            index,
+            translateX,
+            screenWidth: window.innerWidth
+        });
+        return translateX;
+    } else {
+        // Desktop: Use closer spacing (50% width with 25% offset for centering)
+        const translateX = -index * 50 + 25;
+        console.log('Desktop transform calculation:', {
+            index,
+            translateX,
+            screenWidth: window.innerWidth
+        });
+        return translateX;
+    }
+}
+
 function goToSlide(targetIndex) {
     const wrapper = document.querySelector('.carousel-wrapper');
     const items = document.querySelectorAll('.carousel-item');
     
-    if (wrapper && items.length > 0) {
-        testCurrentIndex = targetIndex;
-        
-        // Center the target item
-        const translateX = -testCurrentIndex * 60 + 20;
-        wrapper.style.transform = `translateX(${translateX}%)`;
-        wrapper.style.transition = 'transform 0.3s ease-out';
-        
-        // Update center class
-        items.forEach((item, index) => {
-            item.classList.toggle('center', index === testCurrentIndex);
-        });
-        
-        // Update description and indicators
-        updateDescription(testCurrentIndex);
-        updateIndicators(testCurrentIndex);
-        
-        console.log('Moved to index:', testCurrentIndex);
+    if (!wrapper || !items.length) return;
+    
+    const screenWidth = window.innerWidth;
+    const isMobile = isMobileOrMediumScreen();
+    
+    console.log('goToSlide called:', {
+        targetIndex,
+        currentIndex: testCurrentIndex,
+        screenWidth,
+        isMobile,
+        totalItems: items.length
+    });
+    
+    // Apply different boundary logic based on screen size
+    if (isMobile) {
+        // Mobile/Medium: Strict boundaries, no cycling
+        const boundedIndex = Math.max(0, Math.min(targetIndex, items.length - 1));
+        if (boundedIndex !== targetIndex) {
+            console.log('Boundary hit! Requested:', targetIndex, 'Bounded to:', boundedIndex);
+        }
+        targetIndex = boundedIndex;
+    } else {
+        // Desktop: Allow infinite cycling
+        if (targetIndex < 0) targetIndex = items.length - 1;
+        if (targetIndex >= items.length) targetIndex = 0;
+    }
+    
+    testCurrentIndex = targetIndex;
+    
+    // Apply transform based on screen size
+    const translateX = getTranslateValue(testCurrentIndex);
+    console.log('Setting transform:', translateX + '%');
+    
+    wrapper.style.transform = `translateX(${translateX}%)`;
+    wrapper.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    
+    // Update center class
+    items.forEach((item, index) => {
+        item.classList.toggle('center', index === testCurrentIndex);
+    });
+    
+    // Update description and indicators
+    updateDescription(testCurrentIndex);
+    updateIndicators(testCurrentIndex);
+    
+    console.log('Final position - Index:', testCurrentIndex, 'Transform:', translateX + '%');
+}
+
+// Button navigation
+function testNext() {
+    const items = document.querySelectorAll('.carousel-item');
+    const isMobile = isMobileOrMediumScreen();
+    
+    console.log('testNext called:', {
+        currentIndex: testCurrentIndex,
+        totalItems: items.length,
+        isMobile,
+        screenWidth: window.innerWidth
+    });
+    
+    if (!items.length) return;
+    
+    if (isMobile) {
+        // Mobile/Medium: Stop at last slide
+        if (testCurrentIndex < items.length - 1) {
+            console.log('Moving to next slide');
+            goToSlide(testCurrentIndex + 1);
+        } else {
+            console.log('At last slide, cannot go further');
+        }
+    } else {
+        // Desktop: Infinite cycling
+        console.log('Desktop mode - infinite cycling');
+        goToSlide(testCurrentIndex + 1);
     }
 }
 
-// Drag functionality
+function testPrev() {
+    const items = document.querySelectorAll('.carousel-item');
+    const isMobile = isMobileOrMediumScreen();
+    
+    console.log('testPrev called:', {
+        currentIndex: testCurrentIndex,
+        totalItems: items.length,
+        isMobile,
+        screenWidth: window.innerWidth
+    });
+    
+    if (!items.length) return;
+    
+    if (isMobile) {
+        // Mobile/Medium: Stop at first slide
+        if (testCurrentIndex > 0) {
+            console.log('Moving to previous slide');
+            goToSlide(testCurrentIndex - 1);
+        } else {
+            console.log('At first slide, cannot go further');
+        }
+    } else {
+        // Desktop: Infinite cycling
+        console.log('Desktop mode - infinite cycling');
+        goToSlide(testCurrentIndex - 1);
+    }
+}
+
+// Drag functionality - completely rewritten for proper boundary handling
 function handleDragStart(e) {
     isDragging = true;
-    dragStartIndex = testCurrentIndex;
     startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
     currentX = startX;
     
@@ -2759,8 +2893,8 @@ function handleDragStart(e) {
         wrapper.style.transition = 'none'; // Disable transition during drag
     }
     
-    // Prevent text selection during drag
     e.preventDefault();
+    console.log('Drag started at:', startX);
 }
 
 function handleDragMove(e) {
@@ -2769,13 +2903,32 @@ function handleDragMove(e) {
     currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
     const deltaX = currentX - startX;
     const wrapper = document.querySelector('.carousel-wrapper');
+    const items = document.querySelectorAll('.carousel-item');
     
-    if (wrapper) {
-        // Calculate the base position for current slide
-        const baseTranslateX = -testCurrentIndex * 60 + 20;
-        // Add drag offset (convert pixel movement to percentage)
-        const dragOffset = (deltaX / window.innerWidth) * 100;
-        wrapper.style.transform = `translateX(${baseTranslateX + dragOffset}%)`;
+    if (!wrapper || !items.length) return;
+    
+    // Calculate base position for current slide
+    const baseTranslateX = getTranslateValue(testCurrentIndex);
+    
+    if (isMobileOrMediumScreen()) {
+        // Mobile/Medium: Add resistance at boundaries
+        let dragPercent = (deltaX / window.innerWidth) * 100;
+        
+        // At first slide - add resistance when dragging right
+        if (testCurrentIndex === 0 && deltaX > 0) {
+            dragPercent = dragPercent * 0.3; // Heavy resistance
+        }
+        
+        // At last slide - add resistance when dragging left
+        if (testCurrentIndex === items.length - 1 && deltaX < 0) {
+            dragPercent = dragPercent * 0.3; // Heavy resistance
+        }
+        
+        wrapper.style.transform = `translateX(${baseTranslateX + dragPercent}%)`;
+    } else {
+        // Desktop: Free drag movement for smooth infinite cycling
+        const dragPercent = (deltaX / window.innerWidth) * 100;
+        wrapper.style.transform = `translateX(${baseTranslateX + dragPercent}%)`;
     }
     
     e.preventDefault();
@@ -2788,97 +2941,86 @@ function handleDragEnd(e) {
     const deltaX = currentX - startX;
     const wrapper = document.querySelector('.carousel-wrapper');
     const items = document.querySelectorAll('.carousel-item');
+    const isMobile = isMobileOrMediumScreen();
     
     if (wrapper) {
-        wrapper.style.transition = 'transform 0.3s ease-out'; // Re-enable transition
+        wrapper.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; // Smooth transition back
     }
     
-    // Determine if drag was significant enough to change slides
+    console.log('Drag ended:', {
+        deltaX,
+        threshold: dragThreshold,
+        currentIndex: testCurrentIndex,
+        isMobile,
+        screenWidth: window.innerWidth,
+        totalItems: items.length
+    });
+    
+    // Check if drag was significant enough
     if (Math.abs(deltaX) > dragThreshold) {
-        if (deltaX > 0 && testCurrentIndex > 0) {
-            // Dragged right, go to previous slide
-            goToSlide(testCurrentIndex - 1);
-        } else if (deltaX < 0 && testCurrentIndex < items.length - 1) {
-            // Dragged left, go to next slide
-            goToSlide(testCurrentIndex + 1);
+        if (deltaX > 0) {
+            // Dragged right - go to previous slide
+            console.log('Dragged right - attempting to go to previous slide');
+            testPrev();
         } else {
-            // Not enough movement or at boundary, snap back to current slide
-            goToSlide(testCurrentIndex);
+            // Dragged left - go to next slide
+            console.log('Dragged left - attempting to go to next slide');
+            testNext();
         }
     } else {
-        // Not enough movement, snap back to current slide
+        // Snap back to current slide
+        console.log('Drag not significant enough, snapping back');
         goToSlide(testCurrentIndex);
     }
 }
 
-function testNext() {
-    console.log('Test Next clicked');
-    const wrapper = document.querySelector('.carousel-wrapper');
-    const items = document.querySelectorAll('.carousel-item');
-    if (wrapper && items.length > 0) {
-        testCurrentIndex = (testCurrentIndex + 1) % items.length;
-        goToSlide(testCurrentIndex);
-    }
-}
-
-function testPrev() {
-    console.log('Test Prev clicked');
-    const wrapper = document.querySelector('.carousel-wrapper');
-    const items = document.querySelectorAll('.carousel-item');
-    if (wrapper && items.length > 0) {
-        testCurrentIndex = testCurrentIndex === 0 ? items.length - 1 : testCurrentIndex - 1;
-        goToSlide(testCurrentIndex);
-    }
-}
-
-// Initialize the carousel position on page load
+// Initialize the carousel when DOM is loaded (ONLY ON GROCERY PAGE)
 document.addEventListener('DOMContentLoaded', function() {
+    // Only run new carousel system on grocery page
+    if (!document.querySelector('.grocery-page')) {
+        console.log('Skipping new carousel - not on grocery page');
+        return;
+    }
+    
+    console.log('DOM loaded, initializing NEW carousel system for grocery page...');
+    
     setTimeout(() => {
         const wrapper = document.querySelector('.carousel-wrapper');
         const items = document.querySelectorAll('.carousel-item');
         const indicators = document.querySelectorAll('.carousel-indicator');
         
         if (wrapper && items.length > 0) {
-            // Set initial position and center class
-            wrapper.style.transform = 'translateX(20%)';
-            wrapper.style.transition = 'transform 0.3s ease-out';
-            items[0].classList.add('center');
+            totalSlides = items.length;
             
-            // Set initial description and indicators
-            updateDescription(0);
-            updateIndicators(0);
+            // Set initial position
+            goToSlide(0);
             
-            console.log('Carousel initialized with proper centering');
-        }
-        
-        // Add click event listeners to indicators
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                console.log('Indicator clicked:', index);
-                goToSlide(index);
+            console.log('Carousel initialized with', totalSlides, 'slides');
+            
+            // Add click event listeners to indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    console.log('Indicator clicked:', index);
+                    goToSlide(index);
+                });
             });
-        });
-        
-        console.log('Indicator event listeners added');
-        
-        // Add drag event listeners to carousel wrapper
-        if (wrapper) {
-            // Mouse events
+            
+            // Add drag event listeners
             wrapper.addEventListener('mousedown', handleDragStart);
             document.addEventListener('mousemove', handleDragMove);
             document.addEventListener('mouseup', handleDragEnd);
             
-            // Touch events
+            // Touch events for mobile
             wrapper.addEventListener('touchstart', handleDragStart, { passive: false });
             document.addEventListener('touchmove', handleDragMove, { passive: false });
             document.addEventListener('touchend', handleDragEnd);
             
-            // Prevent context menu on right click during drag
-            wrapper.addEventListener('contextmenu', (e) => {
-                if (isDragging) e.preventDefault();
-            });
+            // Prevent context menu on drag
+            wrapper.addEventListener('contextmenu', (e) => e.preventDefault());
             
-            console.log('Drag event listeners added');
+            console.log('Carousel event listeners added');
+        } else {
+            console.log('Carousel elements not found');
         }
     }, 100);
 });
@@ -2992,4 +3134,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize filter on page load
   initializeFilter();
 });
+
+// Scroll to next section function (for grocery page scroll arrow)
+function scrollToNextSection() {
+    const nextSection = document.querySelector('#overview-section');
+    if (nextSection) {
+        nextSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
 

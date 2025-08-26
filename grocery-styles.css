@@ -138,6 +138,57 @@
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
 }
 
+/* Scroll Down Arrow */
+.scroll-down-arrow {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--grocery-app-success) 0%, #ff6b7d 100%);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 24px rgba(255, 71, 87, 0.25);
+  animation: bounce 2s infinite;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.scroll-down-arrow:hover {
+  background: linear-gradient(135deg, #ff6b7d 0%, var(--grocery-app-success) 100%);
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 8px 32px rgba(255, 71, 87, 0.35);
+}
+
+.scroll-down-arrow:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+.scroll-down-arrow svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
 .hero-video {
   position: absolute;
   top: 0;
@@ -682,14 +733,14 @@
 .carousel-wrapper {
   display: flex;
   height: 100%;
-  width: 300%; /* 5 items × 60% each */
-  transition: transform 0.3s ease-out;
+  width: 250%; /* 5 items × 50% each for desktop - closer together */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
 
 .carousel-item {
   flex-shrink: 0;
-  width: 60%;
+  width: 50%; /* Desktop: 50% width for closer overlapping effect */
   height: 100%;
   display: flex;
   justify-content: center;
@@ -697,12 +748,31 @@
   padding: 0;
   box-sizing: border-box;
   opacity: 0.6;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .carousel-item.center {
   opacity: 1;
   z-index: 2;
+}
+
+/* Mobile and Medium Screen Adjustments */
+@media (max-width: 1279px) {
+  .carousel-wrapper {
+    width: 325%; /* 5 items × 65% each for mobile/medium - even closer together */
+  }
+  
+  .carousel-item {
+    width: 65%; /* Mobile/Medium: 65% width for closer spacing */
+    opacity: 0.5; /* Non-center items have 50% visibility */
+    padding: 0 5px; /* Reduced padding for tighter spacing */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .carousel-item.center {
+    opacity: 1; /* Center item is fully visible */
+    transform: none; /* No special transform needed */
+  }
 }
 
 .carousel-image {
@@ -757,35 +827,9 @@
 }
 
 /* Responsive arrow positioning */
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .carousel-arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-  
-  .carousel-prev {
-    left: 20%;
-  }
-  
-  .carousel-next {
-    right: 20%;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
-  }
-  
-  .carousel-prev {
-    left: 15%;
-  }
-  
-  .carousel-next {
-    right: 15%;
+    display: none; /* Hide arrows on medium and small screens */
   }
 }
 
@@ -800,6 +844,10 @@
   margin-bottom: 34px;
   margin-left: auto;
   margin-right: auto;
+  min-height: 120px; /* Increased fixed minimum height to match longest descriptions */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top of the container */
 }
 
 .description-title {
@@ -1309,13 +1357,25 @@
 
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1279px) {
+  .hero-section {
+    height: auto;
+    padding: 40px 0 80px 0;
+    align-items: flex-start;
+  }
+  
   .hero-container {
-    padding: 65px;
+    padding: 40px;
+    margin-bottom: 40px;
   }
   
   .hero-title {
     font-size: 6.8vw;
     margin: 0 0 1.6vw 0;
+  }
+  
+  /* Hide carousel arrows on tablet/medium screens */
+  .carousel-arrow {
+    display: none;
   }
   
   .hero-tagline {
@@ -1384,8 +1444,15 @@
 
 /* Mobile Large */
 @media (min-width: 430px) and (max-width: 768px) {
+  .hero-section {
+    height: auto;
+    padding: 30px 0 70px 0;
+    align-items: flex-start;
+  }
+  
   .hero-container {
-    padding: 55px 34px;
+    padding: 30px 20px;
+    margin-bottom: 30px;
   }
   
   .hero-title {
@@ -1400,6 +1467,22 @@
   
   .hero-phone-mockup {
     width: 48vw;
+  }
+  
+  /* Scroll arrow responsive */
+  .scroll-down-arrow {
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .scroll-down-arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .hero-container {
+    margin-bottom: 20px;
   }
   
   .overview-section,
@@ -1558,7 +1641,13 @@
   }
   
   .hero-section {
-    height: 80vh;
+    height: auto;
+    padding: 20px 0 60px 0;
+    align-items: flex-start;
+  }
+  
+  .hero-container {
+    margin-bottom: 20px;
   }
   
   .hero-title {
@@ -1651,6 +1740,8 @@
   
   .mockup-description {
     font-size: var(--h7-font-size);
+    min-height: 110px; /* Increased fixed height for mobile to match longer descriptions */
+    padding: 10px 18px; /* Adjust padding for mobile */
   }
   
   .carousel-nav {
