@@ -51,7 +51,7 @@
   --TarkovBorderGreen: #4a5f3a; /* Darker green for borders */
   --TarkovTextSand: #d4c5a9; /* Warm sand color for primary text */
   --TarkovTextMutedSand: #a89979; /* Muted sand for secondary text */
-  --TarkovText: rgb(255, 255, 255);
+  --TarkovText: #e0e0e0; /* Softer light gray instead of pure white */
   --TarkovCardBackground: rgb(60, 63, 65);
   --TarkovSecondaryLink: rgb(190, 181, 162);
   --TarkovTitles: rgb(164, 140, 95);

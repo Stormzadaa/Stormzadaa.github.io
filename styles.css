@@ -556,7 +556,7 @@
   .main-titleAbout {
     align-self: center;
     margin-top: 55px;
-    margin-bottom: 55px;
+    margin-bottom: 0;
     max-width: 100%;
     z-index: 0;
     line-height: 1.5;
@@ -565,14 +565,17 @@
     margin-left: 89px;
     margin-right: 89px;
     color: var(--ni-main-title-about);
+    font-size: 4.5em;
   }
 
   .subTitleAbout {
     color: var(--ni-main-title-about);
+    margin: 34px 0;
   }
 
   .subTitleAbout2 {
     color: var(--ni-main-title-about);
+    margin: 34px 0;
   }
 
   .firstTextAbout {
