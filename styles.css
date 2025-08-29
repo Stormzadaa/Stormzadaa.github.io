@@ -556,7 +556,7 @@
   .main-titleAbout {
     align-self: center;
     margin-top: 55px;
-    margin-bottom: 0;
+    margin-bottom: 55px;
     max-width: 100%;
     z-index: 0;
     line-height: 1.5;
@@ -636,8 +636,10 @@
   .subTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
-    font-size: var(--h4-font-size);
-    color: var(--ni-footer-text);
+    font-size: 18px;
+    color: var(--TarkovSecondaryLink);
+    margin-top: 34px;
+    margin-bottom: 21px;
   }
 
   .textTypography {
@@ -1430,8 +1432,8 @@
 
   .main-titleAbout {
     align-self: center;
-    margin-top: 34px;
-    margin-bottom: 34px;
+    margin-top: 55px;
+    margin-bottom: 55px;
     max-width: 100%;
     z-index: 0;
     line-height: 1.5;
@@ -2332,8 +2334,8 @@
 
   .main-titleAbout {
     align-self: center;
-    margin-top: 21px;
-    margin-bottom: 21px;
+    margin-top: 55px;
+    margin-bottom: 55px;
     max-width: 100%;
     z-index: 0;
     line-height: 1.5;

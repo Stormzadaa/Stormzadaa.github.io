@@ -255,7 +255,7 @@ img,
 .tarkovStudy-headline {
   font-size: 2.5em;
   font-weight: bold;
-  margin-top: 55px;
+  margin-top: 0;
   color: var(--TarkovTitles);
   line-height: 1.2;
   text-align: left;
@@ -309,6 +309,7 @@ img,
   width: 100%;
   max-width: none;
   margin: 0;
+  margin-bottom: 0;
   padding: 0;
   position: relative;
   z-index: 1;
@@ -1497,8 +1498,12 @@ img,
     font-size: 1.6em;
   }
 
-  .full-case-study-tarkov h4:not(.project-title) {
-    font-size: 1.2em;
+  /* Subheader styling for medium screens */
+  .RnDSubHeader {
+    font-size: 18px;
+    font-weight: var(--font-weight-semibold);
+    margin-top: 34px;
+    margin-bottom: 21px;
   }
 
   /* Containers with consistent padding - respect width constraints */
@@ -2734,15 +2739,16 @@ img,
   
   .mobile-bullet-points {
     display: block !important;
-    padding: 21px 0; /* Fib: 21 */
+    padding: 0;
   }
   
   .mobile-bullet-points h5 {
-    margin-bottom: 13px; /* Fib: 13 */
-    color: #c4aa7a;
+    margin-top: 34px;
+    margin-bottom: 21px;
+    color: var(--TarkovSecondaryLink);
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
-    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    font-size: 18px;
     letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
     line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
   }

@@ -1394,20 +1394,20 @@
   .key-interactions-section,
   .closing-section,
   .other-projects-section {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 55px;
+    padding-right: 55px;
   }
   
   .mockups-carousel {
-    padding: 0 60px;
+    padding: 0 89px;
   }
   
   .try-experience-wrapper {
-    padding: 0 65px;
+    padding: 0 89px;
   }
   
   .video-demo {
-    padding: 80px 65px;
+    padding: 55px 89px;
   }
   
   .video-frame video {
@@ -1416,7 +1416,7 @@
   }
   
   .mockups-carousel {
-    padding: 0 60px;
+    padding: 0 89px;
   }
   
   .mockup-slide {
