@@ -687,12 +687,14 @@ img,
 .full-case-study-tarkov .RnLHeader {
   font-family: var(--heading-font-family);
   font-size: var(--h4-font-size);
+  font-weight: var(--font-weight-semibold);
   color: var(--TarkovTitles);
   border-bottom: 2px solid var(--TarkovTitles);
   padding-bottom: 13px;
   text-align: center;
   margin-top: 34px;
   margin-bottom: 21px;
+
 }
 
 .problemAndGoalsContext {
@@ -719,19 +721,11 @@ img,
    RESEARCH & DISCOVERY SECTION
    ============================================= */
 
-.RnDSubHeader {
-  font-family: var(--heading-font-family);
-  color: var(--TarkovSecondaryLink);
-  margin-top: 34px;
-  text-align: left;
-  font-weight: var(--font-weight-regular);
-  font-size: var(--h6-font-size);
-}
-
 .DefineTarkovSubHeader {
   font-family: var(--heading-font-family);
   color: var(--TarkovSecondaryLink);
   margin-top: 34px;
+  margin-bottom: 21px;
   text-align: left;
   font-weight: var(--font-weight-regular);
   font-size: var(--h6-font-size);
@@ -1529,25 +1523,8 @@ img,
     font-size: var(--body-font-size);
   }
 
-  .full-case-study-tarkov h2:not(.other-projects-title) {
-    font-size: 2em;
-  }
-
   .full-case-study-tarkov h3:not(.project-title) {
     font-size: 1.6em;
-  }
-
-  /* Subheader styling for medium screens */
-  .RnDSubHeader {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
-    margin-top: 34px;
-    margin-bottom: 21px;
-  }
-  
-  .DefineTarkovSubHeader {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
   }
   
   .CaptionLowFidelitySketchesTarkov {
@@ -1941,33 +1918,10 @@ img,
     margin-bottom: 21px;
   }
 
-  .full-case-study-tarkov h2:not(.other-projects-title) {
-    font-size: 1.8em;
-    margin-top: 34px;
-    margin-bottom: 13px;
-  }
-
   .full-case-study-tarkov h3:not(.project-title) {
     font-size: 1.4em;
     margin-top: 21px;
     margin-bottom: 13px;
-  }
-
-  .full-case-study-tarkov h4:not(.project-title) {
-    font-size: 1.1em;
-    margin-top: 21px;
-    margin-bottom: 13px;
-  }
-
-  /* Typography standardization for tablet screens */
-  .RnDSubHeader {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
-  }
-  
-  .DefineTarkovSubHeader {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
   }
   
   .CaptionLowFidelitySketchesTarkov {
@@ -2370,13 +2324,6 @@ img,
     letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
-  .full-case-study-tarkov h2:not(.other-projects-title) {
-    font-size: 1.75em; /* Fib: 28/16 ≈ 1.75 (interpolated) */
-    margin-top: 34px; /* Fib: 34 */
-    margin-bottom: 13px; /* Fib: 13 */
-    letter-spacing: 0.125em; /* Fib: 2/16 = 0.125 */
-  }
-
   .full-case-study-tarkov h3:not(.project-title) {
     font-size: 1.3125em; /* Fib: 21/16 = 1.3125 */
     margin-top: 21px; /* Fib: 21 */
@@ -2397,12 +2344,6 @@ img,
     line-height: 1.618; /* Golden ratio */
     margin-bottom: 13px; /* Fib: 13 */
     letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-
-  /* Typography standardization for mobile screens */
-  .RnDSubHeader {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
   }
   
   .DefineTarkovSubHeader {
@@ -2868,7 +2809,6 @@ img,
     letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
   }
 
-  .RnDSubHeader,
   .DefineTarkovSubHeader,
   .IdeateAndDesignSubHeader,
   .HighFidelitySubHeader {
