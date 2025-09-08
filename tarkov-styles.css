@@ -618,13 +618,13 @@ img,
   line-height: 1.6;
 }
 
-.full-case-study-tarkov h3:not(.project-title) {
+/* .full-case-study-tarkov h3:not(.project-title) {
   color: var(--TarkovTitles);
   margin-top: 55px;
   margin-bottom: 21px;
   text-align: center;
   font-size: 1.8em;
-}
+} */
 
 /* POTENTIALLY UNUSED: All h4 elements have specific classes (DefineTarkovSubHeader, CaptionLowFidelitySketchesTarkov)
 .full-case-study-tarkov h4:not(.project-title) {
@@ -641,15 +641,17 @@ img,
   margin: 0;
 } */
 
-.full-case-study-tarkov ul,
+/* .full-case-study-tarkov ul,
 .full-case-study-tarkov ol {
   margin-bottom: 21px;
   padding-left: 34px;
-}
+} */
 
 .full-case-study-tarkov li {
-  margin-bottom: 13px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
   color: var(--TarkovText);
+  margin-bottom: 13px;
 }
 
 /* Research & Discovery paragraph styles */
@@ -662,12 +664,12 @@ img,
 }
  */
 
-.RnDCompetitiveAnalysis {
+/* .RnDCompetitiveAnalysis {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
   color: var(--TarkovText);
   margin: 21px 0;
-}
+} */
 
 /* =============================================
    PROBLEM & GOALS SECTION
@@ -743,8 +745,8 @@ img,
 .tarkovKeyFindings li {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
-  margin-bottom: 13px;
   color: var(--TarkovText);
+  margin-bottom: 13px;
 }
 
 /* =============================================
@@ -907,19 +909,23 @@ img,
 
 .persona-section h3 {
   font-family: var(--heading-font-family);
-  color: var(--TarkovSecondaryLink) !important;
-  font-size: 1.1em;
-  margin: 0 0 13px 0 !important;
+  color: var(--TarkovSecondaryLink);
+  font-size: var(--h5-font-size);
+  margin: 0 0 13px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 8px;
-  text-align: left !important;
+  text-align: left 
 }
 
 .persona-section ul {
-  margin: 0 !important;
-  padding-left: 21px !important;
+  margin: 0;
+  padding-left: 21px;
   list-style-type: disc;
   list-style-position: outside;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  color: var(--TarkovText);
+  margin-bottom: 13px;
 }
 
 .persona-section li {
@@ -967,12 +973,12 @@ img,
 
 .journey-map th {
   font-family: var(--heading-font-family);
+  font-size: var(--h6-font-size);
+  color: var(--TarkovText);
   background: rgba(196, 170, 122, 0.2);
-  color: #ffffff;
   padding: 12px;
   text-align: left;
   font-weight: 600;
-  font-size: 0.9em;
 }
 
 .journey-map td {
@@ -1012,8 +1018,9 @@ img,
 
 .table-container th {
   font-family: var(--heading-font-family);
+  font-size: var(--h6-font-size);
+  color: var(--TarkovText);
   background: rgba(196, 170, 122, 0.2);
-  color: #ffffff;
   padding: 15px;
   text-align: left;
   font-weight: 600;
@@ -1109,9 +1116,9 @@ img,
   min-width: 160px;
   text-align: center;
   font-family: var(--body-font-family);
-  font-size: 16px;
+  font-size: var(--h8-font-size);
   font-weight: 500;
-  color: #2d3748;
+  color: var(--foundation-greydarker);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   position: relative;
@@ -1141,9 +1148,9 @@ img,
 .decision-text {
   transform: rotate(-45deg);
   font-family: var(--body-font-family);
-  font-size: 14px;
+  font-size: var(--h8-font-size);
   font-weight: 600;
-  color: #742a2a;
+  color: var(--foundation-greydarker);
   text-align: center;
   line-height: 1.2;
   max-width: 80px;
@@ -1195,25 +1202,21 @@ img,
 .flow-step.start .flow-box {
   background: linear-gradient(135deg, #c6f6d5, #9ae6b4);
   border-color: #48bb78;
-  color: #22543d;
 }
 
 .flow-step.action .flow-box {
   background: linear-gradient(135deg, #fbd38d, #f6ad55);
   border-color: #ed8936;
-  color: #744210;
 }
 
 .flow-step.critical .flow-box {
   background: linear-gradient(135deg, #fed7d7, #feb2b2);
   border-color: #f56565;
-  color: #742a2a;
 }
 
 .flow-step.end .flow-box {
   background: linear-gradient(135deg, #d6bcfa, #b794f6);
   border-color: #9f7aea;
-  color: #44337a;
 }
 
 /* Converge point - Smaller */
