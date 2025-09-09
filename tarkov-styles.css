@@ -27,12 +27,12 @@
   height: 100%;
   background-image: url('Assets/Tarkov/NWU.svg');
   background-repeat: repeat;
-  background-size: 900px 900px; /* 3x bigger individual pattern elements */
+  background-size: 900px 900px;
   background-position: 0 0;
-  opacity: 0; /* Start 100% transparent */
-  pointer-events: none; /* Don't interfere with content */
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: 0; /* Above portfolio background, below portfolio content */
+  z-index: 0;
 }
 
 .tarkov-page .header,
@@ -50,7 +50,7 @@
 /* Enhanced Tarkov Theme Activation */
 .tarkov-page .portfolio-section.tarkov-active::before,
 .grocery-page .portfolio-section.tarkov-active::before {
-  opacity: 0.1; /* Make NWU pattern 10% visible - very subtle */
+  opacity: 0.1;
 }
 
 /* Ensure portfolio content appears above the NWU pattern */
@@ -62,13 +62,13 @@
 
 .tarkov-page .header.tarkov-active,
 .grocery-page .header.tarkov-active {
-  background-color: #2d3328; /* Dark olive header */
+  background-color: #2d3328;
   border-bottom: 1px solid #4a5f3a;
 }
 
 .tarkov-page footer.tarkov-active,
 .grocery-page footer.tarkov-active {
-  background-color: #252823; /* Dark forest footer */
+  background-color: #252823;
   border-top: 1px solid #4a5f3a;
 }
 
@@ -82,49 +82,33 @@
   height: 2px;
   width: 100%;
   margin-top: 2px;
-  display: block; /* Make underlines visible */
+  display: block;
 }
 
 .tarkov-page .footer.tarkov-active .footerTitleTypography,
 .grocery-page .footer.tarkov-active .footerTitleTypography {
-  color: var(--ni-header-button); /* Sand color for footer titles */
+  color: var(--ni-header-button);
 }
 
-/* Keep original footer link colors - remove these lines */
-/* .tarkov-page .footer.tarkov-active .footerTextTypography,
-.tarkov-page .footer.tarkov-active a {
-  color: #a89979;
-} */
-
-/* Navigation underlines for Tarkov theme - header only */
+/* Navigation underlines for Tarkov theme */
 .tarkov-page .header.tarkov-active .nav-underline.active,
 .grocery-page .header.tarkov-active .nav-underline.active {
-  background-color: #9fb986; /* Military green accent */
+  background-color: #9fb986;
   border-color: #9fb986;
 }
 
 /* =============================================
-   TARKOV PAGE BODY & LAYOUT
+   TARKOV PAGE HEADER & LAYOUT BEHAVIOR
    ============================================= */
 
-/* =============================================
-   TARKOV HEADER - WITH SCROLL BEHAVIOR
-   ============================================= */
-
-/* Header with smooth scroll animations and basic styling */
-/* =============================================
-   TARKOV PAGE HEADER BEHAVIOR - INDEPENDENT OF COLOR THEME
-   ============================================= */
-
-/* Base header behavior - separate from color transitions */
 .tarkov-page .header,
 .grocery-page .header {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform: translateY(0);
-  z-index: 998; /* Lower than hamburger menu z-index: 10000 in styles.css */
+  z-index: 998;
 }
 
-/* Header scroll animation classes - independent of color theme */
+/* Header scroll animations */
 .tarkov-page .header.tarkov-hide-header,
 .grocery-page .header.tarkov-hide-header {
   transform: translateY(-100%);
@@ -135,13 +119,6 @@
   transform: translateY(0);
 }
 
-/* Header box styling for Tarkov page - removed extra padding */
-/* .tarkov-page .headerBox {
-  padding: 25px 89px;
-} */
-
-/* Body padding - let JavaScript handle this dynamically for header behavior */
-
 /* Navigation visibility on Tarkov page */
 .tarkov-page .menu-svg {
   display: none;
@@ -151,6 +128,44 @@
   display: flex;
 }
 
+/* Hamburger Menu Theme States */
+.hamburger-menu.tarkov-initial {
+  background: #2a2a2a;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.tarkov-initial a {
+  color: #B6B0A0;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.tarkov-initial .work-underline,
+.hamburger-menu.tarkov-initial .about-underline,
+.hamburger-menu.tarkov-initial .contact-underline {
+  background-color: #B6B0A0;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.tarkov-theme-active {
+  background: #2d3328;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.tarkov-theme-active a {
+  color: #d4c5a9;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.tarkov-theme-active .work-underline,
+.hamburger-menu.tarkov-theme-active .about-underline,
+.hamburger-menu.tarkov-theme-active .contact-underline {
+  background-color: #d4c5a9;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* =============================================
+   MAIN TITLE
+   ============================================= */
 .tarkov-mainTitle {
   align-self: center;
   margin-top: 55px;
@@ -166,25 +181,12 @@
   word-break: break-word;
   hyphens: auto;
   font-family: 'Russo One', sans-serif;
-  font-weight: var(--font-weight-regular)
+  font-weight: var(--font-weight-regular);
 }
 
-/* Responsive styles - removed extra padding */
-@media (min-width: 769px) and (max-width: 1279px) {
-  /* Let scripts.js handle body padding dynamically */
-}
-
-@media (max-width: 768px) {
-  /* Let scripts.js handle body padding and navigation visibility dynamically */
-  
-  .tarkov-page .menu-svg {
-    display: flex;
-  }
-  
-  .tarkov-page .nav-links {
-    display: none;
-  }
-}
+/* =============================================
+   MAIN LAYOUT & TYPOGRAPHY
+   ============================================= */
 
 .tarkov-page {
   background-color: #1a1a1a;
@@ -193,9 +195,6 @@
 
 /* Body padding and navigation styles moved to main styles.css for better control */
 
-/* =============================================
-   MAIN LAYOUT & TYPOGRAPHY
-   ============================================= */
 .TarkovCaseStudy {
   max-width: 1200px;
   margin: 0 auto 0 auto;
@@ -232,33 +231,12 @@ img,
   box-sizing: border-box;
 }
 
-/* UNUSED: textTableTypographyTarkov class not found in HTML
-.textTableTypographyTarkov {
-  font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--h6-font-size);
-  color: var(--foundation-greylight-active);
-  margin: 0;
-  text-transform: uppercase;
-}
-*/
-
-/* Text Typography for Tarkov page - Big screens */
+/* Typography for Tarkov page */
 .textTypographyTarkov {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
   color: var(--TarkovText);
 }
-
-/* UNUSED: subTitleTarkov class not found in HTML
-.subTitleTarkov {
-  align-self: center;
-  margin-top: 89px;
-  margin-bottom: 89px;
-  max-width: 100%;
-  z-index: 0;
-}
-*/
 
 /* =============================================
    HERO SECTION
@@ -288,39 +266,10 @@ img,
 }
 
 /* =============================================
-   FOOTER LINKS
-   ============================================= */
-.footer-section a.footerTextTypography {
-  text-decoration: none;
-  color: inherit;
-}
-
-.footer-section a.footerTextTypography:hover {
-  text-decoration: underline;
-}
-
-/* =============================================
    3D CAROUSEL STYLES
    ============================================= */
 
-/* UNUSED: carousel-image class not found in HTML
-.heroSectionTarkov .carousel-image {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  display: block;
-}
-
-.heroSectionTarkov .carousel-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-*/
-
-/* Tarkov 3D Image Carousel Styles */
+/* 3D Image Carousel Implementation */
 .tarkov-3d-carousel-section {
   width: 100%;
   max-width: none;
@@ -391,8 +340,8 @@ img,
   height: 100%;
   backface-visibility: hidden;
   display: flex;
-  flex-direction: column; /* <-- Add this line */
-  justify-content: flex-start; /* Optional: aligns items to the top */
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
   border-radius: 0;
@@ -426,6 +375,7 @@ img,
   z-index: 100;
 }
 
+/* Carousel navigation controls - invisible click areas with arrow indicators */
 .tarkov-3d-carousel-section .click-area {
   position: absolute;
   pointer-events: auto;
@@ -535,6 +485,26 @@ img,
   }
 }
 
+/* Tarkov blink animation for carousel subtitles */
+@keyframes tarkovBlink {
+  0%, 100% { 
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  25% { 
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  75% { 
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .tarkov-3d-carousel-section .click-area.left-area:after,
 .tarkov-3d-carousel-section .click-area.right-area:after {
   display: none;
@@ -586,25 +556,6 @@ img,
   box-shadow: 0 12px 40px rgba(196, 170, 122, 0.6), 0 0 0 2px rgba(196, 170, 122, 0.4);
 }
 
-/* REDUNDANT: Properties merged with full-case-study-tarkov definition below
-.full-case-study-tarkov {
-  width: 100%;
-  max-width: none;
-  background: transparent;
-  box-shadow: none;
-  padding-left: 0;
-  padding-right: 0;
-}
-*/
-
-/* .tarkovGoalsStatement {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size);
-  list-style-type: disc;
-  list-style-position: outside;
-  text-align: left;
-} */
-
 /* =============================================
    FULL CASE STUDY SECTION
    ============================================= */
@@ -618,62 +569,12 @@ img,
   line-height: 1.6;
 }
 
-/* .full-case-study-tarkov h3:not(.project-title) {
-  color: var(--TarkovTitles);
-  margin-top: 55px;
-  margin-bottom: 21px;
-  text-align: center;
-  font-size: 1.8em;
-} */
-
-/* POTENTIALLY UNUSED: All h4 elements have specific classes (DefineTarkovSubHeader, subCaptionTarkov)
-.full-case-study-tarkov h4:not(.project-title) {
-  color: var(--TarkovSecondaryLink);
-  font-size: 1.4em;
-  text-align: left;
-}
-*/
-
-/* .full-case-study-tarkov p {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size);
-  color: var(--TarkovText);
-  margin: 0;
-} */
-
-/* .full-case-study-tarkov ul,
-.full-case-study-tarkov ol {
-  margin-bottom: 21px;
-  padding-left: 34px;
-} */
-
 .full-case-study-tarkov li {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
   color: var(--TarkovText);
   margin-bottom: 13px;
 }
-
-/* Research & Discovery paragraph styles */
-/* .RnDResearchGoals {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size);
-  color: var(--TarkovText);
-  margin-top: 0;
-  margin-bottom: 21px;
-}
- */
-
-/* .RnDCompetitiveAnalysis {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size);
-  color: var(--TarkovText);
-  margin: 21px 0;
-} */
-
-/* =============================================
-   PROBLEM & GOALS SECTION
-   ============================================= */
 
 /* =============================================
    UNIFIED MAIN SECTION HEADERS - DESKTOP
@@ -703,18 +604,6 @@ img,
   margin: 0 0 34px 0;
   border-left: 4px solid var(--TarkovTitles);
 }
-
-/* .tarkovProblemStatement {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size);
-  color: var(--TarkovText);
-} */
-
-/* .tarkovGoalsStatement {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size);
-  color: var(--TarkovText);
-} */
 
 /* =============================================
    RESEARCH & DISCOVERY SECTION
@@ -951,17 +840,13 @@ img,
 }
 
 /* =============================================
-   JOURNEY MAP
+   DEFINE & SYNTHESIS SECTION
    ============================================= */
+
+/* Journey Map */
 .journey-map {
   margin: 0;
 }
-
-/* .journey-map h3 {
-  font-family: var(--heading-font-family);
-  color: var(--TarkovTitles) !important;
-  margin-bottom: 21px !important;
-} */
 
 .journey-map table {
   width: 100%;
@@ -995,15 +880,7 @@ img,
   white-space: nowrap;
 }
 
-/* =============================================
-   FEATURE PRIORITIZATION TABLE
-   ============================================= */
-/* REDUNDANT: Properties merged with .table-container definition above
-.table-container {
-  margin: 0 0 34px 0;
-  overflow-x: auto;
-}
-*/
+/* Feature Prioritization Table */
 
 .table-container table {
   width: 100%;
@@ -1066,9 +943,7 @@ img,
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* =============================================
-   USER FLOW DIAGRAM
-   ============================================= */
+/* User Flow Diagram */
 .user-flow-container {
   display: flex;
   flex-direction: column;
@@ -1234,7 +1109,7 @@ img,
   gap: 8px;
 }
 
-/* Smooth animations - Subtle */
+/* User Flow Hover Animations */
 @keyframes flowGlow {
   0%,
   100% {
@@ -1250,7 +1125,7 @@ img,
   animation: flowGlow 2s ease-in-out infinite;
 }
 
-/* Connection lines for better visual flow - Thinner */
+/* Connection lines for better visual flow */
 .connection-line {
   width: 1px;
   height: 20px;
@@ -1266,18 +1141,27 @@ img,
 }
 
 /* =============================================
-   DESIGN CONCEPTS & IMAGES
+   HIGH-FIDELITY DESIGN SECTION
    ============================================= */
+
+/* Design Section Divider */
+.design-section-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--TarkovMainTitle) 20%,
+    var(--TarkovMainTitle) 80%,
+    transparent 100%
+  );
+  margin: 34px 0 21px 0;
+  opacity: 0.6;
+}
+
+/* Design Concepts & Images */
 .design-wireframes-container {
   margin: 34px 0;
 }
-
-/* .IdeateAndDesignSubHeader {
-  font-family: var(--heading-font-family);
-  color: var(--TarkovSecondaryLink) !important;
-  margin-top: 34px !important;
-  text-align: left;
-} */
 
 .subCaptionTarkov {
   color: var(--TarkovMainTitle);
@@ -1319,28 +1203,13 @@ img,
   width: 100%;
 }
 
-/* Design Concepts - Single images should use full width */
 .design-concepts-container .design-images-single .design-concept-image {
   max-width: 100%;
   width: 100%;
 }
 
-/* Design section divider - appears after images, before subheadings */
-.design-section-divider {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--TarkovMainTitle) 20%,
-    var(--TarkovMainTitle) 80%,
-    transparent 100%
-  );
-  margin: 34px 0 21px 0;
-  opacity: 0.6;
-}
-
 /* =============================================
-   RETROSPECTIVE & LEARNINGS
+   RETROSPECTIVE AND KNIGHT QUOTE STYLES
    ============================================= */
 .RetrospectiveAndLearnings {
   margin: 0;
@@ -1357,11 +1226,6 @@ img,
   color: var(--TarkovText);
 }
 
-.RetrospectiveAndLearnings ul {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size);
-  color: var(--TarkovText);
-}
 
 .RetrospectiveAndLearnings em {
   color: var(--TarkovSecondaryLink);
@@ -1413,45 +1277,232 @@ img,
   -webkit-mask: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
 }
 
-/* Case Study Navigation Buttons */
-/* .case-study-navigation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 21px;
-  margin: 55px 0 0 0;
+/* =============================================
+   OTHER PROJECTS SECTION (Standalone Styles)
+   ============================================= */
+
+.tarkov-other-projects {
+  margin-top: 55px;
+  padding: 55px 89px;
+  border-top: 1px solid #4a5f3a;
+  background: transparent;
 }
 
-.nav-button {
-  padding: 13px 21px;
-  font-size: 1.1em;
-  font-weight: 600;
-  background: var(--TarkovButton);
+.other-projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.other-projects-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h3-font-size);
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-  display: inline-block;
+  margin: 0 0 34px 0;
+  text-align: center;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
 }
 
-.nav-button:hover {
-  background: var(--TarkovButtonHover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(196, 170, 122, 0.4);
-} */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 42px;
+}
+
+.project-item {
+  background: transparent;
+  border: 1px solid #4a5f3a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 4px 20px rgba(196, 170, 122, 0.15);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-item:hover {
+  transform: translateY(-8px);
+  border-color: #c4aa7a;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 8px 35px rgba(196, 170, 122, 0.35);
+  background: transparent;
+}
+
+.project-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.project-image {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-item:hover .project-image img {
+  transform: scale(1.1);
+}
+
+.project-info {
+  background: #1a1a1a;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.project-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--h4-font-size);
+  color: white;
+  margin: 0 0 12px 0;
+  letter-spacing: 0.02em;
+}
+
+.project-description {
+  font-family: var(--body-font-family);
+  font-size: var(--h6-font-size);
+  color: var(--TarkovText);
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+  opacity: 0.9;
+  flex: 1;
+}
+
+.project-tag {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--h7-font-size);
+  background: #c4aa7a;
+  color: #2d3328;
+  padding: 6px 12px;
+  border-radius: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.portfolio-svg-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(45, 51, 40, 0.8);
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.portfolio-logo-svg {
+  width: 60%;
+  height: 60%;
+  max-width: 150px;
+  max-height: 150px;
+  filter: brightness(0) saturate(100%) invert(75%) sepia(15%) saturate(312%) hue-rotate(26deg) brightness(88%) contrast(91%);
+}
 
 /* =============================================
-   RESPONSIVE DESIGN
+   FOOTER SECTION
+   ============================================= */
+.footer {
+  background-color: var(--primary-color-darker);
+  color: var(--text-color-light);
+  text-align: center;
+  padding: 21px 0;
+}
+
+/* =============================================
+   DESKTOP TABLE DISPLAY - DEFAULT BEHAVIOR
+   ============================================= */
+/* Desktop table display - hide mobile bullet points, show tables */
+.mobile-bullet-points {
+  display: none !important;
+}
+
+.responsive-table,
+.table-container table,
+.journey-map table,
+table {
+  display: table !important;
+}
+
+/* =============================================
+   MEDIA QUERIES - ORGANIZED LARGEST TO SMALLEST
    ============================================= */
 
 /* =============================================
-   DESKTOP - 1280px and above
-   (Default styles are already for desktop)
+   EXTRA LARGE SCREENS - 1850px and above
    ============================================= */
+@media (min-width: 1850px) {
+  .case-study-navigation {
+    display: none !important;
+  }
+}
+
+/* =============================================
+   BELOW LARGE SCREENS - max 1279px
+   ============================================= */
+@media (max-width: 1279px) {
+  .responsive-table,
+  .table-container table,
+  .journey-map table,
+  table {
+    display: none !important;
+  }
+  
+  .mobile-bullet-points {
+    display: block !important;
+    padding: 0;
+  }
+  
+  .mobile-bullet-points h5 {
+    margin-top: 21px;
+    margin-bottom: 8px;
+    color: var(--TarkovMainTitle);
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-semibold);
+    font-size: 18px;
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
+  }
+  
+  .mobile-bullet-points ul {
+    list-style-type: disc;
+    padding-left: 21px; /* Fib: 21 */
+    margin-bottom: 13px; /* Fib: 13 */
+  }
+  
+  .mobile-bullet-points li {
+    margin-bottom: 8px; /* Fib: 8 */
+    line-height: 1.618; /* Golden ratio */
+    color: var(--ni-light-text);
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+  }
+  
+  .mobile-bullet-points p {
+    margin-top: 13px; /* Fib: 13 */
+    font-style: italic;
+    color: var(--ni-light-text);
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    line-height: 1.618; /* Golden ratio */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+  }
+}
 
 /* =============================================
    MEDIUM SCREEN - 769px to 1279px
@@ -1503,7 +1554,7 @@ img,
     font-size: var(--h6-font-size);
   }
 
-  /* Containers with consistent padding - respect width constraints */
+  /* Content containers - prevent overflow while maintaining consistent spacing */
   .problemAndGoalsContext,
   .tarkovKeyFindings {
     padding: 34px;
@@ -1523,7 +1574,7 @@ img,
     box-sizing: border-box;
   }
 
-  /* Persona cards respect container width */
+  /* Persona cards - stack vertically on medium screens for better readability */
   .persona-cards-row {
     flex-direction: column;
     gap: 21px;
@@ -1539,7 +1590,7 @@ img,
     box-sizing: border-box;
   }
 
-  /* Flow diagrams stack vertically */
+  /* User flow diagram branches - vertical layout for better mobile readability */
   .branch-container {
     flex-direction: column;
     align-items: center;
@@ -1551,7 +1602,7 @@ img,
     max-width: 400px;
   }
 
-  /* Design images display sideways on medium screens - keep horizontal layout */
+  /* Design concept images - maintain side-by-side layout on medium screens */
   .design-images-row {
     flex-direction: row; /* Keep horizontal layout like desktop */
     gap: 21px;
@@ -1568,7 +1619,7 @@ img,
     margin-top: 21px;
   }
 
-  /* Tables respect container width with proper overflow handling */
+  /* Tables - responsive sizing with horizontal scroll prevention */
   .responsive-table,
   .table-container,
   .journey-map table {
@@ -1628,7 +1679,7 @@ img,
     box-sizing: border-box;
   }
 
-  /* 3D Carousel for medium screen - use desktop carousel implementation with click areas */
+  /* 3D Carousel - optimized for medium screens with clickable navigation areas */
   .tarkov-3d-carousel-section {
     margin: 0;
     position: relative;
@@ -1795,24 +1846,423 @@ img,
     max-width: 280px; /* Limit width to stay proportional */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
+
+  /* Buttons and navigation for medium screens */
+  .view-case-study-btn,
+  .nav-button {
+    font-size: 1em;
+    padding: 12px 18px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 6px 20px rgba(196, 170, 122, 0.35), 0 0 0 1px rgba(196, 170, 122, 0.15);
+  }
+
+  .view-case-study-btn:hover,
+  .nav-button:hover {
+    box-shadow: 0 10px 35px rgba(196, 170, 122, 0.55), 0 0 0 2px rgba(196, 170, 122, 0.35);
+  }
+
+  .case-study-navigation {
+    flex-direction: column;
+    gap: 15px;
+    margin: 45px 0 0 0;
+  }
+
+  .case-study-navigation .nav-button {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  /* Table replacement with mobile bullet points for medium screens */
+  .responsive-table,
+  .table-container table,
+  .journey-map table,
+  table {
+    display: none !important;
+  }
   
-  @keyframes tarkovBlink {
-    0%, 100% { 
-      opacity: 0; /* Completely disappear */
-      transform: translate(-50%, -50%) scale(0.95);
-    }
-    25% { 
-      opacity: 0.8; /* Fade in */
-      transform: translate(-50%, -50%) scale(1);
-    }
-    50% { 
-      opacity: 1; /* Fully visible */
-      transform: translate(-50%, -50%) scale(1.02);
-    }
-    75% { 
-      opacity: 0.8; /* Fade out */
-      transform: translate(-50%, -50%) scale(1);
-    }
+  .mobile-bullet-points {
+    display: block !important;
+    padding: 0;
+  }
+  
+  .mobile-bullet-points h5 {
+    margin-top: 21px;
+    margin-bottom: 8px;
+    color: var(--TarkovMainTitle);
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-semibold);
+    font-size: 18px;
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
+  }
+  
+  .mobile-bullet-points ul {
+    list-style-type: disc;
+    padding-left: 21px; /* Fib: 21 */
+    margin-bottom: 13px; /* Fib: 13 */
+  }
+  
+  .mobile-bullet-points li {
+    margin-bottom: 8px; /* Fib: 8 */
+    line-height: 1.618; /* Golden ratio */
+    color: var(--ni-light-text);
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+  }
+  
+  .mobile-bullet-points p {
+    margin-top: 13px; /* Fib: 13 */
+    font-style: italic;
+    color: var(--ni-light-text);
+    font-size: 1em; /* Fib: 16/16 = 1 */
+    line-height: 1.618; /* Golden ratio */
+    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+  }
+}
+
+/* =============================================
+   TABLET - 430px to 768px
+   ============================================= */
+@media (min-width: 430px) and (max-width: 768px) {
+  /* Main container with tablet padding - removed extra padding */
+  .TarkovCaseStudy {
+    /* padding-left: 21px;
+    padding-right: 21px; */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
+
+  /* Typography for tablet */
+  .tarkovStudy-headline {
+    font-size: 1.8em;
+    margin-top: 0;
+  }
+
+  .tarkov-mainTitle {
+    align-self: center;
+    margin-top: 55px;
+    margin-bottom: 55px;
+    max-width: 100%;
+    z-index: 0;
+    line-height: 1.2;
+    text-align: center;
+    letter-spacing: 13px;
+    color: var(--ni-main-title-about);
+    font-size: 3.5em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .full-case-study-tarkov h3:not(.project-title) {
+    font-size: 1.6em;
+  }
+  
+  .subCaptionTarkov {
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h6-font-size);
+  }
+  
+  .view-case-study-btn {
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h6-font-size);
+  }
+
+  /* Content containers - prevent overflow while maintaining consistent spacing */
+  .problemAndGoalsContext,
+  .tarkovKeyFindings {
+    padding: 34px;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .RetrospectiveAndLearnings,
+  .user-flow-container {
+    padding: 34px;
+    margin: 0;
+    margin-top: 21px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Persona cards - stack vertically on medium screens for better readability */
+  .persona-cards-row {
+    flex-direction: column;
+    gap: 21px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .persona-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0; /* Allow shrinking */
+    box-sizing: border-box;
+  }
+
+  /* User flow diagram branches - vertical layout for better mobile readability */
+  .branch-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .branch-path {
+    min-width: 100%;
+    max-width: 400px;
+  }
+
+  /* Design concept images - maintain side-by-side layout on medium screens */
+  .design-images-row {
+    flex-direction: row; /* Keep horizontal layout like desktop */
+    gap: 21px;
+    justify-content: space-between;
+    margin-top: 21px;
+  }
+
+  .design-images-row .design-concept-image {
+    max-width: 48%; /* Ensure both images fit side by side */
+    flex: 1;
+  }
+
+  .design-images-single {
+    margin-top: 21px;
+  }
+
+  /* Tables - responsive sizing with horizontal scroll prevention */
+  .responsive-table,
+  .table-container,
+  .journey-map table {
+    font-size: 0.9em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 21px;
+  }
+
+  .table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+
+  .journey-map {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .journey-map table {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0; /* Allow table to shrink if needed */
+    box-sizing: border-box;
+  }
+
+  /* Images scale properly within container */
+  .design-concept-image,
+  .responsive-table img,
+  img {
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  /* Ensure no element exceeds container width */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Special handling for tables and cards to respect container */
+  .table-container,
+  .journey-map,
+  .persona-cards-row,
+  .user-flow-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  /* 3D Carousel - optimized for medium screens with clickable navigation areas */
+  .tarkov-3d-carousel-section {
+    margin: 0;
+    position: relative;
+  }
+  
+  .tarkov-3d-carousel-section .scene {
+    width: 100%;
+    max-width: calc(100vw - 120px); /* Less margin than desktop but still constrained */
+    height: auto;
+    perspective: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tarkov-3d-carousel-section .carousel {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-400px); /* Match desktop Z positioning for proper 3D carousel */
+    transition: transform 1s;
+  }
+
+  .tarkov-3d-carousel-section .card {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(400px);
+    perspective: 1000px;
+    transition: transform 1s;
+    cursor: pointer;
+  }
+
+  /* Enable desktop click areas for medium screen */
+  .tarkov-3d-carousel-section .carousel-click-areas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .tarkov-3d-carousel-section .click-area {
+    position: absolute;
+    pointer-events: auto;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease, opacity 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem; /* Slightly smaller for medium screens */
+    color: var(--TarkovButton);
+    background: transparent;
+  }
+
+  .tarkov-3d-carousel-section .click-area:hover {
+    color: var(--TarkovButtonHover);
+  }
+
+  .tarkov-3d-carousel-section .click-area.left-area {
+    left: -35%; /* Further out towards screen edge for larger image space */
+    width: 25%;
+    top: 0%;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
+    z-index: 5;
+    justify-content: flex-end;
+    padding-right: 15px; /* More padding to keep arrow away from image */
+  }
+
+  .tarkov-3d-carousel-section .click-area.left-area:before {
+    content: "‹";
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transition: all 0.3s ease;
+    transform: scale(1);
+  }
+
+  .tarkov-3d-carousel-section .click-area.left-area:hover:before {
+    opacity: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 1);
+    transform: scale(1.6); /* Slightly smaller scale for medium screens */
+  }
+
+  .tarkov-3d-carousel-section .click-area.right-area {
+    right: -35%; /* Further out towards screen edge for larger image space */
+    width: 25%;
+    top: 0%;
+    height: 100%;
+    border-radius: 0 12px 12px 0;
+    z-index: 5;
+    justify-content: flex-start;
+    padding-left: 15px; /* More padding to keep arrow away from image */
+  }
+
+  .tarkov-3d-carousel-section .click-area.right-area:before {
+    content: "›";
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transition: all 0.3s ease;
+    transform: scale(1);
+  }
+
+  .tarkov-3d-carousel-section .click-area.right-area:hover:before {
+    opacity: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(196, 170, 122, 1);
+    transform: scale(1.6); /* Slightly smaller scale for medium screens */
+  }
+
+  .tarkov-3d-carousel-section .click-area.center-area {
+    left: 15%;
+    width: 70%;
+    top: 0%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  /* Medium screen carousel subtitle - simple centered text */
+  .tarkov-3d-carousel-section .carousel-subtitle {
+    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    margin-top: 21px; /* Fib: 21 */
+    margin-bottom: 21px; /* Fib: 21 */
+    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    text-align: center;
+  }
+
+  /* Hide mobile navigation arrows on medium screen */
+  .tarkov-3d-carousel-section .mobile-nav-arrow {
+    display: none;
+  }
+
+  /* Medium screen swipe indicator - centered on carousel image */
+  .tarkov-3d-carousel-section .swipe-indicator {
+    position: absolute;
+    top: 45%; /* Slightly higher to account for visual centering */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfect center positioning on carousel */
+    font-size: 0.9em; /* Smaller, more proportionate size */
+    color: #d4c5a9; /* Tarkov warm sand color */
+    font-weight: 600; /* Slightly less bold */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    opacity: 1;
+    animation: tarkovBlink 3s ease-in-out infinite;
+    z-index: 100; /* Higher z-index to appear above everything */
+    background: linear-gradient(135deg, #2d3328 0%, #3a4234 50%, #2a2f26 100%); /* Tarkov dark olive gradient */
+    padding: 8px 16px; /* Smaller, more aesthetic padding */
+    border-radius: 8px; /* Less rounded, more rectangular */
+    backdrop-filter: blur(12px);
+    border: 1.5px solid #c4aa7a; /* Thinner border */
+    box-shadow: 0 3px 15px rgba(196, 170, 122, 0.3), 0 0 0 1px rgba(212, 197, 169, 0.2);
+    letter-spacing: 0.3px;
+    white-space: nowrap; /* Prevent text wrapping */
+    max-width: 280px; /* Limit width to stay proportional */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
   /* Buttons and navigation for medium screens */
@@ -1842,24 +2292,37 @@ img,
   }
 }
 
-/* =============================================
-   TABLET - 430px to 768px
-   ============================================= */
-@media (min-width: 430px) and (max-width: 768px) {
-  /* Main container with tablet padding - removed extra padding */
-  .TarkovCaseStudy {
-    /* padding-left: 21px;
-    padding-right: 21px; */
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden; /* Prevent horizontal overflow */
-  }
 
-  /* Typography for tablet */
+/* =============================================
+   SMALL MOBILE - below 480px (Other Projects)
+   ============================================= */
+@media (max-width: 480px) {
+  .projects-grid {
+    gap: 20px;
+  }
+  
+  .project-image {
+    height: 200px;
+  }
+  
+  .project-info {
+    background: #1a1a1a;
+    padding: 18px;
+  }
+}
+
+/* =============================================
+   MOBILE - max 429px - FIBONACCI TYPOGRAPHY
+   ============================================= */
+@media (max-width: 429px) {
+  /* Main container padding removed - now uses standard page padding */
+
+  /* Typography for mobile - Fibonacci scaling */
   .tarkovStudy-headline {
-    font-size: 1.8em;
+    font-size: 2.125em; /* Fib: 34/16 = 2.125 */
     margin-top: 0;
+    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
+    letter-spacing: 0.125em; /* Fib: 2/16 = 0.125 */
   }
 
   .tarkov-mainTitle {
@@ -2194,25 +2657,6 @@ img,
     max-width: 280px; /* Limit width to stay proportional */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
-  
-  @keyframes tarkovBlink {
-    0%, 100% { 
-      opacity: 0; /* Completely disappear */
-      transform: translate(-50%, -50%) scale(0.95);
-    }
-    25% { 
-      opacity: 0.8; /* Fade in */
-      transform: translate(-50%, -50%) scale(1);
-    }
-    50% { 
-      opacity: 1; /* Fully visible */
-      transform: translate(-50%, -50%) scale(1.02);
-    }
-    75% { 
-      opacity: 0.8; /* Fade out */
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
 
   /* Margins and spacing adjustments */
   .subTitleTarkov {
@@ -2250,751 +2694,8 @@ img,
     max-width: 250px;
     text-align: center;
   }
-}
 
-/* =============================================
-   MOBILE - max 429px - FIBONACCI TYPOGRAPHY
-   ============================================= */
-@media (max-width: 429px) {
-  /* Main container padding removed - now uses standard page padding */
-
-  /* Typography for mobile - Fibonacci scaling */
-  .tarkovStudy-headline {
-    font-size: 2.125em; /* Fib: 34/16 = 2.125 */
-    margin-top: 0;
-    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
-    letter-spacing: 0.125em; /* Fib: 2/16 = 0.125 */
-  }
-
-  .tarkov-mainTitle {
-    align-self: center;
-    margin-top: 34px;
-    margin-bottom: 34px;
-    max-width: 100%;
-    z-index: 0;
-    line-height: 1.1;
-    text-align: center;
-    letter-spacing: 5px;
-    color: var(--ni-main-title-about);
-    font-size: 2.2em;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
-  }
-
-  .tarkovStudy-goal {
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    margin-bottom: 21px; /* Fib: 21 */
-    line-height: 1.618; /* Golden ratio (Fib derived) */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-  }
-
-  .full-case-study-tarkov h3:not(.project-title) {
-    font-size: 1.3125em; /* Fib: 21/16 = 1.3125 */
-    margin-top: 21px; /* Fib: 21 */
-    margin-bottom: 13px; /* Fib: 13 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-  }
-
-  .full-case-study-tarkov h4:not(.project-title) {
-    font-size: 1.125em; /* Fib: 18/16 ≈ 1.125 (interpolated) */
-    margin-top: 21px; /* Fib: 21 */
-    margin-bottom: 8px; /* Fib: 8 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-  }
-
-  .full-case-study-tarkov p,
-  .full-case-study-tarkov li {
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    line-height: 1.618; /* Golden ratio */
-    margin-bottom: 13px; /* Fib: 13 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-  
-  .DefineTarkovSubHeader {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
-  }
-  
-  .subCaptionTarkov {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
-  }
-  
-  .view-case-study-btn {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--h6-font-size);
-  }
-
-  /* Containers with Fibonacci padding and spacing */
-  .problemAndGoalsContext,
-  .tarkovKeyFindings {
-    padding: 21px; /* Fib: 21 */
-    margin: 0;
-  }
-
-  .RetrospectiveAndLearnings,
-  .user-flow-container {
-    padding: 21px; /* Fib: 21 */
-    margin: 0;
-    margin-top: 21px;
-  }
-
-  /* Persona cards optimized for mobile with Fibonacci sizing */
-  .persona-cards-row {
-    flex-direction: column;
-    gap: 21px; /* Fib: 21 */
-  }
-
-  .persona-card {
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 377px; /* Fib: 377 for larger content area */
-    padding: 13px; /* Fib: 13 */
-  }
-
-  .persona-header {
-    min-height: 89px; /* Fib: 89 */
-    gap: 8px; /* Fib: 8 */
-    margin-bottom: 13px; /* Fib: 13 */
-  }
-
-  .persona-name-role h2 {
-    font-size: 1.25em; /* Fib: 20/16 = 1.25 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-  }
-
-  .persona-section {
-    margin-bottom: 13px; /* Fib: 13 */
-    min-height: 55px; /* Fib: 55 */
-  }
-
-  .persona-section:nth-child(3),
-  .persona-section:nth-child(4),
-  .persona-section:nth-child(5),
-  .persona-section:nth-child(6) {
-    min-height: 55px; /* Fib: 55 */
-  }
-
-  .persona-section h3 {
-    font-size: 1.125em; /* Fib: 18/16 ≈ 1.125 */
-    margin-bottom: 8px; /* Fib: 8 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-  }
-
-  .persona-section ul {
-    padding-left: 21px; /* Fib: 21 */
-  }
-
-  .persona-section li {
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    margin-bottom: 5px; /* Fib: 5 */
-    line-height: 1.618; /* Golden ratio */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-
-  /* Flow diagrams for mobile with Fibonacci sizing */
-  .branch-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 13px; /* Fib: 13 */
-  }
-
-  .branch-path {
-    min-width: 100%;
-    max-width: 233px; /* Fib: 233 */
-  }
-
-  .flow-box {
-    min-width: 89px; /* Fib: 89 */
-    padding: 13px 21px; /* Fib: 13, 21 */
-    font-size: 0.875em; /* Fib: 14/16 = 0.875 */
-    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-
-  .decision-box {
-    width: 55px; /* Fib: 55 */
-    height: 55px; /* Fib: 55 */
-    margin: 13px 0; /* Fib: 13 */
-  }
-
-  .decision-text {
-    font-size: 0.75em; /* Fib: 12/16 = 0.75 */
-    max-width: 34px; /* Fib: 34 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-
-  .flow-arrow {
-    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
-    margin: 5px 0; /* Fib: 5 */
-  }
-
-  .sub-branch {
-    flex-direction: column;
-    gap: 13px; /* Fib: 13 */
-    align-items: center;
-  }
-
-  .converge-line {
-    width: 89px; /* Fib: 89 */
-  }
-
-  .branch-label {
-    font-size: 0.875em; /* Fib: 14/16 = 0.875 */
-    padding: 5px 8px; /* Fib: 5, 8 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-
-  /* Design images stack with Fibonacci spacing */
-  .design-images-row {
-    flex-direction: column;
-    gap: 13px; /* Fib: 13 */
-    margin-top: 21px;
-  }
-
-  .design-images-row .design-concept-image {
-    max-width: 100%;
-  }
-
-  .design-images-single {
-    margin-top: 21px;
-  }
-
-  /* Tables very responsive with horizontal scroll - Fibonacci sizing */
-  .responsive-table,
-  .table-container,
-  .journey-map table {
-    font-size: 0.875em; /* Fib: 14/16 = 0.875 */
-    width: 100%;
-    min-width: 377px; /* Fib: 377 - ensures table doesn't get too compressed */
-    margin-top: 21px;
-  }
-
-  .table-container {
-    overflow-x: auto;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 21px; /* Fib: 21 */
-    -webkit-overflow-scrolling: touch;
-    background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(35, 35, 40, 0.7) 50%, rgba(25, 25, 30, 0.6) 100%);
-    border-radius: 6.5px;
-    padding: 0;
-  }
-
-  .journey-map {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-
-  }
-
-  .responsive-table,
-  .journey-map table {
-    margin: 0;
-  }
-
-  .responsive-table td,
-  .responsive-table th,
-  .table-container td,
-  .table-container th,
-  .journey-map td,
-  .journey-map th {
-    padding: 8px; /* Fib: 8 */
-    white-space: nowrap;
-    min-width: 55px; /* Fib: 55 */
-    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
-  }
-
-  .responsive-table td:first-child,
-  .responsive-table th:first-child,
-  .table-container td:first-child,
-  .table-container th:first-child {
-    padding: 13px; /* Fib: 13 */
-    min-width: 89px; /* Fib: 89 */
-  }
-
-  /* Images and media scale properly on mobile */
-  .design-concept-image,
-  .responsive-table img,
-  .carousel-img,
-  .knight-quote .goons-image,
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  /* Ensure all containers respect padding */
-  .responsive-table,
-  .table-container table,
-  .journey-map table {
-    box-sizing: border-box;
-  }
-
-  /* Prevent overflow on all elements */
-  * {
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Special handling for table containers */
-  .table-container,
-  .journey-map {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    margin-bottom: 0;
-  }
-
-  /* Priority labels smaller with Fibonacci sizing */
-  .priority-Must-Have,
-  .priority-Should-Have,
-  .priority-Could-Have,
-  .priority-Wont-Have {
-    font-size: 0.75em; /* Fib: 12/16 = 0.75 */
-    padding: 3px 5px; /* Fib: 3, 5 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-
-  /* 3D Carousel for mobile - full width with touch controls */
-  .tarkov-3d-carousel-section {
-    position: relative; /* Required for absolute positioning of swipe indicator */
-  }
-  
-  .tarkov-3d-carousel-section .scene {
-    max-width: 100vw;
-    width: 100%;
-    transform: none; /* Remove scaling for full width */
-    transform-origin: center center;
-    padding: 0;
-    margin: 0;
-    position: relative; /* Ensure scene is positioned for indicator overlay */
-  }
-
-  .tarkov-3d-carousel-section .carousel {
-    transform: translateZ(-200px); /* Reduced Z depth for mobile */
-    transition: transform 0.6s ease-out;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    touch-action: pan-x; /* Enable horizontal touch gestures */
-  }
-
-  .tarkov-3d-carousel-section .card {
-    transform: translateX(-50%) translateZ(200px);
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 16 / 9;
-    transition: transform 0.6s ease-out;
-    cursor: grab;
-  }
-  
-  .tarkov-3d-carousel-section .card:active {
-    cursor: grabbing;
-  }
-
-  /* Hide desktop click areas on mobile */
-  .tarkov-3d-carousel-section .click-area.left-area,
-  .tarkov-3d-carousel-section .click-area.right-area,
-  .tarkov-3d-carousel-section .click-area.center-area {
-    display: none;
-  }
-
-  /* Mobile carousel subtitle with side arrows */
-  .tarkov-3d-carousel-section .carousel-subtitle {
-    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
-    margin-top: 21px; /* Fib: 21 */
-    margin-bottom: 21px; /* Fib: 21 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 21px; /* Fib: 21 */
-    position: relative;
-    flex-wrap: wrap;
-  }
-  
-  /* Subtitle text wrapper */
-  .tarkov-3d-carousel-section .subtitle-text {
-    flex: 0 1 auto;
-    text-align: center;
-  }
-  
-  /* Mobile navigation arrows beside subtitle */
-  .tarkov-3d-carousel-section .mobile-nav-arrow {
-    font-size: 1.5em;
-    color: var(--TarkovButton);
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.3s ease;
-    padding: 8px; /* Fib: 8 */
-    border-radius: 50%;
-    background: rgba(196, 170, 122, 0.1);
-    border: 1px solid rgba(196, 170, 122, 0.3);
-    min-width: 34px; /* Fib: 34 */
-    height: 34px; /* Fib: 34 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-  }
-  
-  .tarkov-3d-carousel-section .mobile-nav-arrow:hover,
-  .tarkov-3d-carousel-section .mobile-nav-arrow:active {
-    color: var(--TarkovButtonHover);
-    background: rgba(196, 170, 122, 0.2);
-    border-color: rgba(196, 170, 122, 0.5);
-    transform: scale(1.1);
-  }
-  
-  .tarkov-3d-carousel-section .mobile-nav-arrow.left::before {
-    content: "‹";
-  }
-  
-  .tarkov-3d-carousel-section .mobile-nav-arrow.right::before {
-    content: "›";
-  }
-
-  /* Mobile swipe indicator - centered on carousel image */
-  .tarkov-3d-carousel-section .swipe-indicator {
-    position: absolute;
-    top: 45%; /* Slightly higher to account for visual centering */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Perfect center positioning on carousel */
-    font-size: 0.8em; /* Smaller for mobile */
-    color: #d4c5a9; /* Tarkov warm sand color */
-    font-weight: 600; /* Slightly less bold */
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
-    opacity: 1;
-    animation: tarkovBlink 3s ease-in-out infinite;
-    z-index: 100; /* Higher z-index to appear above everything */
-    background: linear-gradient(135deg, #2d3328 0%, #3a4234 50%, #2a2f26 100%); /* Tarkov dark olive gradient */
-    padding: 6px 12px; /* Smaller padding for mobile */
-    border-radius: 6px; /* Less rounded, proportional to mobile */
-    backdrop-filter: blur(12px);
-    border: 1.5px solid #c4aa7a; /* Thinner border */
-    box-shadow: 0 3px 15px rgba(196, 170, 122, 0.3), 0 0 0 1px rgba(212, 197, 169, 0.2);
-    letter-spacing: 0.2px;
-    white-space: nowrap; /* Prevent text wrapping */
-    max-width: 240px; /* Smaller width for mobile */
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
-    opacity: 1;
-    animation: tarkovBlink 3s ease-in-out infinite;
-    z-index: 100; /* Higher z-index to appear above everything */
-    background: linear-gradient(135deg, #2d3328 0%, #3a4234 50%, #2a2f26 100%); /* Tarkov dark olive gradient */
-    padding: 10px 20px; /* Smaller padding for mobile */
-    border-radius: 20px; /* Rounded */
-    backdrop-filter: blur(12px);
-    border: 2px solid #c4aa7a; /* Tarkov gold accent */
-    box-shadow: 0 4px 20px rgba(196, 170, 122, 0.4), 0 0 0 1px rgba(212, 197, 169, 0.3);
-    letter-spacing: 0.8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  }
-  
-  @keyframes tarkovBlink {
-    0%, 100% { 
-      opacity: 0; /* Completely disappear */
-      transform: translate(-50%, -50%) scale(0.95);
-    }
-    25% { 
-      opacity: 0.8; /* Fade in */
-      transform: translate(-50%, -50%) scale(1);
-    }
-    50% { 
-      opacity: 1; /* Fully visible */
-      transform: translate(-50%, -50%) scale(1.02);
-    }
-    75% { 
-      opacity: 0.8; /* Fade out */
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-
-  /* Buttons and navigation with Fibonacci sizing */
-  .view-case-study-btn,
-  .nav-button {
-    font-size: 0.875em; /* Fib: 14/16 = 0.875 */
-    padding: 8px 13px; /* Fib: 8, 13 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-    box-shadow: 0 4px 15px rgba(196, 170, 122, 0.28), 0 0 0 1px rgba(196, 170, 122, 0.1);
-  }
-
-  .view-case-study-btn:hover,
-  .nav-button:hover {
-    box-shadow: 0 6px 22px rgba(196, 170, 122, 0.45), 0 0 0 1.5px rgba(196, 170, 122, 0.25);
-  }
-
-  .case-study-navigation {
-    flex-direction: column;
-    gap: 13px; /* Fib: 13 */
-    margin: 34px 0 0 0; /* Fib: 34 */
-  }
-
-  .case-study-navigation .nav-button {
-    width: 100%;
-    max-width: 233px; /* Fib: 233 */
-    text-align: center;
-  }
-
-  /* Knight quote adjustments with Fibonacci spacing */
-  .knight-quote {
-    padding: 21px 34px 0 34px; /* Fib: 21, 34 */
-    margin: 21px 0; /* Fib: 21 */
-  }
-
-  .knight-quote p {
-    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-    line-height: 1.618; /* Golden ratio */
-  }
-
-  .knight-quote cite {
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-
-  /* Margins and spacing adjustments using Fibonacci */
-  .subTitleTarkov {
-    margin-top: 34px; /* Fib: 34 */
-    margin-bottom: 34px; /* Fib: 34 */
-  }
-
-  .researchAndDiscovery,
-  .design-concepts-container,
-  .design-wireframes-container {
-    margin: 21px 0; /* Fib: 21 */
-  }
-
-  .ProblemGoalsContext,
-  .RnDHeader,
-  .DefineTarkovHeader,
-  .IdeateAndDesignHeader,
-  .HighFidelityHeader,
-  .RnLHeader {
-    font-size: var(--h4-font-size);
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-  }
-
-  .DefineTarkovSubHeader,
-  .IdeateAndDesignSubHeader {
-    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-  }
-}
-
-/* =============================================
-   MOBILE TABLE REPLACEMENT - TARKOV SPECIFIC
-   ============================================= */
-
-/* Hide bullet points on desktop, show tables */
-@media (min-width: 1280px) {
-  .mobile-bullet-points {
-    display: none !important;
-  }
-  
-  .responsive-table,
-  .table-container table,
-  .journey-map table,
-  table {
-    display: table !important;
-  }
-}
-
-@media (max-width: 1279px) {
-  .responsive-table,
-  .table-container table,
-  .journey-map table,
-  table {
-    display: none !important;
-  }
-  
-  .mobile-bullet-points {
-    display: block !important;
-    padding: 0;
-  }
-  
-  .mobile-bullet-points h5 {
-    margin-top: 21px;
-    margin-bottom: 8px;
-    color: var(--TarkovMainTitle);
-    font-family: var(--heading-font-family);
-    font-weight: var(--font-weight-semibold);
-    font-size: 18px;
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
-  }
-  
-  .mobile-bullet-points ul {
-    list-style-type: disc;
-    padding-left: 21px; /* Fib: 21 */
-    margin-bottom: 13px; /* Fib: 13 */
-  }
-  
-  .mobile-bullet-points li {
-    margin-bottom: 8px; /* Fib: 8 */
-    line-height: 1.618; /* Golden ratio */
-    color: var(--ni-light-text);
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-  
-  .mobile-bullet-points p {
-    margin-top: 13px; /* Fib: 13 */
-    font-style: italic;
-    color: var(--ni-light-text);
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    line-height: 1.618; /* Golden ratio */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-}
-
-/* Hide case study navigation buttons on screens wider than 1850px */
-@media (min-width: 1850px) {
-  .case-study-navigation {
-    display: none !important;
-  }
-}
-
-/* =============================================
-   OTHER PROJECTS SECTION
-   ============================================= */
-
-.tarkov-other-projects {
-  margin-top: 55px;
-  padding: 55px 89px;
-  border-top: 1px solid #4a5f3a;
-  background: transparent;
-}
-
-.other-projects-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.other-projects-title {
-  font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--h3-font-size);
-  color: white;
-  margin: 0 0 34px 0;
-  text-align: center;
-  letter-spacing: 0.02em;
-  border-bottom: 2px solid white;
-  padding-bottom: 10px;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 42px;
-}
-
-.project-item {
-  background: transparent;
-  border: 1px solid #4a5f3a;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 4px 20px rgba(196, 170, 122, 0.15);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.project-item:hover {
-  transform: translateY(-8px);
-  border-color: #c4aa7a;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 8px 35px rgba(196, 170, 122, 0.35);
-  background: transparent;
-}
-
-.project-link {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-}
-
-.project-image {
-  width: 100%;
-  height: 240px;
-  overflow: hidden;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.project-item:hover .project-image img {
-  transform: scale(1.1);
-}
-
-.project-info {
-  background: #1a1a1a;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
-}
-
-.project-title {
-  font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--h4-font-size);
-  color: white;
-  margin: 0 0 12px 0;
-  letter-spacing: 0.02em;
-}
-
-.project-description {
-  font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
-  color: var(--TarkovText);
-  margin: 0 0 16px 0;
-  line-height: 1.5;
-  opacity: 0.9;
-  flex: 1;
-}
-
-.project-tag {
-  font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--h7-font-size);
-  background: #c4aa7a; /* Military gold */
-  color: #2d3328;
-  padding: 6px 12px;
-  border-radius: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  align-self: flex-start;
-  margin-top: auto;
-}
-
-.portfolio-svg-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(45, 51, 40, 0.8);
-  width: 100%;
-  height: 240px;
-  overflow: hidden;
-}
-
-.portfolio-logo-svg {
-  width: 60%;
-  height: 60%;
-  max-width: 150px;
-  max-height: 150px;
-  filter: brightness(0) saturate(100%) invert(75%) sepia(15%) saturate(312%) hue-rotate(26deg) brightness(88%) contrast(91%);
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
+  /* Other Projects responsive styles for tablet */
   .tarkov-other-projects {
     margin-top: 40px;
     padding: 30px;
@@ -3024,73 +2725,5 @@ img,
   }
 }
 
-@media (max-width: 480px) {
-  .projects-grid {
-    gap: 20px;
-  }
-  
-  .project-image {
-    height: 200px;
-  }
-  
-  .project-info {
-    background: #1a1a1a;
-    padding: 18px;
-  }
-}
 
-/* =============================================
-   HAMBURGER MENU THEME STATES
-   ============================================= */
 
-/* Default hamburger menu state */
-.hamburger-menu.tarkov-initial {
-  background: #2a2a2a;
-  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
-}
-
-.hamburger-menu.tarkov-initial a {
-  color: #B6B0A0;
-  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hamburger-menu.tarkov-initial .work-underline,
-.hamburger-menu.tarkov-initial .about-underline,
-.hamburger-menu.tarkov-initial .contact-underline {
-  background-color: #B6B0A0;
-  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Active Tarkov theme hamburger menu state */
-.hamburger-menu.tarkov-theme-active {
-  background: #2d3328;
-  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
-}
-
-.hamburger-menu.tarkov-theme-active a {
-  color: #d4c5a9;
-  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hamburger-menu.tarkov-theme-active .work-underline,
-.hamburger-menu.tarkov-theme-active .about-underline,
-.hamburger-menu.tarkov-theme-active .contact-underline {
-  background-color: #d4c5a9;
-  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* =============================================
-   GROCERY PAGE Z-INDEX FIXES
-   ============================================= */
-
-/* Ensure hamburger menu is above header on grocery page */
-.grocery-page .hamburger-menu {
-  z-index: 10000;
-}
-
-/* Grocery page hamburger menu underline colors - use red from buttons */
-.grocery-page .hamburger-menu .work-underline,
-.grocery-page .hamburger-menu .about-underline,
-.grocery-page .hamburger-menu .contact-underline {
-  background-color: #FF4757; /* Strawberry red color matching grocery app success color */
-}

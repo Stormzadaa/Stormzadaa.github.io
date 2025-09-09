@@ -756,6 +756,22 @@
   z-index: 2;
 }
 
+/* =================================
+   HAMBURGER MENU Z-INDEX & STYLING
+   ================================= */
+
+/* Ensure hamburger menu is above header */
+.grocery-page .hamburger-menu {
+  z-index: 10000;
+}
+
+/* Hamburger menu underline colors - use red from buttons */
+.grocery-page .hamburger-menu .work-underline,
+.grocery-page .hamburger-menu .about-underline,
+.grocery-page .hamburger-menu .contact-underline {
+  background-color: #FF4757;
+}
+
 /* Mobile and Medium Screen Adjustments */
 @media (max-width: 1279px) {
   .carousel-wrapper {
