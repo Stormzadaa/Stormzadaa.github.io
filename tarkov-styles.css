@@ -1447,7 +1447,7 @@ table {
 /* 
  * RESPONSIVE TABLE TO MOBILE CONVERSION
  * This query handles the fundamental switch from desktop tables to mobile-friendly bullet points
- * for all screens 1279px and below. It hides complex tables that are difficult to read on smaller
+ * for all screens 750px and below. It hides complex tables that are difficult to read on smaller
  * screens and replaces them with structured bullet point lists that maintain the same information
  * in a more accessible mobile format using Fibonacci spacing and golden ratio typography.
  */
@@ -1470,10 +1470,8 @@ table {
     margin-bottom: 8px;
     color: var(--TarkovMainTitle);
     font-family: var(--heading-font-family);
-    font-weight: var(--font-weight-semibold);
-    font-size: 18px;
-    letter-spacing: 0.0625em;
-    line-height: 1.236;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--h6-font-size);
   }
   
   .mobile-bullet-points ul {
@@ -1482,22 +1480,6 @@ table {
     margin-bottom: 13px;
   }
   
-  .mobile-bullet-points li {
-    margin-bottom: 8px;
-    line-height: 1.618;
-    color: var(--ni-light-text);
-    font-size: 1em;
-    letter-spacing: 0.03125em;
-  }
-  
-  .mobile-bullet-points p {
-    margin-top: 13px;
-    font-style: italic;
-    color: var(--ni-light-text);
-    font-size: 1em;
-    line-height: 1.618;
-    letter-spacing: 0.03125em;
-  }
 }
 
 /* =============================================
