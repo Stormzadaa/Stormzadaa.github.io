@@ -1430,42 +1430,38 @@ img,
    ============================================= */
 /* Desktop table display - hide mobile bullet points, show tables */
 .mobile-bullet-points {
-  display: none !important;
+  display: none;
 }
 
 .responsive-table,
 .table-container table,
 .journey-map table,
 table {
-  display: table !important;
+  display: table;
 }
 
 /* =============================================
    MEDIA QUERIES - ORGANIZED LARGEST TO SMALLEST
    ============================================= */
 
-/* =============================================
-   EXTRA LARGE SCREENS - 1850px and above
-   ============================================= */
-@media (min-width: 1850px) {
-  .case-study-navigation {
-    display: none !important;
-  }
-}
+/* 
+ * RESPONSIVE TABLE TO MOBILE CONVERSION
+ * This query handles the fundamental switch from desktop tables to mobile-friendly bullet points
+ * for all screens 1279px and below. It hides complex tables that are difficult to read on smaller
+ * screens and replaces them with structured bullet point lists that maintain the same information
+ * in a more accessible mobile format using Fibonacci spacing and golden ratio typography.
+ */
 
-/* =============================================
-   BELOW LARGE SCREENS - max 1279px
-   ============================================= */
-@media (max-width: 1279px) {
+@media (max-width: 750px) {
   .responsive-table,
   .table-container table,
   .journey-map table,
   table {
-    display: none !important;
+    display: none;
   }
   
   .mobile-bullet-points {
-    display: block !important;
+    display: block;
     padding: 0;
   }
   
@@ -1476,31 +1472,31 @@ table {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
     font-size: 18px;
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
+    letter-spacing: 0.0625em;
+    line-height: 1.236;
   }
   
   .mobile-bullet-points ul {
     list-style-type: disc;
-    padding-left: 21px; /* Fib: 21 */
-    margin-bottom: 13px; /* Fib: 13 */
+    padding-left: 21px;
+    margin-bottom: 13px;
   }
   
   .mobile-bullet-points li {
-    margin-bottom: 8px; /* Fib: 8 */
-    line-height: 1.618; /* Golden ratio */
+    margin-bottom: 8px;
+    line-height: 1.618;
     color: var(--ni-light-text);
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+    font-size: 1em;
+    letter-spacing: 0.03125em;
   }
   
   .mobile-bullet-points p {
-    margin-top: 13px; /* Fib: 13 */
+    margin-top: 13px;
     font-style: italic;
     color: var(--ni-light-text);
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    line-height: 1.618; /* Golden ratio */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+    font-size: 1em;
+    line-height: 1.618;
+    letter-spacing: 0.03125em;
   }
 }
 
@@ -1874,50 +1870,24 @@ table {
   }
 
   /* Table replacement with mobile bullet points for medium screens */
-  .responsive-table,
-  .table-container table,
-  .journey-map table,
-  table {
-    display: none !important;
+  /* Removed - handled by max-width: 1279px query */
+}
+
+/* =============================================
+   SMALL MOBILE - below 480px (Other Projects)
+   ============================================= */
+@media (max-width: 480px) {
+  .projects-grid {
+    gap: 20px;
   }
   
-  .mobile-bullet-points {
-    display: block !important;
-    padding: 0;
+  .project-image {
+    height: 200px;
   }
   
-  .mobile-bullet-points h5 {
-    margin-top: 21px;
-    margin-bottom: 8px;
-    color: var(--TarkovMainTitle);
-    font-family: var(--heading-font-family);
-    font-weight: var(--font-weight-semibold);
-    font-size: 18px;
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-    line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
-  }
-  
-  .mobile-bullet-points ul {
-    list-style-type: disc;
-    padding-left: 21px; /* Fib: 21 */
-    margin-bottom: 13px; /* Fib: 13 */
-  }
-  
-  .mobile-bullet-points li {
-    margin-bottom: 8px; /* Fib: 8 */
-    line-height: 1.618; /* Golden ratio */
-    color: var(--ni-light-text);
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
-  }
-  
-  .mobile-bullet-points p {
-    margin-top: 13px; /* Fib: 13 */
-    font-style: italic;
-    color: var(--ni-light-text);
-    font-size: 1em; /* Fib: 16/16 = 1 */
-    line-height: 1.618; /* Golden ratio */
-    letter-spacing: 0.03125em; /* Fib: 0.5/16 = 0.03125 */
+  .project-info {
+    background: #1a1a1a;
+    padding: 18px;
   }
 }
 
@@ -2292,24 +2262,6 @@ table {
   }
 }
 
-
-/* =============================================
-   SMALL MOBILE - below 480px (Other Projects)
-   ============================================= */
-@media (max-width: 480px) {
-  .projects-grid {
-    gap: 20px;
-  }
-  
-  .project-image {
-    height: 200px;
-  }
-  
-  .project-info {
-    background: #1a1a1a;
-    padding: 18px;
-  }
-}
 
 /* =============================================
    MOBILE - max 429px - FIBONACCI TYPOGRAPHY
