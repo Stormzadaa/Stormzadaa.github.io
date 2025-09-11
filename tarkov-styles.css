@@ -1498,7 +1498,9 @@ table {
 
   /* Typography adjustments */
   .tarkovStudy-headline {
-    font-size: 2em;
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--TarkovTitles);
   }
 
   .tarkov-mainTitle {
@@ -1511,24 +1513,25 @@ table {
     text-align: center;
     letter-spacing: 13px;
     color: var(--ni-main-title-about);
-    font-size: 3.5em;
+    font-size: var(--h0-font-size);
+    font-family: 'Russo One', sans-serif;
+    font-weight: var(--font-weight-regular);
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
     hyphens: auto;
   }
 
-  .full-case-study-tarkov h3:not(.project-title) {
-    font-size: 1.6em;
-  }
-  
   .subCaptionTarkov {
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-semibold);
+    color: var(--TarkovMainTitle);
     font-size: var(--h6-font-size);
   }
   
   .view-case-study-btn {
     font-weight: var(--font-weight-regular);
+    background: var(--TarkovButton);
+    color: white;
     font-size: var(--h6-font-size);
   }
 
@@ -1601,7 +1604,9 @@ table {
   .responsive-table,
   .table-container,
   .journey-map table {
-    font-size: 0.9em;
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size);
+    color: var(--TarkovText);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -1786,14 +1791,7 @@ table {
     z-index: 1;
   }
 
-  /* Medium screen carousel subtitle - simple centered text */
-  .tarkov-3d-carousel-section .carousel-subtitle {
-    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
-    margin-top: 21px; /* Fib: 21 */
-    margin-bottom: 21px; /* Fib: 21 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
-    text-align: center;
-  }
+
 
   /* Hide mobile navigation arrows on medium screen */
   .tarkov-3d-carousel-section .mobile-nav-arrow {
@@ -1828,7 +1826,7 @@ table {
   /* Buttons and navigation for medium screens */
   .view-case-study-btn,
   .nav-button {
-    font-size: 1em;
+    font-size: var(--h6-font-size);
     padding: 12px 18px;
     letter-spacing: 0.8px;
     box-shadow: 0 6px 20px rgba(196, 170, 122, 0.35), 0 0 0 1px rgba(196, 170, 122, 0.15);
@@ -1911,7 +1909,10 @@ table {
   }
 
   .full-case-study-tarkov h3:not(.project-title) {
-    font-size: 1.6em;
+    font-size: var(--h5-font-size);
+    font-family: var(--heading-font-family);
+    font-weight: var(--font-weight-semibold);
+    color: var(--TarkovTitles);
   }
   
   .subCaptionTarkov {
