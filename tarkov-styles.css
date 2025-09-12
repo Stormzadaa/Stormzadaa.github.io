@@ -81,7 +81,7 @@
 .grocery-page .hamburger-menu .contact-underline {
   height: 2px;
   width: 100%;
-  margin-top: 2px;
+  margin-top: 5px;
   display: block;
 }
 
@@ -250,6 +250,7 @@ img,
   font-size: var(--h3-font-size);
   font-weight: var(--font-weight-bold);
   margin-top: 0;
+  margin-bottom: 21px;
   color: var(--TarkovTitles);
   line-height: 1.2;
   text-align: left;
@@ -605,6 +606,11 @@ img,
   border-left: 4px solid var(--TarkovTitles);
 }
 
+/* Remove top margin from first paragraph inside problemAndGoalsContext */
+.problemAndGoalsContext .textTypographyTarkov:first-child {
+  margin-top: 0;
+}
+
 /* =============================================
    RESEARCH & DISCOVERY SECTION
    ============================================= */
@@ -711,7 +717,7 @@ img,
 
 /* Text content cells from row 2+ (excluding image cells and first column) */
 .responsive-table tr:not(:first-child) td:not(:first-child):not(:has(img)) {
-  padding: 12px;
+  padding: 13px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;
   margin: 8px;
@@ -752,7 +758,7 @@ img,
 
 .persona-avatar svg {
   background: rgba(196, 170, 122, 0.8);
-  padding: 10px;
+  padding: 8px;
   border-radius: 50%;
   color: #333333;
   fill: #333333;
@@ -861,7 +867,7 @@ img,
   font-size: var(--h6-font-size);
   color: var(--TarkovText);
   background: rgba(196, 170, 122, 0.2);
-  padding: 12px;
+  padding: 13px;
   text-align: left;
   font-weight: 600;
 }
@@ -869,7 +875,7 @@ img,
 .journey-map td {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
-  padding: 12px;
+  padding: 13px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--TarkovText);
   vertical-align: top;
@@ -972,7 +978,7 @@ img,
   background: linear-gradient(135deg, #f8fafc, #e2e8f0);
   border: 2px solid #cbd5e0;
   border-radius: 4px;
-  padding: 15px 22px;
+  padding: 15px 21px;
   min-width: 160px;
   text-align: center;
   font-family: var(--body-font-family);
@@ -1022,7 +1028,7 @@ img,
   color: #4299e1;
   font-weight: bold;
   text-shadow: 0 0 6px rgba(66, 153, 225, 0.3);
-  margin: 6px 0;
+  margin: 5px 0;
 }
 
 .flow-arrow.vertical {
@@ -1034,7 +1040,7 @@ img,
 .branch-container {
   display: flex;
   align-items: flex-start;
-  gap: 40px;
+  gap: 34px;
   margin: 15px 0;
   position: relative;
 }
@@ -1043,7 +1049,7 @@ img,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 13px;
   min-width: 160px;
 }
 
@@ -1053,7 +1059,7 @@ img,
   font-weight: 600;
   color: var(--TarkovSecondaryLink);
   background: rgba(80, 114, 123, 0.1);
-  padding: 5px 12px;
+  padding: 5px 13px;
   border-radius: 7.5px;
   border: 1px solid rgba(80, 114, 123, 0.2);
 }
@@ -1084,7 +1090,7 @@ img,
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0;
+  margin: 21px 0;
   position: relative;
 }
 
@@ -1098,8 +1104,8 @@ img,
 /* Sub-branch for nested decisions - Tighter */
 .sub-branch {
   display: flex;
-  gap: 30px;
-  margin: 12px 0;
+  gap: 34px;
+  margin: 13px 0;
 }
 
 .sub-path {
@@ -1130,7 +1136,7 @@ img,
   width: 1px;
   height: 20px;
   background: linear-gradient(to bottom, #4299e1, rgba(66, 153, 225, 0.3));
-  margin: 3px 0;
+  margin: 5px 0;
 }
 
 .horizontal-line {
@@ -1167,6 +1173,7 @@ img,
   color: var(--TarkovMainTitle);
   font-size: var(--h6-font-size);
   font-weight: var(--font-weight-semibold);
+  font-family: var(--body-font-family);
   margin-top: 21px;
   margin-bottom: 13px;
 }
@@ -1233,6 +1240,11 @@ img,
   font-weight: 600;
 }
 
+/* Remove top margin from DefineTarkovSubHeader inside RetrospectiveAndLearnings */
+.RetrospectiveAndLearnings .DefineTarkovSubHeader {
+  margin-top: 0;
+}
+
 /* Knight Quote - Outside the container */
 .knight-quote {
   margin: 34px 0;
@@ -1283,7 +1295,7 @@ img,
 
 .tarkov-other-projects {
   margin-top: 55px;
-  padding: 55px 89px;
+  padding: 55px;
   border-top: 1px solid #4a5f3a;
   background: transparent;
 }
@@ -1302,13 +1314,13 @@ img,
   text-align: center;
   letter-spacing: 0.02em;
   border-bottom: 2px solid white;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 42px;
+  gap: 34px;
 }
 
 .project-item {
@@ -1357,7 +1369,7 @@ img,
 
 .project-info {
   background: #1a1a1a;
-  padding: 32px;
+  padding: 34px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -1369,7 +1381,7 @@ img,
   font-weight: var(--font-weight-semibold);
   font-size: var(--h4-font-size);
   color: white;
-  margin: 0 0 12px 0;
+  margin: 0 0 13px 0;
   letter-spacing: 0.02em;
 }
 
@@ -1377,7 +1389,7 @@ img,
   font-family: var(--body-font-family);
   font-size: var(--h6-font-size);
   color: var(--TarkovText);
-  margin: 0 0 16px 0;
+  margin: 0 0 15px 0;
   line-height: 1.5;
   opacity: 0.9;
   flex: 1;
@@ -1389,7 +1401,7 @@ img,
   font-size: var(--h7-font-size);
   background: #c4aa7a;
   color: #2d3328;
-  padding: 6px 12px;
+  padding: 5px 13px;
   border-radius: 15px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1500,6 +1512,8 @@ table {
   .tarkovStudy-headline {
     font-size: var(--h3-font-size);
     font-weight: var(--font-weight-bold);
+    margin-top: 0;
+    margin-bottom: 17px;
     color: var(--TarkovTitles);
   }
 
@@ -1526,6 +1540,9 @@ table {
     font-weight: var(--font-weight-semibold);
     color: var(--TarkovMainTitle);
     font-size: var(--h6-font-size);
+    font-family: var(--body-font-family);
+    margin-top: 21px;
+    margin-bottom: 13px;
   }
   
   .view-case-study-btn {
@@ -1575,7 +1592,7 @@ table {
   .branch-container {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 17px;
   }
 
   .branch-path {
@@ -1827,7 +1844,7 @@ table {
   .view-case-study-btn,
   .nav-button {
     font-size: var(--h6-font-size);
-    padding: 12px 18px;
+    padding: 10px 17px;
     letter-spacing: 0.8px;
     box-shadow: 0 6px 20px rgba(196, 170, 122, 0.35), 0 0 0 1px rgba(196, 170, 122, 0.15);
   }
@@ -1840,7 +1857,7 @@ table {
   .case-study-navigation {
     flex-direction: column;
     gap: 15px;
-    margin: 45px 0 0 0;
+    margin: 44px 0 0 0;
   }
 
   .case-study-navigation .nav-button {
@@ -1867,7 +1884,7 @@ table {
   
   .project-info {
     background: #1a1a1a;
-    padding: 18px;
+    padding: 17px;
   }
 }
 
@@ -1875,6 +1892,15 @@ table {
    TABLET - 430px to 768px
    ============================================= */
 @media (min-width: 430px) and (max-width: 768px) {
+  /* Mobile Navigation - Show hamburger menu, hide nav links */
+  .tarkov-page .menu-svg {
+    display: block;
+  }
+  
+  .tarkov-page .nav-links {
+    display: none;
+  }
+
   /* Main container with tablet padding - removed extra padding */
   .TarkovCaseStudy {
     /* padding-left: 21px;
@@ -1887,8 +1913,12 @@ table {
 
   /* Typography for tablet */
   .tarkovStudy-headline {
-    font-size: 1.8em;
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--TarkovTitles);
+    font-family: var(--heading-font-family);
     margin-top: 0;
+    margin-bottom: 13px;
   }
 
   .tarkov-mainTitle {
@@ -1901,27 +1931,25 @@ table {
     text-align: center;
     letter-spacing: 13px;
     color: var(--ni-main-title-about);
-    font-size: 3.5em;
+    font-size: var(--h0-font-size);
+    font-family: 'Russo One', sans-serif;
+    font-weight: var(--font-weight-regular);
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
     hyphens: auto;
   }
 
-  .full-case-study-tarkov h3:not(.project-title) {
-    font-size: var(--h5-font-size);
-    font-family: var(--heading-font-family);
-    font-weight: var(--font-weight-semibold);
-    color: var(--TarkovTitles);
-  }
-  
   .subCaptionTarkov {
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-semibold);
+    color: var(--TarkovMainTitle);
     font-size: var(--h6-font-size);
   }
   
   .view-case-study-btn {
     font-weight: var(--font-weight-regular);
+    background: var(--TarkovButton);
+    color: white;
     font-size: var(--h6-font-size);
   }
 
@@ -1965,7 +1993,7 @@ table {
   .branch-container {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 21px;
   }
 
   .branch-path {
@@ -1994,7 +2022,8 @@ table {
   .responsive-table,
   .table-container,
   .journey-map table {
-    font-size: 0.9em;
+    font-size: var(--body-font-size);
+    color: var(--TarkovText);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -2181,10 +2210,13 @@ table {
 
   /* Medium screen carousel subtitle - simple centered text */
   .tarkov-3d-carousel-section .carousel-subtitle {
-    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    font-size: var(--h5-font-size);
+    color: var(--TarkovText);
+    font-family: var(--heading-font-family);
+    font-weight: 500;
     margin-top: 21px; /* Fib: 21 */
     margin-bottom: 21px; /* Fib: 21 */
-    letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
+    letter-spacing: 1px;
     text-align: center;
   }
 
@@ -2221,7 +2253,7 @@ table {
   /* Buttons and navigation for medium screens */
   .view-case-study-btn,
   .nav-button {
-    font-size: 1em;
+    font-size: var(--h6-font-size);
     padding: 12px 18px;
     letter-spacing: 0.8px;
     box-shadow: 0 6px 20px rgba(196, 170, 122, 0.35), 0 0 0 1px rgba(196, 170, 122, 0.15);
@@ -2235,7 +2267,7 @@ table {
   .case-study-navigation {
     flex-direction: column;
     gap: 15px;
-    margin: 45px 0 0 0;
+    margin: 34px 0 0 0;
   }
 
   .case-study-navigation .nav-button {
@@ -2250,12 +2282,25 @@ table {
    MOBILE - max 429px - FIBONACCI TYPOGRAPHY
    ============================================= */
 @media (max-width: 429px) {
+  /* Mobile Navigation - Show hamburger menu, hide nav links */
+  .tarkov-page .menu-svg {
+    display: block;
+  }
+  
+  .tarkov-page .nav-links {
+    display: none;
+  }
+
   /* Main container padding removed - now uses standard page padding */
 
   /* Typography for mobile - Fibonacci scaling */
   .tarkovStudy-headline {
-    font-size: 2.125em; /* Fib: 34/16 = 2.125 */
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--TarkovTitles);
+    font-family: var(--heading-font-family);
     margin-top: 0;
+    margin-bottom: 13px;
     line-height: 1.236; /* Fib: 21/17 ≈ 1.236 */
     letter-spacing: 0.125em; /* Fib: 2/16 = 0.125 */
   }
@@ -2270,7 +2315,9 @@ table {
     text-align: center;
     letter-spacing: 8px;
     color: var(--ni-main-title-about);
-    font-size: 2.8em;
+    font-size: var(--h0-font-size);
+    font-family: 'Russo One', sans-serif;
+    font-weight: var(--font-weight-regular);
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
@@ -2282,19 +2329,17 @@ table {
     margin-bottom: 21px;
   }
 
-  .full-case-study-tarkov h3:not(.project-title) {
-    font-size: 1.4em;
-    margin-top: 21px;
-    margin-bottom: 13px;
-  }
   
   .subCaptionTarkov {
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-semibold);
+    color: var(--TarkovMainTitle);
     font-size: var(--h6-font-size);
   }
   
   .view-case-study-btn {
     font-weight: var(--font-weight-regular);
+    background: var(--TarkovButton);
+    color: white;
     font-size: var(--h6-font-size);
   }
 
@@ -2333,7 +2378,7 @@ table {
     max-width: 100%;
     min-width: 0; /* Allow shrinking */
     min-height: 600px;
-    padding: 15px;
+    padding: 13px;
     box-sizing: border-box;
   }
 
@@ -2355,7 +2400,7 @@ table {
   .branch-container {
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 13px;
   }
 
   .branch-path {
@@ -2365,8 +2410,8 @@ table {
 
   .flow-box {
     min-width: 120px;
-    padding: 12px 16px;
-    font-size: 14px;
+    padding: 13px 16px;
+    font-size: var(--h7-font-size);
   }
 
   .decision-box {
@@ -2375,7 +2420,7 @@ table {
   }
 
   .decision-text {
-    font-size: 12px;
+    font-size: var(--h8-font-size);
     max-width: 60px;
   }
 
@@ -2388,7 +2433,7 @@ table {
   /* Design images stack */
   .design-images-row {
     flex-direction: column;
-    gap: 15px;
+    gap: 13px;
     margin-top: 21px;
   }
 
@@ -2404,7 +2449,8 @@ table {
   .responsive-table,
   .table-container,
   .journey-map table {
-    font-size: 0.8em;
+    font-size: var(--body-font-size);
+    color: var(--TarkovText);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -2423,6 +2469,8 @@ table {
 
   .responsive-table,
   .journey-map table {
+    font-size: var(--body-font-size);
+    color: var(--TarkovText);
     width: 100%;
     max-width: 100%;
     min-width: 0; /* Allow shrinking */
@@ -2515,7 +2563,10 @@ table {
 
   /* Tablet carousel subtitle with side arrows */
   .tarkov-3d-carousel-section .carousel-subtitle {
-    font-size: 1.125em; /* Fib: 18/16 = 1.125 */
+    font-size: var(--h5-font-size);
+    color: var(--TarkovText);
+    font-family: var(--heading-font-family);
+    font-weight: 500;
     margin-top: 21px; /* Fib: 21 */
     margin-bottom: 21px; /* Fib: 21 */
     letter-spacing: 0.0625em; /* Fib: 1/16 = 0.0625 */
@@ -2535,7 +2586,7 @@ table {
   
   /* Tablet navigation arrows beside subtitle */
   .tarkov-3d-carousel-section .mobile-nav-arrow {
-    font-size: 1.5em;
+    font-size: var(--h4-font-size);
     color: var(--TarkovButton);
     cursor: pointer;
     user-select: none;
@@ -2574,7 +2625,7 @@ table {
     top: 45%; /* Slightly higher to account for visual centering */
     left: 50%;
     transform: translate(-50%, -50%); /* Perfect center positioning on carousel */
-    font-size: 0.9em; /* Smaller, more proportionate size */
+    font-size: var(--h7-font-size);
     color: #d4c5a9; /* Tarkov warm sand color */
     font-weight: 600; /* Slightly less bold */
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
@@ -2595,8 +2646,8 @@ table {
 
   /* Margins and spacing adjustments */
   .subTitleTarkov {
-    margin-top: 55px;
-    margin-bottom: 55px;
+    margin-top: 34px;
+    margin-bottom: 34px;
   }
 
   .researchAndDiscovery,
@@ -2607,7 +2658,7 @@ table {
   /* Buttons and navigation for tablet */
   .view-case-study-btn,
   .nav-button {
-    font-size: 0.9em;
+    font-size: var(--h6-font-size);
     padding: 10px 16px;
     letter-spacing: 0.5px;
     box-shadow: 0 5px 18px rgba(196, 170, 122, 0.3), 0 0 0 1px rgba(196, 170, 122, 0.12);
@@ -2620,7 +2671,7 @@ table {
 
   .case-study-navigation {
     flex-direction: column;
-    gap: 12px;
+    gap: 13px;
     margin: 34px 0 0 0;
   }
 
@@ -2632,23 +2683,23 @@ table {
 
   /* Other Projects responsive styles for tablet */
   .tarkov-other-projects {
-    margin-top: 40px;
-    padding: 30px;
+    margin-top: 34px;
+    padding: 34px;
   }
   
   .other-projects-title {
     font-size: 1.8rem;
-    margin-bottom: 25px;
+    margin-bottom: 21px;
   }
   
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 21px;
   }
   
   .project-info {
     background: #1a1a1a;
-    padding: 20px;
+    padding: 21px;
   }
   
   .project-title {
