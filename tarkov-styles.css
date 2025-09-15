@@ -584,6 +584,7 @@ img,
 .full-case-study-tarkov .RnDHeader,
 .full-case-study-tarkov .DefineTarkovHeader,
 .full-case-study-tarkov .IdeateAndDesignHeader,
+.full-case-study-tarkov .LowFidelityHeader,
 .full-case-study-tarkov .HighFidelityHeader,
 .full-case-study-tarkov .RnLHeader {
   font-family: var(--heading-font-family);
@@ -2274,6 +2275,47 @@ table {
     width: 100%;
     max-width: 300px;
     text-align: center;
+  }
+
+  /* Fix projects grid overflow on tablet */
+  .tarkov-other-projects {
+    margin-top: 34px;
+    padding: 21px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 21px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .other-projects-title {
+    font-size: 1.8rem;
+    margin-bottom: 21px;
+    text-align: center;
+  }
+  
+  .project-item {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .project-info {
+    padding: 21px;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 

@@ -1,0 +1,245 @@
+=============================================
+TARKOV CASE STUDY - SPACING & TYPOGRAPHY GUIDE
+=============================================
+
+This document outlines the complete spacing and typography patterns 
+used across all media queries in the Tarkov Case Study screen.
+
+=============================================
+🖥️ DESKTOP (Default - No Media Query)
+=============================================
+
+TYPOGRAPHY:
+-----------
+• Main Title: 
+  - font-size: var(--h0-font-size)
+  - font-family: 'Russo One', sans-serif
+  - font-weight: var(--font-weight-regular)
+
+• Headlines (.tarkovStudy-headline): 
+  - font-size: var(--h3-font-size)
+  - font-weight: var(--font-weight-bold)
+
+• Body Text (.textTypographyTarkov): 
+  - font-size: var(--body-font-size)
+  - font-family: var(--body-font-family)
+
+• Captions (.subCaptionTarkov): 
+  - font-size: var(--h6-font-size)
+  - font-weight: var(--font-weight-semibold)
+
+SPACING PATTERN:
+----------------
+• Primary: 34px (main sections, containers)
+• Secondary: 21px (general spacing, design elements)  
+• Tertiary: 13px (smaller elements, gaps)
+• Large: 55px (main title margins, major sections)
+• Small Utilities: 5px, 8px, 15px
+
+EXAMPLE USAGE:
+--------------
+• tarkov-mainTitle: margin-top: 55px, margin-bottom: 55px
+• tarkovStudy-headline: margin-bottom: 21px
+• tarkovStudy-goal: margin-top: 21px, margin-bottom: 34px
+• Container padding: 34px
+
+=============================================
+📱 MEDIUM SCREEN (769px - 1279px)
+=============================================
+
+TYPOGRAPHY:
+-----------
+• Main Title: 
+  - font-size: var(--h0-font-size)
+  - font-family: 'Russo One', sans-serif
+  - letter-spacing: 13px
+
+• Headlines: 
+  - font-size: var(--h3-font-size)
+  - font-weight: var(--font-weight-bold)
+
+• Captions: 
+  - font-size: var(--h6-font-size)
+  - font-weight: var(--font-weight-semibold)
+  - font-family: var(--body-font-family)
+
+• Body Text: 
+  - font-size: var(--body-font-size)
+  - font-family: var(--body-font-family)
+
+SPACING PATTERN (80% Scaled):
+-----------------------------
+• Primary: 17px (80% of 21px)
+• Secondary: 21px (preserved from desktop)
+• Large: 44px (80% of 55px - not implemented, kept 55px)
+• Containers: 34px (preserved for content areas)
+• Small: 13px (for captions, smaller elements)
+
+EXAMPLE USAGE:
+--------------
+• tarkovStudy-headline: margin-bottom: 17px
+• subCaptionTarkov: margin-top: 21px, margin-bottom: 13px
+• Container padding: 34px
+• branch-container gap: 17px
+
+=============================================
+💻 TABLET (430px - 768px)
+=============================================
+
+TYPOGRAPHY:
+-----------
+• Main Title: 
+  - font-size: var(--h0-font-size)
+  - font-family: 'Russo One', sans-serif
+  - letter-spacing: 13px
+
+• Headlines: 
+  - font-size: var(--h3-font-size)
+  - font-weight: var(--font-weight-bold)
+  - font-family: var(--heading-font-family)
+
+• Captions: 
+  - font-size: var(--h6-font-size)
+  - font-weight: var(--font-weight-semibold)
+
+• Buttons: 
+  - font-size: var(--h6-font-size)
+  - font-weight: var(--font-weight-regular)
+
+SPACING PATTERN:
+----------------
+• Primary: 34px (containers, major spacing)
+• Secondary: 21px (general spacing, gaps, margins)
+• Tertiary: 13px (headlines, smaller elements)
+• Large: 55px (main title margins)
+• Small Utilities: 15px (minor gaps)
+
+EXAMPLE USAGE:
+--------------
+• tarkov-mainTitle: margin-top: 55px, margin-bottom: 55px
+• tarkovStudy-headline: margin-bottom: 13px
+• Container padding: 34px
+• persona-cards-row gap: 21px
+• branch-container gap: 21px
+• projects-grid gap: 21px
+
+=============================================
+📱 MOBILE (max-width: 429px)
+=============================================
+
+TYPOGRAPHY:
+-----------
+• Main Title: 
+  - font-size: var(--h0-font-size)
+  - font-family: 'Russo One', sans-serif
+  - letter-spacing: 8px
+
+• Headlines (.tarkovStudy-headline): 
+  - font-size: var(--h3-font-size)
+  - font-weight: var(--font-weight-bold)
+  - font-family: var(--heading-font-family)
+  - line-height: 1.236 (Fibonacci: 21/17)
+  - letter-spacing: 0.125em (Fibonacci: 2/16)
+
+• Body Text: 
+  - font-size: var(--body-font-size)
+
+• Captions: 
+  - font-size: var(--h6-font-size)
+  - font-weight: var(--font-weight-semibold)
+
+SPACING PATTERN (60% Scaled):
+-----------------------------
+• Primary: 21px (main content spacing)
+• Secondary: 13px (general spacing, smaller elements)
+• Tertiary: 8px (micro spacing)
+• Large: 34px (scaled down from 55px for major sections)
+• Small Utilities: 5px, 8px
+
+EXAMPLE USAGE:
+--------------
+• tarkov-mainTitle: margin-top: 34px, margin-bottom: 34px
+• tarkovStudy-headline: margin-bottom: 13px
+• tarkovStudy-goal: margin-bottom: 21px
+• Container padding: 21px
+• persona-cards-row gap: 21px
+• branch-container gap: 13px
+• design-images-row gap: 13px
+• projects-grid gap: 21px
+
+=============================================
+📋 SPECIAL MEDIA QUERY (max-width: 750px)
+=============================================
+
+PURPOSE: Hide tables and show mobile bullet points
+
+TYPOGRAPHY:
+-----------
+• Mobile Bullet Point Headers: 
+  - font-size: var(--h6-font-size)
+  - font-family: var(--heading-font-family)
+  - font-weight: var(--font-weight-regular)
+
+SPACING:
+--------
+• Header spacing: margin-top: 21px, margin-bottom: 8px
+• List spacing: padding-left: 21px, margin-bottom: 13px
+
+=============================================
+🎯 KEY MATHEMATICAL RELATIONSHIPS
+=============================================
+
+DESKTOP BASE PATTERN:
+55px → 34px → 21px → 13px + utilities (15px, 8px, 5px)
+
+SCALING FACTORS:
+• Medium Screen: 80% scaling with strategic preservation
+• Tablet: Same as desktop pattern  
+• Mobile: 60% scaling with optimized values
+
+TYPOGRAPHY SCALING:
+All typography uses CSS custom properties from styleguide.css 
+with Fibonacci-based responsive scaling.
+
+CSS CUSTOM PROPERTIES USED:
+• --h0-font-size (Main titles)
+• --h3-font-size (Headlines)
+• --h6-font-size (Captions, buttons)
+• --body-font-size (Body text)
+• --heading-font-family
+• --body-font-family
+• --font-weight-regular
+• --font-weight-semibold
+• --font-weight-bold
+
+COLOR VARIABLES:
+• --TarkovTitles (Headlines)
+• --TarkovMainTitle (Captions)
+• --TarkovText (Body text)
+• --TarkovButton (Buttons)
+• --ni-main-title-about (Main title)
+
+=============================================
+📝 IMPLEMENTATION NOTES
+=============================================
+
+1. All spacing follows mathematical progressions for visual harmony
+2. Typography scales consistently across breakpoints using CSS variables
+3. Fibonacci relationships are used in mobile for enhanced readability
+4. Container constraints prevent overflow on smaller screens
+5. Box-sizing: border-box used throughout for predictable sizing
+6. Hamburger menu navigation activated on tablet and mobile
+7. Projects grid switches to single column on tablet and mobile
+8. Tables hidden below 750px with mobile bullet points as fallback
+
+=============================================
+🔄 MAINTENANCE GUIDELINES
+=============================================
+
+• When adding new elements, follow the established spacing patterns
+• Use CSS custom properties for typography to maintain consistency
+• Test across all breakpoints when making changes
+• Maintain mathematical relationships between spacing values
+• Document any deviations from the established patterns
+
+Last Updated: September 15, 2025
