@@ -2848,3 +2848,237 @@ function scrollToNextSection() {
     }
 }
 
+// ---- Side Navigator for Tarkov Page ----
+document.addEventListener('DOMContentLoaded', function() {
+    const sideNavigator = document.querySelector('.side-navigator');
+    
+    // Only initialize if we're on Tarkov page and side navigator exists
+    if (!sideNavigator || !document.body.classList.contains('tarkov-page')) {
+        return;
+    }
+    
+    const navDots = document.querySelectorAll('.nav-dot');
+    const sections = [
+        'problem-goals',
+        'research-discovery',
+        'define-synthesis', 
+        'ideate-design',
+        'low-fidelity-wireframes',
+        'high-fidelity-design',
+        'retrospective-learnings'
+    ];
+    
+    const fullCaseStudySection = document.getElementById('fullCaseStudyTarkov');
+    const viewCaseStudyBtn = document.getElementById('viewCaseStudyBtn');
+    
+    // Initially hide the navigator
+    sideNavigator.style.display = 'none';
+    let navigatorVisible = false;
+    
+    // Show navigator when case study is displayed
+    if (viewCaseStudyBtn) {
+        viewCaseStudyBtn.addEventListener('click', function() {
+            // Small delay to ensure the case study is visible
+            setTimeout(() => {
+                updateNavigatorVisibility();
+            }, 100);
+        });
+    }
+    
+    // Function to smoothly hide navigator
+    function hideNavigator() {
+        if (navigatorVisible) {
+            sideNavigator.classList.add('fade-out');
+            setTimeout(() => {
+                sideNavigator.style.display = 'none';
+                navigatorVisible = false;
+            }, 400); // Match CSS transition duration
+        }
+    }
+    
+    // Function to smoothly show navigator
+    function showNavigator() {
+        if (!navigatorVisible) {
+            sideNavigator.style.display = 'block';
+            // Start with fade-out state (off-screen)
+            sideNavigator.classList.add('fade-out');
+            
+            // Force a reflow to ensure the fade-out state is applied
+            sideNavigator.offsetHeight;
+            
+            // Then animate to visible state
+            sideNavigator.classList.remove('fade-out');
+            sideNavigator.classList.add('fade-in');
+            
+            navigatorVisible = true;
+            
+            // Clean up fade-in class after animation
+            setTimeout(() => {
+                sideNavigator.classList.remove('fade-in');
+            }, 400);
+        }
+    }
+    
+    // Function to check if navigator should be visible
+    function updateNavigatorVisibility() {
+        if (!fullCaseStudySection || fullCaseStudySection.style.display === 'none') {
+            hideNavigator();
+            return;
+        }
+        
+        const scrollPosition = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const viewportCenter = scrollPosition + (viewportHeight / 2);
+        
+        // Get the Problem & Goals section header position
+        const firstSection = document.getElementById('problem-goals');
+        const firstSectionTop = firstSection ? firstSection.offsetTop : 0;
+        
+        // Calculate navigator position (top edge)
+        const navigatorTop = scrollPosition + (viewportHeight / 2) - (sideNavigator.offsetHeight / 2);
+        
+        // Check if navigator top edge would touch Problem & Goals header level
+        const shouldHideAtTop = navigatorTop <= firstSectionTop;
+        
+        // Find other projects section and check if it's in center of viewport
+        const otherProjectsSection = document.querySelector('.other-projects, .projects-grid');
+        let shouldHideAtBottom = false;
+        
+        if (otherProjectsSection) {
+            const otherProjectsTop = otherProjectsSection.offsetTop;
+            const otherProjectsBottom = otherProjectsTop + otherProjectsSection.offsetHeight;
+            // Hide when other projects section reaches center of screen
+            shouldHideAtBottom = viewportCenter >= otherProjectsTop && viewportCenter <= otherProjectsBottom;
+        }
+        
+        // Show navigator only when:
+        // 1. Not touching Problem & Goals header level
+        // 2. Other projects section is not in center of viewport
+        const shouldShow = !shouldHideAtTop && !shouldHideAtBottom;
+        
+        if (shouldShow) {
+            showNavigator();
+        } else {
+            hideNavigator();
+        }
+    }
+    
+    // Function to update active dot based on current section
+    function updateActiveDot() {
+        // Only update if navigator is visible
+        if (!navigatorVisible) {
+            return;
+        }
+        
+        const scrollPosition = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        
+        // Calculate the actual visible viewport (excluding header + gap)
+        const header = document.querySelector('.header');
+        const headerHeight = header ? header.offsetHeight : 0;
+        const additionalGap = 34; // Mathematical spacing
+        const headerOffset = headerHeight + additionalGap;
+        
+        const viewportTop = scrollPosition + headerOffset; // Start below header + gap
+        const viewportBottom = scrollPosition + viewportHeight;
+        const minSectionThreshold = viewportHeight * 0.05; // Lower threshold for better detection
+        
+        let currentSection = '';
+        let visibleSections = [];
+        
+        // Calculate visible sections and their areas
+        sections.forEach((sectionId, index) => {
+            const sectionHeader = document.getElementById(sectionId);
+            if (sectionHeader) {
+                const sectionTop = sectionHeader.offsetTop;
+                
+                // Find the bottom by looking for the next section or end of content
+                let sectionBottom;
+                if (index < sections.length - 1) {
+                    const nextSectionHeader = document.getElementById(sections[index + 1]);
+                    sectionBottom = nextSectionHeader ? nextSectionHeader.offsetTop : document.body.scrollHeight;
+                } else {
+                    // Last section goes to the end of the document
+                    sectionBottom = document.body.scrollHeight;
+                }
+                
+                // Calculate visible area of this section (excluding header area)
+                const visibleTop = Math.max(sectionTop, viewportTop);
+                const visibleBottom = Math.min(sectionBottom, viewportBottom);
+                const visibleArea = Math.max(0, visibleBottom - visibleTop);
+                
+                // Add section to visible list if it meets threshold
+                if (visibleArea > minSectionThreshold) {
+                    visibleSections.push({
+                        id: sectionId,
+                        area: visibleArea,
+                        index: index
+                    });
+                }
+            }
+        });
+        
+        // Priority-based selection: earlier sections take precedence when multiple are visible
+        if (visibleSections.length > 0) {
+            // Sort by section order (index) to prioritize earlier sections
+            visibleSections.sort((a, b) => a.index - b.index);
+            currentSection = visibleSections[0].id;
+        }
+        
+        // Clear all active states first
+        navDots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Set only the current section as active
+        if (currentSection) {
+            const activeDot = document.querySelector(`[data-section="${currentSection}"]`);
+            if (activeDot) {
+                activeDot.classList.add('active');
+            }
+        }
+    }
+    
+    // Add smooth scroll behavior to nav dots
+    navDots.forEach(dot => {
+        dot.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Calculate offset for fixed header + 34px gap
+                const header = document.querySelector('.header');
+                const headerHeight = header ? header.offsetHeight : 0;
+                const additionalGap = 34; // Mathematical spacing
+                const totalOffset = headerHeight + additionalGap;
+                
+                // Calculate target position
+                const targetPosition = targetElement.offsetTop - totalOffset;
+                
+                // Smooth scroll to calculated position
+                window.scrollTo({
+                    top: Math.max(0, targetPosition), // Ensure we don't scroll above page top
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Update navigator visibility and active dot on scroll
+    let scrollTimer;
+    window.addEventListener('scroll', function() {
+        if (scrollTimer) {
+            clearTimeout(scrollTimer);
+        }
+        scrollTimer = setTimeout(() => {
+            updateNavigatorVisibility();
+            updateActiveDot();
+        }, 20);
+    });
+    
+    // Initial setup
+    updateNavigatorVisibility();
+    updateActiveDot();
+});
+

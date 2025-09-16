@@ -607,6 +607,125 @@ img,
   border-left: 4px solid var(--TarkovTitles);
 }
 
+/* =============================================
+   SIDE NAVIGATOR - DESKTOP ONLY
+   ============================================= */
+/* =============================================
+   SIDE NAVIGATOR - DESKTOP ONLY (1280px+)
+   ============================================= */
+@media (min-width: 1280px) {
+  .side-navigator {
+    position: fixed;
+    left: 55px; /* Based on page padding-left */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px; /* Just enough width for the dots (65px - 55px left position = 10px available) */
+    max-width: 10px; /* Ensure dots stay within the 65px gap */
+    z-index: 100;
+    display: block;
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .side-navigator.fade-out {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-20px); /* Slide out to the left */
+  }
+
+  .side-navigator.fade-in {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0); /* Slide in from the left */
+  }
+
+  .nav-dots {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 21px; /* Using mathematical spacing */
+    align-items: center;
+  }
+
+  .nav-dots li {
+    margin: 0;
+  }
+
+  .nav-dot {
+    display: block;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-decoration: none;
+    position: relative;
+    outline: none; /* Remove focus outline */
+  }
+
+  /* Tooltip for section names */
+  .nav-dot::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 25px; /* Position to the right of the dot */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: var(--TarkovTitles);
+    padding: 8px 13px;
+    border-radius: 6px;
+    font-family: var(--heading-font-family);
+    font-size: 13px;
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                visibility 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(-50%) translateX(-8px);
+    z-index: 101;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Remove max-width constraint - tooltips can extend beyond the 89px limit */
+  }
+
+  /* Show tooltips only when hovering over the navigator area */
+  .side-navigator:hover .nav-dot::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* Hide tooltips when not hovering over navigator */
+  .side-navigator:not(:hover) .nav-dot::before {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%) translateX(-8px);
+  }
+
+  .nav-dot:focus,
+  .nav-dot:active {
+    outline: none; /* Remove focus/active outline */
+    /* Removed color changes - no visual feedback on click */
+  }
+
+  .nav-dot.active {
+    background-color: var(--TarkovTitles);
+    border-color: var(--TarkovTitles);
+    box-shadow: 0 0 8px rgba(var(--TarkovTitlesRGB), 0.4);
+  }
+}
+
+/* Hide side navigator on all smaller screens */
+@media (max-width: 1279px) {
+  .side-navigator {
+    display: none !important;
+  }
+}
+
 /* Remove top margin from first paragraph inside problemAndGoalsContext */
 .problemAndGoalsContext .textTypographyTarkov:first-child {
   margin-top: 0;
