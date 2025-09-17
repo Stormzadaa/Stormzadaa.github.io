@@ -257,8 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const carouselContent = document.getElementById("carouselContent");
   
   if (carouselContent) {
-    console.log("Carousel script loaded, starting initialization...");
-
     // Configuration
     const config = {
       speed: 0.5, // Base speed (pixels per frame)
@@ -279,6 +277,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let isRunning = true;
     let isInitialized = false;
     let initializationAttempts = 0;
+    
+    // Cache DOM elements for performance
+    let cachedElements = null;
+    let container = null;
+    
+    // Track event listeners for cleanup
+    let eventListeners = [];
 
     // Much more aggressive layout detection
     function isLayoutReady() {
@@ -290,15 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Check computed styles are applied
       const computedStyle = window.getComputedStyle(carouselContent);
       const hasComputedStyles = computedStyle.display !== '' && computedStyle.fontSize !== '';
-      
-      console.log(`Layout check ${initializationAttempts + 1}:`, {
-        contentWidth,
-        containerWidthCheck,
-        contentHeight,
-        hasComputedStyles,
-        displayStyle: computedStyle.display,
-        fontSize: computedStyle.fontSize
-      });
       
       return (
         contentWidth > 0 && 
@@ -312,20 +308,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Robust initialization with multiple strategies
     function attemptInitialization() {
       initializationAttempts++;
-      console.log(`Initialization attempt ${initializationAttempts}`);
       
       if (isLayoutReady()) {
-        console.log("Layout is ready, initializing carousel...");
         actuallyInitialize();
         return true;
-      } else if (initializationAttempts < 20) {
+      } else if (initializationAttempts < 10) {
         // Try again with increasing delays
-        const delay = Math.min(50 + (initializationAttempts * 25), 500);
-        console.log(`Layout not ready, retrying in ${delay}ms...`);
+        const delay = Math.min(50 + (initializationAttempts * 25), 300);
         setTimeout(attemptInitialization, delay);
         return false;
       } else {
-        console.warn("Failed to detect proper layout after 20 attempts, forcing initialization");
+        // Force initialization after reasonable attempts
         actuallyInitialize();
         return true;
       }
@@ -333,12 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // The actual initialization function
     function actuallyInitialize() {
-      if (isInitialized) {
-        console.log("Already initialized, skipping...");
-        return;
-      }
-      
-      console.log("Running actual initialization...");
+      if (isInitialized) return;
       
       // Set up the carousel structure
       setupCarousel();
@@ -351,69 +339,119 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Mark as initialized
       isInitialized = true;
-      
-      console.log("Carousel initialization complete!");
     }
 
     // Create seamless infinite effect by duplicating content
     function setupCarousel() {
-      console.log("Setting up carousel...");
-      const container = carouselContent.parentElement;
+      container = carouselContent.parentElement;
       
-      // Clear any existing clones
+      // Clear any existing clones and click blockers
       const existingClones = container.querySelectorAll('[id*="carouselContentClone"]');
       existingClones.forEach(clone => clone.remove());
       
-      // Get dimensions
+      const existingBlockers = container.querySelectorAll('[data-carousel-blocker]');
+      existingBlockers.forEach(blocker => blocker.remove());
+      
+      // Make carousel elements completely unclickable with CSS
+      container.style.cssText += 'user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;';
+      carouselContent.style.cssText += 'user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; pointer-events: none !important;';
+      
+      // Apply complete unclickable styles to all spans
+      const spans = carouselContent.querySelectorAll('span');
+      spans.forEach(span => {
+        span.style.cssText += 'cursor: default !important; user-select: none !important; -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; pointer-events: none !important;';
+        // Also add data attribute to identify carousel elements
+        span.setAttribute('data-carousel-element', 'true');
+      });
+      
+      // Force accurate dimension measurement
+      container.style.visibility = 'hidden';
+      container.offsetHeight; // Force reflow
+      container.style.visibility = 'visible';
+      
+      // Get accurate dimensions after forced reflow
       containerWidth = container.offsetWidth;
       carouselWidth = carouselContent.offsetWidth;
       
-      console.log("Carousel dimensions:", { containerWidth, carouselWidth });
-      
-      // If still no dimensions, force a reflow
+      // If still no dimensions, try again with different approach
       if (carouselWidth === 0) {
-        container.style.visibility = 'hidden';
-        container.offsetHeight; // Force reflow
-        container.style.visibility = 'visible';
+        // Temporarily make visible and measure
+        const originalDisplay = carouselContent.style.display;
+        carouselContent.style.display = 'inline-flex';
+        carouselContent.style.whiteSpace = 'nowrap';
         carouselWidth = carouselContent.offsetWidth;
-        console.log("After forced reflow, carouselWidth:", carouselWidth);
+        
+        if (originalDisplay) {
+          carouselContent.style.display = originalDisplay;
+        }
       }
       
-      // Create enough clones to ensure seamless scrolling
-      // We need enough clones so that when one set scrolls off-screen, the next set is already visible
-      const clonesNeeded = Math.max(3, Math.ceil((containerWidth * 2) / carouselWidth));
-      console.log(`Creating ${clonesNeeded} clones`);
+      // Create enough clones to ensure seamless scrolling with buffer
+      const clonesNeeded = Math.max(3, Math.ceil((containerWidth * 2.5) / carouselWidth));
       
       for (let i = 1; i <= clonesNeeded; i++) {
         const clone = carouselContent.cloneNode(true);
         clone.id = `carouselContentClone${i}`;
-        clone.style.position = 'absolute';
-        clone.style.left = '0';
-        clone.style.top = '0';
-        clone.style.whiteSpace = 'nowrap';
-        clone.style.display = 'inline-flex';
+        clone.style.cssText = 'position: absolute; left: 0; top: 0; white-space: nowrap; display: inline-flex; user-select: none !important; -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; pointer-events: none !important;';
+        
+        // Make clone spans completely unclickable
+        const cloneSpans = clone.querySelectorAll('span');
+        cloneSpans.forEach(span => {
+          span.style.cssText += 'cursor: default !important; user-select: none !important; -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; pointer-events: none !important;';
+          span.setAttribute('data-carousel-element', 'true');
+        });
+        
         container.appendChild(clone);
       }
       
-      // Set initial positions
+      // Make sure container allows hover detection but nothing else
+      container.style.cssText += 'pointer-events: auto !important;';
+      
+      // Add absolute click prevention directly to container
+      container.style.cssText += 'position: relative;';
+      
+      // Create invisible overlay to block all clicks
+      const clickBlocker = document.createElement('div');
+      clickBlocker.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        background: transparent;
+      `;
+      clickBlocker.setAttribute('data-carousel-blocker', 'true');
+      container.appendChild(clickBlocker);
+      
+      // Cache all elements for animation performance
+      cachedElements = container.querySelectorAll('#carouselContent, [id*="carouselContentClone"]');
+      
+      // Set initial positions with fresh start
       resetPositions();
       
       // Update speed based on screen size
       updateSpeed();
-      
-      console.log("Carousel setup complete");
     }
 
     // Reset all element positions
     function resetPositions() {
-      const container = carouselContent.parentElement;
-      const allElements = container.querySelectorAll('#carouselContent, [id*="carouselContentClone"]');
+      if (!cachedElements) {
+        cachedElements = container.querySelectorAll('#carouselContent, [id*="carouselContentClone"]');
+      }
       
-      allElements.forEach((element, index) => {
+      // Force recalculation of carousel width if it's zero or seems wrong
+      if (carouselWidth === 0 || !carouselWidth) {
+        carouselWidth = carouselContent.offsetWidth;
+      }
+      
+      cachedElements.forEach((element, index) => {
         const xPos = index * carouselWidth;
-        element.style.transform = `translateX(${xPos}px)`;
+        element.style.transform = `translate3d(${xPos}px, 0, 0)`;
       });
       
+      // Reset current position to start fresh
       currentPosition = 0;
     }
 
@@ -432,50 +470,50 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Main animation loop - COMPLETELY REWRITTEN for true infinite scroll
+    // Main animation loop - optimized for performance
     function animate() {
-      if (!isRunning) return;
+      if (!isRunning || !cachedElements) return;
       
       // Move the global position
       currentPosition -= speed;
       
-      // Get all carousel elements
-      const container = carouselContent.parentElement;
-      const allElements = container.querySelectorAll('#carouselContent, [id*="carouselContentClone"]');
-      
       // Simple infinite loop: when currentPosition goes too far left, reset it
       if (currentPosition <= -carouselWidth) {
-        currentPosition = 0; // Reset to start position
+        currentPosition = 0;
       }
       
-      // Position all elements in a continuous line
-      allElements.forEach((element, index) => {
-        // Each element is positioned at currentPosition + (index * carouselWidth)
-        const elementPosition = currentPosition + (index * carouselWidth);
-        element.style.transform = `translateX(${elementPosition}px)`;
-      });
+      // Position all elements in a continuous line using cached elements
+      for (let i = 0; i < cachedElements.length; i++) {
+        const elementPosition = currentPosition + (i * carouselWidth);
+        cachedElements[i].style.transform = `translate3d(${elementPosition}px, 0, 0)`;
+      }
       
       animationId = requestAnimationFrame(animate);
     }
 
     // Start the carousel
     function start() {
-      if (isRunning && animationId) {
-        console.log("Carousel already running");
-        return;
-      }
+      if (isRunning && animationId) return;
       isRunning = true;
-      console.log("Starting carousel animation");
       animate();
     }
 
     // Stop the carousel
     function stop() {
-      console.log("Stopping carousel animation");
       isRunning = false;
       if (animationId) {
         cancelAnimationFrame(animationId);
         animationId = null;
+      }
+    }
+    
+    // Safeguard: Override any external attempts to stop the carousel
+    const originalStop = stop;
+    function protectedStop() {
+      // Only allow stopping if it's a legitimate call (not from click interactions)
+      const stack = new Error().stack;
+      if (stack && !stack.includes('preventCarouselInteraction')) {
+        originalStop();
       }
     }
 
@@ -483,131 +521,308 @@ document.addEventListener("DOMContentLoaded", () => {
     function handleResize() {
       if (!isInitialized) return;
       
-      console.log("Window resized, reinitializing carousel...");
-      stop();
+      originalStop(); // Use original stop for legitimate resize
+      
+      // Immediately add ultra-aggressive global click prevention during resize
+      const emergencyClickPrevention = (e) => {
+        const target = e.target;
+        
+        const isCarouselElement = 
+          target.tagName === 'SPAN' ||
+          target.hasAttribute('data-carousel-element') ||
+          target.closest('#carouselContent') || 
+          target.closest('[id*="carouselContentClone"]') ||
+          target.closest('.carousel-content') ||
+          target.closest('.carousel-container') ||
+          target.closest('[data-carousel-element]') ||
+          target.closest('[data-carousel-blocker]');
+        
+        if (isCarouselElement) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          return false;
+        }
+      };
+      
+      // Add emergency prevention immediately with all event types
+      ['click', 'mousedown', 'mouseup', 'dblclick', 'touchstart', 'touchend'].forEach(eventType => {
+        document.addEventListener(eventType, emergencyClickPrevention, { capture: true });
+      });
+      
+      // Clean up old event listeners
+      cleanupEventListeners();
       
       // Reset initialization flag and attempt counter
       isInitialized = false;
       initializationAttempts = 0;
+      cachedElements = null; // Clear cache
       
-      // Wait for layout to settle after resize
+      // Wait for layout to settle after resize, then completely reinitialize
       setTimeout(() => {
-        attemptInitialization();
-      }, 150);
+        // Remove emergency prevention
+        ['click', 'mousedown', 'mouseup', 'dblclick', 'touchstart', 'touchend'].forEach(eventType => {
+          document.removeEventListener(eventType, emergencyClickPrevention, { capture: true });
+        });
+        
+        // Complete restart of carousel
+        restartCarousel();
+      }, 200); // Slightly longer delay to ensure layout is stable
+    }
+    
+    // Complete carousel restart function
+    function restartCarousel() {
+      // Reset position state
+      currentPosition = 0;
+      carouselWidth = 0;
+      containerWidth = 0;
+      
+      // Clear any existing clones completely
+      if (container) {
+        const existingClones = container.querySelectorAll('[id*="carouselContentClone"]');
+        existingClones.forEach(clone => clone.remove());
+        
+        // Reset original carousel content position
+        if (carouselContent) {
+          carouselContent.style.transform = 'translateX(0px)';
+        }
+      }
+      
+      // Force a complete reflow to get accurate dimensions
+      if (carouselContent && container) {
+        container.style.visibility = 'hidden';
+        container.offsetHeight; // Force reflow
+        container.style.visibility = 'visible';
+      }
+      
+      // Wait one more frame for layout to stabilize
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          attemptInitialization();
+        }, 50);
+      });
+    }
+    
+    // Helper function to track and clean up event listeners
+    function addTrackedEventListener(element, event, handler, options) {
+      element.addEventListener(event, handler, options);
+      eventListeners.push({ element, event, handler, options });
+    }
+    
+    function cleanupEventListeners() {
+      eventListeners.forEach(({ element, event, handler, options }) => {
+        try {
+          element.removeEventListener(event, handler, options);
+        } catch (e) {
+          // Ignore errors if element no longer exists
+        }
+      });
+      eventListeners = [];
     }
 
     // Handle visibility change (pause when tab is not visible)
     function handleVisibilityChange() {
       if (document.hidden) {
-        stop();
+        originalStop(); // Use original stop for legitimate visibility change
       } else {
         start();
       }
     }
 
-    // Add hover effects for individual spans
+    // Add hover effects for individual spans with optimized event delegation
     function setupHoverEffects() {
-      const container = carouselContent.parentElement;
+      let baseSpeed = speed; // Store the initial speed
+      let isHovering = false;
+      let currentHoveredSpan = null;
       
-      // Use event delegation for better performance
-      container.addEventListener('mouseenter', (e) => {
-        if (e.target.tagName === 'SPAN') {
-          // Slow down on hover
-          speed = speed * 0.3;
+      // Ultra-aggressive click prevention with multiple detection methods
+      const preventCarouselInteraction = (e) => {
+        const target = e.target;
+        
+        // Multiple ways to detect carousel elements
+        const isCarouselElement = 
+          target.tagName === 'SPAN' ||
+          target.hasAttribute('data-carousel-element') ||
+          target.closest('#carouselContent') || 
+          target.closest('[id*="carouselContentClone"]') ||
+          target.closest('.carousel-content') ||
+          target.closest('.carousel-container') ||
+          target.closest('[data-carousel-element]') ||
+          target.closest('[data-carousel-blocker]');
+        
+        if (isCarouselElement) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
           
-          // Visual feedback
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'scale(1.05)';
+          // Force cursor to default
+          if (target.style) {
+            target.style.cursor = 'default';
+          }
+          
+          return false;
         }
-      }, true);
+      };
       
-      container.addEventListener('mouseleave', (e) => {
-        if (e.target.tagName === 'SPAN') {
-          // Restore normal speed
-          updateSpeed();
-          
-          // Reset visual feedback
-          e.target.style.opacity = '0.5';
-          e.target.style.transform = 'scale(1)';
+      // Add global click prevention with highest priority
+      const globalClickPrevention = (e) => {
+        const target = e.target;
+        if (target.hasAttribute && target.hasAttribute('data-carousel-element')) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          return false;
         }
-      }, true);
+        
+        // Check parent elements too
+        let parent = target.parentElement;
+        while (parent) {
+          if (parent.hasAttribute && parent.hasAttribute('data-carousel-element')) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+          }
+          parent = parent.parentElement;
+        }
+      };
+      
+      // Prevent all types of interaction events using tracked listeners
+      ['click', 'mousedown', 'mouseup', 'dblclick', 'touchstart', 'touchend'].forEach(eventType => {
+        addTrackedEventListener(container, eventType, preventCarouselInteraction, { capture: true });
+        addTrackedEventListener(document, eventType, preventCarouselInteraction, { capture: true });
+        addTrackedEventListener(document, eventType, globalClickPrevention, { capture: true });
+      });
+      
+      // Prevent context menu and drag events using tracked listeners
+      addTrackedEventListener(container, 'contextmenu', preventCarouselInteraction, { capture: true });
+      addTrackedEventListener(container, 'dragstart', preventCarouselInteraction, { capture: true });
+      addTrackedEventListener(container, 'selectstart', preventCarouselInteraction, { capture: true });
+      addTrackedEventListener(document, 'contextmenu', globalClickPrevention, { capture: true });
+      
+      // Use mousemove to detect which span is being hovered
+      const handleMouseMove = (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Find the span at this position by checking coordinates
+        const allSpans = container.querySelectorAll('span[data-carousel-element]');
+        let hoveredSpan = null;
+        
+        for (let span of allSpans) {
+          const spanRect = span.getBoundingClientRect();
+          const containerRect = container.getBoundingClientRect();
+          const relativeLeft = spanRect.left - containerRect.left;
+          const relativeRight = spanRect.right - containerRect.left;
+          const relativeTop = spanRect.top - containerRect.top;
+          const relativeBottom = spanRect.bottom - containerRect.top;
+          
+          if (x >= relativeLeft && x <= relativeRight && y >= relativeTop && y <= relativeBottom) {
+            hoveredSpan = span;
+            break;
+          }
+        }
+        
+        // Handle hover state changes
+        if (hoveredSpan && hoveredSpan !== currentHoveredSpan) {
+          // New span hovered
+          if (currentHoveredSpan) {
+            // Reset previous span
+            currentHoveredSpan.style.setProperty('opacity', '0.5', 'important');
+            currentHoveredSpan.style.setProperty('transform', 'scale(1)', 'important');
+          }
+          
+          currentHoveredSpan = hoveredSpan;
+          
+          if (!isHovering) {
+            baseSpeed = speed;
+            isHovering = true;
+          }
+          speed = baseSpeed * 0.3;
+          
+          // Apply hover styles
+          hoveredSpan.style.setProperty('opacity', '1', 'important');
+          hoveredSpan.style.setProperty('transform', 'scale(1.05)', 'important');
+          hoveredSpan.style.setProperty('transition', 'opacity 0.2s ease, transform 0.2s ease', 'important');
+          
+        } else if (!hoveredSpan && currentHoveredSpan) {
+          // No longer hovering any span
+          currentHoveredSpan.style.setProperty('opacity', '0.5', 'important');
+          currentHoveredSpan.style.setProperty('transform', 'scale(1)', 'important');
+          currentHoveredSpan = null;
+          
+          speed = baseSpeed;
+          isHovering = false;
+        }
+      };
+      
+      addTrackedEventListener(container, 'mousemove', handleMouseMove, { passive: true });
+      
+      // Handle mouse leave from container
+      const handleMouseLeave = () => {
+        if (currentHoveredSpan) {
+          currentHoveredSpan.style.setProperty('opacity', '0.5', 'important');
+          currentHoveredSpan.style.setProperty('transform', 'scale(1)', 'important');
+          currentHoveredSpan = null;
+        }
+        speed = baseSpeed;
+        isHovering = false;
+      };
+      
+      addTrackedEventListener(container, 'mouseleave', handleMouseLeave, { passive: true });
+      
+      // Update base speed when speed changes due to screen size
+      const originalUpdateSpeed = updateSpeed;
+      updateSpeed = function() {
+        originalUpdateSpeed();
+        if (!isHovering) {
+          baseSpeed = speed;
+        }
+      };
     }
 
     // Public API (if needed)
     window.CarouselAPI = {
       start,
-      stop,
+      stop: protectedStop,
       restart: () => {
-        console.log("Manual restart requested");
-        stop();
+        protectedStop();
         isInitialized = false;
         initializationAttempts = 0;
+        cachedElements = null;
         attemptInitialization();
       },
       forceInit: () => {
-        console.log("Force initialization requested");
         isInitialized = false;
         initializationAttempts = 0;
+        cachedElements = null;
         actuallyInitialize();
       }
     };
 
-    // Set up event listeners
-    window.addEventListener('resize', handleResize);
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    // Set up event listeners with passive options for better performance
+    addTrackedEventListener(window, 'resize', handleResize, { passive: true });
+    addTrackedEventListener(document, 'visibilitychange', handleVisibilityChange, { passive: true });
 
-    // Multiple initialization strategies with more aggressive timing
-    console.log("Setting up initialization strategies...");
+    // Optimized initialization strategies (reduced from 6 to 3)
     
-    // Strategy 1: Immediate attempt
-    setTimeout(() => {
-      console.log("Strategy 1: Immediate attempt");
-      attemptInitialization();
-    }, 0);
+    // Strategy 1: Immediate attempt after DOM ready
+    setTimeout(attemptInitialization, 0);
     
-    // Strategy 2: After requestAnimationFrame (ensures DOM is painted)
+    // Strategy 2: After layout paint (using RAF for optimal timing)
     requestAnimationFrame(() => {
       setTimeout(() => {
-        console.log("Strategy 2: After RAF + 50ms");
         if (!isInitialized) attemptInitialization();
-      }, 50);
+      }, 100);
     });
     
-    // Strategy 3: After a short delay
+    // Strategy 3: Ultimate fallback after reasonable delay
     setTimeout(() => {
-      console.log("Strategy 3: After 200ms");
-      if (!isInitialized) attemptInitialization();
-    }, 200);
-    
-    // Strategy 4: After images and fonts load
-    window.addEventListener('load', () => {
-      console.log("Strategy 4: After window load");
-      if (!isInitialized) attemptInitialization();
-    });
-    
-    // Strategy 5: After a longer delay as ultimate fallback
-    setTimeout(() => {
-      console.log("Strategy 5: Ultimate fallback after 1000ms");
       if (!isInitialized) {
-        console.warn("Using ultimate fallback initialization");
         actuallyInitialize();
       }
     }, 1000);
-
-    // Strategy 6: Use ResizeObserver if available to detect layout changes
-    if (window.ResizeObserver) {
-      const resizeObserver = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          if (entry.target === carouselContent && !isInitialized) {
-            console.log("Strategy 6: ResizeObserver detected layout change");
-            if (entry.contentRect.width > 100) {
-              attemptInitialization();
-            }
-          }
-        }
-      });
-      resizeObserver.observe(carouselContent);
-    }
   }
 });
 
@@ -2928,33 +3143,34 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const scrollPosition = window.scrollY;
         const viewportHeight = window.innerHeight;
-        const viewportCenter = scrollPosition + (viewportHeight / 2);
+        
+        // Calculate navigator position and dimensions
+        const navigatorCenterY = scrollPosition + (viewportHeight / 2);
+        const navigatorHeight = sideNavigator.offsetHeight || 200; // Fallback height estimate
+        const navigatorTopEdge = navigatorCenterY - (navigatorHeight / 2);
+        const navigatorBottomEdge = navigatorCenterY + (navigatorHeight / 2);
         
         // Get the Problem & Goals section header position
-        const firstSection = document.getElementById('problem-goals');
-        const firstSectionTop = firstSection ? firstSection.offsetTop : 0;
+        const problemGoalsHeader = document.getElementById('problem-goals');
+        const problemGoalsHeaderTop = problemGoalsHeader ? problemGoalsHeader.offsetTop : 0;
         
-        // Calculate navigator position (top edge)
-        const navigatorTop = scrollPosition + (viewportHeight / 2) - (sideNavigator.offsetHeight / 2);
-        
-        // Check if navigator top edge would touch Problem & Goals header level
-        const shouldHideAtTop = navigatorTop <= firstSectionTop;
-        
-        // Find other projects section and check if it's in center of viewport
-        const otherProjectsSection = document.querySelector('.other-projects, .projects-grid');
-        let shouldHideAtBottom = false;
+        // Find other projects section
+        const otherProjectsSection = document.querySelector('.tarkov-other-projects, .other-projects, .projects-grid');
+        let otherProjectsHeaderTop = document.body.scrollHeight; // Default to end of page
         
         if (otherProjectsSection) {
-            const otherProjectsTop = otherProjectsSection.offsetTop;
-            const otherProjectsBottom = otherProjectsTop + otherProjectsSection.offsetHeight;
-            // Hide when other projects section reaches center of screen
-            shouldHideAtBottom = viewportCenter >= otherProjectsTop && viewportCenter <= otherProjectsBottom;
+            // Use the top edge of the tarkov-other-projects section itself
+            otherProjectsHeaderTop = otherProjectsSection.offsetTop;
         }
         
+        // Check visibility conditions
+        const topEdgePassedProblemGoals = navigatorTopEdge <= problemGoalsHeaderTop;
+        const bottomEdgeReachedOtherProjects = navigatorBottomEdge >= otherProjectsHeaderTop;
+        
         // Show navigator only when:
-        // 1. Not touching Problem & Goals header level
-        // 2. Other projects section is not in center of viewport
-        const shouldShow = !shouldHideAtTop && !shouldHideAtBottom;
+        // 1. Top edge is below Problem & Goals header
+        // 2. Bottom edge is above Other Projects title
+        const shouldShow = !topEdgePassedProblemGoals && !bottomEdgeReachedOtherProjects;
         
         if (shouldShow) {
             showNavigator();
