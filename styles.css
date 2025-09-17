@@ -74,8 +74,17 @@
 
   .textTypography {
     font-family: var(--body-font-family);
-    font-size: var(--h6-font-size);
+    font-size: var(--body-font-size);
     color: var(--ni-footer-header);
+    padding-left: 89px;
+    padding-right: 89px;
+  }
+
+  .aboutsubheader {
+    font-family: var(--heading-font-family);
+    font-size: var(--h4-font-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--ni-main-title);
   }
 
   .footerTitleTypography {
@@ -691,9 +700,17 @@
 
   .textTypography {
     font-family: var(--body-font-family);
-
     font-size: var(--h7-font-size);
     color: var(--ni-footer-header);
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+
+  .aboutsubheader {
+    font-family: var(--heading-font-family);
+    font-size: var(--h4-font-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--ni-main-title);
   }
 
   .footerTitleTypography {
@@ -1076,6 +1093,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 21px;
+    
+    /* Exception for 769px to 950px - change grid layout */
+    @media (max-width: 950px) {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens in this range */
+    }
   }
 
   .image-item {
@@ -1564,9 +1586,17 @@
 
   .textTypography {
     font-family: var(--body-font-family);
-
     font-size: var(--h8-font-size);
     color: var(--ni-footer-header);
+    padding-left: 21px;
+    padding-right: 21px;
+  }
+
+  .aboutsubheader {
+    font-family: var(--heading-font-family);
+    font-size: var(--h4-font-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--ni-main-title);
   }
 
   .footerTitleTypography {
