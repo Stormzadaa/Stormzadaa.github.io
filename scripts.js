@@ -2935,6 +2935,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // Prevent context menu on drag
             wrapper.addEventListener('contextmenu', (e) => e.preventDefault());
             
+            // Add window resize listener to reload carousel positions
+            window.addEventListener('resize', () => {
+                console.log('Window resized, reloading carousel position');
+                // Small delay to ensure CSS has updated
+                setTimeout(() => {
+                    goToSlide(testCurrentIndex);
+                }, 50);
+            });
+            
             console.log('Carousel event listeners added');
         } else {
             console.log('Carousel elements not found');

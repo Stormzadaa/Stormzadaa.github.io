@@ -125,7 +125,7 @@
 .hero-tagline {
   font-family: var(--body-font-family);
   font-size: clamp(2vh, 2.1vw, 3vh);
-  color: white !important;
+  color: var(--grocery-app-text-light) !important;
   margin: 0 0 clamp(1vh, 3.4vw, 3vh) 0;
   opacity: 0.95;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
@@ -250,7 +250,7 @@
   font-weight: var(--font-weight-semibold);
   font-size: var(--h6-font-size);
   background: var(--grocery-app-success);
-  color: white;
+  color: var(--grocery-app-text-light);
   padding: 12px 24px;
   border-radius: 25px;
   transition: all 0.3s ease;
@@ -706,7 +706,7 @@
   margin: 0;
   text-align: center;
   background: rgba(255, 255, 255, 1);
-  padding: 0;
+  padding: 13px 21px;
   border-radius: 0;
   display: inline-block;
 }
@@ -724,6 +724,7 @@
   margin: 34px 0;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .smooth-carousel:active {
@@ -741,7 +742,7 @@
 .carousel-item {
   flex-shrink: 0;
   width: 50%; /* Desktop: 50% width for closer overlapping effect */
-  height: 100%;
+  aspect-ratio: 9 / 19.5; /* Maintain mobile phone proportions */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -780,6 +781,7 @@
   
   .carousel-item {
     width: 65%; /* Mobile/Medium: 65% width for closer spacing */
+    aspect-ratio: 9 / 19.5; /* Maintain mobile phone proportions */
     opacity: 0.5; /* Non-center items have 50% visibility */
     padding: 0 5px; /* Reduced padding for tighter spacing */
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -1304,6 +1306,9 @@
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-item:hover {
@@ -1312,9 +1317,11 @@
 }
 
 .project-link {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
+  height: 100%;
 }
 
 .project-image {
@@ -1336,20 +1343,24 @@
 
 .project-info {
   padding: 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .project-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
   font-size: var(--h4-font-size);
-  color: var(--grocery-app-text);
+  color: var(--grocery-app-text-light);
   margin: 0 0 12px 0;
 }
 
 .project-description {
   font-family: var(--body-font-family);
   font-size: var(--h6-font-size);
-  color: var(--grocery-app-text);
+  color: var(--grocery-app-text-light);
   margin: 0 0 16px 0;
   line-height: 1.5;
   opacity: 0.8;
