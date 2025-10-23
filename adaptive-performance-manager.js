@@ -636,3 +636,314 @@ COMMANDS:
 The system will automatically monitor and adjust performance!
 Your 2.5-3.5MB memory usage is actually GOOD - this system prevents it from getting worse.
 `);
+
+// ========================================
+// BACKGROUND ANIMATION PERFORMANCE MONITOR
+// ========================================
+
+/**
+ * Independent Background Performance Monitor
+ * Monitors animated background performance and pauses animations if resource consumption is too high
+ */
+class BackgroundPerformanceMonitor {
+  constructor(options = {}) {
+    this.config = {
+      // Performance thresholds
+      fps: {
+        critical: 40,    // Below this: pause background
+        warning: 50      // Below this: start monitoring closely
+      },
+      frameTime: {
+        warning: 20,     // ms - start monitoring
+        critical: 25     // ms - pause background
+      },
+      cpuUsage: {
+        warning: 70,     // % - start monitoring
+        critical: 85     // % - pause background
+      },
+      
+      // Monitoring settings
+      monitorInterval: 2000,     // Check every 2 seconds
+      samplesForDecision: 3,     // Samples before pausing
+      resumeDelay: 10000,        // 10s before trying to resume
+      
+      // Performance tracking
+      criticalSamples: 0,
+      maxCriticalSamples: 3,     // Pause after 3 critical samples
+      
+      ...options
+    };
+
+    // State management
+    this.isMonitoring = false;
+    this.isPaused = false;
+    this.samples = [];
+    this.resumeTimeout = null;
+    
+    // Performance tracking
+    this.lastFrameTime = performance.now();
+    this.frameCount = 0;
+    this.fpsHistory = [];
+    
+    // Background elements
+    this.backgroundElements = null;
+    this.originalAnimationStates = new Map();
+    
+    this.init();
+  }
+
+  init() {
+    console.log('🎨 Background Performance Monitor initializing...');
+    
+    // Find background elements
+    this.findBackgroundElements();
+    
+    // Start monitoring if elements found
+    if (this.backgroundElements && this.backgroundElements.length > 0) {
+      this.startMonitoring();
+      console.log(`✅ Monitoring ${this.backgroundElements.length} background elements`);
+    } else {
+      console.log('ℹ️ No animated background elements found');
+    }
+  }
+
+  findBackgroundElements() {
+    // Look for triangular background elements
+    this.backgroundElements = document.querySelectorAll('.triangle');
+    
+    // Store original animation states
+    this.backgroundElements.forEach((element, index) => {
+      const computedStyle = window.getComputedStyle(element);
+      this.originalAnimationStates.set(element, {
+        animation: computedStyle.animation,
+        animationName: computedStyle.animationName,
+        animationDuration: computedStyle.animationDuration,
+        animationTimingFunction: computedStyle.animationTimingFunction,
+        animationDelay: computedStyle.animationDelay,
+        animationIterationCount: computedStyle.animationIterationCount,
+        animationDirection: computedStyle.animationDirection,
+        animationFillMode: computedStyle.animationFillMode,
+        animationPlayState: computedStyle.animationPlayState
+      });
+    });
+  }
+
+  startMonitoring() {
+    if (this.isMonitoring) return;
+    
+    this.isMonitoring = true;
+    this.monitorPerformance();
+  }
+
+  stopMonitoring() {
+    this.isMonitoring = false;
+    if (this.resumeTimeout) {
+      clearTimeout(this.resumeTimeout);
+      this.resumeTimeout = null;
+    }
+  }
+
+  monitorPerformance() {
+    if (!this.isMonitoring) return;
+
+    // Measure frame rate
+    this.measureFrameRate();
+    
+    // Check performance metrics
+    this.checkPerformanceMetrics();
+    
+    // Schedule next check
+    setTimeout(() => {
+      this.monitorPerformance();
+    }, this.config.monitorInterval);
+  }
+
+  measureFrameRate() {
+    const now = performance.now();
+    this.frameCount++;
+    
+    const timeSinceLastFrame = now - this.lastFrameTime;
+    
+    if (timeSinceLastFrame >= 1000) { // Calculate FPS every second
+      const fps = Math.round((this.frameCount * 1000) / timeSinceLastFrame);
+      this.fpsHistory.push(fps);
+      
+      // Keep only last 10 samples
+      if (this.fpsHistory.length > 10) {
+        this.fpsHistory.shift();
+      }
+      
+      this.frameCount = 0;
+      this.lastFrameTime = now;
+    }
+  }
+
+  checkPerformanceMetrics() {
+    if (this.fpsHistory.length === 0) return;
+
+    const avgFps = this.fpsHistory.reduce((a, b) => a + b, 0) / this.fpsHistory.length;
+    const minFps = Math.min(...this.fpsHistory);
+    
+    // Check if performance is critical
+    const isCritical = minFps < this.config.fps.critical || avgFps < this.config.fps.warning;
+    
+    if (isCritical && !this.isPaused) {
+      this.config.criticalSamples++;
+      
+      if (this.config.criticalSamples >= this.config.maxCriticalSamples) {
+        this.pauseBackground();
+      }
+    } else if (!isCritical && this.config.criticalSamples > 0) {
+      // Reset critical samples if performance improves
+      this.config.criticalSamples = Math.max(0, this.config.criticalSamples - 1);
+    }
+  }
+
+  pauseBackground() {
+    if (this.isPaused || !this.backgroundElements) return;
+    
+    console.log('⏸️ Pausing background animations due to performance issues');
+    this.isPaused = true;
+    
+    // Pause all triangle animations
+    this.backgroundElements.forEach(element => {
+      element.style.animationPlayState = 'paused';
+    });
+    
+    // Show performance notice (optional)
+    this.showPerformanceNotice();
+    
+    // Schedule resume attempt
+    this.scheduleResume();
+  }
+
+  resumeBackground() {
+    if (!this.isPaused || !this.backgroundElements) return;
+    
+    console.log('▶️ Resuming background animations');
+    this.isPaused = false;
+    this.config.criticalSamples = 0;
+    
+    // Resume all triangle animations
+    this.backgroundElements.forEach(element => {
+      element.style.animationPlayState = 'running';
+    });
+    
+    // Hide performance notice
+    this.hidePerformanceNotice();
+  }
+
+  scheduleResume() {
+    if (this.resumeTimeout) {
+      clearTimeout(this.resumeTimeout);
+    }
+    
+    this.resumeTimeout = setTimeout(() => {
+      this.resumeBackground();
+    }, this.config.resumeDelay);
+  }
+
+  showPerformanceNotice() {
+    // Create a subtle notice (optional - can be disabled)
+    let notice = document.getElementById('bg-performance-notice');
+    if (!notice) {
+      notice = document.createElement('div');
+      notice.id = 'bg-performance-notice';
+      notice.style.cssText = `
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      `;
+      notice.textContent = '🎨 Background paused for performance';
+      document.body.appendChild(notice);
+    }
+    
+    setTimeout(() => {
+      notice.style.opacity = '1';
+    }, 10);
+  }
+
+  hidePerformanceNotice() {
+    const notice = document.getElementById('bg-performance-notice');
+    if (notice) {
+      notice.style.opacity = '0';
+      setTimeout(() => {
+        if (notice.parentNode) {
+          notice.parentNode.removeChild(notice);
+        }
+      }, 300);
+    }
+  }
+
+  // Public API methods
+  forceResume() {
+    this.resumeBackground();
+  }
+
+  forcePause() {
+    this.pauseBackground();
+  }
+
+  getStatus() {
+    return {
+      isMonitoring: this.isMonitoring,
+      isPaused: this.isPaused,
+      elementsCount: this.backgroundElements ? this.backgroundElements.length : 0,
+      avgFps: this.fpsHistory.length > 0 ? 
+        Math.round(this.fpsHistory.reduce((a, b) => a + b, 0) / this.fpsHistory.length) : 0,
+      criticalSamples: this.config.criticalSamples
+    };
+  }
+}
+
+// Initialize Background Performance Monitor
+let backgroundMonitor;
+
+// Auto-initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    backgroundMonitor = new BackgroundPerformanceMonitor();
+  });
+} else {
+  backgroundMonitor = new BackgroundPerformanceMonitor();
+}
+
+// Expose global API
+window.BackgroundPerformanceAPI = {
+  getStatus: () => backgroundMonitor ? backgroundMonitor.getStatus() : null,
+  pause: () => backgroundMonitor ? backgroundMonitor.forcePause() : null,
+  resume: () => backgroundMonitor ? backgroundMonitor.forceResume() : null,
+  restart: () => {
+    if (backgroundMonitor) {
+      backgroundMonitor.stopMonitoring();
+      backgroundMonitor = new BackgroundPerformanceMonitor();
+    }
+  }
+};
+
+console.log(`
+🎨 BACKGROUND PERFORMANCE MONITOR LOADED!
+
+FEATURES:
+✅ Real-time background animation monitoring
+✅ Automatic animation pausing on performance issues
+✅ Smart resume after performance improves
+✅ FPS tracking and analysis
+✅ Subtle performance notifications
+
+API COMMANDS:
+• BackgroundPerformanceAPI.getStatus() - Current background performance
+• BackgroundPerformanceAPI.pause() - Force pause animations
+• BackgroundPerformanceAPI.resume() - Force resume animations
+• BackgroundPerformanceAPI.restart() - Restart monitor
+
+The system will automatically pause triangular background animations if performance drops!
+`);

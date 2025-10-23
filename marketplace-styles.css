@@ -1,0 +1,30 @@
+/* =================================
+   MARKETPLACE APP STYLES
+   ================================= */
+
+/* Body class for marketplace page */
+.marketplace-page {
+  background-color: var(--marketplace-background);
+}
+
+/* =================================
+   MARKETPLACE COLOR VARIABLES
+   ================================= */
+:root {
+  /* Marketplace App Color Palette */
+  --marketplace-primary: #6366F1;        /* Modern indigo for primary actions */
+  --marketplace-secondary: #8B5CF6;      /* Purple for secondary elements */
+  --marketplace-accent: #10B981;         /* Green for success states */
+  --marketplace-background: #F8FAFC;     /* Light gray background */
+  --marketplace-text: #1E293B;           /* Dark slate for text */
+  --marketplace-text-light: #FFFFFF;     /* White text for dark backgrounds */
+  --marketplace-card-bg: #FFFFFF;        /* Pure white for cards */
+  --marketplace-border: #E2E8F0;         /* Light border color */
+  --marketplace-shadow: rgba(99, 102, 241, 0.1); /* Subtle indigo shadow */
+}
+
+/* =================================
+   YOUR CUSTOM STYLES GO HERE
+   ================================= */
+
+/* Add your marketplace-specific styles below */

@@ -87,6 +87,13 @@
     color: var(--ni-main-title);
   }
 
+  .aboutpunchline {
+    font-family: var(--heading-font-family);
+    font-size: var(--h4-font-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--ni-main-title);
+  }
+
   .footerTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
@@ -239,6 +246,16 @@
     font-weight: var(--font-weight-semibold);
     color: var(--ni-main-title);
     font-family: var(--heading-font-family);
+  }
+
+  /* Title line break control */
+  .no-break {
+    white-space: nowrap;
+  }
+
+  .title-line-1,
+  .title-line-2 {
+    display: inline;
   }
 
   /* Option 1: Centered Hierarchy - elegant focal point */
@@ -713,6 +730,13 @@
     color: var(--ni-main-title);
   }
 
+  .aboutpunchline {
+    font-family: var(--heading-font-family);
+    font-size: var(--h4-font-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--ni-main-title);
+  }
+
   .footerTitleTypography {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight-semibold);
@@ -938,6 +962,16 @@
     text-align: center;
     letter-spacing: 13px;
     text-transform: uppercase;
+  }
+
+  /* Title line break control - medium screens */
+  .no-break {
+    white-space: nowrap;
+  }
+
+  .title-line-1,
+  .title-line-2 {
+    display: inline;
   }
 
   .hold-title {
@@ -1593,6 +1627,13 @@
   }
 
   .aboutsubheader {
+    font-family: var(--heading-font-family);
+    font-size: var(--h4-font-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--ni-main-title);
+  }
+
+  .aboutpunchline {
     font-family: var(--heading-font-family);
     font-size: var(--h4-font-size);
     font-weight: var(--font-weight-semibold);
@@ -2466,6 +2507,31 @@
 
 .image-item.hidden {
   display: none;
+}
+
+/* ===================================
+   TITLE LINE BREAK CONTROL - GLOBAL
+   =================================== */
+
+/* Responsive title line breaks for better text wrapping */
+@media (max-width: 1279px) {
+  .no-break {
+    white-space: nowrap;
+  }
+  
+  .title-line-1,
+  .title-line-2 {
+    word-spacing: normal;
+    display: block;
+    line-height: 1.1;
+    margin: 0;
+  }
+}
+
+/* Title line break control - keep original spacing */
+.main-title .title-line-1,
+.main-title .title-line-2 {
+  display: block;
 }
 
 
