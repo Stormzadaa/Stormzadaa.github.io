@@ -95,6 +95,7 @@
   justify-content: center;
   overflow: hidden;
   background: var(--grocery-app-text);
+  padding: 0 0 80px 0;
 }
 
 .hero-container {
@@ -651,111 +652,249 @@
 }
 
 /* =================================
-   UI MOCKUPS SECTION
+   INDIVIDUAL MOCKUP SCREENS
    ================================= */
 
-.ui-mockups-section {
-  background: var(--grocery-app-white);
-  background-image: url('../Assets/GroceryStoreApp/lemon_slice_pattern_background.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.ui-mockups-section .mockup-screen {
+  width: 100vw;
+  min-height: 100vh;
   position: relative;
-  height: min(100vh, 1550px);
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-.ui-mockups-container {
-  position: relative;
-  z-index: 3;
-  max-width: 1400px;
-  margin: 0;
-  text-align: center;
-  width: 100%;
-  height: min(100vh, 1550px);
-  padding: 34px 0 34px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  background-image: url('../Assets/GroceryStoreApp/lemon_slice_pattern_background.jpg');
+  background-size: auto 100%;
+  background-position: top left;
+  background-repeat: repeat-x;
   box-sizing: border-box;
 }
 
-.ui-mockups-container h2 {
+.mockup-content {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.mockup-text {
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.mockup-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
-  color: var(--grocery-app-subheaders);
-  margin: 0 0 34px 0;
-  text-align: center;
-  background: rgba(255, 255, 255, 1);
-  padding: 13px 21px;
-  border-radius: 8px;
-  display: inline-block;
+  color: #000000;
+  margin: 0 0 24px 0;
+  line-height: 1.2;
 }
 
-.ui-mockups-container p {
+.mockup-description {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  color: var(--grocery-app-text);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.mockup-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+.mockup-screen-image {
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mockup-screen-image:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+}
+
+/* Alternate layout for even screens */
+.ui-mockups-section .mockup-screen:nth-child(even) .mockup-content {
+  grid-template-columns: 1fr 1fr;
+  direction: rtl;
+}
+
+.ui-mockups-section .mockup-screen:nth-child(even) .mockup-text,
+.ui-mockups-section .mockup-screen:nth-child(even) .mockup-image-wrapper {
+  direction: ltr;
+}
+
+/* =================================
+   HEADER CONTAINER STYLING
+   ================================= */
+
+.header-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+}
+
+.header-container h2 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h2-font-size);
+  color: var(--grocery-app-subheaders);
+  margin: 0 0 16px 0;
+}
+
+.header-container p {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   margin: 0;
-  text-align: center;
-  background: rgba(255, 255, 255, 1);
-  padding: 13px 21px;
-  border-radius: 0;
-  display: inline-block;
+  line-height: 1.6;
 }
 
-/* Smooth Scrolling Carousel */
-.smooth-carousel {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  position: relative;
-  cursor: grab;
-  user-select: none;
-  margin: 34px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* =================================
+   RESPONSIVE DESIGN
+   ================================= */
+
+@media (max-width: 768px) {
+  .ui-mockups-section .mockup-screen {
+    min-height: 90vh;
+  }
+  
+  .mockup-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .ui-mockups-section .mockup-screen:nth-child(even) .mockup-content {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  
+  .mockup-text {
+    padding: 30px;
+  }
+  
+  .mockup-title {
+    font-size: var(--h3-font-size);
+  }
+  
+  .mockup-description {
+    font-size: var(--h6-font-size);
+  }
 }
 
-.smooth-carousel:active {
-  cursor: grabbing;
+@media (max-width: 430px) {
+  .ui-mockups-section .mockup-screen {
+    min-height: 85vh;
+  }
+  
+  .mockup-text {
+    padding: 24px;
+  }
+  
+  .mockup-title {
+    font-size: var(--h4-font-size);
+    margin-bottom: 16px;
+  }
+  
+  .mockup-description {
+    font-size: var(--h7-font-size);
+  }
+  
+  .mockup-image-wrapper {
+    max-height: 60vh;
+  }
+  
+  .mockup-screen-image {
+    max-height: 60vh;
+  }
 }
 
-.carousel-wrapper {
-  display: flex;
-  height: 100%;
-  width: 250%; /* 5 items × 50% each for desktop - closer together */
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform;
+/* Responsive mockup screens */
+@media (max-width: 768px) {
+  .ui-mockups-section .mockup-screen {
+    padding: 60px 20px;
+  }
+  
+  .mockup-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .ui-mockups-section .mockup-screen:nth-child(even) .mockup-content {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  
+  .mockup-text {
+    padding: 30px;
+  }
+  
+  .mockup-title {
+    font-size: var(--h3-font-size);
+  }
+  
+  .mockup-description {
+    font-size: var(--h6-font-size);
+  }
 }
 
-.carousel-item {
-  flex-shrink: 0;
-  width: 50%; /* Desktop: 50% width for closer overlapping effect */
-  aspect-ratio: 9 / 19.5; /* Maintain mobile phone proportions */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  box-sizing: border-box;
-  opacity: 0.6;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+@media (max-width: 430px) {
+  .ui-mockups-section .mockup-screen {
+    padding: 40px 15px;
+  }
+  
+  .mockup-text {
+    padding: 24px;
+  }
+  
+  .mockup-title {
+    font-size: var(--h4-font-size);
+    margin-bottom: 16px;
+  }
+  
+  .mockup-description {
+    font-size: var(--h7-font-size);
+  }
 }
 
-.carousel-item.center {
-  opacity: 1;
-  z-index: 2;
+
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
+
+
+
+
+
+
 
 /* =================================
    HAMBURGER MENU Z-INDEX & STYLING
@@ -773,143 +912,19 @@
   background-color: #FF4757;
 }
 
-/* Mobile and Medium Screen Adjustments */
-@media (max-width: 1279px) {
-  .carousel-wrapper {
-    width: 325%; /* 5 items × 65% each for mobile/medium - even closer together */
-  }
-  
-  .carousel-item {
-    width: 65%; /* Mobile/Medium: 65% width for closer spacing */
-    aspect-ratio: 9 / 19.5; /* Maintain mobile phone proportions */
-    opacity: 0.5; /* Non-center items have 50% visibility */
-    padding: 0 5px; /* Reduced padding for tighter spacing */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .carousel-item.center {
-    opacity: 1; /* Center item is fully visible */
-    transform: none; /* No special transform needed */
-  }
-}
 
-.carousel-image {
-  height: 100%;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-  pointer-events: none;
-}
 
-/* Scale effect for center image */
-.carousel-item.center {
-  opacity: 1;
-  z-index: 2;
-}
 
-/* Navigation Arrows - positioned over the side images */
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--grocery-app-accent);
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.carousel-arrow:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-50%) scale(1.05);
-}
 
-.carousel-prev {
-  left: 25%;
-}
 
-.carousel-next {
-  right: 25%;
-}
 
-/* Responsive arrow positioning */
-@media (max-width: 1279px) {
-  .carousel-arrow {
-    display: none; /* Hide arrows on medium and small screens */
-  }
-}
 
-/* Mockup Description */
-.mockup-description {
-  background: rgba(255, 255, 255, 1);
-  padding: 13px 21px;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 600px;
-  margin-top: auto;
-  margin-bottom: 34px;
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 120px; /* Increased fixed minimum height to match longest descriptions */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Align content to the top of the container */
-}
 
-.description-title {
-  font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--h5-font-size);
-  color: var(--grocery-app-text);
-  margin: 0 0 13px 0;
-}
 
-.description-text {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size);
-  color: var(--grocery-app-text);
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
 
-/* Carousel Indicators */
-.carousel-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 13px;
-  background: rgba(255, 255, 255, 1);
-  padding: 13px 21px;
-  border-radius: 24px;
-  width: fit-content;
-  margin: 0 auto;
-}
 
-.carousel-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(139, 195, 74, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
 
-.carousel-indicator.active {
-  background: var(--grocery-app-secondary);
-  transform: scale(1.3);
-}
 
 /* =================================
    TRY EXPERIENCE SECTION
@@ -1400,11 +1415,6 @@
     margin: 0 0 1.6vw 0;
   }
   
-  /* Hide carousel arrows on tablet/medium screens */
-  .carousel-arrow {
-    display: none;
-  }
-  
   .hero-tagline {
     font-size: 2.6vw;
     margin: 0 0 4.2vw 0;
@@ -1412,6 +1422,36 @@
   
   .hero-phone-mockup {
     width: 42vw;
+  }
+  
+  /* Carousel responsive styles */
+  .mockup-carousel {
+    max-width: 700px;
+    height: 500px;
+  }
+  
+  .carousel-item {
+    height: 500px;
+    padding: 30px;
+  }
+  
+  .carousel-nav {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+  
+  .carousel-nav.prev {
+    left: -22px;
+  }
+  
+  .carousel-nav.next {
+    right: -22px;
+  }
+  
+  .carousel-image {
+    max-width: 350px;
+    max-height: 400px;
   }
   
   .overview-section,
@@ -1494,6 +1534,42 @@
   
   .hero-phone-mockup {
     width: 48vw;
+  }
+  
+  /* Mobile carousel styles */
+  .mockup-carousel {
+    max-width: 500px;
+    height: 400px;
+    margin: 24px auto;
+  }
+  
+  .carousel-item {
+    height: 400px;
+    padding: 25px;
+  }
+  
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .carousel-nav.prev {
+    left: -20px;
+  }
+  
+  .carousel-nav.next {
+    right: -20px;
+  }
+  
+  .carousel-image {
+    max-width: 280px;
+    max-height: 320px;
+  }
+  
+  .mockup-description {
+    padding: 20px;
+    margin: 24px auto;
   }
   
   /* Scroll arrow responsive */
@@ -1641,6 +1717,60 @@
   
   .hero-phone-mockup {
     width: 55vw;
+  }
+  
+  /* Small mobile carousel styles */
+  .mockup-carousel {
+    max-width: 380px;
+    height: 350px;
+    margin: 20px auto;
+  }
+  
+  .carousel-item {
+    padding: 20px;
+    height: 350px;
+  }
+  
+  .carousel-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  
+  .carousel-nav.prev {
+    left: -18px;
+  }
+  
+  .carousel-nav.next {
+    right: -18px;
+  }
+  
+  .carousel-image {
+    max-width: 250px;
+    max-height: 280px;
+  }
+  
+  .mockup-description {
+    padding: 16px;
+    margin: 20px auto;
+  }
+  
+  .description-title {
+    font-size: var(--h5-font-size);
+    margin-bottom: 12px;
+  }
+  
+  .description-text {
+    font-size: var(--h6-font-size);
+  }
+  
+  .carousel-indicators {
+    gap: 8px;
+  }
+  
+  .carousel-indicator {
+    width: 10px;
+    height: 10px;
   }
   
   .overview-section,

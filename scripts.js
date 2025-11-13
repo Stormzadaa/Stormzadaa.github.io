@@ -2690,35 +2690,15 @@ function initSmoothCarousel() {
     console.log('Carousel initialization complete');
 }
 
-// ---- NEW CAROUSEL IMPLEMENTATION ----
-// Global carousel state
-let testCurrentIndex = 0;
-let totalSlides = 0;
-
-// Drag functionality variables
-let isDragging = false;
-let startX = 0;
-let currentX = 0;
-let dragThreshold = 100; // Increased threshold for more deliberate swipes
-
-// Description data for each mockup
-const mockupDescriptions = [
-    { title: 'Home Screen', text: 'Clean, intuitive homepage with easy navigation and quick access to product categories.' },
-    { title: 'Categories', text: 'Browse products by category with intuitive filtering and easy navigation between sections.' },
-    { title: 'Product Details', text: 'Comprehensive product information with high-quality images and clear pricing.' },
-    { title: 'Purchase History', text: 'Easy access to previous orders with reorder functionality and order tracking.' },
-    { title: 'Store Information', text: 'Store details, hours, location, and contact information in one convenient place.' }
-];
-
-function updateDescription(index) {
-    const titleElement = document.querySelector('.description-title');
-    const textElement = document.querySelector('.description-text');
-    
-    if (titleElement && textElement && mockupDescriptions[index]) {
-        titleElement.textContent = mockupDescriptions[index].title;
-        textElement.textContent = mockupDescriptions[index].text;
+// Grocery page initialization
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.grocery-page')) {
+        // Grocery page specific initialization can be added here
+        console.log('Grocery page loaded');
     }
-}
+});
+
+// ---- Project Filter Positioning Logic ----
 
 function updateIndicators(activeIndex) {
     const indicators = document.querySelectorAll('.carousel-indicator');
