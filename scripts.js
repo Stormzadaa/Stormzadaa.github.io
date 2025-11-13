@@ -1878,79 +1878,55 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (!scene || !carouselSection) return;
 
-    // Create navigation arrows beside subtitle based on screen size
+    // Create mobile navigation arrows beside subtitle
     const subtitle = document.querySelector('.tarkov-3d-carousel-section .carousel-subtitle');
-    if (subtitle && !subtitle.querySelector('.mobile-nav-arrow, .subtitle-nav-arrow')) {
+    if (subtitle && !subtitle.querySelector('.mobile-nav-arrow')) {
       const subtitleText = subtitle.textContent;
-      
-      // Different arrow types for different screen sizes
-      const isMediumScreen = window.innerWidth >= 769 && window.innerWidth <= 1279;
-      
-      if (isMediumScreen) {
-        // Medium screen: use subtitle-nav-arrow (matches HTML structure and CSS)
-        subtitle.innerHTML = `
-          <div class="subtitle-nav-arrow left" id="subtitleLeftArrow"></div>
-          <span class="subtitle-text">${subtitleText}</span>
-          <div class="subtitle-nav-arrow right" id="subtitleRightArrow"></div>
-        `;
-        
-        // Force display for dynamically created arrows on medium screens
-        const createdArrows = subtitle.querySelectorAll('.subtitle-nav-arrow');
-        createdArrows.forEach(arrow => {
-          // Apply critical CSS properties directly to ensure visibility
-          arrow.style.display = 'flex';
-          arrow.style.position = 'relative';
-          arrow.style.alignItems = 'center';
-          arrow.style.justifyContent = 'center';
-          arrow.style.cursor = 'pointer';
-          arrow.style.fontSize = '2.5rem';
-          arrow.style.color = 'var(--TarkovButton)';
-          arrow.style.fontFamily = 'var(--body-font-family)';
-          arrow.style.fontWeight = 'bold';
-          arrow.style.width = '32px';
-          arrow.style.height = '32px';
-          arrow.style.flexShrink = '0';
-          arrow.style.alignSelf = 'center';
-          arrow.style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.8)';
-          arrow.style.transition = 'all 0.3s ease';
-          
-          // Add arrow content
-          if (arrow.classList.contains('left')) {
-            arrow.textContent = '‹';
-          } else if (arrow.classList.contains('right')) {
-            arrow.textContent = '›';
-          }
-        });
-      } else {
-        // Small screen: use mobile-nav-arrow
-        subtitle.innerHTML = `
-          <div class="mobile-nav-arrow left" data-direction="left"></div>
-          <span class="subtitle-text">${subtitleText}</span>
-          <div class="mobile-nav-arrow right" data-direction="right"></div>
-        `;
-      }
+      subtitle.innerHTML = `
+        <div class="mobile-nav-arrow left" data-direction="left"></div>
+        <span class="subtitle-text">${subtitleText}</span>
+        <div class="mobile-nav-arrow right" data-direction="right"></div>
+      `;
 
-      // Add click handlers for arrows (both mobile and medium screen types)
-      const leftArrow = subtitle.querySelector('.mobile-nav-arrow.left, .subtitle-nav-arrow.left');
-      const rightArrow = subtitle.querySelector('.mobile-nav-arrow.right, .subtitle-nav-arrow.right');
+      // Add click handlers for mobile arrows
+      const leftArrow = subtitle.querySelector('.mobile-nav-arrow.left');
+      const rightArrow = subtitle.querySelector('.mobile-nav-arrow.right');
       
-      if (leftArrow) {
-        leftArrow.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-          arrangeCards();
-        });
-      }
+      leftArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        arrangeCards();
+      });
       
-      if (rightArrow) {
-        rightArrow.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          currentIndex = (currentIndex + 1) % totalCards;
-          arrangeCards();
-        });
-      }
+      rightArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % totalCards;
+        arrangeCards();
+      });
+    }
+
+    // Add event listeners for subtitle navigation arrows (medium screen)
+    const subtitleLeftArrow = document.getElementById('subtitleLeftArrow');
+    const subtitleRightArrow = document.getElementById('subtitleRightArrow');
+    
+    if (subtitleLeftArrow) {
+      subtitleLeftArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        arrangeCards();
+      });
+    }
+    
+    if (subtitleRightArrow) {
+      subtitleRightArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % totalCards;
+        arrangeCards();
+      });
     }
 
     // Add swipe indicator with dynamic text based on input type (only for medium and smaller screens)
@@ -2093,199 +2069,35 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Initialize mobile carousel if on mobile, tablet, or tablet normal (only for NON-grocery pages)
-  // Note: Temporarily disabled - resize handler now handles all screen sizes
-  // if (!document.querySelector('.grocery-page')) {
-  //   initializeMobileCarousel();
-  // }
-  
-  // Initialize arrows immediately on page load based on current screen size
   if (!document.querySelector('.grocery-page')) {
-    const currentWidth = window.innerWidth;
-    console.log('Initial page load, screen width:', currentWidth);
-    
-    if (currentWidth <= 1279) {
-      // Trigger the resize logic immediately to set up initial state
-      const resizeEvent = new Event('resize');
-      window.dispatchEvent(resizeEvent);
-    }
+    initializeMobileCarousel();
   }
   
-  // Re-initialize on window resize with proper cleanup and element recreation
-  let resizeTimeout;
-  let lastScreenType = null; // Track which screen type we're currently on
-  
-  // Function to determine screen type
-  function getScreenType(width) {
-    if (width >= 1280) return 'desktop';
-    if (width >= 769) return 'medium';
-    return 'mobile';
-  }
-  
-  // Set initial screen type
-  lastScreenType = getScreenType(window.innerWidth);
-  
+  // Re-initialize on window resize
   window.addEventListener('resize', () => {
-    // Debounce resize events to avoid excessive calls
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      const currentWidth = window.innerWidth;
-      const currentScreenType = getScreenType(currentWidth);
+    // Remove existing mobile elements if switching away from mobile/tablet/tablet normal
+    if (window.innerWidth > 1279) {
+      const existingArrows = document.querySelectorAll('.mobile-nav-arrow');
+      const existingIndicator = document.querySelector('.swipe-indicator');
       
-      console.log('Resize event:', {
-        width: currentWidth,
-        currentType: currentScreenType,
-        lastType: lastScreenType,
-        shouldRecreate: currentScreenType !== lastScreenType
-      });
+      existingArrows.forEach(arrow => arrow.remove());
+      if (existingIndicator) existingIndicator.remove();
       
-      // Only recreate elements if we've crossed a breakpoint
-      if (currentScreenType !== lastScreenType) {
-        console.log(`Screen type changed from ${lastScreenType} to ${currentScreenType} - recreating elements`);
-        
-        // Clean up ALL existing mobile/medium elements first
-        const existingArrows = document.querySelectorAll('.subtitle-nav-arrow, .mobile-nav-arrow');
-        const existingIndicator = document.querySelector('.swipe-indicator');
-        
-        // Remove all existing elements
-        existingArrows.forEach(arrow => arrow.remove());
-        if (existingIndicator) existingIndicator.remove();
-        
-        // Restore original subtitle structure and preserve text content
-        const subtitle = document.querySelector('.tarkov-3d-carousel-section .carousel-subtitle');
-        if (subtitle) {
-          const subtitleText = subtitle.querySelector('.subtitle-text');
-          const textContent = subtitleText ? subtitleText.textContent : subtitle.textContent;
-          subtitle.innerHTML = `<span class="subtitle-text">${textContent}</span>`;
-        }
-        
-        // Create elements based on new screen type
-        if ((currentScreenType === 'medium' || currentScreenType === 'mobile') && !document.querySelector('.grocery-page') && subtitle) {
-          const carouselSection = document.querySelector('.tarkov-3d-carousel-section');
-          console.log('Creating arrows for screen type:', currentScreenType);
-          
-          if (carouselSection) {
-            const subtitleTextContent = subtitle.querySelector('.subtitle-text').textContent;
-            
-            if (currentScreenType === 'medium') {
-              console.log('Creating medium screen arrows');
-              // Medium screen: create subtitle-nav-arrow elements
-              subtitle.innerHTML = `
-                <div class="subtitle-nav-arrow left" id="subtitleLeftArrow">‹</div>
-                <span class="subtitle-text">${subtitleTextContent}</span>
-                <div class="subtitle-nav-arrow right" id="subtitleRightArrow">›</div>
-              `;
-              
-              // Force styling for medium screen arrows
-              const arrows = subtitle.querySelectorAll('.subtitle-nav-arrow');
-              console.log('Created medium arrows:', arrows.length);
-              arrows.forEach((arrow, index) => {
-                console.log(`Styling medium arrow ${index}:`, arrow);
-                arrow.style.display = 'flex';
-                arrow.style.position = 'relative';
-                arrow.style.alignItems = 'center';
-                arrow.style.justifyContent = 'center';
-                arrow.style.cursor = 'pointer';
-                arrow.style.fontSize = '2.5rem';
-                arrow.style.color = '#c4aa7a';
-                arrow.style.fontFamily = 'Manrope, sans-serif';
-                arrow.style.fontWeight = 'bold';
-                arrow.style.width = '32px';
-                arrow.style.height = '32px';
-                arrow.style.flexShrink = '0';
-                arrow.style.alignSelf = 'center';
-                arrow.style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.8)';
-                arrow.style.transition = 'all 0.3s ease';
-                arrow.style.zIndex = '10';
-                arrow.style.pointerEvents = 'auto';
-                
-                // Add click handlers
-                arrow.addEventListener('click', (e) => {
-                  console.log('Medium arrow clicked:', arrow.classList.contains('left') ? 'left' : 'right');
-                  e.preventDefault();
-                  e.stopPropagation();
-                  if (arrow.classList.contains('left')) {
-                    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-                  } else {
-                    currentIndex = (currentIndex + 1) % totalCards;
-                  }
-                  arrangeCards();
-                });
-              });
-            } else {
-              // Mobile screen: create mobile-nav-arrow elements
-              console.log('Creating mobile screen arrows');
-              subtitle.innerHTML = `
-                <div class="mobile-nav-arrow left" data-direction="left">‹</div>
-                <span class="subtitle-text">${subtitleTextContent}</span>
-                <div class="mobile-nav-arrow right" data-direction="right">›</div>
-              `;
-              
-              // Add click handlers for mobile arrows
-              const arrows = subtitle.querySelectorAll('.mobile-nav-arrow');
-              console.log('Created mobile arrows:', arrows.length);
-              arrows.forEach(arrow => {
-                arrow.addEventListener('click', (e) => {
-                  console.log('Mobile arrow clicked:', arrow.getAttribute('data-direction'));
-                  e.preventDefault();
-                  e.stopPropagation();
-                  if (arrow.getAttribute('data-direction') === 'left') {
-                    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-                  } else {
-                    currentIndex = (currentIndex + 1) % totalCards;
-                  }
-                  arrangeCards();
-                });
-              });
-            }
-            
-            // Create swipe indicator if needed
-            if (!carouselSection.querySelector('.swipe-indicator')) {
-              console.log('Creating swipe indicator for:', currentScreenType);
-              const swipeIndicator = document.createElement('div');
-              swipeIndicator.className = 'swipe-indicator';
-              
-              if (currentScreenType === 'medium') {
-                // Input detection for medium screens
-                let textSet = false;
-                swipeIndicator.textContent = 'Swipe sideways to navigate';
-                
-                const detectInputType = (e) => {
-                  if (!textSet) {
-                    if (e.type === 'mousedown' || e.pointerType === 'mouse') {
-                      swipeIndicator.textContent = 'Click arrows to navigate';
-                    } else if (e.type === 'touchstart' || e.pointerType === 'touch') {
-                      swipeIndicator.textContent = 'Swipe sideways to navigate';
-                    }
-                    textSet = true;
-                    
-                    document.removeEventListener('mousedown', detectInputType);
-                    document.removeEventListener('touchstart', detectInputType);
-                    document.removeEventListener('pointerdown', detectInputType);
-                  }
-                };
-                
-                document.addEventListener('mousedown', detectInputType, { passive: true });
-                document.addEventListener('touchstart', detectInputType, { passive: true });
-                document.addEventListener('pointerdown', detectInputType, { passive: true });
-              } else {
-                // Mobile screens always show swipe text
-                swipeIndicator.textContent = 'Swipe sideways to navigate';
-              }
-              
-              carouselSection.appendChild(swipeIndicator);
-            }
-          }
-        }
-        
-        // Update last screen type
-        lastScreenType = currentScreenType;
-      } else {
-        console.log('Same screen type, no recreation needed');
+      // Restore original subtitle
+      const subtitle = document.querySelector('.tarkov-3d-carousel-section .carousel-subtitle');
+      const subtitleText = subtitle?.querySelector('.subtitle-text');
+      if (subtitle && subtitleText) {
+        subtitle.textContent = subtitleText.textContent;
       }
-      
-      // Always re-arrange cards to update behavior based on current screen size
-      arrangeCards();
-    }, 150); // 150ms debounce delay
+    } else {
+      // Re-initialize for mobile/tablet/tablet normal
+      if (!document.querySelector('.grocery-page')) {
+        initializeMobileCarousel();
+      }
+    }
+    
+    // Always re-arrange cards to update click behavior based on current screen size
+    arrangeCards();
   });
 });
 
