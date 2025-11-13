@@ -530,8 +530,14 @@ img,
   transition: opacity 0.5s;
   pointer-events: none;
 }
+
 .tarkov-3d-carousel-section .carousel-subtitle.visible {
   opacity: 1;
+}
+
+/* Hide subtitle arrows by default (desktop and mobile) */
+.tarkov-3d-carousel-section .subtitle-nav-arrow {
+  display: none;
 }
 
 .view-case-study-btn {
@@ -1933,6 +1939,84 @@ table {
   /* Hide mobile navigation arrows on medium screen */
   .tarkov-3d-carousel-section .mobile-nav-arrow {
     display: none;
+  }
+
+  /* Carousel subtitle with navigation arrows for medium screen */
+  .tarkov-3d-carousel-section .carousel-subtitle {
+    margin-top: 34px;
+    margin-bottom: 34px;
+    color: var(--TarkovText);
+    font-size: var(--h5-font-size); 
+    font-family: var(--heading-font-family);
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 500;
+    min-height: 1.5em;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 21px;
+    position: relative;
+  }
+
+  .tarkov-3d-carousel-section .carousel-subtitle.visible {
+    opacity: 1;
+  }
+
+  /* Navigation arrows beside subtitle - exact match to desktop click areas */
+  .tarkov-3d-carousel-section .subtitle-nav-arrow {
+    display: flex;
+    position: relative;
+    pointer-events: auto;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease, opacity 0.1s ease;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-family: var(--body-font-family);
+    color: var(--TarkovButton);
+    background: transparent;
+    backdrop-filter: none;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+
+
+  .tarkov-3d-carousel-section .subtitle-nav-arrow:before {
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transition: all 0.3s ease;
+    transform: scale(1) translateY(-0.1em);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+  .tarkov-3d-carousel-section .subtitle-nav-arrow.left:before {
+    content: "‹";
+  }
+
+  .tarkov-3d-carousel-section .subtitle-nav-arrow.right:before {
+    content: "›";
+  }
+
+  /* Ensure subtitle text is centered with arrows */
+  .tarkov-3d-carousel-section .subtitle-text {
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+    margin: 0;
   }
 
   /* Medium screen swipe indicator - centered on carousel image */
