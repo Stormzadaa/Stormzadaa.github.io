@@ -4,7 +4,7 @@
 
 /* Override portfolio-section background for about page */
 body .portfolio-section {
-  background: linear-gradient(to bottom, #0A0514 0%, #0A0514 40%, #2D1B47 70%, #8B7BB8 100%) !important;
+  background: linear-gradient(to bottom, #000000 0%, #000000 40%, #2D1B47 70%, #8B7BB8 100%) !important;
 }
 
 /* Animated Background Container */
