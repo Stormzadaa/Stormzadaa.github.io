@@ -62,6 +62,7 @@
   min-height: 100vh;
   scroll-snap-type: y mandatory;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Header scroll behavior for grocery page */
@@ -156,7 +157,7 @@
   cursor: pointer;
   z-index: 10;
   color: white;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 6px 24px rgba(255, 71, 87, 0.25);
   animation: bounce 2s infinite;
   backdrop-filter: blur(10px);
@@ -164,9 +165,9 @@
 }
 
 .scroll-down-arrow:hover {
-  background: linear-gradient(135deg, #ff6b7d 0%, var(--grocery-app-success) 100%);
+  background: #6DA920;
   transform: translateX(-50%) scale(1.1);
-  box-shadow: 0 8px 32px rgba(255, 71, 87, 0.35);
+  box-shadow: 0 8px 32px rgba(109, 169, 32, 0.35);
 }
 
 .scroll-down-arrow:active {
@@ -258,7 +259,6 @@
 }
 
 .tag:hover {
-  background: var(--grocery-app-primary);
   transform: translateY(-2px);
 }
 
@@ -343,6 +343,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: 0;
 }
 
 .color-group-label {
@@ -351,6 +352,8 @@
   font-size: var(--h6-font-size);
   color: var(--grocery-app-text);
   min-width: 60px;
+  width: 60px;
+  flex-shrink: 0;
   margin: 0;
 }
 
@@ -358,6 +361,7 @@
   display: flex;
   gap: 12px;
   flex: 1;
+  min-width: 0;
 }
 
 .color-item {
@@ -365,6 +369,8 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  width: 72px;
+  flex-shrink: 0;
 }
 
 .color-code {
@@ -567,7 +573,7 @@
   margin: 0;
   text-align: center;
   background: rgba(255,255,255,1);
-  padding: 13px 21px;
+  padding: 30px 20px;
   border-radius: 8px;
   display: inline-block;
   width: auto;
@@ -586,7 +592,7 @@
   max-width: 600px;
   line-height: 1.6;
   background: rgba(255,255,255,1);
-  padding: 13px 21px;
+  padding: 30px 20px;
   border-radius: 6px;
 }
 
@@ -667,9 +673,9 @@
   align-items: center;
   justify-content: center;
   background-image: url('../Assets/GroceryStoreApp/lemon_slice_pattern_background.jpg');
-  background-size: auto 100%;
+  background-size: auto 50%;
   background-position: top left;
-  background-repeat: repeat-x;
+  background-repeat: repeat;
   box-sizing: border-box;
 }
 
@@ -724,13 +730,6 @@
   width: auto;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mockup-screen-image:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
 }
 
 /* Alternate layout for even screens */
@@ -752,9 +751,23 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 30px;
+  padding: 30px 20px;
   text-align: center;
+  position: relative;
+}
+
+.header-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 20px;
+  background-image: url('../Assets/GroceryStoreApp/lemon_slice_pattern_background.jpg');
+  background-size: auto 50vh;
+  background-position: top left;
+  background-repeat: repeat;
 }
 
 .header-container h2 {
@@ -956,6 +969,7 @@
   background: transparent;
   width: 100%;
   overflow: hidden;
+  display: none; /* Hidden by default (desktop/tablet) */
 }
 
 .prototype-title {
@@ -980,22 +994,80 @@
   margin-bottom: 34px;
 }
 
-.prototype-content {
+/* Navigation Buttons */
+.prototype-nav {
   display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 0;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 34px;
+  flex-wrap: wrap;
+}
+
+.prototype-nav-btn {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--h6-font-size);
+  background: white;
+  color: var(--grocery-app-text);
+  border: 2px solid var(--grocery-app-border);
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.prototype-nav-btn:hover {
+  background: #6DA920;
+  color: white;
+  border-color: #6DA920;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.prototype-nav-btn.active {
+  background: var(--grocery-app-success);
+  color: white;
+  border-color: var(--grocery-app-success);
+  box-shadow: 0 4px 16px rgba(109, 169, 32, 0.3);
+}
+
+.prototype-nav-btn.active:hover {
+  background: var(--grocery-app-success);
+  border-color: var(--grocery-app-success);
+}
+
+.prototype-content {
+  position: relative;
+  width: 100%;
+  margin: 0 0 34px 0;
   padding: 0;
-  height: fit-content;
-  min-height: 0;
+  min-height: 600px;
 }
 
 .figma-embed {
+  display: none;
   background: white;
   border-radius: 16px;
-  padding: 0;
+  padding: 21px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   margin-bottom: 0;
+  animation: fadeIn 0.5s ease;
+}
+
+.figma-embed.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =================================
@@ -1067,7 +1139,7 @@
   border-radius: 12px;
   width: 100%;
   height: 100%;
-  min-height: 800px;
+  min-height: 600px;
   border: 1px solid var(--grocery-app-border);
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
@@ -1210,8 +1282,11 @@
    ================================= */
 
 .closing-section {
-  padding: 0 89px 55px 89px;
-  background: var(--grocery-app-white);
+  padding: 55px 89px 55px 89px;
+  background-image: url('../Assets/GroceryStoreApp/Kiwi.jpg');
+  background-size: auto 50vh;
+  background-position: top left;
+  background-repeat: repeat;
   text-align: center;
 }
 
@@ -1225,7 +1300,12 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
-  margin: 0 0 34px 0;
+  margin: 0 auto 34px auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 30px 20px;
+  border-radius: 16px;
+  display: inline-block;
 }
 
 .closing-image {
@@ -1234,7 +1314,7 @@
 
 .context-image {
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   height: auto;
 }
 
@@ -1243,11 +1323,13 @@
   font-size: var(--h6-font-size);
   color: var(--grocery-app-text);
   line-height: 1.6;
-  margin: 0 0 34px 0;
+  margin: 0 auto 34px auto;
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
   opacity: 0.9;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 30px 20px;
+  border-radius: 16px;
 }
 
 .closing-cta {
@@ -1262,6 +1344,11 @@
   font-size: var(--h4-font-size);
   color: var(--grocery-app-text);
   margin: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 30px 20px;
+  border-radius: 16px;
+  display: inline-block;
 }
 
 .cta-button {
@@ -1269,19 +1356,19 @@
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
   font-size: var(--h5-font-size);
-  background: var(--grocery-app-secondary);
+  background: var(--grocery-app-success);
   color: white;
   padding: 16px 32px;
   border-radius: 30px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(139, 195, 74, 0.3);
+  box-shadow: 0 4px 16px rgba(255, 71, 87, 0.3);
 }
 
 .cta-button:hover {
-  background: var(--grocery-app-primary);
+  background: #6DA920;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 118, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(109, 169, 32, 0.4);
 }
 
 /* =================================
@@ -1327,8 +1414,9 @@
 }
 
 .project-item:hover {
+  background: #6DA920;
   transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+  box-shadow: 0 16px 16px -8px rgba(109, 169, 32, 0.7);
 }
 
 .project-link {
@@ -1391,6 +1479,11 @@
   border-radius: 15px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+}
+
+.project-item:hover .project-tag {
+  background: #6DA920;
 }
 
 /* =================================
@@ -1671,6 +1764,23 @@
     padding: 80px 20px;
   }
   
+  .prototype-nav {
+    gap: 8px;
+  }
+  
+  .prototype-nav-btn {
+    font-size: var(--h7-font-size);
+    padding: 10px 16px;
+  }
+  
+  .prototype-content {
+    min-height: 400px;
+  }
+  
+  .figma-frame iframe {
+    min-height: 350px;
+  }
+  
   .interactions-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -1934,6 +2044,23 @@
     padding: 60px 15px;
   }
   
+  .prototype-nav {
+    gap: 6px;
+  }
+  
+  .prototype-nav-btn {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+  
+  .prototype-content {
+    min-height: 400px;
+  }
+  
+  .user-flow-section {
+    display: block; /* Show on mobile */
+  }
+  
   .interactions-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -1941,6 +2068,7 @@
   
   .figma-frame iframe {
     height: 300px;
+    min-height: 300px;
   }
   
   .demo-title,

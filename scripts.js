@@ -518,56 +518,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Handle window resize
+    let resizeTimeout;
     function handleResize() {
       if (!isInitialized) return;
       
-      originalStop(); // Use original stop for legitimate resize
+      // Stop the animation immediately
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+      isRunning = false;
       
-      // Immediately add ultra-aggressive global click prevention during resize
-      const emergencyClickPrevention = (e) => {
-        const target = e.target;
+      // Clear any existing resize timeout
+      if (resizeTimeout) {
+        clearTimeout(resizeTimeout);
+      }
+      
+      // Debounce the resize to avoid multiple reinitializations
+      resizeTimeout = setTimeout(() => {
+        // Reset initialization flag
+        isInitialized = false;
+        initializationAttempts = 0;
         
-        const isCarouselElement = 
-          target.tagName === 'SPAN' ||
-          target.hasAttribute('data-carousel-element') ||
-          target.closest('#carouselContent') || 
-          target.closest('[id*="carouselContentClone"]') ||
-          target.closest('.carousel-content') ||
-          target.closest('.carousel-container') ||
-          target.closest('[data-carousel-element]') ||
-          target.closest('[data-carousel-blocker]');
+        // Reset position state
+        currentPosition = 0;
+        carouselWidth = 0;
+        containerWidth = 0;
         
-        if (isCarouselElement) {
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          return false;
+        // Clear all clones
+        if (container) {
+          const existingClones = container.querySelectorAll('[id*="carouselContentClone"]');
+          existingClones.forEach(clone => clone.remove());
         }
-      };
-      
-      // Add emergency prevention immediately with all event types
-      ['click', 'mousedown', 'mouseup', 'dblclick', 'touchstart', 'touchend'].forEach(eventType => {
-        document.addEventListener(eventType, emergencyClickPrevention, { capture: true });
-      });
-      
-      // Clean up old event listeners
-      cleanupEventListeners();
-      
-      // Reset initialization flag and attempt counter
-      isInitialized = false;
-      initializationAttempts = 0;
-      cachedElements = null; // Clear cache
-      
-      // Wait for layout to settle after resize, then completely reinitialize
-      setTimeout(() => {
-        // Remove emergency prevention
-        ['click', 'mousedown', 'mouseup', 'dblclick', 'touchstart', 'touchend'].forEach(eventType => {
-          document.removeEventListener(eventType, emergencyClickPrevention, { capture: true });
-        });
         
-        // Complete restart of carousel
-        restartCarousel();
-      }, 200); // Slightly longer delay to ensure layout is stable
+        // Reset transforms on original carousel content
+        if (carouselContent) {
+          carouselContent.style.transform = 'translate3d(0px, 0, 0)';
+        }
+        
+        // Force reflow
+        if (container) {
+          container.offsetHeight;
+        }
+        
+        // Clear cached elements
+        cachedElements = null;
+        
+        // Reinitialize completely
+        actuallyInitialize();
+      }, 150);
     }
     
     // Complete carousel restart function
@@ -3355,5 +3354,38 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial setup
     updateNavigatorVisibility();
     updateActiveDot();
+});
+
+// ---- Prototype Switcher for Grocery Store Page ----
+document.addEventListener('DOMContentLoaded', function() {
+    const prototypeButtons = document.querySelectorAll('.prototype-nav-btn');
+    const prototypeContents = document.querySelectorAll('.figma-embed[data-prototype-content]');
+    
+    if (prototypeButtons.length === 0 || prototypeContents.length === 0) {
+        return; // Not on grocery store page or elements don't exist
+    }
+    
+    prototypeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetPrototype = this.getAttribute('data-prototype');
+            
+            // Remove active class from all buttons
+            prototypeButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Hide all prototype contents
+            prototypeContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show the selected prototype content
+            const targetContent = document.querySelector(`.figma-embed[data-prototype-content="${targetPrototype}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
 });
 
