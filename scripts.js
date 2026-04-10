@@ -859,6 +859,44 @@ if (isAboutPage) {
   document.getElementById("aboutUnderline").classList.remove("active");
 }
 
+// Scroll-spin effect for about page triangles
+if (isAboutPage) {
+  const triangles = document.querySelectorAll(".triangle");
+  let lastScrollY = window.scrollY;
+  let rotations = Array.from(triangles).map(() => 0);
+  let velocity = 0;
+  let rafId = null;
+
+  function spinInertia() {
+    if (Math.abs(velocity) < 0.01) {
+      velocity = 0;
+      return;
+    }
+    velocity *= 0.995; // decelerate slowly
+    triangles.forEach((tri, i) => {
+      rotations[i] += velocity;
+      tri.style.transform = `rotate(${rotations[i]}deg)`;
+    });
+    rafId = requestAnimationFrame(spinInertia);
+  }
+
+  window.addEventListener("scroll", () => {
+    const delta = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+
+    velocity += delta * 0.02;
+
+    triangles.forEach((tri, i) => {
+      rotations[i] += delta * 0.02;
+      tri.style.transform = `rotate(${rotations[i]}deg)`;
+    });
+
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(spinInertia);
+  }, { passive: true });
+}
+
+
 // Function to handle "Work" link click event
 function handleWorkLinkClick(event) {
   const isIndexPage =
@@ -964,6 +1002,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (document.body.classList.contains('marketplace-page')) {
       hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active');
       hamburgerMenu.classList.add('marketplace-theme-active');
+    } else if (document.body.classList.contains('about-page')) {
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active');
+      hamburgerMenu.classList.add('about-theme-active');
     } else {
       // Other pages: use default background via inline style (existing behavior)
       hamburgerMenu.style.background = 'linear-gradient(to bottom, #2A2B2D 45%, #1C1C1C 100%)';
@@ -1544,6 +1585,80 @@ document.addEventListener("DOMContentLoaded", () => {
       const hamburgerMenu = document.getElementById('hamburgerMenu');
       if (hamburgerMenu) {
         hamburgerMenu.classList.add('marketplace-theme-active');
+      }
+
+      document.body.style.opacity = '1';
+    }, 1500);
+
+    document.body.style.opacity = '0.92';
+    document.body.style.transition = 'opacity 1s ease';
+  }
+
+  // ─── About Page Theme ───
+  if (body.classList.contains("about-page")) {
+    setTimeout(() => {
+      const aboutColors = {
+        header:       '#FFFFFF',   // white
+        footer:       '#FFFFFF',
+        headerBorder: 'rgba(0, 156, 59, 0.3)',
+        footerBorder: 'rgba(0, 156, 59, 0.3)',
+        text:         '#009C3B',
+        shadow:       'rgba(0, 156, 59, 0.2)',
+      };
+
+      const transitionColor = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border 3.5s ease, box-shadow 3.5s ease';
+
+      const header = document.querySelector('.header');
+      if (header) {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), ' + transitionColor;
+        header.style.backgroundColor = aboutColors.header;
+        header.style.borderBottom = `1px solid ${aboutColors.headerBorder}`;
+        header.style.boxShadow = `0 2px 20px ${aboutColors.shadow}`;
+      }
+
+      document.querySelectorAll('.header .nav-link').forEach(link => {
+        link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        link.style.color = aboutColors.text;
+      });
+
+      const logo = document.querySelector('.header .logo');
+      if (logo) {
+        logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        logo.style.filter = 'brightness(0) saturate(100%) invert(38%) sepia(98%) saturate(523%) hue-rotate(108deg) brightness(95%)';
+      }
+
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) {
+        menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        menuIcon.style.filter = 'brightness(0) saturate(100%) invert(38%) sepia(98%) saturate(523%) hue-rotate(108deg) brightness(95%)';
+      }
+
+      const footer = document.querySelector('.footer');
+      if (footer) {
+        footer.style.transition = transitionColor;
+        footer.style.backgroundColor = aboutColors.footer;
+        footer.style.borderTop = `1px solid ${aboutColors.footerBorder}`;
+        footer.style.boxShadow = `0 -2px 20px ${aboutColors.shadow}`;
+      }
+
+      const footerContent = document.querySelector('.footer-content');
+      if (footerContent) { footerContent.style.backgroundColor = 'transparent'; }
+      const fundoFooter = document.querySelector('.fundo-footer');
+      if (fundoFooter) { fundoFooter.style.backgroundColor = 'transparent'; }
+      document.querySelectorAll('.footer-section').forEach(s => { s.style.backgroundColor = 'transparent'; });
+
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        el.style.color = aboutColors.text;
+      });
+      document.querySelectorAll('.footer .footerTextTypography, .footer a').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        el.style.color = aboutColors.text;
+      });
+
+      const hamburgerMenu = document.getElementById('hamburgerMenu');
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('about-theme-active');
       }
 
       document.body.style.opacity = '1';
@@ -2171,6 +2286,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function hideHeader() {
         if (isMobile()) return; // Never hide on mobile
+        if (isMobile() && document.body.classList.contains('about-page')) return; // Never hide on about page on mobile
         if (isHeaderVisible) {
             header.style.transform = 'translateY(-100%)';
             isHeaderVisible = false;

@@ -2,9 +2,76 @@
    ABOUT PAGE ANIMATED BACKGROUND
    ================================= */
 
+/* Header nav links — Brazil green */
+.about-page .header .nav-link {
+  color: #009C3B;
+}
+
+/* Header logo + menu icon — Brazil green */
+.about-page .header .logo,
+.about-page .header .menu-icon {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(98%) saturate(523%) hue-rotate(108deg) brightness(95%);
+}
+
+/* Header nav underline — white to match purple header */
+.about-page .header .nav-underline,
+.about-page .header .nav-underline.active {
+  background: #009C3B !important;
+  border-color: #009C3B !important;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hamburger menu — about page coral red theme */
+.hamburger-menu.about-theme-active {
+  background: #FFFFFF;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.about-theme-active a {
+  color: #009C3B;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.about-theme-active .work-underline,
+.hamburger-menu.about-theme-active .about-underline,
+.hamburger-menu.about-theme-active .contact-underline {
+  background-color: rgba(0, 156, 59, 0.5);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.about-theme-active::before {
+  opacity: 90% !important;
+  filter: sepia(100%) hue-rotate(20deg) saturate(400%) brightness(1.8) !important;
+}
+
+/* Always show header on mobile for the about page */
+@media (max-width: 768px) {
+  .about-page .header {
+    transform: translateY(0) !important;
+    position: fixed !important;
+    top: 0 !important;
+  }
+}
+
 /* Override portfolio-section background for about page */
 body .portfolio-section {
-  background: linear-gradient(to bottom, #000000 0%, #000000 40%, #2D1B47 70%, #8B7BB8 100%) !important;
+  background: linear-gradient(to bottom, #009C3B 0%, #002776 55%, #000A2E 100%) !important;
+}
+
+/* About page — footer yellow stars */
+.about-page .fundo-footer {
+  opacity: 90% !important;
+  filter: sepia(80%) saturate(300%) hue-rotate(10deg) brightness(1.4) !important;
+}
+
+/* About page — all text white */
+.about-page .main-title,
+.about-page .aboutpunchline,
+.about-page .aboutsubheader,
+.about-page .textTypography,
+.about-page .titleTypography {
+  color: #FFFFFF !important;
 }
 
 /* Animated Background Container */
@@ -23,49 +90,53 @@ body .portfolio-section {
 .triangle {
   position: absolute;
   width: 30px;
-  height: 26px;
+  height: 30px;
   opacity: 0.25;
   animation: float 8s ease-in-out infinite;
   will-change: transform;
 }
 
-/* Triangle Shape Creation - Small (default) */
+/* Star Shape Creation - Small (default) */
 .triangle::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 26px solid #C084FC;
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg width='368' height='372' viewBox='0 0 368 372' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M190.754 332.455L157.958 200.999L75.9206 260.556L190.754 332.455Z' fill='white'/%3E%3Cpath d='M334.418 208.956L199.161 201.107L231.577 297.16L334.418 208.956Z' fill='white'/%3E%3Cpath d='M265.499 39.5489L214.917 165.237L316.292 165.152L265.499 39.5489Z' fill='white'/%3E%3Cpath d='M78.0199 51.1766L181.91 138.142L213.173 41.707L78.0199 51.1766Z' fill='white'/%3E%3Cpath d='M33.573 233.807L147.901 161.108L65.4506 102.126L33.573 233.807Z' fill='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* Medium triangles */
 .triangle.medium {
   width: 44px;
-  height: 38px;
+  height: 44px;
   opacity: 0.2;
 }
 
 .triangle.medium::before {
-  border-left: 22px solid transparent;
-  border-right: 22px solid transparent;
-  border-bottom: 38px solid #C084FC;
+  width: 44px;
+  height: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg width='368' height='372' viewBox='0 0 368 372' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M190.754 332.455L157.958 200.999L75.9206 260.556L190.754 332.455Z' fill='white'/%3E%3Cpath d='M334.418 208.956L199.161 201.107L231.577 297.16L334.418 208.956Z' fill='white'/%3E%3Cpath d='M265.499 39.5489L214.917 165.237L316.292 165.152L265.499 39.5489Z' fill='white'/%3E%3Cpath d='M78.0199 51.1766L181.91 138.142L213.173 41.707L78.0199 51.1766Z' fill='white'/%3E%3Cpath d='M33.573 233.807L147.901 161.108L65.4506 102.126L33.573 233.807Z' fill='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* Large triangles */
 .triangle.large {
   width: 50px;
-  height: 43px;
+  height: 50px;
   opacity: 0.15;
 }
 
 .triangle.large::before {
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  border-bottom: 43px solid #C084FC;
+  width: 50px;
+  height: 50px;
+  background-image: url("data:image/svg+xml,%3Csvg width='368' height='372' viewBox='0 0 368 372' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M190.754 332.455L157.958 200.999L75.9206 260.556L190.754 332.455Z' fill='white'/%3E%3Cpath d='M334.418 208.956L199.161 201.107L231.577 297.16L334.418 208.956Z' fill='white'/%3E%3Cpath d='M265.499 39.5489L214.917 165.237L316.292 165.152L265.499 39.5489Z' fill='white'/%3E%3Cpath d='M78.0199 51.1766L181.91 138.142L213.173 41.707L78.0199 51.1766Z' fill='white'/%3E%3Cpath d='M33.573 233.807L147.901 161.108L65.4506 102.126L33.573 233.807Z' fill='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* Individual Triangle Positions and Animations */
