@@ -1,4 +1,4 @@
-// ---- Loading Screen Logic ----
+﻿// ---- Loading Screen Logic ----
 window.addEventListener('load', function() {
   const loadingScreen = document.getElementById('loading-screen');
   if (loadingScreen) {
@@ -17,7 +17,7 @@ window.addEventListener('load', function() {
           console.log('Video autoplay was prevented:', e);
         });
       }
-    }, 500); // Match the transition duration in CSS
+    }, 200); // Match the transition duration in CSS
   }
 });
 
@@ -1005,56 +1005,7 @@ document.addEventListener("DOMContentLoaded", () => {
     option.addEventListener("click", closeMenu);
   });
 
-  // Enhanced close menu when clicking outside of it and unlock scroll
-  document.addEventListener("click", (event) => {
-    if (
-      !hamburgerMenu.contains(event.target) &&
-      !menuButton.contains(event.target)
-    ) {
-      hamburgerMenu.style.setProperty(
-        "--menu-transition-duration",
-        closeDuration
-      );
-      // Ensure transform transition works regardless of theme state
-      hamburgerMenu.style.transition = `transform ${closeDuration} ease`;
-      hamburgerMenu.classList.add("hidden");
-      document.body.classList.remove("no-scroll"); // Enable scrolling
-      setTimeout(() => {
-        hamburgerMenu.classList.remove("active");
-        hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-      }, 600); // Wait for the close animation to complete before removing the active class
-    }
-  });
 });
-
-// Smooth scroll function (reuse the existing one)
-function smoothScrollTo(target, duration) {
-  const start = window.scrollY;
-  const distance = target - start;
-  let startTime = null;
-
-  function animation(currentTime) {
-    if (startTime === null) startTime = currentTime;
-    const timeElapsed = currentTime - startTime;
-    const run = ease(timeElapsed, start, distance, duration);
-    window.scrollTo(0, run);
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
-    } else {
-      isScrolling = false;
-    }
-  }
-
-  function ease(t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return (c / 2) * t * t + b;
-    t--;
-    return (-c / 2) * (t * (t - 2) - 1) + b;
-  }
-
-  isScrolling = true;
-  requestAnimationFrame(animation);
-}
 
 document.addEventListener("DOMContentLoaded", () => {
   const hamburgerContactLink = document.getElementById("hamburgerContactLink");
@@ -1085,79 +1036,6 @@ document.addEventListener("DOMContentLoaded", () => {
     smoothScrollTo(document.body.scrollHeight, 1000); // Smooth scroll to footer
   });
 });
-
-// Smooth scroll function (reuse the existing one)
-function smoothScrollTo(target, duration) {
-  const start = window.scrollY;
-  const distance = target - start;
-  let startTime = null;
-
-  function animation(currentTime) {
-    if (startTime === null) startTime = currentTime;
-    const timeElapsed = currentTime - startTime;
-    const run = ease(timeElapsed, start, distance, duration);
-    window.scrollTo(0, run);
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
-    } else {
-      isScrolling = false;
-    }
-  }
-
-  function ease(t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return (c / 2) * t * t + b;
-    t--;
-    return (-c / 2) * (t * (t - 2) - 1) + b;
-  }
-
-  isScrolling = true;
-  requestAnimationFrame(animation);
-}
-
-/* Code to lock the background scroll during hamburger menu open */
-
-document.addEventListener("DOMContentLoaded", () => {
-  const menuButton = document.querySelector(".menu-svg");
-  const hamburgerMenu = document.getElementById("hamburgerMenu");
-
-  // Define custom properties for transition durations
-  const openDuration = "0.9s";
-  const closeDuration = "0.5s";
-
-  // Toggle the menu visibility and lock/unlock scroll
-  menuButton.addEventListener("click", () => {
-    hamburgerMenu.style.setProperty("--menu-transition-duration", openDuration);
-    hamburgerMenu.style.display = "block"; // Ensure the menu is displayed
-    document.body.classList.add("no-scroll"); // Disable scrolling
-    document.body.classList.add("disable-pointer-events"); // Disable pointer events
-    setTimeout(() => {
-      hamburgerMenu.classList.add("active");
-      hamburgerMenu.classList.remove("hidden");
-    }, 10); // Slight delay to ensure the display property is set before applying the class
-  });
-
-  // Close the menu when clicking outside of it and unlock scroll
-  document.addEventListener("click", (event) => {
-    if (
-      !hamburgerMenu.contains(event.target) &&
-      !menuButton.contains(event.target)
-    ) {
-      hamburgerMenu.style.setProperty(
-        "--menu-transition-duration",
-        closeDuration
-      );
-      hamburgerMenu.classList.add("hidden");
-      document.body.classList.remove("no-scroll"); // Enable scrolling
-      document.body.classList.remove("disable-pointer-events"); // Enable pointer events
-      setTimeout(() => {
-        hamburgerMenu.classList.remove("active");
-        hamburgerMenu.style.display = "none"; // Hide the menu after the animation
-      }, 600); // Wait for the close animation to complete before removing the active class
-    }
-  });
-});
-
 /* Direction to the "WORK" page mobile */
 document.addEventListener("DOMContentLoaded", () => {
   const hamburgerWorkLink = document.getElementById("hamburgerWorkLink");
@@ -1771,9 +1649,6 @@ document.addEventListener("DOMContentLoaded", () => {
       -currentIndex * theta
     }rad)`;
     updateSubtitle(currentIndex);
-    
-    // Update invisible click areas after arranging cards
-    updateClickAreas();
   }
 
   // Create invisible click areas for better click detection
@@ -1854,11 +1729,6 @@ document.addEventListener("DOMContentLoaded", () => {
     scene.appendChild(clickContainer);
   }
   
-  function updateClickAreas() {
-    // This function can be used to update click area positions if needed
-    // For now, the fixed left/right areas should work for the carousel
-  }
-
   arrangeCards();
   updateSubtitle(currentIndex);
   createClickAreas();
@@ -2461,241 +2331,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize
     initTarkovHeaderBehavior();
-
-    // Initialize Smooth Carousel (only for NON-grocery pages)
-    if (!document.querySelector('.grocery-page')) {
-        initSmoothCarousel();
-    }
 });
 
-function initSmoothCarousel() {
-    // Only run on non-grocery pages
-    if (document.querySelector('.grocery-page')) {
-        console.log('Skipping smooth carousel - grocery page detected');
-        return;
-    }
-    
-    console.log('Initializing smooth carousel (non-grocery pages)...');
-    
-    const carousel = document.querySelector('.smooth-carousel');
-    const wrapper = document.querySelector('.carousel-wrapper');
-    const items = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelectorAll('.carousel-indicator');
-    
-    console.log('Carousel elements found:', {
-        carousel: !!carousel,
-        wrapper: !!wrapper,
-        items: items.length,
-        indicators: indicators.length
-    });
-    
-    if (!carousel || !wrapper || items.length === 0) {
-        console.log('Missing carousel elements, aborting...');
-        return;
-    }
-    
-    let currentIndex = 1; // Start at second item (first real item)
-    let isTransitioning = false;
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;
-    let threshold = 50; // Reduced threshold for easier triggering
-    
-    console.log('Setting initial position...');
-    // Set initial position to show first real item
-    wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-    
-    function updateCarousel(animate = true) {
-        console.log('Updating carousel, index:', currentIndex, 'animate:', animate);
-        
-        if (animate) {
-            wrapper.style.transition = 'transform 0.3s ease-out';
-        } else {
-            wrapper.style.transition = 'none';
-        }
-        
-        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        
-        // Update indicators (map to real items: 0-4)
-        const realIndex = getRealIndex(currentIndex);
-        console.log('Real index:', realIndex);
-        
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === realIndex);
-        });
-        
-        // Update center class for scaling effect
-        items.forEach((item, index) => {
-            item.classList.toggle('center', index === currentIndex);
-        });
-        
-        // Update description
-        updateDescription(realIndex);
-    }
-    
-    function getRealIndex(index) {
-        // Convert wrapper index to real item index (0-4)
-        if (index === 0) return 4; // Last duplicate -> last real item
-        if (index === 6) return 0; // First duplicate -> first real item
-        return index - 1; // Regular items
-    }
-    
-    function updateDescription(realIndex) {
-        const descriptions = [
-            { title: 'Home Screen', text: 'Clean, intuitive homepage with easy navigation and quick access to product categories.' },
-            { title: 'Product Details', text: 'Comprehensive product information with high-quality images and clear pricing.' },
-            { title: 'Shopping Cart', text: 'Streamlined cart experience with item management and quick checkout access.' },
-            { title: 'Purchase History', text: 'Easy access to previous orders with reorder functionality and order tracking.' },
-            { title: 'Store Information', text: 'Store details, hours, location, and contact information in one convenient place.' }
-        ];
-
-        const descriptionTitle = document.querySelector('.description-title');
-        const descriptionText = document.querySelector('.description-text');
-        
-        if (descriptionTitle && descriptionText && descriptions[realIndex]) {
-            descriptionTitle.textContent = descriptions[realIndex].title;
-            descriptionText.textContent = descriptions[realIndex].text;
-        }
-    }
-    
-    function goToSlide(index, animate = true) {
-        console.log('Going to slide:', index);
-        if (isTransitioning) {
-            console.log('Already transitioning, skipping...');
-            return;
-        }
-        
-        isTransitioning = true;
-        currentIndex = index;
-        updateCarousel(animate);
-        
-        setTimeout(() => {
-            // Handle infinite loop
-            if (currentIndex === 0) {
-                console.log('Looping to end...');
-                currentIndex = 5; // Jump to last real item
-                updateCarousel(false);
-            } else if (currentIndex === 6) {
-                console.log('Looping to start...');
-                currentIndex = 1; // Jump to first real item
-                updateCarousel(false);
-            }
-            isTransitioning = false;
-        }, animate ? 300 : 0);
-    }
-    
-    function nextSlide() {
-        console.log('Next slide');
-        goToSlide(currentIndex + 1);
-    }
-    
-    function prevSlide() {
-        console.log('Previous slide');
-        goToSlide(currentIndex - 1);
-    }
-    
-    // Touch and mouse drag functionality
-    function handleStart(e) {
-        console.log('Drag start');
-        if (isTransitioning) return;
-        
-        isDragging = true;
-        startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-        currentX = startX;
-        
-        carousel.style.cursor = 'grabbing';
-        wrapper.style.transition = 'none';
-        
-        e.preventDefault(); // Prevent text selection
-    }
-    
-    function handleMove(e) {
-        if (!isDragging) return;
-        
-        e.preventDefault();
-        currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-        const deltaX = currentX - startX;
-        const translateX = -currentIndex * 100 + (deltaX / carousel.offsetWidth) * 100;
-        
-        wrapper.style.transform = `translateX(${translateX}%)`;
-    }
-    
-    function handleEnd() {
-        if (!isDragging) return;
-        
-        console.log('Drag end');
-        isDragging = false;
-        carousel.style.cursor = 'grab';
-        
-        const deltaX = currentX - startX;
-        const dragDistance = Math.abs(deltaX);
-        
-        console.log('Drag distance:', dragDistance, 'threshold:', threshold);
-        
-        if (dragDistance > threshold) {
-            if (deltaX > 0) {
-                prevSlide();
-            } else {
-                nextSlide();
-            }
-        } else {
-            // Snap back to current position
-            console.log('Snapping back to current position');
-            updateCarousel(true);
-        }
-    }
-    
-    // Event listeners
-    console.log('Adding event listeners...');
-    
-    // Mouse events
-    carousel.addEventListener('mousedown', handleStart);
-    document.addEventListener('mousemove', handleMove);
-    document.addEventListener('mouseup', handleEnd);
-    
-    // Touch events
-    carousel.addEventListener('touchstart', handleStart, { passive: false });
-    carousel.addEventListener('touchmove', handleMove, { passive: false });
-    carousel.addEventListener('touchend', handleEnd);
-    
-    // Indicator clicks
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            console.log('Indicator clicked:', index);
-            goToSlide(index + 1); // +1 because wrapper has duplicate at start
-        });
-    });
-    
-    // Test buttons for debugging
-    console.log('Adding test keyboard events...');
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            console.log('Left arrow pressed');
-            prevSlide();
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            console.log('Right arrow pressed');
-            nextSlide();
-        }
-    });
-    
-    // Prevent text selection during drag
-    carousel.addEventListener('selectstart', (e) => e.preventDefault());
-    
-    // Initialize
-    console.log('Initializing carousel position...');
-    updateCarousel(false);
-    console.log('Carousel initialization complete');
-}
-
-// Grocery page initialization
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.querySelector('.grocery-page')) {
-        // Grocery page specific initialization can be added here
-        console.log('Grocery page loaded');
-    }
-});
 
 // ---- Project Filter Positioning Logic ----
 

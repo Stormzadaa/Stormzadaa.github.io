@@ -1426,11 +1426,6 @@ img,
   background: transparent;
 }
 
-.other-projects-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .other-projects-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
@@ -2047,37 +2042,19 @@ table {
   }
 
   /* Buttons and navigation for medium screens */
-  .view-case-study-btn,
-  .nav-button {
+  .view-case-study-btn {
     font-size: var(--h6-font-size);
     padding: 10px 17px;
     letter-spacing: 0.8px;
     box-shadow: 0 6px 20px rgba(196, 170, 122, 0.35), 0 0 0 1px rgba(196, 170, 122, 0.15);
   }
 
-  .view-case-study-btn:hover,
-  .nav-button:hover {
+  .view-case-study-btn:hover {
     box-shadow: 0 10px 35px rgba(196, 170, 122, 0.55), 0 0 0 2px rgba(196, 170, 122, 0.35);
-  }
-
-  .case-study-navigation {
-    flex-direction: column;
-    gap: 15px;
-    margin: 44px 0 0 0;
-  }
-
-  .case-study-navigation .nav-button {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
   }
 
   /* Table replacement with mobile bullet points for medium screens */
   /* Removed - handled by max-width: 1279px query */
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* =============================================
@@ -2460,30 +2437,16 @@ table {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
-  /* Buttons and navigation for medium screens */
-  .view-case-study-btn,
-  .nav-button {
+  /* Buttons and navigation for tablet */
+  .view-case-study-btn {
     font-size: var(--h6-font-size);
     padding: 12px 18px;
     letter-spacing: 0.8px;
     box-shadow: 0 6px 20px rgba(196, 170, 122, 0.35), 0 0 0 1px rgba(196, 170, 122, 0.15);
   }
 
-  .view-case-study-btn:hover,
-  .nav-button:hover {
+  .view-case-study-btn:hover {
     box-shadow: 0 10px 35px rgba(196, 170, 122, 0.55), 0 0 0 2px rgba(196, 170, 122, 0.35);
-  }
-
-  .case-study-navigation {
-    flex-direction: column;
-    gap: 15px;
-    margin: 34px 0 0 0;
-  }
-
-  .case-study-navigation .nav-button {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
   }
 
   /* Fix projects grid overflow on tablet */
@@ -2894,40 +2857,21 @@ table {
   }
 
   /* Margins and spacing adjustments */
-  .subTitleTarkov {
-    margin-top: 34px;
-    margin-bottom: 34px;
-  }
-
   .researchAndDiscovery,
   .design-wireframes-container {
     margin: 34px 0;
   }
 
-  /* Buttons and navigation for tablet */
-  .view-case-study-btn,
-  .nav-button {
+  /* Buttons and navigation for mobile */
+  .view-case-study-btn {
     font-size: var(--h6-font-size);
     padding: 10px 16px;
     letter-spacing: 0.5px;
     box-shadow: 0 5px 18px rgba(196, 170, 122, 0.3), 0 0 0 1px rgba(196, 170, 122, 0.12);
   }
 
-  .view-case-study-btn:hover,
-  .nav-button:hover {
+  .view-case-study-btn:hover {
     box-shadow: 0 8px 28px rgba(196, 170, 122, 0.5), 0 0 0 2px rgba(196, 170, 122, 0.3);
-  }
-
-  .case-study-navigation {
-    flex-direction: column;
-    gap: 13px;
-    margin: 34px 0 0 0;
-  }
-
-  .case-study-navigation .nav-button {
-    width: 100%;
-    max-width: 250px;
-    text-align: center;
   }
 
   /* Other Projects responsive styles for tablet */

@@ -1,30 +1,153 @@
 /* =================================
-   MARKETPLACE APP STYLES
+   MARKETPLACE APP CASE STUDY STYLES
    ================================= */
-
-/* Body class for marketplace page */
-.marketplace-page {
-  background-color: var(--marketplace-background);
-}
 
 /* =================================
    MARKETPLACE COLOR VARIABLES
    ================================= */
 :root {
   /* Marketplace App Color Palette */
-  --marketplace-primary: #6366F1;        /* Modern indigo for primary actions */
-  --marketplace-secondary: #8B5CF6;      /* Purple for secondary elements */
-  --marketplace-accent: #10B981;         /* Green for success states */
-  --marketplace-background: #F8FAFC;     /* Light gray background */
-  --marketplace-text: #1E293B;           /* Dark slate for text */
-  --marketplace-text-light: #FFFFFF;     /* White text for dark backgrounds */
-  --marketplace-card-bg: #FFFFFF;        /* Pure white for cards */
-  --marketplace-border: #E2E8F0;         /* Light border color */
-  --marketplace-shadow: rgba(99, 102, 241, 0.1); /* Subtle indigo shadow */
+  --marketplace-primary: #6366F1;
+  --marketplace-secondary: #8B5CF6;
+  --marketplace-accent: #10B981;
+  --marketplace-background: #F8FAFC;
+  --marketplace-surface: #FFFFFF;
+  --marketplace-text: #1E293B;
+  --marketplace-text-secondary: #64748B;
+  --marketplace-text-light: #FFFFFF;
+  --marketplace-border: #E2E8F0;
+  --marketplace-shadow: rgba(99, 102, 241, 0.1);
+  --marketplace-section-bg: #F1F5F9;
+}
+
+/* =================================
+   BASE LAYOUT
+   ================================= */
+
+.marketplace-page {
+  background: var(--marketplace-background);
+}
+
+/* Header scroll behavior — mirrors grocery page */
+.marketplace-page .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-bottom 3.5s ease;
+}
+
+.marketplace-page .header.hide {
+  transform: translateY(-100%);
+}
+
+.marketplace-page .header.show {
+  transform: translateY(0);
+}
+
+/* Hamburger menu z-index */
+.marketplace-page .hamburger-menu {
+  z-index: 10000;
+}
+
+/* =================================
+   SPACING & TYPOGRAPHY RULES
+   (mirrors grocery-styles.css conventions)
+
+   Sections:   padding: 55px 89px
+   Gap large:  34px
+   Gap medium: 21px
+   Gap small:  13px
+   Container:  max-width 1200px, margin 0 auto
+
+   Font sizes use styleguide.css variables:
+   --h3-font-size  → section titles
+   --h4-font-size  → card titles
+   --h5-font-size  → sub-headings / card sub
+   --h6-font-size  → labels / tags
+   --body-font-size → body copy
+   --h7-font-size  → captions / small text
+   ================================= */
+
+/* =================================
+   SECTION SHARED UTILITIES
+   ================================= */
+
+.marketplace-section {
+  padding: 55px 89px;
+}
+
+.marketplace-section-alt {
+  padding: 55px 89px;
+  background: var(--marketplace-section-bg);
+}
+
+.marketplace-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.marketplace-section-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h3-font-size);
+  color: var(--marketplace-text);
+  margin: 0 0 34px 0;
+  text-align: center;
+}
+
+.marketplace-section-description {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  color: var(--marketplace-text);
+  line-height: 1.6;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 34px auto;
+  opacity: 0.8;
+}
+
+/* =================================
+   RESPONSIVE — Tablet (768px–1279px)
+   ================================= */
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .marketplace-section,
+  .marketplace-section-alt {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+}
+
+/* =================================
+   RESPONSIVE — Mobile Large (430px–768px)
+   ================================= */
+
+@media (min-width: 430px) and (max-width: 768px) {
+  .marketplace-section,
+  .marketplace-section-alt {
+    padding: 34px 21px;
+  }
+}
+
+/* =================================
+   RESPONSIVE — Mobile (≤430px)
+   ================================= */
+
+@media (max-width: 430px) {
+  .marketplace-section,
+  .marketplace-section-alt {
+    padding: 34px 13px;
+  }
+
+  .marketplace-section-title {
+    font-size: var(--h3-font-size);
+  }
 }
 
 /* =================================
    YOUR CUSTOM STYLES GO HERE
    ================================= */
-
-/* Add your marketplace-specific styles below */
