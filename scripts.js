@@ -953,7 +953,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Apply the correct theme class based on current state
     if (document.body.classList.contains('tarkov-page') || document.body.classList.contains('grocery-page')) {
       // Clear any existing theme classes first
-      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active');
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active');
       
       // Apply the appropriate class based on current theme state
       if (tarkovThemeActive) {
@@ -961,6 +961,9 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         hamburgerMenu.classList.add('tarkov-initial');
       }
+    } else if (document.body.classList.contains('marketplace-page')) {
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active');
+      hamburgerMenu.classList.add('marketplace-theme-active');
     } else {
       // Other pages: use default background via inline style (existing behavior)
       hamburgerMenu.style.background = 'linear-gradient(to bottom, #2A2B2D 45%, #1C1C1C 100%)';
@@ -1019,7 +1022,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const footerTop = footer.offsetTop;
     const scrollPosition = window.scrollY + window.innerHeight;
 
-    if (scrollPosition >= footerTop) {
+    if (scrollPosition >= footerTop && window.scrollY > 0) {
       hamburgerContactUnderline.style.display = "block";
     } else {
       hamburgerContactUnderline.style.display = "none";
@@ -1459,6 +1462,95 @@ document.addEventListener("DOMContentLoaded", () => {
         hideGroceryHeader();
       }
     }
+  }
+
+  // Marketplace Page Color Theme Activation
+  if (body.classList.contains("marketplace-page")) {
+    setTimeout(() => {
+      const marketplaceColors = {
+        header:       '#F5A623',   // Yellow
+        footer:       '#F5A623',   // Yellow
+        headerBorder: 'rgba(255, 255, 255, 0.25)',
+        footerBorder: 'rgba(255, 255, 255, 0.25)',
+        text:         '#FFFFFF',   // White text on header/footer
+        shadow:       'rgba(245, 166, 35, 0.3)',
+      };
+
+      const transitionColor = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border 3.5s ease, box-shadow 3.5s ease';
+
+      // Header
+      const header = document.querySelector('.header');
+      if (header) {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), ' + transitionColor;
+        header.style.backgroundColor = marketplaceColors.header;
+        header.style.borderBottom = `1px solid ${marketplaceColors.headerBorder}`;
+        header.style.boxShadow = `0 2px 20px ${marketplaceColors.shadow}`;
+      }
+
+      // Nav links → white
+      document.querySelectorAll('.header .nav-link').forEach(link => {
+        link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        link.style.color = marketplaceColors.text;
+      });
+
+      // Logo → white
+      const logo = document.querySelector('.header .logo');
+      if (logo) {
+        logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        logo.style.filter = 'brightness(0) invert(1)';
+      }
+
+      // Menu icon → white
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) {
+        menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        menuIcon.style.filter = 'brightness(0) invert(1)';
+      }
+
+      // Footer
+      const footer = document.querySelector('.footer');
+      if (footer) {
+        footer.style.transition = transitionColor;
+        footer.style.backgroundColor = marketplaceColors.footer;
+        footer.style.borderTop = `1px solid ${marketplaceColors.footerBorder}`;
+        footer.style.boxShadow = `0 -2px 20px ${marketplaceColors.shadow}`;
+      }
+
+      // Footer backgrounds → transparent so yellow shows through
+      const footerContent = document.querySelector('.footer-content');
+      if (footerContent) { footerContent.style.backgroundColor = 'transparent'; }
+      const fundoFooter = document.querySelector('.fundo-footer');
+      if (fundoFooter) { fundoFooter.style.backgroundColor = 'transparent'; }
+      document.querySelectorAll('.footer-section').forEach(s => { s.style.backgroundColor = 'transparent'; });
+
+      // Footer titles & text → white
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        el.style.color = marketplaceColors.text;
+      });
+      document.querySelectorAll('.footer .footerTextTypography, .footer a').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        el.style.color = marketplaceColors.text;
+      });
+
+      // Page background → white (matching header transition timing)
+      const portfolioSectionBg = document.querySelector('.portfolio-section');
+      if (portfolioSectionBg) {
+        portfolioSectionBg.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        portfolioSectionBg.style.backgroundColor = '#FFFFFF';
+      }
+
+      // Hamburger menu → yellow background, white text
+      const hamburgerMenu = document.getElementById('hamburgerMenu');
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('marketplace-theme-active');
+      }
+
+      document.body.style.opacity = '1';
+    }, 1500);
+
+    document.body.style.opacity = '0.92';
+    document.body.style.transition = 'opacity 1s ease';
   }
 });
 
@@ -2176,8 +2268,8 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeHeaderBehavior();
     }
     
-    // Special handling for Tarkov page if it exists
-    if (document.body.classList.contains('tarkov-page') || document.body.classList.contains('grocery-page')) {
+    // Special handling for Tarkov/Grocery/Marketplace pages
+    if (document.body.classList.contains('tarkov-page') || document.body.classList.contains('grocery-page') || document.body.classList.contains('marketplace-page')) {
         // Ensure header transitions work with Tarkov theme
         header.addEventListener('transitionend', function(e) {
             if (e.propertyName === 'transform' && !isHeaderVisible) {
@@ -2203,7 +2295,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
     // Only run on Tarkov page
-    if (!document.body.classList.contains('tarkov-page') && !document.body.classList.contains('grocery-page')) return;
+    if (!document.body.classList.contains('tarkov-page') && !document.body.classList.contains('grocery-page') && !document.body.classList.contains('marketplace-page')) return;
     
     const header = document.querySelector('.header');
     if (!header) return;
