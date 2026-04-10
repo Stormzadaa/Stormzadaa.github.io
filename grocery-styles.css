@@ -63,6 +63,9 @@
   scroll-snap-type: y mandatory;
   overflow-y: auto;
   overflow-x: hidden;
+  background: var(--grocery-app-white);
+  position: relative;
+  z-index: 1;
 }
 
 /* Header scroll behavior for grocery page */
@@ -117,7 +120,7 @@
 .hero-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
-  font-size: clamp(4vh, 5.5vw, 8vh);
+  font-size: var(--h0-font-size);
   color: white !important;
   margin: 0 0 clamp(0.5vh, 1.3vw, 1.5vh) 0;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
@@ -126,7 +129,7 @@
 
 .hero-tagline {
   font-family: var(--body-font-family);
-  font-size: clamp(2vh, 2.1vw, 3vh);
+  font-size: var(--h6-font-size);
   color: var(--grocery-app-text-light) !important;
   margin: 0 0 clamp(1vh, 3.4vw, 3vh) 0;
   opacity: 0.95;
@@ -231,7 +234,7 @@
 
 .overview-description {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   line-height: 1.6;
   text-align: center;
@@ -250,7 +253,7 @@
 .tag {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   background: var(--grocery-app-success);
   color: var(--grocery-app-text-light);
   padding: 12px 24px;
@@ -304,14 +307,14 @@
 .typography-subtitle {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--h3-font-size);
+  font-size: var(--h5-font-size);
   color: var(--grocery-app-text);
   margin: 0 0 34px 0;
 }
 
 .palette-rule-description {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   line-height: 1.5;
   margin: 0 0 34px 0;
@@ -391,7 +394,7 @@
 
 .color-group-description p {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   line-height: 1.5;
   margin: 0;
@@ -422,7 +425,7 @@
 .palette-description,
 .typography-description {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   line-height: 1.5;
   margin: 0;
@@ -440,7 +443,7 @@
 .typography-font-name {
   font-family: "Myriad Pro", Arial, sans-serif;
   font-weight: bold;
-  font-size: 36px;
+  font-size: var(--h5-font-size);
   color: var(--grocery-app-text);
   margin: 0;
   text-align: center;
@@ -510,7 +513,7 @@
 .myriad-regular,
 .myriad-bold {
   font-family: "Myriad Pro", Arial, sans-serif;
-  font-size: 48px;
+  font-size: var(--h5-font-size);
   color: var(--grocery-app-text);
 }
 
@@ -584,7 +587,7 @@
 
 .low-fidelity-sketches-description {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   text-align: center;
   margin: 34px auto 34px auto;
@@ -700,7 +703,7 @@
 .mockup-title {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
-  font-size: var(--h3-font-size);
+  font-size: var(--h5-font-size);
   color: #000000;
   margin: 0 0 24px 0;
   line-height: 1.2;
@@ -773,7 +776,7 @@
 .header-container h2 {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-bold);
-  font-size: var(--h2-font-size);
+  font-size: var(--h3-font-size);
   color: var(--grocery-app-subheaders);
   margin: 0 0 16px 0;
 }
@@ -815,7 +818,7 @@
   }
   
   .mockup-description {
-    font-size: var(--h6-font-size);
+    font-size: var(--body-font-size);
   }
 }
 
@@ -872,7 +875,7 @@
   }
   
   .mockup-description {
-    font-size: var(--h6-font-size);
+    font-size: var(--body-font-size);
   }
 }
 
@@ -983,7 +986,7 @@
 
 .prototype-subtitle {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   text-align: center;
   margin: 0 0 34px 0;
@@ -1146,7 +1149,7 @@
 
 .figma-note {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   text-align: center;
   margin: 21px auto 55px auto;
@@ -1156,7 +1159,7 @@
 
 .video-description {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: #2a2a2a;
   text-align: center;
   margin: 34px 0 0 0;
@@ -1241,14 +1244,14 @@
 .interaction-item h4 {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--h4-font-size);
+  font-size: var(--h5-font-size);
   color: var(--grocery-app-text);
   margin: 0 0 13px 0;
 }
 
 .interaction-item p {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   margin: 0;
   line-height: 1.5;
@@ -1320,7 +1323,7 @@
 
 .closing-text {
   font-family: var(--body-font-family);
-  font-size: var(--h6-font-size);
+  font-size: var(--body-font-size);
   color: var(--grocery-app-text);
   line-height: 1.6;
   margin: 0 auto 34px auto;
@@ -1341,7 +1344,7 @@
 
 .cta-text {
   font-family: var(--body-font-family);
-  font-size: var(--h4-font-size);
+  font-size: var(--h5-font-size);
   color: var(--grocery-app-text);
   margin: 0;
   background: rgba(255, 255, 255, 0.95);
@@ -1392,6 +1395,8 @@
   color: var(--grocery-app-subheaders);
   margin: 0 0 34px 0;
   text-align: center;
+  border-bottom: 3px solid var(--grocery-app-secondary);
+  padding-bottom: 16px;
 }
 
 .projects-grid {
@@ -1493,28 +1498,30 @@
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1279px) {
   .hero-section {
-    height: auto;
-    padding: 40px 0 80px 0;
-    align-items: flex-start;
+    height: calc(100vh - var(--header-height, 75px));
+    padding: 0 0 80px 0;
+    align-items: center;
   }
   
   .hero-container {
-    padding: 40px;
-    margin-bottom: 40px;
+    padding: clamp(20px, 3vh, 40px);
+    margin-bottom: 0;
+    justify-content: center;
+    gap: clamp(1vh, 2vh, 3vh);
   }
   
   .hero-title {
-    font-size: 6.8vw;
-    margin: 0 0 1.6vw 0;
+    margin: 0 0 clamp(0.8vh, 1.2vw, 1.2vh) 0;
   }
   
   .hero-tagline {
-    font-size: 2.6vw;
-    margin: 0 0 4.2vw 0;
+    margin: 0 0 clamp(1.5vh, 2.5vw, 2.5vh) 0;
   }
   
   .hero-phone-mockup {
-    width: 42vw;
+    height: clamp(45vh, 55vh, 65vh);
+    width: auto;
+    max-width: 80%;
   }
   
   /* Carousel responsive styles */
@@ -1550,12 +1557,20 @@
   .overview-section,
   .style-guide-section,
   .low-fidelity-sketches-container,
-  .ui-mockups-section,
   .key-interactions-section,
   .closing-section,
   .other-projects-section {
     padding-left: 55px;
     padding-right: 55px;
+  }
+  
+  .ui-mockups-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .mockup-content {
+    padding: 0 55px;
   }
   
   .mockups-carousel {
@@ -1600,6 +1615,63 @@
   .carousel-nav.next {
     right: 15px;
   }
+  
+  .header-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  
+  .closing-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .color-group {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .color-group-left {
+    min-width: 0;
+    overflow: hidden;
+  }
+  
+  .color-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .color-item {
+    width: auto;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  
+  .color-swatch {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .color-code {
+    font-size: var(--h10-font-size);
+  }
+  
+  .color-group-description {
+    padding-top: 4px;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  .color-group-description p {
+    font-size: var(--h7-font-size);
+  }
 }
 
 /* Mobile Large */
@@ -1616,12 +1688,10 @@
   }
   
   .hero-title {
-    font-size: 8.9vw;
     margin: 0 0 2.1vw 0;
   }
   
   .hero-tagline {
-    font-size: 3.4vw;
     margin: 0 0 5.5vw 0;
   }
   
@@ -1711,16 +1781,24 @@
   }
   
   .hero-title {
-    font-size: var(--h2-font-size);
+    font-size: var(--h0-font-size);
   }
   
   .hero-tagline {
-    font-size: var(--h7-font-size);
+    font-size: var(--h6-font-size);
   }
   
   .color-palette-side,
   .typography-side {
     padding: 32px;
+  }
+  
+  .color-code {
+    font-size: var(--h10-font-size);
+  }
+  
+  .color-group-description p {
+    font-size: var(--h7-font-size);
   }
   
   .mockups-carousel {
@@ -1769,7 +1847,7 @@
   }
   
   .prototype-nav-btn {
-    font-size: var(--h7-font-size);
+    font-size: var(--h6-font-size);
     padding: 10px 16px;
   }
   
@@ -1787,7 +1865,7 @@
   }
   
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .sketches-grid {
@@ -1809,6 +1887,12 @@
   }
 }
 
+@media (max-width: 630px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Mobile */
 @media (max-width: 430px) {
   .hero-container {
@@ -1816,12 +1900,10 @@
   }
   
   .hero-title {
-    font-size: 11vw;
     margin: 0 0 2.6vw 0;
   }
   
   .hero-tagline {
-    font-size: 4.2vw;
     margin: 0 0 6.8vw 0;
   }
   
@@ -1871,7 +1953,7 @@
   }
   
   .description-text {
-    font-size: var(--h6-font-size);
+    font-size: var(--body-font-size);
   }
   
   .carousel-indicators {
@@ -1918,12 +2000,12 @@
   }
   
   .hero-title {
-    font-size: var(--h3-font-size);
+    font-size: var(--h0-font-size);
     margin-bottom: 16px;
   }
   
   .hero-tagline {
-    font-size: var(--h5-font-size);
+    font-size: var(--h6-font-size);
   }
   
   .overview-title,
@@ -1934,7 +2016,7 @@
   .other-projects-title,
   .demo-title,
   .interactions-title {
-    font-size: var(--h4-font-size);
+    font-size: var(--h3-font-size);
   }
   
   .color-palette-side,
@@ -1974,7 +2056,11 @@
   }
   
   .color-code {
-    font-size: 10px;
+    font-size: var(--h10-font-size);
+  }
+  
+  .color-group-description p {
+    font-size: var(--h7-font-size);
   }
   
   .color-swatch {
@@ -2049,7 +2135,7 @@
   }
   
   .prototype-nav-btn {
-    font-size: 11px;
+    font-size: var(--h6-font-size);
     padding: 8px 12px;
   }
   
@@ -2083,6 +2169,7 @@
   }
   
   .projects-grid {
+    grid-template-columns: 1fr;
     gap: 32px;
   }
   
@@ -2096,11 +2183,11 @@
   }
   
   .low-fidelity-sketches-title {
-    font-size: 28px;
+    font-size: var(--h3-font-size);
   }
   
   .low-fidelity-sketches-description {
-    font-size: 16px;
+    font-size: var(--body-font-size);
   }
   
   .project-info {
