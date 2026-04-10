@@ -362,9 +362,11 @@
 
 .color-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   flex: 1;
   min-width: 0;
+  overflow: hidden;
 }
 
 .color-item {
@@ -1754,7 +1756,6 @@
   .overview-section,
   .style-guide-section,
   .low-fidelity-sketches-container,
-  .ui-mockups-section,
   .key-interactions-section,
   .closing-section,
   .other-projects-section {
@@ -1795,6 +1796,23 @@
   
   .color-code {
     font-size: var(--h10-font-size);
+  }
+  
+  .color-group {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+  
+  .color-group-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .color-group-label {
+    min-width: auto;
   }
   
   .color-group-description p {
@@ -1839,7 +1857,7 @@
   }
   
   .ui-mockups-section {
-    padding: 80px 20px;
+    padding: 0;
   }
   
   .prototype-nav {
@@ -1968,13 +1986,19 @@
   .overview-section,
   .style-guide-section,
   .low-fidelity-sketches-container,
-  .ui-mockups-section,
   .try-experience-section,
-  .user-flow-section,
   .key-interactions-section,
   .closing-section,
   .other-projects-section {
     padding: 60px 15px;
+  }
+  
+  .key-interactions-section {
+    padding-top: 0;
+  }
+  
+  .figma-note {
+    margin-bottom: 0;
   }
   
   .mockups-carousel {
@@ -1982,11 +2006,14 @@
   }
   
   .try-experience-wrapper {
-    padding: 0 21px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
   }
   
   .video-demo {
-    padding: 60px 21px;
+    padding: 60px 0;
   }
   
   .hero-section {
@@ -2048,7 +2075,9 @@
   }
   
   .color-row {
+    flex-wrap: wrap;
     gap: 8px;
+    overflow: hidden;
   }
   
   .color-item {
@@ -2127,7 +2156,7 @@
   }
   
   .ui-mockups-section {
-    padding: 60px 15px;
+    padding: 0;
   }
   
   .prototype-nav {
@@ -2141,10 +2170,11 @@
   
   .prototype-content {
     min-height: 400px;
+    margin-bottom: 0;
   }
   
-  .user-flow-section {
-    display: block; /* Show on mobile */
+  .figma-note {
+    margin-top: 0;
   }
   
   .interactions-grid {
@@ -2161,6 +2191,10 @@
   .interactions-title,
   .video-description {
     padding: 0 21px;
+  }
+  
+  .interactions-title {
+    margin-top: 21px;
   }
   
   .video-frame video {
