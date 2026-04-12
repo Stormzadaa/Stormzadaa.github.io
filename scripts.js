@@ -9,6 +9,9 @@ window.addEventListener('load', function() {
     setTimeout(() => {
       loadingScreen.style.display = 'none';
       
+      // Signal that the loading screen is fully gone — theme transitions can now begin
+      document.dispatchEvent(new CustomEvent('loadingScreenHidden'));
+
       // Start video playback on grocery store page after loading screen disappears
       const heroVideo = document.querySelector('.hero-video video');
       if (heroVideo) {
@@ -18,6 +21,9 @@ window.addEventListener('load', function() {
         });
       }
     }, 200); // Match the transition duration in CSS
+  } else {
+    // No loading screen on this page — signal immediately when window is ready
+    document.dispatchEvent(new CustomEvent('loadingScreenHidden'));
   }
 });
 
@@ -280,7 +286,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Cache DOM elements for performance
     let cachedElements = null;
+    let xPositions = [];
     let container = null;
+    
+    // Track last known mouse position so animate() can detect stale hover
+    let lastMouseX = -1;
+    let lastMouseY = -1;
+    let checkHoverPosition = null; // set by setupHoverEffects
     
     // Track event listeners for cleanup
     let eventListeners = [];
@@ -330,6 +342,15 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Set up the carousel structure
       setupCarousel();
+      
+      // If dimensions couldn't be measured, retry via attemptInitialization
+      if (carouselWidth === 0) {
+        if (initializationAttempts < 10) {
+          const delay = Math.min(50 + (initializationAttempts * 25), 300);
+          setTimeout(attemptInitialization, delay);
+        }
+        return;
+      }
       
       // Set up hover effects
       setupHoverEffects();
@@ -386,6 +407,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       
+      // Guard: if carouselWidth is still 0, bail out — actuallyInitialize will retry
+      if (carouselWidth === 0) {
+        return;
+      }
+
       // Create enough clones to ensure seamless scrolling with buffer
       const clonesNeeded = Math.max(3, Math.ceil((containerWidth * 2.5) / carouselWidth));
       
@@ -446,8 +472,10 @@ document.addEventListener("DOMContentLoaded", () => {
         carouselWidth = carouselContent.offsetWidth;
       }
       
+      xPositions = [];
       cachedElements.forEach((element, index) => {
         const xPos = index * carouselWidth;
+        xPositions.push(xPos);
         element.style.transform = `translate3d(${xPos}px, 0, 0)`;
       });
       
@@ -470,23 +498,37 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Main animation loop - optimized for performance
+    // Main animation loop - per-element wrapping for seamless infinite scroll
     function animate() {
-      if (!isRunning || !cachedElements) return;
+      if (!isRunning || !cachedElements || carouselWidth === 0) return;
       
-      // Move the global position
-      currentPosition -= speed;
+      const n = cachedElements.length;
       
-      // Simple infinite loop: when currentPosition goes too far left, reset it
-      if (currentPosition <= -carouselWidth) {
-        currentPosition = 0;
+      // Move every element left by speed
+      for (let i = 0; i < n; i++) {
+        xPositions[i] -= speed;
       }
       
-      // Position all elements in a continuous line using cached elements
-      for (let i = 0; i < cachedElements.length; i++) {
-        const elementPosition = currentPosition + (i * carouselWidth);
-        cachedElements[i].style.transform = `translate3d(${elementPosition}px, 0, 0)`;
+      // Wrap any element whose right edge has passed the left side of the container
+      for (let i = 0; i < n; i++) {
+        if (xPositions[i] + carouselWidth <= 0) {
+          // Find the current rightmost position
+          let maxX = xPositions[0];
+          for (let j = 1; j < n; j++) {
+            if (xPositions[j] > maxX) maxX = xPositions[j];
+          }
+          // Place this element immediately after the rightmost one
+          xPositions[i] = maxX + carouselWidth;
+        }
       }
+      
+      // Apply transforms
+      for (let i = 0; i < n; i++) {
+        cachedElements[i].style.transform = `translate3d(${xPositions[i]}px, 0, 0)`;
+      }
+      
+      // Reset hover if the hovered span has scrolled away from a stationary cursor
+      if (checkHoverPosition) checkHoverPosition();
       
       animationId = requestAnimationFrame(animate);
     }
@@ -563,6 +605,13 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Clear cached elements
         cachedElements = null;
+        xPositions = [];
+        checkHoverPosition = null;
+        lastMouseX = -1;
+        lastMouseY = -1;
+        
+        // Clean up accumulated event listeners from previous setups
+        cleanupEventListeners();
         
         // Reinitialize completely
         actuallyInitialize();
@@ -699,8 +748,23 @@ document.addEventListener("DOMContentLoaded", () => {
       addTrackedEventListener(container, 'selectstart', preventCarouselInteraction, { capture: true });
       addTrackedEventListener(document, 'contextmenu', globalClickPrevention, { capture: true });
       
+      // Expose a per-frame check so animate() can drop a stale hover
+      checkHoverPosition = () => {
+        if (!currentHoveredSpan || lastMouseX < 0) return;
+        const r = currentHoveredSpan.getBoundingClientRect();
+        if (lastMouseX < r.left || lastMouseX > r.right || lastMouseY < r.top || lastMouseY > r.bottom) {
+          currentHoveredSpan.style.setProperty('opacity', '0.5', 'important');
+          currentHoveredSpan.style.setProperty('transform', 'scale(1)', 'important');
+          currentHoveredSpan = null;
+          speed = baseSpeed;
+          isHovering = false;
+        }
+      };
+
       // Use mousemove to detect which span is being hovered
       const handleMouseMove = (e) => {
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
         const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -800,9 +864,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    // Set up event listeners with passive options for better performance
-    addTrackedEventListener(window, 'resize', handleResize, { passive: true });
-    addTrackedEventListener(document, 'visibilitychange', handleVisibilityChange, { passive: true });
+    // Core listeners are NOT tracked — they must survive across reinitializations
+    window.addEventListener('resize', handleResize, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange, { passive: true });
 
     // Optimized initialization strategies (reduced from 6 to 3)
     
@@ -858,44 +922,6 @@ if (isAboutPage) {
 } else {
   document.getElementById("aboutUnderline").classList.remove("active");
 }
-
-// Scroll-spin effect for about page triangles
-if (isAboutPage) {
-  const triangles = document.querySelectorAll(".triangle");
-  let lastScrollY = window.scrollY;
-  let rotations = Array.from(triangles).map(() => 0);
-  let velocity = 0;
-  let rafId = null;
-
-  function spinInertia() {
-    if (Math.abs(velocity) < 0.01) {
-      velocity = 0;
-      return;
-    }
-    velocity *= 0.995; // decelerate slowly
-    triangles.forEach((tri, i) => {
-      rotations[i] += velocity;
-      tri.style.transform = `rotate(${rotations[i]}deg)`;
-    });
-    rafId = requestAnimationFrame(spinInertia);
-  }
-
-  window.addEventListener("scroll", () => {
-    const delta = window.scrollY - lastScrollY;
-    lastScrollY = window.scrollY;
-
-    velocity += delta * 0.02;
-
-    triangles.forEach((tri, i) => {
-      rotations[i] += delta * 0.02;
-      tri.style.transform = `rotate(${rotations[i]}deg)`;
-    });
-
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(spinInertia);
-  }, { passive: true });
-}
-
 
 // Function to handle "Work" link click event
 function handleWorkLinkClick(event) {
@@ -959,6 +985,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const openDuration = "0.9s";
   const closeDuration = "0.5s";
 
+  // Create full-screen overlay to block background interactions
+  const menuOverlay = document.createElement("div");
+  menuOverlay.id = "menu-overlay";
+  menuOverlay.style.cssText = [
+    "position: fixed",
+    "inset: 0",
+    "z-index: 9999",
+    "display: none",
+    "cursor: default",
+    "background: transparent"
+  ].join("; ");
+  document.body.appendChild(menuOverlay);
+
   // Enhanced function to close the menu if screen width is greater than 768px
   function closeMenuOnLargeScreens() {
     const screenWidth = window.innerWidth;
@@ -971,6 +1010,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburgerMenu.style.transition = `transform ${closeDuration} ease`;
       hamburgerMenu.classList.add("hidden");
       document.body.classList.remove("no-scroll"); // Enable scrolling
+      menuOverlay.style.display = "none"; // Hide overlay
       setTimeout(() => {
         hamburgerMenu.classList.remove("active");
         hamburgerMenu.style.display = "none"; // Hide the menu after the animation
@@ -1010,7 +1050,10 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburgerMenu.style.background = 'linear-gradient(to bottom, #2A2B2D 45%, #1C1C1C 100%)';
     }
     
+    // Set opening transition explicitly so all pages use the same ease-in-out animation
+    hamburgerMenu.style.transition = `transform ${openDuration} ease-in-out`;
     document.body.classList.add("no-scroll"); // Disable scrolling
+    menuOverlay.style.display = "block"; // Show overlay to block background clicks
     setTimeout(() => {
       hamburgerMenu.classList.add("active");
       hamburgerMenu.classList.remove("hidden");
@@ -1027,21 +1070,15 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburgerMenu.style.transition = `transform ${closeDuration} ease`;
     hamburgerMenu.classList.add("hidden");
     document.body.classList.remove("no-scroll"); // Enable scrolling
+    menuOverlay.style.display = "none"; // Hide overlay so background is interactive again
     setTimeout(() => {
       hamburgerMenu.classList.remove("active");
       hamburgerMenu.style.display = "none"; // Hide the menu after the animation
     }, 600); // Wait for the close animation to complete before removing the active class
   }
 
-  // Close the menu when clicking outside of it and unlock scroll
-  document.addEventListener("click", (event) => {
-    if (
-      !hamburgerMenu.contains(event.target) &&
-      !menuButton.contains(event.target)
-    ) {
-      closeMenu();
-    }
-  });
+  // Clicking the overlay closes the menu
+  menuOverlay.addEventListener("click", closeMenu);
 
   // Close the menu when clicking any menu option
   const menuOptions = document.querySelectorAll("#hamburgerMenu a"); // Assuming menu options are anchor tags
@@ -1212,9 +1249,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const footer = document.querySelector("footer");
     const hamburgerMenu = document.getElementById("hamburgerMenu");
 
-    // Create a smooth loading animation effect
-    // First, ensure elements are visible, then apply the theme
-    setTimeout(() => {
+    // Dim body while loading screen is visible
+    document.body.style.opacity = '0.92';
+    document.body.style.transition = 'opacity 1s ease';
+
+    // Start color theme once the loading screen is fully gone
+    document.addEventListener('loadingScreenHidden', () => {
       // Add visual loading feedback with much slower transitions
       if (header) {
         // Include transform transition for header behavior AND background-color for theme
@@ -1245,13 +1285,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // Add subtle fade-in effect for enhanced immersion
+      // Restore opacity once theme is applied
       document.body.style.opacity = '1';
-    }, 1500); // Longer delay before starting the transition
-
-    // Set initial state for smooth transition
-    document.body.style.opacity = '0.92';
-    document.body.style.transition = 'opacity 1s ease';
+    }, { once: true }); // Fires after loading screen is hidden
   } else {
     // Initialize theme state for non-Tarkov pages
     tarkovThemeActive = false;
@@ -1259,8 +1295,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Enhanced Grocery Page Color Theme Activation
   if (body.classList.contains("grocery-page")) {
-    // Create a smooth loading animation effect for grocery theme
-    setTimeout(() => {
+    // Dim body while loading screen is visible
+    document.body.style.opacity = '0.95';
+    document.body.style.transition = 'opacity 3s ease-in-out';
+
+    // Start grocery color theme once the loading screen is fully gone
+    document.addEventListener('loadingScreenHidden', () => {
       // Grocery color variables
       const groceryColors = {
         primary: '#2ECC71',
@@ -1408,14 +1448,10 @@ document.addEventListener("DOMContentLoaded", () => {
         header.style.color = groceryColors.textDark;
       });
 
-      // Add subtle fade-in effect with same timing
+      // Restore opacity once theme is applied
       document.body.style.opacity = '1';
-    }, 1000); // 1 second delay for color transition
+    }, { once: true }); // Fires after loading screen is hidden
 
-    // Set initial state for smooth transition with same timing
-    document.body.style.opacity = '0.95';
-    document.body.style.transition = 'opacity 3s ease-in-out';
-    
     // Grocery page header scroll behavior
     let lastScrollTop = 0;
     let isHeaderVisible = true;
@@ -1507,7 +1543,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Marketplace Page Color Theme Activation
   if (body.classList.contains("marketplace-page")) {
-    setTimeout(() => {
+    // Dim body while loading screen is visible
+    document.body.style.opacity = '0.92';
+    document.body.style.transition = 'opacity 1s ease';
+
+    // Start marketplace color theme once the loading screen is fully gone
+    document.addEventListener('loadingScreenHidden', () => {
       const marketplaceColors = {
         header:       '#F5A623',   // Yellow
         footer:       '#F5A623',   // Yellow
@@ -1574,13 +1615,6 @@ document.addEventListener("DOMContentLoaded", () => {
         el.style.color = marketplaceColors.text;
       });
 
-      // Page background → white (matching header transition timing)
-      const portfolioSectionBg = document.querySelector('.portfolio-section');
-      if (portfolioSectionBg) {
-        portfolioSectionBg.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        portfolioSectionBg.style.backgroundColor = '#FFFFFF';
-      }
-
       // Hamburger menu → yellow background, white text
       const hamburgerMenu = document.getElementById('hamburgerMenu');
       if (hamburgerMenu) {
@@ -1588,15 +1622,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       document.body.style.opacity = '1';
-    }, 1500);
-
-    document.body.style.opacity = '0.92';
-    document.body.style.transition = 'opacity 1s ease';
+    }, { once: true }); // Fires after loading screen is hidden
   }
 
   // ─── About Page Theme ───
   if (body.classList.contains("about-page")) {
-    setTimeout(() => {
+    // Dim body while loading screen is visible
+    document.body.style.opacity = '0.92';
+    document.body.style.transition = 'opacity 1s ease';
+
+    // Start about color theme once the loading screen is fully gone
+    document.addEventListener('loadingScreenHidden', () => {
       const aboutColors = {
         header:       '#FFFFFF',   // white
         footer:       '#FFFFFF',
@@ -1662,10 +1698,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       document.body.style.opacity = '1';
-    }, 1500);
-
-    document.body.style.opacity = '0.92';
-    document.body.style.transition = 'opacity 1s ease';
+    }, { once: true }); // Fires after loading screen is hidden
   }
 });
 
