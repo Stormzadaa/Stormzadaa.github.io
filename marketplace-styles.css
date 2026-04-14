@@ -268,8 +268,10 @@
 
 /* Header nav underline — white to match yellow header */
 .marketplace-page .header .nav-underline.active {
-  background-color: #FFFFFF;
-  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Hamburger menu yellow theme */
@@ -287,7 +289,7 @@
 .hamburger-menu.marketplace-theme-active .work-underline,
 .hamburger-menu.marketplace-theme-active .about-underline,
 .hamburger-menu.marketplace-theme-active .contact-underline {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #FFFFFF;
   transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -599,6 +601,132 @@
   .marketplace-flow-item {
     flex: 0 0 calc(50% - 13px);
   }
+}
+
+/* ============================================
+   OTHER PROJECTS SECTION
+   ============================================ */
+.marketplace-other-projects-section {
+  padding: 55px 89px;
+  background: var(--marketplace-section-bg);
+}
+
+.marketplace-other-projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.marketplace-other-projects-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h3-font-size);
+  color: var(--marketplace-text);
+  margin: 0 0 34px 0;
+  text-align: center;
+  border-bottom: 2px solid #F5A623;
+  padding-bottom: 8px;
+}
+
+.marketplace-page .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 34px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.marketplace-page .project-item {
+  background: var(--marketplace-surface);
+  border: 1px solid var(--marketplace-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.marketplace-page .project-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+}
+
+.marketplace-page .project-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.marketplace-page .project-image {
+  height: 200px;
+  overflow: hidden;
+  background: var(--marketplace-section-bg);
+}
+
+.marketplace-page .project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.marketplace-page .project-info {
+  padding: 21px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.marketplace-page .project-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--body-font-size);
+  color: var(--marketplace-text);
+  margin: 0 0 8px 0;
+}
+
+.marketplace-page .project-description {
+  font-size: var(--small-font-size);
+  color: var(--marketplace-text);
+  opacity: 0.7;
+  margin: 0 0 13px 0;
+  line-height: 1.5;
+}
+
+.marketplace-page .project-tag {
+  display: inline-block;
+  background: #F5A623;
+  color: #1E293B;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-weight-bold);
+  padding: 4px 10px;
+  border-radius: 20px;
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .marketplace-other-projects-section {
+    padding: 55px 55px;
+  }
+}
+
+@media (max-width: 768px) {
+  .marketplace-other-projects-section {
+    padding: 34px 21px;
+  }
+
+  .marketplace-page .projects-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 480px) {
+  .marketplace-other-projects-section {
+    padding: 21px 13px;
+  }
+}
   .marketplace-flow-arrow {
     display: none;
   }

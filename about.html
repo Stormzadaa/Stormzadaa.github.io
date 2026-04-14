@@ -4,20 +4,34 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>About</title>
+  <title>Vinicius Gallipim — UI/UX Designer &amp; Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="backgroundAbout.css" />
+  <link rel="stylesheet" href="about.css" />
 </head>
 
 <body class="about-page">
+<div id="triangle-bg" data-tri-palette="about">
+  <div class="tri-overlay"></div>
+  <div class="tri-container"></div>
+</div>
 <section class="portfolio-section">
   <header class="header headerTypography">
     <div class="headerBox">
       <a href="index.html" class="headerTypo">
         <img src="Assets/LOGO.svg" alt="Company Logo" class="logo" />
       </a>
+      <button id="tri-lock-btn-mobile" class="tri-lock-btn tri-lock-btn-mobile" aria-label="Toggle triangle animation" title="Lock/unlock triangle animation">
+        <svg class="lock-open-icon-m" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+        </svg>
+        <svg class="lock-closed-icon-m" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </button>
       <button class="menu-svg">
         <img src="Assets/menu.svg" alt="Menu" class="menu-icon" />
       </button>
@@ -63,23 +77,65 @@
      <!-- BUTTON -->
     <!-- Removed play/pause buttons -->
         <div class="hold-title">
+          <button id="tri-lock-btn" class="tri-lock-btn" aria-label="Toggle triangle animation" title="Lock/unlock triangle animation">
+            <svg id="lock-open-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+            </svg>
+            <svg id="lock-closed-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </button>
           <h1 class="main-title titleTypography">
             <span class="title-line-1"><span class="no-break">YOU CALL IT</span> <span class="no-break">ZOOMING OUT</span></span>
             <span class="title-line-2"><span class="no-break">I CALL IT</span> <span style="font-family: 'Roboto'; font-style: italic; color: #FFDF00;">BRAINSTORMING</span></span>
           </h1>
           <p class="aboutpunchline">I'm Vinicius — to me, <span style="color: #FFDF00; font-style: italic;">creativity</span> should <span style="color: #FFDF00; font-style: italic;">flow</span> naturally.</p>
-          <img id="aboutImage" src="Assets/KnightPlaceHolderImage.jpeg" alt="aboutImagePlaceholder">
-          <h2 class="aboutsubheader">Lorem ipsum dolor sit amet</h2>
-          <h3 class="textTypography">Lorem ipsum dolor sit amet consectetur. At pellentesque eleifend et arcu id ultrices a lacus bibendum. Adipiscing dolor nunc purus magna. Dictumst odio luctus sapien pellentesque ante vestibulum ornare. Elementum arcu porttitor non nunc massa vitae purus sit amet. Justo tellus ullamcorper dolor enim nunc pharetra ac sem. Ultrices diam cursus massa lorem enim et sit commodo aliquam. Bibendum aliquet feugiat ullamcorper sit at amet gravida eu. Vitae massa cras sit dui amet est ultricies quis. Vitae felis mi sit enim mauris orci pharetra. Tellus leo eget dictumst viverra porttitor eu amet ut. Adipiscing aliquet dolor risus ornare nisl ac hac est. Purus quam amet tellus posuere suspendisse tortor. Leo massa lectus felis est iaculis gravida.
-            Magna sed eget id et odio id tellus. Euismod etiam non vulputate nunc mauris risus. Cras at pellentesque ac egestas vitae lorem lacus. Quis non eget blandit massa tristique ac id risus. Amet nunc suspendisse vel vulputate et nulla magna morbi.
-            A aenean sit egestas leo sagittis. Cursus sapien odio amet consequat imperdiet amet faucibus tristique. Tincidunt consectetur in tristique arcu. Venenatis id sed nisl nunc posuere. Curabitur consectetur turpis at sed justo.
-            Ac purus duis odio in placerat. Quis placerat faucibus orci sagittis nibh tellus sed. Vitae dictum non eget magna tincidunt sem et. Ac accumsan dolor aliquam pulvinar mauris sed sem integer urna. Dignissim nisl id hac malesuada amet lobortis magna quisque.
-            Id tortor felis elementum a in et dui. Turpis aliquet tristique turpis est convallis. Proin habitant blandit tincidunt rhoncus at tincidunt enim sagittis...</h3>
-            <h2 class="aboutsubheader">Lorem ipsum dolor sit amet</h2>
-            <h4 class="textTypography">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.</h4>
+
+          <!-- Intro photo -->
+          <div class="about-photo-single">
+            <img src="Assets/About/Grecia.jpeg" alt="Vinicius in Greece" />
+          </div>
+
+          <!-- Who I am -->
+          <h2 class="aboutsubheader">Who I am</h2>
+          <p class="textTypography">Born in Brazil in 1998, raised with Italian roots, cured by Irish rain since 2017 — I'm Vinicius, a <span style="color: #FFDF00;">UI/UX Designer</span> who believes great design should feel as natural as dreaming (and as satisfying as a perfectly cable-managed PC build).</p>
+          <p class="textTypography" style="margin-bottom: 25px;">I hold a <span style="color: #FFDF00;">Master's in Creative Digital Media &amp; UX</span> and a Bachelor's in Arts, Entertainment and Media Management, both earned at <span style="color: #FFDF00;">TUD — Technological University Dublin</span>. I speak English and Portuguese fluently, a little Spanish, and I'm learning Italian — slowly, but with passion. I also have ADHD, which I've weaponised into a superpower: when something catches my attention, I hyperfocus until it's done right. Design catches my attention every single time.</p>
+
+          <!-- What I do -->
+          <div class="about-photo-single about-photo-full">
+            <img src="Assets/About/Formatura.jpeg" alt="Vinicius at graduation" />
+          </div>
+          <h2 class="aboutsubheader">What I do</h2>
+          <p class="textTypography">I'm a <span style="color: #FFDF00;">User-Centered Design (UCD)</span> advocate with a hands-on portfolio covering UI design, web and mobile design, interactive prototyping and frontend development. My toolkit includes Figma, Adobe Creative Suite, HTML, CSS and React Native — and I'm always adding new tools to the bench. I've led in-depth UX case studies, collected user feedback and translated messy data into clean, intuitive interfaces. (Yes, I genuinely enjoy that part.)</p>
+          <p class="textTypography">I also bring a solid background in <span style="color: #FFDF00;">Quality Assurance and Process Management</span> from working with multinationals like Microsoft, Infosys and Keywords. Contributing to Agile linguistic teams, building QA strategies from scratch, and navigating Jira, TestRail, MemoQ and CRM systems taught me one thing: <em>quality is a habit, not a phase.</em></p>
+
+          <div class="about-callout">
+            <span class="about-callout-icon">
+              <svg viewBox="0 0 65 84" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:20px;">
+                <path d="M11.042 0.693359C13.649 0.693374 15.4129 1.11456 16.333 1.95801C16.4179 2.02983 16.4987 2.11015 16.5791 2.19531L16.5049 4.82129L17.7285 4.27051C18.0112 5.08947 18.2366 6.08218 18.4033 7.24902L18.4805 7.87109L16.8389 8.61035L18.7725 10.2275L20.7432 26.1182L18.7393 24.5234L18.623 28.6045L20.9229 27.5684L21.3857 31.2998L18.9561 32.3936L21.8184 34.7861L23.7881 50.667L21.4092 48.7725L21.293 52.8535L23.9131 51.6738L24.376 55.4043L21.627 56.6426L24.7578 59.2617L24.7861 58.7129L25.9941 68.4385C26.2242 70.2787 26.7225 71.4671 27.4893 72.0039C28.256 72.5407 29.483 72.8472 31.1699 72.9238L31.0547 83.8506H25.9941C19.2467 83.8506 14.7994 82.2022 12.6523 78.9053C11.5022 77.1417 10.6964 75.4164 10.2363 73.7295C9.89854 72.4346 9.58259 70.7674 9.28613 68.7285L11.1562 68.7822L9.64844 65.4326L8.96094 66.2949L5.97949 44.4648L8.49219 44.5371L6.98438 41.1875L5.74414 42.7441L2.72559 20.6445L6.36816 20.75L4.86035 17.3994L2.65918 20.1641L0 0.693359H11.042ZM61.709 3.36035L64.291 3.43359L58.7959 35.9062L56.0303 33.7041L55.9141 37.7852L58.6895 36.5361L57.9678 40.7988L56.2471 41.5742L57.6396 42.7383L53.2529 68.6689C52.8513 70.8494 52.4916 72.6003 52.1758 73.9219L50.1807 73.8174L51.4424 76.624C51.2644 77.1472 51.0515 77.6847 50.8047 78.2373L50.8818 76.7998L47.5322 78.3066L49.7988 80.2031C48.9961 81.4882 47.9629 82.3978 46.6973 82.9307C45.2404 83.5441 43.3618 83.8506 41.0615 83.8506H37.0635L36.4766 83.3838L36.4629 83.8506H33.9307L36.3652 68.9697L37.708 70.0938L37.9268 65.9678L36.7715 66.4873L37.3125 63.1787L38.7324 66.335L41.3516 63.2031L37.3438 62.9912L37.4678 62.2344L37.5928 62.1787L37.4902 62.0967L42.7568 29.9092L43.665 29.9355L42.9961 28.4492L43.2637 26.8164L46.3135 25.4453L43.8135 23.4561L46.4668 7.24902C46.7735 4.64201 47.426 2.91669 48.4229 2.07324C49.4197 1.15328 51.2214 0.693383 53.8281 0.693359H63.832L61.709 3.36035Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <p>This portfolio? <span style="color: #FFDF00;">Built entirely by me.</span> Every pixel, interaction and animation was designed and coded from scratch — HTML, CSS, and yes, some JavaScript too (I'm learning). Consider it a live project in its own right.</p>
+          </div>
+
+          <!-- Beyond the screen -->
+          <h2 class="aboutsubheader">Beyond the screen</h2>
+          <p class="textTypography" style="margin-bottom: 32px;">When I'm not designing or buried in JavaScript tutorials, I'm building computers, taking landscape photographs, drawing, gaming, or occasionally going live for anyone patient enough to watch. I value <span style="color: #FFDF00;">growth and experience over a pay cheque</span> — I know where I want to get to and I'm putting in the work every day to get there. People who've worked with me tend to use the word "trustworthy." I like that word. I plan to keep earning it.</p>
         </div>
       </div>
   </main>
+
+  <!-- See My Work Section -->
+  <section class="about-see-my-work">
+    <div class="about-see-my-work-container">
+      <h2 class="about-see-my-work-title titleTypography">See My Work</h2>
+      <div class="about-projects-grid" data-other-projects="about">
+        <!-- injected by scripts.js -->
+      </div>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="footer-content">

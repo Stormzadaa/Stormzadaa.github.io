@@ -1415,13 +1415,15 @@
 .project-tag {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--body-font-size);
+  font-size: var(--small-font-size);
   background: var(--grocery-app-success);
   color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
+  padding: 4px 10px;
+  border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  align-self: flex-start;
+  margin-top: auto;
   transition: background 0.3s ease;
 }
 

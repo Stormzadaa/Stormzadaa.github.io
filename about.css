@@ -1,0 +1,673 @@
+/* =================================
+   ABOUT PAGE ANIMATED BACKGROUND
+   ================================= */
+
+/* ================================= 
+   SEE MY WORK SECTION
+   ================================= */
+
+.about-see-my-work {
+  padding: 55px 89px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.about-see-my-work-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-see-my-work-title {
+  font-size: var(--h3-font-size, 1.8rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 34px 0;
+  text-align: center;
+  border-bottom: 3px solid #FFDF00;
+  padding-bottom: 16px;
+}
+
+.about-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-project-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-project-item:hover {
+  background: rgba(0, 156, 59, 0.15);
+  transform: translateY(-6px);
+  border-color: #009C3B;
+  box-shadow: 0 16px 32px rgba(0, 156, 59, 0.2);
+}
+
+.about-project-item .project-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.about-project-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.about-project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.about-project-image--svg img {
+  object-fit: contain;
+  padding: 16px;
+}
+
+.about-project-item:hover .about-project-image img {
+  transform: scale(1.05);
+}
+
+.about-project-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.about-project-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.about-project-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.about-project-tag {
+  display: inline-block;
+  font-size: var(--small-font-size);
+  font-weight: 600;
+  background: #009C3B;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: auto;
+  width: fit-content;
+  transition: background 0.3s ease;
+}
+
+.about-project-item:hover .about-project-tag {
+  background: #FFDF00;
+  color: #000;
+}
+
+@media (min-width: 769px) and (max-width: 1279px) {
+  .about-see-my-work {
+    padding: 40px 55px;
+  }
+  .about-projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-see-my-work {
+    padding: 30px;
+  }
+  .about-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Header nav links — Brazil green */
+.about-page .header .nav-link {
+  color: #009C3B;
+}
+
+/* Header logo + menu icon — Brazil green */
+.about-page .header .logo,
+.about-page .header .menu-icon {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(98%) saturate(523%) hue-rotate(108deg) brightness(95%);
+}
+
+/* Header nav underline — white to match purple header */
+.about-page .header .nav-underline,
+.about-page .header .nav-underline.active {
+  background: #009C3B !important;
+  border-color: #009C3B !important;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hamburger menu — about page coral red theme */
+.hamburger-menu.about-theme-active {
+  background: #FFFFFF;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.about-theme-active a {
+  color: #009C3B;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.about-theme-active .work-underline,
+.hamburger-menu.about-theme-active .about-underline,
+.hamburger-menu.about-theme-active .contact-underline {
+  background-color: rgba(0, 156, 59, 0.5);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.about-theme-active::before {
+  opacity: 90% !important;
+  filter: sepia(100%) hue-rotate(20deg) saturate(400%) brightness(1.8) !important;
+}
+
+/* Always show header on mobile for the about page */
+@media (max-width: 768px) {
+  .about-page .header {
+    transform: translateY(0) !important;
+    position: fixed !important;
+    top: 0 !important;
+  }
+}
+
+/* About page — body carries the gradient so portfolio-section can be transparent */
+body.about-page {
+  background: linear-gradient(to bottom, #009C3B 0%, #002776 55%, #000A2E 100%);
+  background-attachment: scroll;
+  min-height: 100vh;
+}
+
+/* Override portfolio-section background for about page — let triangles show through */
+body .portfolio-section {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* About page — footer yellow stars */
+.about-page .fundo-footer {
+  opacity: 90% !important;
+  filter: sepia(80%) saturate(300%) hue-rotate(10deg) brightness(1.4) !important;
+}
+
+/* About page — all text white */
+.about-page .main-title,
+.about-page .aboutpunchline,
+.about-page .aboutsubheader,
+.about-page .textTypography,
+.about-page .titleTypography {
+  color: #FFFFFF !important;
+}
+
+.about-page .aboutsubheader {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+/* Animated Background Container */
+/* Ensure content appears above triangle background */
+.main-content {
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  position: relative;
+  z-index: 3;
+}
+
+.footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* =================================
+   INFINITE SVG TRIANGLE FUSION
+   by Rob DiMarzo (adapted)
+   ================================= */
+
+#triangle-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.08;
+}
+
+.tri-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  background: radial-gradient(circle, transparent 0%, rgba(0, 10, 46, 0.82) 100%);
+}
+
+.tri-container {
+  display: grid;
+  grid-template-columns: repeat(10, 200px);
+  grid-template-rows: repeat(6, 230px);
+  transform: translate(-3%, -4%);
+}
+
+.tri-shape {
+  width: 200px;
+  height: 230px;
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+/* Cascading row offsets that create the "infinite fusion" tessellation */
+.tri-shape:nth-child(n+11) { transform: translate(-50%, -25%); }
+.tri-shape:nth-child(n+21) { transform: translate(0%,   -50%); }
+.tri-shape:nth-child(n+31) { transform: translate(-50%, -75%); }
+.tri-shape:nth-child(n+41) { transform: translate(0%,  -100%); }
+.tri-shape:nth-child(n+51) { transform: translate(-50%, -125%); }
+
+/* =================================
+   LOCK / UNLOCK ANIMATION BUTTON
+   ================================= */
+
+.tri-lock-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+}
+
+/* Make .hold-title the positioning parent for the desktop lock button */
+.hold-title {
+  position: relative;
+}
+
+/* =================================
+   ABOUT SINGLE PHOTOS
+   ================================= */
+
+.about-photo-single {
+  width: 100%;
+  padding-left: 89px;
+  padding-right: 89px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.about-photo-single img {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-photo-single:hover img {
+  transform: scale(1.01);
+}
+
+.about-photo-full img {
+  max-width: 900px;
+  border-radius: 10px;
+}
+
+/* ================================= 
+   ABOUT PHOTO GROUP (3 images)
+   ================================= */
+
+.about-photo-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  padding-left: 89px;
+  padding-right: 89px;
+  box-sizing: border-box;
+  margin: 0;
+  align-items: stretch;
+}
+
+.about-photo-group img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-photo-group img:hover {
+  transform: scale(1.02);
+}
+
+.img-contain {
+  object-fit: contain !important;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.about-photo-group.about-photo-pair {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Asymmetric closing layout */
+.about-photo-group.about-photo-closing {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about-closing-full {
+  width: 100%;
+}
+
+.about-closing-full img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-closing-full img:hover {
+  transform: scale(1.01);
+}
+
+.about-closing-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.about-closing-pair img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-closing-pair img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .about-closing-full img {
+    height: 260px;
+  }
+  .about-closing-pair {
+    grid-template-columns: 1fr;
+  }
+  .about-closing-pair img {
+    height: 220px;
+  }
+}
+
+/* ================================= 
+   CTA LINK
+   ================================= */
+
+.about-cta {
+  padding: 0 89px;
+  margin: 40px 0 8px;
+}
+
+.about-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid #FFDF00;
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.about-cta-link:hover {
+  color: #FFDF00;
+}
+
+.about-cta-arrow {
+  transition: transform 0.2s;
+}
+
+.about-cta-link:hover .about-cta-arrow {
+  transform: translateX(5px);
+}
+
+@media (min-width: 769px) and (max-width: 1279px) {
+  .about-cta {
+    padding: 0 55px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-cta {
+    padding: 0 30px;
+    margin: 28px 0 4px;
+  }
+}
+
+/* ================================= 
+   PORTFOLIO CALLOUT
+   ================================= */
+
+.about-callout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 89px;
+  padding: 20px 24px;
+  border-left: 3px solid #FFDF00;
+  background: rgba(255, 223, 0, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.about-callout-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: #FFDF00;
+}
+
+.about-callout p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+@media (min-width: 769px) and (max-width: 1279px) {
+  .about-callout {
+    margin: 28px 55px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-callout {
+    margin: 20px 30px;
+    padding: 16px 18px;
+  }
+}
+
+/* Closing photo — padding-bottom */
+.about-photo-closing {
+  padding-bottom: 55px;
+}
+
+@media (min-width: 769px) and (max-width: 1279px) {
+  .about-photo-closing {
+    padding-bottom: 34px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-photo-closing {
+    padding-bottom: 25px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1279px) {
+  .about-photo-single {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+  .about-photo-group {
+    padding-left: 55px;
+    padding-right: 55px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-photo-single {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0;
+  }
+
+  .about-photo-single img {
+    border-radius: 8px;
+  }
+
+  .about-photo-group {
+    grid-template-columns: 1fr;
+    padding-left: 30px;
+    padding-right: 30px;
+    gap: 10px;
+    margin: 0;
+  }
+
+  .about-photo-group img {
+    height: auto;
+  }
+}
+
+.tri-lock-btn svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.tri-lock-btn:hover {
+  color: #ffffff;
+}
+
+/* Locked state — white */
+.tri-lock-btn--locked {
+  color: #ffffff;
+}
+
+.tri-lock-btn--locked:hover {
+  color: #ffffff;
+}
+
+/* Mobile: inline inside header, to the left of hamburger, in green */
+@media (max-width: 768px) {
+  .hold-title > * {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  /* Let the main title respect lateral padding on small screens */
+  .about-page .main-title {
+    width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .about-page .main-title .no-break {
+    white-space: normal;
+  }
+  /* Hide desktop button, show mobile one */
+  .tri-lock-btn:not(.tri-lock-btn-mobile) {
+    display: none;
+  }
+
+  .tri-lock-btn-mobile {
+    position: static;
+    display: flex;
+    margin-left: auto;
+    margin-right: 15px;
+    color: #009C3B;
+    width: 32px;
+    height: 32px;
+  }
+
+  .tri-lock-btn-mobile:hover,
+  .tri-lock-btn-mobile.tri-lock-btn--locked,
+  .tri-lock-btn-mobile.tri-lock-btn--locked:hover {
+    color: #009C3B;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Hide mobile header button on desktop */
+  .tri-lock-btn-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1279px) {
+  .about-page .aboutpunchline,
+  .about-page .aboutsubheader {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about-page .aboutpunchline,
+  .about-page .aboutsubheader {
+    padding-left: 89px;
+    padding-right: 89px;
+  }
+}

@@ -3267,3 +3267,176 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ---- Other Projects: Random Population ----
+(function () {
+  var PROJECTS = [
+    {
+      id: 'tarkov',
+      href: 'TarkovCaseStudy.html',
+      imageBg: '',
+      imageSrc: 'Assets/wp5408753.webp',
+      imageAlt: 'Tarkov Case Study',
+      imageStyle: '',
+      title: 'Escape from Tarkov',
+      description: 'UI/UX Redesign Case Study',
+      tag: 'Game Design'
+    },
+    {
+      id: 'grocery',
+      href: 'GroceryStoreApp.html',
+      imageBg: "background-image:url('Assets/GroceryStoreApp/Watermelon.jpg');background-size:cover;background-position:center;",
+      imageSrc: 'Assets/GroceryStoreApp/Red.svg',
+      imageAlt: 'Fresh Market App',
+      imageStyle: 'width:100%;height:calc(100% - 20px);object-fit:contain;margin-top:20px;',
+      title: 'Fresh Market App',
+      description: 'Grocery Store App with Enhanced Shopping Experience',
+      tag: 'Mobile App'
+    },
+    {
+      id: 'marketplace',
+      href: 'MarketplaceApp.html',
+      imageBg: 'background-color:#FDE8B4;display:flex;align-items:center;justify-content:center;',
+      imageSrc: 'Assets/MarketPlaceApp/Group 6.svg',
+      imageAlt: 'Marketplace App',
+      imageStyle: 'width:100%;height:100%;object-fit:contain;',
+      title: 'Marketplace App',
+      description: 'E-Commerce Mobile App Design',
+      tag: 'Mobile App'
+    }
+  ];
+
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+    return arr;
+  }
+
+  function buildCard(project, style) {
+    var imgDivStyle = project.imageBg ? ' style="' + project.imageBg + '"' : '';
+    var imgStyle    = project.imageStyle ? ' style="' + project.imageStyle + '"' : '';
+    if (style === 'about') {
+      return '<div class="about-project-item">' +
+        '<a href="' + project.href + '" class="project-link">' +
+          '<div class="about-project-image"' + imgDivStyle + '>' +
+            '<img src="' + project.imageSrc + '" alt="' + project.imageAlt + '"' + imgStyle + ' />' +
+          '</div>' +
+          '<div class="about-project-info">' +
+            '<h3 class="about-project-title">' + project.title + '</h3>' +
+            '<p class="about-project-description">' + project.description + '</p>' +
+            '<span class="about-project-tag">' + project.tag + '</span>' +
+          '</div>' +
+        '</a>' +
+      '</div>';
+    }
+    return '<div class="project-item">' +
+      '<a href="' + project.href + '" class="project-link">' +
+        '<div class="project-image"' + imgDivStyle + '>' +
+          '<img src="' + project.imageSrc + '" alt="' + project.imageAlt + '"' + imgStyle + ' />' +
+        '</div>' +
+        '<div class="project-info">' +
+          '<h3 class="project-title">' + project.title + '</h3>' +
+          '<p class="project-description">' + project.description + '</p>' +
+          '<span class="project-tag">' + project.tag + '</span>' +
+        '</div>' +
+      '</a>' +
+    '</div>';
+  }
+
+  var grids = document.querySelectorAll('[data-other-projects]');
+  grids.forEach(function (grid) {
+    var currentId  = grid.getAttribute('data-other-projects');
+    var cardStyle  = currentId === 'about' ? 'about' : 'standard';
+    var eligible   = PROJECTS.filter(function (p) {
+      return currentId === 'about' ? true : p.id !== currentId;
+    });
+    shuffle(eligible);
+    grid.innerHTML = eligible.map(function (p) { return buildCard(p, cardStyle); }).join('');
+  });
+})();
+(function () {
+  const bg = document.getElementById('triangle-bg');
+  if (!bg) return;
+
+  const palette = bg.getAttribute('data-tri-palette');
+  const colors = palette === 'about'
+    ? [220, 200, 140, 120].map(function (h) { return 'hsl(' + h + ',100%,70%)'; })
+    : ['rgba(0,0,0,1)', 'rgba(18,18,18,1)', 'rgba(35,35,35,1)', 'rgba(52,52,52,1)'];
+
+  const container = bg.querySelector('.tri-container');
+  if (!container) return;
+
+  const ns = 'http://www.w3.org/2000/svg';
+  for (var i = 0; i < 60; i++) {
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'tri-shape');
+    svg.setAttribute('viewBox', '0 0 100 115');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMin slice');
+    colors.forEach(function (color, j) {
+      var poly = document.createElementNS(ns, 'polygon');
+      poly.setAttribute('points', '');
+      poly.setAttribute('fill', 'none');
+      poly.setAttribute('stroke', color);
+      poly.setAttribute('stroke-width', '5');
+      var anim = document.createElementNS(ns, 'animate');
+      anim.setAttribute('attributeName', 'points');
+      anim.setAttribute('repeatCount', 'indefinite');
+      anim.setAttribute('dur', '6s');
+      anim.setAttribute('begin', j + 's');
+      anim.setAttribute('from', '50 57.5, 50 57.5, 50 57.5');
+      anim.setAttribute('to', '50 -75, 175 126, -75 126');
+      poly.appendChild(anim);
+      svg.appendChild(poly);
+    });
+    container.appendChild(svg);
+  }
+})();
+
+// ---- Triangle Lock / Unlock Button ----
+(function () {
+  var btns = [
+    document.getElementById('tri-lock-btn'),
+    document.getElementById('tri-lock-btn-mobile')
+  ];
+  if (!btns[0] && !btns[1]) return;
+
+  var STORAGE_KEY = 'tri-animation-locked';
+
+  function applyState(locked) {
+    // Wait one frame so SVG animations have initialised before pausing
+    requestAnimationFrame(function () {
+      document.querySelectorAll('.tri-shape').forEach(function (svg) {
+        locked ? svg.pauseAnimations() : svg.unpauseAnimations();
+      });
+    });
+
+    var d = document.getElementById('tri-lock-btn');
+    if (d) {
+      document.getElementById('lock-open-icon').style.display   = locked ? 'none' : '';
+      document.getElementById('lock-closed-icon').style.display = locked ? '' : 'none';
+      d.classList.toggle('tri-lock-btn--locked', locked);
+    }
+    var m = document.getElementById('tri-lock-btn-mobile');
+    if (m) {
+      m.querySelector('.lock-open-icon-m').style.display   = locked ? 'none' : '';
+      m.querySelector('.lock-closed-icon-m').style.display = locked ? '' : 'none';
+      m.classList.toggle('tri-lock-btn--locked', locked);
+    }
+  }
+
+  function toggle() {
+    var locked = localStorage.getItem(STORAGE_KEY) === 'true';
+    locked = !locked;
+    localStorage.setItem(STORAGE_KEY, locked);
+    applyState(locked);
+  }
+
+  // Restore saved state on load
+  applyState(localStorage.getItem(STORAGE_KEY) === 'true');
+
+  btns.forEach(function (btn) {
+    if (btn) btn.addEventListener('click', toggle);
+  });
+})();
+

@@ -1521,11 +1521,11 @@ img,
 .project-tag {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--h7-font-size);
+  font-size: var(--small-font-size);
   background: #c4aa7a;
   color: #2d3328;
-  padding: 5px 13px;
-  border-radius: 15px;
+  padding: 4px 10px;
+  border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   align-self: flex-start;
