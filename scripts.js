@@ -2941,51 +2941,63 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const imageItems = document.querySelectorAll('.image-item');
-  
-  // Set "All" button as active by default and show all items
-  function initializeFilter() {
-    const allButton = document.querySelector('.filter-btn[data-filter="all"]');
-    if (allButton) {
-      allButton.classList.add('active');
-    }
-    
-    // Show all items by default
-    imageItems.forEach((item) => {
-      item.classList.remove('hidden');
+  const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+
+  // Returns set of currently active (non-all) filter categories
+  function getActiveCategories() {
+    var active = new Set();
+    filterButtons.forEach(function(btn) {
+      if (btn.getAttribute('data-filter') !== 'all' && btn.classList.contains('active')) {
+        active.add(btn.getAttribute('data-filter'));
+      }
     });
+    return active;
   }
-  
-  // Basic filter functionality
-  function filterItems(category) {
-    imageItems.forEach(item => {
-      const itemCategory = item.getAttribute('data-category');
-      
-      if (category === 'all' || itemCategory === category) {
+
+  // Show/hide items based on active category set
+  function applyFilter() {
+    var active = getActiveCategories();
+    var allActive = allButton && allButton.classList.contains('active');
+
+    imageItems.forEach(function(item) {
+      var cat = item.getAttribute('data-category');
+      if (allActive || active.size === 0 || active.has(cat)) {
         item.classList.remove('hidden');
       } else {
         item.classList.add('hidden');
       }
     });
   }
-  
+
   // Button click handlers
-  filterButtons.forEach(button => {
+  filterButtons.forEach(function(button) {
     button.addEventListener('click', function() {
-      const filterCategory = this.getAttribute('data-filter');
-      
-      // Remove active class from all buttons
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      
-      // Add active class to clicked button
-      this.classList.add('active');
-      
-      // Filter items instantly
-      filterItems(filterCategory);
+      var filterCategory = this.getAttribute('data-filter');
+
+      if (filterCategory === 'all') {
+        // All: deselect everything else, select only All
+        filterButtons.forEach(function(btn) { btn.classList.remove('active'); });
+        allButton.classList.add('active');
+      } else {
+        // Deselect All when picking a specific category
+        if (allButton) allButton.classList.remove('active');
+        // Toggle this button
+        this.classList.toggle('active');
+      }
+
+      applyFilter();
     });
   });
-  
-  // Initialize filter on page load
-  initializeFilter();
+
+  // On load: pre-select UX Case Studies + UI Concepts
+  filterButtons.forEach(function(btn) { btn.classList.remove('active'); });
+  filterButtons.forEach(function(btn) {
+    var cat = btn.getAttribute('data-filter');
+    if (cat === 'ux-case-studies' || cat === 'ui-concepts') {
+      btn.classList.add('active');
+    }
+  });
+  applyFilter();
 });
 
 // Scroll to next section function (for grocery page scroll arrow)

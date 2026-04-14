@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Skull — Vinicius Gallipim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styleguide.css" />
+  <link rel="stylesheet" href="about.css" />
+  <link rel="stylesheet" href="drawing-styles.css" />
+</head>
+
+<body class="about-page">
+<div id="triangle-bg" data-tri-palette="about">
+  <div class="tri-overlay"></div>
+  <div class="tri-container"></div>
+</div>
+<section class="portfolio-section">
+  <header class="header headerTypography">
+    <div class="headerBox">
+      <a href="index.html" class="headerTypo">
+        <img src="Assets/LOGO.svg" alt="Company Logo" class="logo" />
+      </a>
+      <button id="tri-lock-btn-mobile" class="tri-lock-btn tri-lock-btn-mobile" aria-label="Toggle triangle animation" title="Lock/unlock triangle animation">
+        <svg class="lock-open-icon-m" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+        </svg>
+        <svg class="lock-closed-icon-m" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </button>
+      <button class="menu-svg">
+        <img src="Assets/menu.svg" alt="Menu" class="menu-icon" />
+      </button>
+      <nav class="nav-links">
+        <div class="nav-item">
+          <a href="index.html#work" class="nav-link headerTypo" id="workLink">WORK</a>
+          <div class="nav-underline" id="workUnderline"></div>
+        </div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link headerTypo" id="aboutLink">ABOUT</a>
+          <div class="nav-underline" id="aboutUnderline"></div>
+        </div>
+        <div class="nav-item">
+          <a href="index.html#contact" class="nav-link headerTypo" id="contactLink">CONTACT</a>
+          <div class="nav-underline" id="contactUnderline"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hamburger-menu headerTypography" id="hamburgerMenu">
+    <ul>
+      <li>
+        <a href="index.html#work" id="hamburgerWorkLink" class="headerTypo">WORK</a>
+        <div class="work-underline" id="hamburgerWorkUnderline"></div>
+      </li>
+      <li>
+        <a href="about.html" id="hamburgerAboutLink" class="headerTypo">ABOUT</a>
+        <div class="about-underline" id="hamburgerAboutUnderline"></div>
+      </li>
+      <li>
+        <a href="index.html#contact" id="hamburgerContactLink" class="headerTypo">CONTACT</a>
+        <div class="contact-underline" id="hamburgerContactUnderline"></div>
+      </li>
+    </ul>
+  </div>
+
+  <main class="main-content">
+    <div class="body">
+      <div class="hold-title">
+        <button id="tri-lock-btn" class="tri-lock-btn" aria-label="Toggle triangle animation" title="Lock/unlock triangle animation">
+          <svg id="lock-open-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+          </svg>
+          <svg id="lock-closed-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </button>
+        <h1 class="main-title titleTypography">SKULL</h1>
+      </div>
+      <div class="drawing-page-body">
+        <div class="drawing-showcase">
+          <img src="Assets/Skull/vinicius-pim-asset%20(1).jpg" alt="Skull - Drawing">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="fundo-footer"></div>
+      <div class="footer-sections">
+        <div class="footer-section">
+          <h2 class="footer-title footerTitleTypography">GET IN TOUCH</h2>
+          <div class="get-in-touch-grid footerTextTypography">
+            <div class="get-in-touch-item">
+              <a href="mailto:viniciusgallipim@gmail.com" class="underline">Email contact</a>
+            </div>
+            <div class="get-in-touch-item">
+              <a href="https://www.freelancer.com/u/ViniciusPim" target="_blank" class="underline">Hire me on Freelancer</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h2 class="footer-title footerTitleTypography">SOCIAL MEDIA</h2>
+          <div class="social-media-grid footerTextTypography">
+            <div><a href="https://www.artstation.com/stormzada" target="_blank" class="underline">ArtStation</a></div>
+            <div><a href="https://wa.me/353830334178" target="_blank" class="underline">WhatsApp</a></div>
+            <div><a href="https://www.linkedin.com/in/vinicius-galli-pim/" target="_blank" class="underline">LinkedIn</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</section>
+<script src="scripts.js"></script>
+</body>
+</html>

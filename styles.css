@@ -550,7 +550,27 @@
   }
 
   .image-item:nth-child(4)::before {
-    content: "UMA BOSTA";
+    content: "Cauzito's Live Stream Logo";
+  }
+
+  .image-item:nth-child(5)::before {
+    content: "Killjoy - Drawing";
+  }
+
+  .image-item:nth-child(6)::before {
+    content: "Skull - Drawing";
+  }
+
+  .image-item:nth-child(7)::before {
+    content: "Zed - Drawing";
+  }
+
+  .image-item:nth-child(8)::before {
+    content: "Thresh - Drawing";
+  }
+
+  .image-item:nth-child(9)::before {
+    content: "Yggdrasil - Drawing";
   }
 
   /* =================================

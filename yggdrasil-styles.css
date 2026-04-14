@@ -1,0 +1,37 @@
+/* ============================================
+   YGGDRASIL DRAWING PAGE
+   ============================================ */
+
+.drawing-page-body {
+  padding: 34px 89px 89px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+}
+
+.drawing-showcase {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.drawing-showcase img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .drawing-page-body {
+    padding: 21px 21px 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  .drawing-page-body {
+    padding: 13px 13px 34px;
+  }
+}
