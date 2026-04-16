@@ -2,36 +2,18 @@
    KILLJOY DRAWING PAGE
    ============================================ */
 
-.drawing-page-body {
-  padding: 34px 89px 89px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 34px;
+/* Background — black */
+body.killjoy-page {
+  background: #000000 !important;
 }
 
-.drawing-showcase {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
+/* Hamburger menu — killjoy purple theme */
+.killjoy-page .hamburger-menu.about-theme-active a {
+  color: #8800CC;
 }
 
-.drawing-showcase img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-}
-
-@media (max-width: 768px) {
-  .drawing-page-body {
-    padding: 21px 21px 55px;
-  }
-}
-
-@media (max-width: 480px) {
-  .drawing-page-body {
-    padding: 13px 13px 34px;
-  }
+.killjoy-page .hamburger-menu.about-theme-active .work-underline,
+.killjoy-page .hamburger-menu.about-theme-active .about-underline,
+.killjoy-page .hamburger-menu.about-theme-active .contact-underline {
+  background-color: rgba(136, 0, 204, 0.5);
 }

@@ -1042,7 +1042,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (document.body.classList.contains('marketplace-page')) {
       hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active');
       hamburgerMenu.classList.add('marketplace-theme-active');
-    } else if (document.body.classList.contains('about-page')) {
+    } else if (document.body.classList.contains('about-page') || document.body.classList.contains('killjoy-page')) {
       hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active');
       hamburgerMenu.classList.add('about-theme-active');
     } else {
@@ -1626,7 +1626,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ─── About Page Theme ───
-  if (body.classList.contains("about-page")) {
+  if (body.classList.contains("about-page") && !body.classList.contains("killjoy-page")) {
     // Dim body while loading screen is visible
     document.body.style.opacity = '0.92';
     document.body.style.transition = 'opacity 1s ease';
@@ -1699,6 +1699,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.body.style.opacity = '1';
     }, { once: true }); // Fires after loading screen is hidden
+  }
+
+  // ─── Killjoy Page Theme ───
+  if (body.classList.contains("killjoy-page")) {
+    document.addEventListener('loadingScreenHidden', () => {
+      const killjoyColors = {
+        header:       '#FFFFFF',
+        footer:       '#FFFFFF',
+        headerBorder: 'rgba(136, 0, 204, 0.3)',
+        footerBorder: 'rgba(136, 0, 204, 0.3)',
+        text:         '#8800CC',
+        shadow:       'rgba(136, 0, 204, 0.2)',
+      };
+
+      const transitionColor = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border 3.5s ease, box-shadow 3.5s ease';
+
+      const header = document.querySelector('.header');
+      if (header) {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), ' + transitionColor;
+        header.style.backgroundColor = killjoyColors.header;
+        header.style.borderBottom = `1px solid ${killjoyColors.headerBorder}`;
+        header.style.boxShadow = `0 2px 20px ${killjoyColors.shadow}`;
+      }
+
+      document.querySelectorAll('.header .nav-link').forEach(link => {
+        link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        link.style.color = killjoyColors.text;
+      });
+
+      const purpleFilter = 'brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(800%) hue-rotate(260deg) brightness(1.1)';
+
+      const logo = document.querySelector('.header .logo');
+      if (logo) {
+        logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        logo.style.filter = purpleFilter;
+      }
+
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) {
+        menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        menuIcon.style.filter = purpleFilter;
+      }
+
+      const footer = document.querySelector('.footer');
+      if (footer) {
+        footer.style.transition = transitionColor;
+        footer.style.backgroundColor = killjoyColors.footer;
+        footer.style.borderTop = `1px solid ${killjoyColors.footerBorder}`;
+        footer.style.boxShadow = `0 -2px 20px ${killjoyColors.shadow}`;
+      }
+
+      const footerContent = document.querySelector('.footer-content');
+      if (footerContent) { footerContent.style.backgroundColor = 'transparent'; }
+      const fundoFooter = document.querySelector('.fundo-footer');
+      if (fundoFooter) { fundoFooter.style.backgroundColor = 'transparent'; }
+      document.querySelectorAll('.footer-section').forEach(s => { s.style.backgroundColor = 'transparent'; });
+
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        el.style.color = killjoyColors.text;
+      });
+      document.querySelectorAll('.footer .footerTextTypography, .footer a').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        el.style.color = killjoyColors.text;
+      });
+
+      const hamburgerMenu = document.getElementById('hamburgerMenu');
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('about-theme-active');
+      }
+
+      // Lock button — purple
+      document.querySelectorAll('.tri-lock-btn').forEach(btn => {
+        btn.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        btn.style.color = killjoyColors.text;
+      });
+    }, { once: true });
   }
 });
 
@@ -2938,6 +3015,56 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ---- Project Filter Functionality - No Animations ----
+
+// Initialise the SVG rounded-rect laser animation on the All button.
+// Runs after layout so offsetWidth/Height are correct.
+function initAllBtnBorder() {
+  var btn = document.querySelector('.filter-btn[data-filter="all"]');
+  if (!btn) return;
+  var svg  = btn.querySelector('.all-btn-border');
+  var path = btn.querySelector('.all-btn-hl-line');
+  if (!svg || !path) return;
+
+  var w = btn.offsetWidth;
+  var h = btn.offsetHeight;
+  var r = 8;    // matches CSS border-radius
+  var s = 1;    // half of 2px border-width — centers path on the visible border
+
+  svg.setAttribute('width',   w);
+  svg.setAttribute('height',  h);
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+
+  // Rounded-rectangle path that follows the CSS border-radius exactly
+  var d = 'M '  + (r+s)   + ',' + s       + ' '
+        + 'L '  + (w-r-s) + ',' + s       + ' '
+        + 'Q '  + (w-s)   + ',' + s       + ' ' + (w-s) + ',' + (r+s)   + ' '
+        + 'L '  + (w-s)   + ',' + (h-r-s) + ' '
+        + 'Q '  + (w-s)   + ',' + (h-s)   + ' ' + (w-r-s) + ',' + (h-s) + ' '
+        + 'L '  + (r+s)   + ',' + (h-s)   + ' '
+        + 'Q '  + s       + ',' + (h-s)   + ' ' + s + ',' + (h-r-s)     + ' '
+        + 'L '  + s       + ',' + (r+s)   + ' '
+        + 'Q '  + s       + ',' + s       + ' ' + (r+s) + ',' + s        + ' Z';
+  path.setAttribute('d', d);
+
+  var total     = path.getTotalLength();
+  var dot       = Math.round(total * 0.18); // dot length ~18% of perimeter
+  var gap       = Math.round(total / 2 - dot);
+  path.style.strokeDasharray = dot + ' ' + gap + ' ' + dot + ' ' + gap;
+
+  // Inject (or update) the keyframe with the exact perimeter length
+  var styleId = 'all-btn-laser-kf';
+  var styleEl = document.getElementById(styleId);
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = styleId;
+    document.head.appendChild(styleEl);
+  }
+  styleEl.textContent =
+    '@keyframes all-btn-laser {'
+    + 'from { stroke-dashoffset: 0; }'
+    + 'to   { stroke-dashoffset: -' + total + '; }'
+    + '}';
+}
 document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const imageItems = document.querySelectorAll('.image-item');
@@ -2969,20 +3096,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Returns the total number of non-all filter buttons
+  function getTotalCategories() {
+    var count = 0;
+    filterButtons.forEach(function(btn) {
+      if (btn.getAttribute('data-filter') !== 'all') count++;
+    });
+    return count;
+  }
+
   // Button click handlers
   filterButtons.forEach(function(button) {
     button.addEventListener('click', function() {
       var filterCategory = this.getAttribute('data-filter');
 
       if (filterCategory === 'all') {
-        // All: deselect everything else, select only All
-        filterButtons.forEach(function(btn) { btn.classList.remove('active'); });
-        allButton.classList.add('active');
+        // If all specific categories are already active, do nothing
+        if (allButton.classList.contains('active') && getActiveCategories().size === getTotalCategories()) {
+          return;
+        }
+        // Otherwise activate everything
+        filterButtons.forEach(function(btn) { btn.classList.add('active'); });
       } else {
         // Deselect All when picking a specific category
         if (allButton) allButton.classList.remove('active');
         // Toggle this button
         this.classList.toggle('active');
+        // If all specific categories are now active, also activate All
+        if (getActiveCategories().size === getTotalCategories()) {
+          allButton.classList.add('active');
+        }
+        // If nothing is active at all, activate everything
+        if (getActiveCategories().size === 0) {
+          filterButtons.forEach(function(btn) { btn.classList.add('active'); });
+        }
       }
 
       applyFilter();
@@ -2998,6 +3145,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   applyFilter();
+
+  // Init the laser border after layout is settled
+  initAllBtnBorder();
+
+  // Re-init on resize so path stays accurate if button reflows
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(initAllBtnBorder, 150);
+  });
 });
 
 // Scroll to next section function (for grocery page scroll arrow)
@@ -3374,6 +3531,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const palette = bg.getAttribute('data-tri-palette');
   const colors = palette === 'about'
     ? [220, 200, 140, 120].map(function (h) { return 'hsl(' + h + ',100%,70%)'; })
+    : palette === 'killjoy'
+    ? ['#87CEEB', '#87CEEB', '#FFD700', '#FF69B4']
     : ['rgba(0,0,0,1)', 'rgba(18,18,18,1)', 'rgba(35,35,35,1)', 'rgba(52,52,52,1)'];
 
   const container = bg.querySelector('.tri-container');

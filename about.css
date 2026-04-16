@@ -202,10 +202,9 @@ body.about-page {
 }
 
 /* Override portfolio-section background for about page — let triangles show through */
-body .portfolio-section {
+body.about-page .portfolio-section {
   background: transparent !important;
   position: relative;
-  z-index: 1;
 }
 
 /* About page — footer yellow stars */
@@ -232,7 +231,6 @@ body .portfolio-section {
 /* Ensure content appears above triangle background */
 .main-content {
   position: relative;
-  z-index: 2;
 }
 
 .header {
@@ -250,7 +248,7 @@ body .portfolio-section {
    by Rob DiMarzo (adapted)
    ================================= */
 
-#triangle-bg {
+.about-page #triangle-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -262,7 +260,7 @@ body .portfolio-section {
   opacity: 0.08;
 }
 
-.tri-overlay {
+.about-page .tri-overlay {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -270,14 +268,14 @@ body .portfolio-section {
   background: radial-gradient(circle, transparent 0%, rgba(0, 10, 46, 0.82) 100%);
 }
 
-.tri-container {
+.about-page .tri-container {
   display: grid;
   grid-template-columns: repeat(10, 200px);
   grid-template-rows: repeat(6, 230px);
   transform: translate(-3%, -4%);
 }
 
-.tri-shape {
+.about-page .tri-shape {
   width: 200px;
   height: 230px;
   -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
@@ -285,11 +283,11 @@ body .portfolio-section {
 }
 
 /* Cascading row offsets that create the "infinite fusion" tessellation */
-.tri-shape:nth-child(n+11) { transform: translate(-50%, -25%); }
-.tri-shape:nth-child(n+21) { transform: translate(0%,   -50%); }
-.tri-shape:nth-child(n+31) { transform: translate(-50%, -75%); }
-.tri-shape:nth-child(n+41) { transform: translate(0%,  -100%); }
-.tri-shape:nth-child(n+51) { transform: translate(-50%, -125%); }
+.about-page .tri-shape:nth-child(n+11) { transform: translate(-50%, -25%); }
+.about-page .tri-shape:nth-child(n+21) { transform: translate(0%,   -50%); }
+.about-page .tri-shape:nth-child(n+31) { transform: translate(-50%, -75%); }
+.about-page .tri-shape:nth-child(n+41) { transform: translate(0%,  -100%); }
+.about-page .tri-shape:nth-child(n+51) { transform: translate(-50%, -125%); }
 
 /* =================================
    LOCK / UNLOCK ANIMATION BUTTON

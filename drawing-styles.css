@@ -2,18 +2,56 @@
    DRAWING / ARTWORK SHOWCASE PAGES
    ============================================ */
 
+/* Shared layout for all drawing pages */
+.drawing-page .portfolio-section {
+  background: transparent !important;
+}
+
+.drawing-page .main-content {
+  min-height: unset;
+}
+
+/* Always show header on mobile */
+@media (max-width: 768px) {
+  .drawing-page .header {
+    transform: translateY(0) !important;
+    position: fixed !important;
+    top: 0 !important;
+  }
+}
+
+/* Text — white on dark backgrounds */
+.drawing-page .main-title,
+.drawing-page .titleTypography,
+.drawing-page .drawing-description,
+.drawing-page .bodyTypography {
+  color: #ffffff;
+}
+
+/* Main title lateral padding on mobile */
+@media (max-width: 768px) {
+  .drawing-page .main-title {
+    padding-left: 21px;
+    padding-right: 21px;
+  }
+}
+
+/* Drawing body paddings */
 .drawing-page-body {
-  padding: 34px 89px 89px;
+  padding: 34px 89px 55px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 34px;
 }
 
+.drawing-description {
+  max-width: 700px;
+  text-align: center;
+}
+
 .drawing-showcase {
   width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
 }
 
 .drawing-showcase img {
@@ -24,14 +62,23 @@
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width: 768px) {
+/* Tablet (769px–1279px) */
+@media (min-width: 769px) and (max-width: 1279px) {
   .drawing-page-body {
-    padding: 21px 21px 55px;
+    padding: 34px 55px 55px;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile large (430px–768px) */
+@media (min-width: 430px) and (max-width: 768px) {
   .drawing-page-body {
-    padding: 13px 13px 34px;
+    padding: 21px 30px 55px;
+  }
+}
+
+/* Mobile (<=430px) */
+@media (max-width: 430px) {
+  .drawing-page-body {
+    padding: 21px 21px 55px;
   }
 }

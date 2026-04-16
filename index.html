@@ -145,7 +145,7 @@
                 <img src="Assets/MarketPlaceApp/Group 6.svg" alt="Marketplace App" style="width: 100%; height: 100%; object-fit: contain;">
               </a>
             </div>
-            <p class="headerTypography" style="font-family: 'Nunito', sans-serif;">Marketplace concept UI</p>
+            <p class="headerTypography" style="font-family: 'Nunito', var(--heading-font-family), sans-serif;">MARKETPLACE CONCEPT UI</p>
           </div>
           <div class="image-item" data-category="images">
             <div class="image-container">
@@ -203,7 +203,12 @@
     <section class="project-filter-section">
       <div class="project-filter-container">
         <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn active" data-filter="all">
+            <svg class="all-btn-border" aria-hidden="true">
+              <path class="all-btn-hl-line" />
+            </svg>
+            <span>All</span>
+          </button>
           <button class="filter-btn" data-filter="ux-case-studies">UX Case Studies</button>
           <button class="filter-btn" data-filter="ui-concepts">UI Concepts</button>
           <button class="filter-btn" data-filter="images">Images</button>

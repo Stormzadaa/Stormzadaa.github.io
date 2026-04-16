@@ -70,6 +70,19 @@
   --grocery-app-white: #FFFFFF;        /* Pure white backgrounds */
   --grocery-app-section-bg: #F8F9FA;   /* Light section backgrounds */
   --grocery-app-border: #E0E0E0;       /* Subtle borders */
+
+  /* --- Marketplace App Palette --- */
+  --marketplace-primary: #6366F1;
+  --marketplace-secondary: #8B5CF6;
+  --marketplace-accent: #10B981;
+  --marketplace-background: #F8FAFC;
+  --marketplace-surface: #FFFFFF;
+  --marketplace-text: #1E293B;
+  --marketplace-text-secondary: #64748B;
+  --marketplace-text-light: #FFFFFF;
+  --marketplace-border: #E2E8F0;
+  --marketplace-shadow: rgba(99, 102, 241, 0.1);
+  --marketplace-section-bg: #F1F5F9;
 }
 
 :root {
