@@ -1,0 +1,613 @@
+/* ============================================
+   ASTRAY PAGE
+   ============================================ */
+
+/* =================================
+   LOADING SCREEN
+   ================================= */
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s ease-out;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-content {
+  text-align: center;
+  color: white;
+}
+
+.loading-logo {
+  width: 160px;
+  filter: invert(0.7);
+  animation: logo-pulse 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes logo-pulse {
+  0%, 100% {
+    transform: scale(0.75);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+}
+
+/* =================================
+   ASTRAY PAGE BASE
+   ================================= */
+
+body.astray-page {
+  background: #000000;
+}
+
+.astray-page .portfolio-section {
+  background: transparent;
+}
+
+/* =================================
+   SHARED SECTION STYLES
+   ================================= */
+
+.astray-section-title {
+  color: #ffffff;
+}
+
+/* =================================
+   1. HERO SECTION
+   ================================= */
+
+.astray-hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 120px 89px 80px;
+}
+
+.astray-hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.astray-hero-title {
+  color: #ffffff;
+}
+
+.astray-hero-tagline {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+}
+
+.astray-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.astray-tag {
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+.astray-hero-image {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 24px;
+}
+
+.astray-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* =================================
+   2. OVERVIEW SECTION
+   ================================= */
+
+.astray-overview-section {
+  padding: 80px 89px;
+}
+
+.astray-overview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.astray-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.astray-overview-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.astray-overview-label {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.astray-overview-value {
+  color: #ffffff;
+}
+
+.astray-overview-description {
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 720px;
+}
+
+/* =================================
+   3. PROBLEM STATEMENT
+   ================================= */
+
+.astray-problem-section {
+  padding: 80px 89px;
+}
+
+.astray-problem-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 860px;
+}
+
+.astray-problem-quote {
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.astray-problem-body {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* =================================
+   4. USER RESEARCH
+   ================================= */
+
+.astray-research-section {
+  padding: 80px 89px;
+}
+
+.astray-research-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.astray-research-methods {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.astray-method-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.astray-method-item h3 {
+  color: #ffffff;
+}
+
+.astray-method-item p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.astray-research-findings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.astray-finding-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.astray-finding-stat {
+  color: #ffffff;
+  font-size: 2.5rem;
+}
+
+.astray-finding-label {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* =================================
+   5. PERSONAS
+   ================================= */
+
+.astray-personas-section {
+  padding: 80px 89px;
+}
+
+.astray-personas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.astray-personas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.astray-persona-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.astray-persona-avatar img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.astray-persona-name {
+  color: #ffffff;
+}
+
+.astray-persona-bio {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.astray-persona-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.astray-persona-goals ul,
+.astray-persona-pains ul {
+  padding-left: 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* =================================
+   6. USER FLOWS / IA
+   ================================= */
+
+.astray-ia-section {
+  padding: 80px 89px;
+}
+
+.astray-ia-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.astray-ia-description {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 720px;
+}
+
+.astray-ia-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* =================================
+   7. ORIGINAL DESIGN (2022)
+   8. REDESIGN (2025)
+   ================================= */
+
+.astray-original-section,
+.astray-redesign-section {
+  padding: 80px 89px;
+}
+
+.astray-original-container,
+.astray-redesign-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Version badge */
+.astray-version-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.astray-version-badge--original {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.astray-version-badge--redesign {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.astray-original-description,
+.astray-redesign-description {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 720px;
+}
+
+/* Screen grids */
+.astray-screens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.astray-screen-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.astray-screen-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.astray-screen-caption {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Redesign: what changed cards */
+.astray-redesign-changes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.astray-change-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.astray-change-item h3 {
+  color: #ffffff;
+}
+
+.astray-change-item p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* =================================
+   9. USABILITY TESTING
+   ================================= */
+
+.astray-testing-section {
+  padding: 80px 89px;
+}
+
+.astray-testing-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.astray-testing-description {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 720px;
+}
+
+.astray-testing-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.astray-test-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.astray-test-item h3 {
+  color: #ffffff;
+}
+
+.astray-test-item p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* =================================
+   10. REFLECTION
+   ================================= */
+
+.astray-reflection-section {
+  padding: 80px 89px;
+}
+
+.astray-reflection-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 860px;
+}
+
+.astray-reflection-body {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* =================================
+   11. OTHER PROJECTS
+   ================================= */
+
+.other-projects-section {
+  padding: 80px 89px;
+}
+
+.other-projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.other-projects-title {
+  color: #ffffff;
+}
+
+/* =================================
+   MEDIA QUERIES
+   ================================= */
+
+/* Tablet (769px–1279px) */
+@media (min-width: 769px) and (max-width: 1279px) {
+  .astray-hero-section {
+    padding: 120px 55px 80px;
+  }
+
+  .astray-overview-section,
+  .astray-problem-section,
+  .astray-research-section,
+  .astray-personas-section,
+  .astray-ia-section,
+  .astray-original-section,
+  .astray-redesign-section,
+  .astray-testing-section,
+  .astray-reflection-section,
+  .other-projects-section {
+    padding: 60px 55px;
+  }
+
+  .astray-overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .astray-research-methods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Sub-768 */
+@media (max-width: 768px) {
+  .astray-hero-section {
+    padding: 100px 30px 60px;
+  }
+
+  .astray-overview-section,
+  .astray-problem-section,
+  .astray-research-section,
+  .astray-personas-section,
+  .astray-ia-section,
+  .astray-original-section,
+  .astray-redesign-section,
+  .astray-testing-section,
+  .astray-reflection-section,
+  .other-projects-section {
+    padding: 50px 30px;
+  }
+
+  .astray-overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .astray-research-methods {
+    grid-template-columns: 1fr;
+  }
+
+  .astray-screens-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (<=430px) */
+@media (max-width: 430px) {
+  .astray-hero-section {
+    padding: 100px 21px 60px;
+  }
+
+  .astray-overview-section,
+  .astray-problem-section,
+  .astray-research-section,
+  .astray-personas-section,
+  .astray-ia-section,
+  .astray-original-section,
+  .astray-redesign-section,
+  .astray-testing-section,
+  .astray-reflection-section,
+  .other-projects-section {
+    padding: 40px 21px;
+  }
+
+  .astray-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .astray-screens-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .astray-problem-quote {
+    font-size: 1.2rem;
+  }
+}
