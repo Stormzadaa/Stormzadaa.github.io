@@ -2,36 +2,266 @@
    YGGDRASIL DRAWING PAGE
    ============================================ */
 
-.drawing-page-body {
-  padding: 34px 89px 89px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 34px;
+/* Override drawing-page white text for light background */
+.yggdrasil-page .main-title,
+.yggdrasil-page .titleTypography,
+.yggdrasil-page .drawing-description,
+.yggdrasil-page .bodyTypography {
+  color: #000000 !important;
 }
 
-.drawing-showcase {
+/* Header — transitions to black on load */
+.yggdrasil-page .header.yggdrasil-active {
+  background-color: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease;
+}
+
+.yggdrasil-page .header.yggdrasil-active .nav-link {
+  color: #ffffff;
+}
+
+.yggdrasil-page .header.yggdrasil-active .logo,
+.yggdrasil-page .header.yggdrasil-active .menu-icon {
+  filter: brightness(0) invert(1);
+}
+
+.yggdrasil-page .header.yggdrasil-active .nav-underline.active {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Lock button */
+.yggdrasil-page .tri-lock-btn {
+  color: #B6B0A0;
+}
+
+.yggdrasil-page .header.yggdrasil-active .tri-lock-btn {
+  color: #ffffff;
+}
+
+/* Footer — transitions to black on load */
+.yggdrasil-page footer.yggdrasil-active {
+  background-color: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.3);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease;
+}
+
+.yggdrasil-page footer.yggdrasil-active .footerTitleTypography,
+.yggdrasil-page footer.yggdrasil-active .footer-title {
+  color: #ffffff;
+}
+
+.yggdrasil-page footer.yggdrasil-active .footerTextTypography,
+.yggdrasil-page footer.yggdrasil-active a {
+  color: #ffffff;
+}
+
+/* Hamburger menu — yggdrasil initial state */
+.hamburger-menu.yggdrasil-initial {
+  background: #2a2a2a;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.yggdrasil-initial a {
+  color: #B6B0A0;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.yggdrasil-initial .work-underline,
+.hamburger-menu.yggdrasil-initial .about-underline,
+.hamburger-menu.yggdrasil-initial .contact-underline {
+  background-color: #B6B0A0;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hamburger menu — yggdrasil active state */
+.hamburger-menu.yggdrasil-theme-active {
+  background: #000000;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.yggdrasil-theme-active a {
+  color: #ffffff;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.yggdrasil-theme-active .work-underline,
+.hamburger-menu.yggdrasil-theme-active .about-underline,
+.hamburger-menu.yggdrasil-theme-active .contact-underline {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Main content */
+.yggdrasil-page .main-content {
+  min-height: 100vh;
+}
+
+/* ============================================
+   YGGDRASIL IMAGE PREVIEW
+   ============================================ */
+
+.yggdrasil-showcase {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
 }
 
-.drawing-showcase img {
+.yggdrasil-img-wrapper {
+  position: relative;
   width: 100%;
-  height: auto;
-  display: block;
+  cursor: zoom-in;
   border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .drawing-page-body {
-    padding: 21px 21px 55px;
-  }
+.yggdrasil-img-wrapper:hover {
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 480px) {
-  .drawing-page-body {
-    padding: 13px 13px 34px;
+.yggdrasil-img-wrapper .yggdrasil-preview-img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.yggdrasil-img-wrapper:hover .yggdrasil-preview-img {
+  transform: scale(1.02);
+}
+
+.yggdrasil-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.yggdrasil-img-wrapper:hover .yggdrasil-img-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.yggdrasil-img-hint {
+  color: #ffffff;
+  font-family: var(--heading-font-family);
+  font-size: var(--h7-font-size);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.yggdrasil-img-wrapper:hover .yggdrasil-img-hint {
+  opacity: 0.85;
+}
+
+/* ============================================
+   YGGDRASIL LIGHTBOX
+   ============================================ */
+
+.yggdrasil-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.yggdrasil-lightbox.yggdrasil-lightbox--open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.yggdrasil-lightbox-img {
+  max-width: 92vw;
+  max-height: calc(92vh - 60px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+  transform: scale(0.85);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+  position: relative;
+  z-index: 0;
+}
+
+.yggdrasil-lightbox.yggdrasil-lightbox--open .yggdrasil-lightbox-img {
+  transform: scale(1);
+}
+
+.yggdrasil-lightbox-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 92vw;
+  max-height: 92vh;
+}
+
+.yggdrasil-lightbox-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.yggdrasil-lightbox-close {
+  position: static;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 100000;
+  flex-shrink: 0;
+}
+
+.yggdrasil-lightbox-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.yggdrasil-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.yggdrasil-lightbox-close:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 769px) {
+  .yggdrasil-page .header.yggdrasil-active .tri-lock-btn {
+    color: #000000;
   }
 }

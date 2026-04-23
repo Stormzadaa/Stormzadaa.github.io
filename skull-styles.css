@@ -2,26 +2,265 @@
    SKULL DRAWING PAGE
    ============================================ */
 
-.drawing-page-body {
-  padding: 34px 89px 89px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 34px;
+/* Page background */
+body.skull-page {
+  background: #ffffff;
 }
 
-.drawing-showcase {
+.skull-page .portfolio-section {
+  background: #ffffff;
+}
+
+/* Override drawing-page white text for light background */
+.skull-page .main-title,
+.skull-page .titleTypography,
+.skull-page .drawing-description,
+.skull-page .bodyTypography {
+  color: #000000 !important;
+}
+
+/* Header — transitions to black on load */
+.skull-page .header.skull-active {
+  background-color: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease;
+}
+
+.skull-page .header.skull-active .nav-link {
+  color: #ffffff;
+}
+
+.skull-page .header.skull-active .logo,
+.skull-page .header.skull-active .menu-icon {
+  filter: brightness(0) invert(1);
+}
+
+.skull-page .header.skull-active .nav-underline.active {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Lock button — starts at home-page default */
+.skull-page .tri-lock-btn {
+  color: #B6B0A0;
+}
+
+.skull-page .header.skull-active .tri-lock-btn {
+  color: #ffffff;
+}
+
+/* Footer — transitions to black on load */
+.skull-page footer.skull-active {
+  background-color: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.3);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease;
+}
+
+.skull-page footer.skull-active .footerTitleTypography,
+.skull-page footer.skull-active .footer-title {
+  color: #ffffff;
+}
+
+.skull-page footer.skull-active .footerTextTypography,
+.skull-page footer.skull-active a {
+  color: #ffffff;
+}
+
+/* Hamburger menu — skull initial state (matches home page) */
+.hamburger-menu.skull-initial {
+  background: #2a2a2a;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.skull-initial a {
+  color: #B6B0A0;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.skull-initial .work-underline,
+.hamburger-menu.skull-initial .about-underline,
+.hamburger-menu.skull-initial .contact-underline {
+  background-color: #B6B0A0;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hamburger menu — skull active state */
+.hamburger-menu.skull-theme-active {
+  background: #000000;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.skull-theme-active a {
+  color: #ffffff;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.skull-theme-active .work-underline,
+.hamburger-menu.skull-theme-active .about-underline,
+.hamburger-menu.skull-theme-active .contact-underline {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Main content — full viewport height */
+.skull-page .main-content {
+  min-height: 100vh;
+}
+
+.skull-showcase {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
 }
 
-.drawing-showcase img {
+.skull-img-wrapper {
+  position: relative;
   width: 100%;
-  height: auto;
-  display: block;
+  cursor: zoom-in;
   border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.skull-img-wrapper:hover {
+  box-shadow: 0 16px 60px rgba(255, 255, 255, 0.2);
+}
+
+.skull-img-wrapper .skull-preview-img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.skull-img-wrapper:hover .skull-preview-img {
+  transform: scale(1.02);
+}
+
+.skull-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.skull-img-wrapper:hover .skull-img-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.skull-img-hint {
+  color: #ffffff;
+  font-family: var(--heading-font-family);
+  font-size: var(--h7-font-size);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+/* Lightbox */
+.skull-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.skull-lightbox.skull-lightbox--open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.skull-lightbox-img {
+  max-width: 92vw;
+  max-height: calc(92vh - 60px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+  transform: scale(0.85);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+  position: relative;
+  z-index: 0;
+}
+
+.skull-lightbox.skull-lightbox--open .skull-lightbox-img {
+  transform: scale(1);
+}
+
+.skull-lightbox-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 92vw;
+  max-height: 92vh;
+}
+
+.skull-lightbox-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.skull-lightbox-close {
+  position: static;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 100000;
+  flex-shrink: 0;
+}
+
+.skull-lightbox-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.skull-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.skull-lightbox-close:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 769px) {
+  .skull-page .header.skull-active .tri-lock-btn {
+    color: #000000;
+  }
 }
 
 @media (max-width: 768px) {

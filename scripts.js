@@ -1029,7 +1029,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburgerMenu.style.display = "block"; // Ensure the menu is displayed
     
     // Apply the correct theme class based on current state
-    if (document.body.classList.contains('tarkov-page') || document.body.classList.contains('grocery-page')) {
+    if (document.body.classList.contains('tarkov-page') || document.body.classList.contains('grocery-page') || document.body.classList.contains('astray-page')) {
       // Clear any existing theme classes first
       hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active');
       
@@ -1042,9 +1042,27 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (document.body.classList.contains('marketplace-page')) {
       hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active');
       hamburgerMenu.classList.add('marketplace-theme-active');
-    } else if (document.body.classList.contains('about-page') || document.body.classList.contains('killjoy-page')) {
+    } else if (document.body.classList.contains('killjoy-page')) {
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active', 'about-theme-active');
+      hamburgerMenu.classList.add('killjoy-theme-active');
+    } else if (document.body.classList.contains('about-page')) {
       hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active');
       hamburgerMenu.classList.add('about-theme-active');
+    } else if (document.body.classList.contains('skull-page')) {
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active', 'about-theme-active');
+      hamburgerMenu.classList.add('skull-theme-active');
+    } else if (document.body.classList.contains('zed-page')) {
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active', 'about-theme-active', 'skull-theme-active');
+      hamburgerMenu.classList.add('zed-theme-active');
+    } else if (document.body.classList.contains('thresh-page')) {
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active', 'about-theme-active', 'skull-theme-active', 'zed-theme-active');
+      hamburgerMenu.classList.add('thresh-theme-active');
+    } else if (document.body.classList.contains('yggdrasil-page')) {
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active', 'about-theme-active', 'skull-theme-active', 'zed-theme-active', 'thresh-theme-active');
+      hamburgerMenu.classList.add('yggdrasil-theme-active');
+    } else if (document.body.classList.contains('cauzito-page')) {
+      hamburgerMenu.classList.remove('tarkov-initial', 'tarkov-theme-active', 'marketplace-theme-active', 'about-theme-active', 'skull-theme-active', 'zed-theme-active', 'thresh-theme-active', 'yggdrasil-theme-active');
+      hamburgerMenu.classList.add('cauzito-theme-active');
     } else {
       // Other pages: use default background via inline style (existing behavior)
       hamburgerMenu.style.background = 'linear-gradient(to bottom, #2A2B2D 45%, #1C1C1C 100%)';
@@ -1243,7 +1261,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
   // Enhanced Tarkov Page Color Theme Activation
-  if (body.classList.contains("tarkov-page") || body.classList.contains("grocery-page")) {
+  if (body.classList.contains("tarkov-page") || body.classList.contains("grocery-page") || body.classList.contains("astray-page")) {
     const portfolioSection = document.querySelector(".portfolio-section");
     const header = document.querySelector(".header");
     const footer = document.querySelector("footer");
@@ -1291,6 +1309,49 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     // Initialize theme state for non-Tarkov pages
     tarkovThemeActive = false;
+  }
+
+  // ─── Skull Page Theme ───
+  if (body.classList.contains('skull-page')) {
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+    document.addEventListener('loadingScreenHidden', () => {
+      // Set inline transitions first so browser records the "from" values
+      if (header) {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease';
+      }
+      if (footer) {
+        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease';
+      }
+      document.querySelectorAll('.header .nav-link').forEach(link => {
+        link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      const logo = document.querySelector('.header .logo');
+      if (logo) logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title, .footer .footerTextTypography, .footer a').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      document.querySelectorAll('.tri-lock-btn').forEach(btn => {
+        btn.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      // Apply skull theme classes (CSS defines final colors)
+      header?.classList.add("skull-active");
+      footer?.classList.add("skull-active");
+
+      // Hamburger — initial state then animate to active
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('skull-initial');
+        requestAnimationFrame(() => {
+          hamburgerMenu.classList.remove('skull-initial');
+          hamburgerMenu.classList.add('skull-theme-active');
+        });
+      }
+    }, { once: true });
   }
 
   // Enhanced Grocery Page Color Theme Activation
@@ -1701,80 +1762,206 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { once: true }); // Fires after loading screen is hidden
   }
 
-  // ─── Killjoy Page Theme ───
-  if (body.classList.contains("killjoy-page")) {
+  // ─── Cauzito Page Theme ───
+  if (body.classList.contains('cauzito-page')) {
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+
     document.addEventListener('loadingScreenHidden', () => {
-      const killjoyColors = {
-        header:       '#FFFFFF',
-        footer:       '#FFFFFF',
-        headerBorder: 'rgba(136, 0, 204, 0.3)',
-        footerBorder: 'rgba(136, 0, 204, 0.3)',
-        text:         '#8800CC',
-        shadow:       'rgba(136, 0, 204, 0.2)',
-      };
-
-      const transitionColor = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border 3.5s ease, box-shadow 3.5s ease';
-
-      const header = document.querySelector('.header');
       if (header) {
-        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), ' + transitionColor;
-        header.style.backgroundColor = killjoyColors.header;
-        header.style.borderBottom = `1px solid ${killjoyColors.headerBorder}`;
-        header.style.boxShadow = `0 2px 20px ${killjoyColors.shadow}`;
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease';
       }
-
+      if (footer) {
+        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease';
+      }
       document.querySelectorAll('.header .nav-link').forEach(link => {
         link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        link.style.color = killjoyColors.text;
       });
-
-      const purpleFilter = 'brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(800%) hue-rotate(260deg) brightness(1.1)';
-
       const logo = document.querySelector('.header .logo');
-      if (logo) {
-        logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        logo.style.filter = purpleFilter;
-      }
-
+      if (logo) logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
       const menuIcon = document.querySelector('.header .menu-icon');
-      if (menuIcon) {
-        menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        menuIcon.style.filter = purpleFilter;
-      }
-
-      const footer = document.querySelector('.footer');
-      if (footer) {
-        footer.style.transition = transitionColor;
-        footer.style.backgroundColor = killjoyColors.footer;
-        footer.style.borderTop = `1px solid ${killjoyColors.footerBorder}`;
-        footer.style.boxShadow = `0 -2px 20px ${killjoyColors.shadow}`;
-      }
-
-      const footerContent = document.querySelector('.footer-content');
-      if (footerContent) { footerContent.style.backgroundColor = 'transparent'; }
-      const fundoFooter = document.querySelector('.fundo-footer');
-      if (fundoFooter) { fundoFooter.style.backgroundColor = 'transparent'; }
-      document.querySelectorAll('.footer-section').forEach(s => { s.style.backgroundColor = 'transparent'; });
-
-      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title').forEach(el => {
+      if (menuIcon) menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title, .footer .footerTextTypography, .footer a').forEach(el => {
         el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        el.style.color = killjoyColors.text;
       });
-      document.querySelectorAll('.footer .footerTextTypography, .footer a').forEach(el => {
-        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        el.style.color = killjoyColors.text;
-      });
-
-      const hamburgerMenu = document.getElementById('hamburgerMenu');
-      if (hamburgerMenu) {
-        hamburgerMenu.classList.add('about-theme-active');
-      }
-
-      // Lock button — purple
       document.querySelectorAll('.tri-lock-btn').forEach(btn => {
         btn.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        btn.style.color = killjoyColors.text;
       });
+
+      header?.classList.add("cauzito-active");
+      footer?.classList.add("cauzito-active");
+
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('cauzito-initial');
+        requestAnimationFrame(() => {
+          hamburgerMenu.classList.remove('cauzito-initial');
+          hamburgerMenu.classList.add('cauzito-theme-active');
+        });
+      }
+    }, { once: true });
+  }
+
+  // ─── Yggdrasil Page Theme ───
+  if (body.classList.contains('yggdrasil-page')) {
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+    document.addEventListener('loadingScreenHidden', () => {
+      if (header) {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease';
+      }
+      if (footer) {
+        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease';
+      }
+      document.querySelectorAll('.header .nav-link').forEach(link => {
+        link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      const logo = document.querySelector('.header .logo');
+      if (logo) logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title, .footer .footerTextTypography, .footer a').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      document.querySelectorAll('.tri-lock-btn').forEach(btn => {
+        btn.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      header?.classList.add("yggdrasil-active");
+      footer?.classList.add("yggdrasil-active");
+
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('yggdrasil-initial');
+        requestAnimationFrame(() => {
+          hamburgerMenu.classList.remove('yggdrasil-initial');
+          hamburgerMenu.classList.add('yggdrasil-theme-active');
+        });
+      }
+    }, { once: true });
+  }
+
+  // ─── Thresh Page Theme ───
+  if (body.classList.contains('thresh-page')) {
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+    document.addEventListener('loadingScreenHidden', () => {
+      if (header) {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease';
+      }
+      if (footer) {
+        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease';
+      }
+      document.querySelectorAll('.header .nav-link').forEach(link => {
+        link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      const logo = document.querySelector('.header .logo');
+      if (logo) logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title, .footer .footerTextTypography, .footer a').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      document.querySelectorAll('.tri-lock-btn').forEach(btn => {
+        btn.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      header?.classList.add("thresh-active");
+      footer?.classList.add("thresh-active");
+
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('thresh-initial');
+        requestAnimationFrame(() => {
+          hamburgerMenu.classList.remove('thresh-initial');
+          hamburgerMenu.classList.add('thresh-theme-active');
+        });
+      }
+    }, { once: true });
+  }
+
+  // ─── Zed Page Theme ───
+  if (body.classList.contains('zed-page')) {
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+    document.addEventListener('loadingScreenHidden', () => {
+      if (header) {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease';
+      }
+      if (footer) {
+        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease';
+      }
+      document.querySelectorAll('.header .nav-link').forEach(link => {
+        link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      const logo = document.querySelector('.header .logo');
+      if (logo) logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title, .footer .footerTextTypography, .footer a').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      document.querySelectorAll('.tri-lock-btn').forEach(btn => {
+        btn.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      header?.classList.add("zed-active");
+      footer?.classList.add("zed-active");
+
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('zed-initial');
+        requestAnimationFrame(() => {
+          hamburgerMenu.classList.remove('zed-initial');
+          hamburgerMenu.classList.add('zed-theme-active');
+        });
+      }
+    }, { once: true });
+  }
+
+  // ─── Killjoy Page Theme ───
+  if (body.classList.contains("killjoy-page")) {
+    const header = document.querySelector(".header");
+    const footer = document.querySelector("footer");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+    document.addEventListener('loadingScreenHidden', () => {
+      // Set inline transitions first so browser records the "from" values
+      if (header) {
+        header.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease';
+      }
+      if (footer) {
+        footer.style.transition = 'background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease';
+      }
+      document.querySelectorAll('.header .nav-link').forEach(link => {
+        link.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      const logo = document.querySelector('.header .logo');
+      if (logo) logo.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      const menuIcon = document.querySelector('.header .menu-icon');
+      if (menuIcon) menuIcon.style.transition = 'filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      document.querySelectorAll('.footer .footerTitleTypography, .footer .footer-title, .footer .footerTextTypography, .footer a').forEach(el => {
+        el.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      document.querySelectorAll('.tri-lock-btn').forEach(btn => {
+        btn.style.transition = 'color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      // Apply killjoy theme classes (CSS defines final colors)
+      header?.classList.add("killjoy-active");
+      footer?.classList.add("killjoy-active");
+
+      // Hamburger — initial state then animate to active
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.add('killjoy-initial');
+        requestAnimationFrame(() => {
+          hamburgerMenu.classList.remove('killjoy-initial');
+          hamburgerMenu.classList.add('killjoy-theme-active');
+        });
+      }
     }, { once: true });
   }
 });
@@ -3441,6 +3628,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var PROJECTS = [
     {
       id: 'tarkov',
+      type: 'ux',
       href: 'TarkovCaseStudy.html',
       imageBg: '',
       imageSrc: 'Assets/wp5408753.webp',
@@ -3452,6 +3640,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 'grocery',
+      type: 'ux',
       href: 'GroceryStoreApp.html',
       imageBg: "background-image:url('Assets/GroceryStoreApp/Watermelon.jpg');background-size:cover;background-position:center;",
       imageSrc: 'Assets/GroceryStoreApp/Red.svg',
@@ -3463,6 +3652,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 'marketplace',
+      type: 'ux',
       href: 'MarketplaceApp.html',
       imageBg: 'background-color:#FDE8B4;display:flex;align-items:center;justify-content:center;',
       imageSrc: 'Assets/MarketPlaceApp/Group 6.svg',
@@ -3471,6 +3661,79 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'Marketplace App',
       description: 'E-Commerce Mobile App Design',
       tag: 'Mobile App'
+    },
+    {
+      id: 'astray',
+      type: 'ux',
+      disabled: true,
+      href: 'astray.html',
+      imageBg: 'background-color:#004C6C;display:flex;align-items:center;justify-content:center;',
+      imageSrc: 'Assets/Astray/astray-thumb.png',
+      imageAlt: 'Astray Campus Map App',
+      imageStyle: 'width:100%;height:100%;object-fit:cover;',
+      title: 'Astray',
+      description: 'Campus Navigation & Assistance App — MSc Final Project',
+      tag: 'UX Design'
+    },
+    {
+      id: 'killjoy',
+      type: 'drawing',
+      href: 'killjoy-drawing.html',
+      imageSrc: 'Assets/Killjoy%20in%20da%20site/killjoy-in-da-site.jpg',
+      imageAlt: 'Killjoy in da site',
+      title: 'Killjoy',
+      description: 'Killjoy in da site',
+      tag: 'Illustration'
+    },
+    {
+      id: 'skull',
+      type: 'drawing',
+      href: 'skull-drawing.html',
+      imageSrc: 'Assets/Skull/skull.jpg',
+      imageAlt: 'Skull Drawing',
+      title: 'Skull',
+      description: 'Skull using a pilot gear, made as sketch for tattoo.',
+      tag: 'Illustration'
+    },
+    {
+      id: 'zed',
+      type: 'drawing',
+      href: 'zed-drawing.html',
+      imageSrc: 'Assets/Zed%20shadow%20born/zed-shadow-born.jpg',
+      imageAlt: 'Zed Shadow Reborn',
+      title: 'Zed',
+      description: 'Shadow Reborn',
+      tag: 'Illustration'
+    },
+    {
+      id: 'thresh',
+      type: 'drawing',
+      href: 'thresh-drawing.html',
+      imageSrc: 'Assets/Thresh/thresh.jpg',
+      imageAlt: 'Thresh Lantern',
+      title: 'Thresh',
+      description: 'Thresh Lantern, character from League of Legends game.',
+      tag: 'Illustration'
+    },
+    {
+      id: 'yggdrasil',
+      type: 'drawing',
+      href: 'yggdrasil-drawing.html',
+      imageSrc: 'Assets/Yggdrasil/yggdrasil.jpg',
+      imageAlt: 'Yggdrasil',
+      title: 'Yggdrasil',
+      description: 'The tree of live.',
+      tag: 'Illustration'
+    },
+    {
+      id: 'cauzito',
+      type: 'drawing',
+      href: 'cauzito-logo.html',
+      imageSrc: 'Assets/Cauzito%C2%B4s%20Live%20Stream%20Logo/vinicius-pim-logo-cau-4-prancheta-1.jpg',
+      imageAlt: 'Cauzito Stream Logo',
+      title: 'Stream Logo',
+      description: "Cauzito's Live",
+      tag: 'Logo Design'
     }
   ];
 
@@ -3516,12 +3779,70 @@ document.addEventListener('DOMContentLoaded', function() {
   var grids = document.querySelectorAll('[data-other-projects]');
   grids.forEach(function (grid) {
     var currentId  = grid.getAttribute('data-other-projects');
+    var maxCount   = grid.getAttribute('data-max') ? parseInt(grid.getAttribute('data-max'), 10) : null;
     var cardStyle  = currentId === 'about' ? 'about' : 'standard';
     var eligible   = PROJECTS.filter(function (p) {
+      if (p.disabled) return false;
+      if (p.type === 'drawing') return false;
       return currentId === 'about' ? true : p.id !== currentId;
     });
     shuffle(eligible);
+    if (maxCount) eligible = eligible.slice(0, maxCount);
     grid.innerHTML = eligible.map(function (p) { return buildCard(p, cardStyle); }).join('');
+  });
+
+  // Mixed drawing+ux grid: 2 drawings + 2 UX, excluding current page
+  var mixedGrids = document.querySelectorAll('[data-drawing-mix]');
+  mixedGrids.forEach(function (grid) {
+    var currentId = grid.getAttribute('data-drawing-mix');
+    var drawings = shuffle(PROJECTS.filter(function (p) {
+      return !p.disabled && p.type === 'drawing' && p.id !== currentId;
+    })).slice(0, 2);
+    var uxProjects = shuffle(PROJECTS.filter(function (p) {
+      return !p.disabled && p.type === 'ux';
+    })).slice(0, 2);
+    var combined = drawings.concat(uxProjects);
+    grid.innerHTML = combined.map(function (p) {
+      var bg = p.imageBg ? ' style="' + p.imageBg + '"' : '';
+      var imgStyle = p.imageStyle ? ' style="' + p.imageStyle + '"' : '';
+      return '<div class="drawing-project-item">' +
+        '<a href="' + p.href + '" class="dp-link">' +
+          '<div class="dp-image"' + bg + '><img src="' + p.imageSrc + '" alt="' + p.imageAlt + '"' + imgStyle + '></div>' +
+          '<div class="dp-info">' +
+            '<h3 class="dp-title">' + p.title + '</h3>' +
+            '<p class="dp-description">' + p.description + '</p>' +
+            '<span class="dp-tag">' + p.tag + '</span>' +
+          '</div>' +
+        '</a>' +
+      '</div>';
+    }).join('');
+  });
+
+  // Mixed drawing+ux grid: 2 drawings + 2 UX, excluding current page
+  var mixedGrids = document.querySelectorAll('[data-drawing-mix]');
+  mixedGrids.forEach(function (grid) {
+    var currentId = grid.getAttribute('data-drawing-mix');
+    var drawings = shuffle(PROJECTS.filter(function (p) {
+      return !p.disabled && p.type === 'drawing' && p.id !== currentId;
+    })).slice(0, 2);
+    var uxProjects = shuffle(PROJECTS.filter(function (p) {
+      return !p.disabled && p.type === 'ux';
+    })).slice(0, 2);
+    var combined = drawings.concat(uxProjects);
+    grid.innerHTML = combined.map(function (p) {
+      var bg = p.imageBg ? ' style="' + p.imageBg + '"' : '';
+      var imgStyle = p.imageStyle ? ' style="' + p.imageStyle + '"' : '';
+      return '<div class="drawing-project-item">' +
+        '<a href="' + p.href + '" class="dp-link">' +
+          '<div class="dp-image"' + bg + '><img src="' + p.imageSrc + '" alt="' + p.imageAlt + '"' + imgStyle + '></div>' +
+          '<div class="dp-info">' +
+            '<h3 class="dp-title">' + p.title + '</h3>' +
+            '<p class="dp-description">' + p.description + '</p>' +
+            '<span class="dp-tag">' + p.tag + '</span>' +
+          '</div>' +
+        '</a>' +
+      '</div>';
+    }).join('');
   });
 })();
 (function () {
@@ -3533,6 +3854,12 @@ document.addEventListener('DOMContentLoaded', function() {
     ? [220, 200, 140, 120].map(function (h) { return 'hsl(' + h + ',100%,70%)'; })
     : palette === 'killjoy'
     ? ['#87CEEB', '#87CEEB', '#FFD700', '#FF69B4']
+    : palette === 'zed'
+    ? ['#1A3A8A', '#1A3A8A', '#8B1010', '#A82020']
+    : palette === 'thresh'
+    ? ['#0A3D1A', '#0A3D1A', '#2ECC71', '#57E08F']
+    : palette === 'cauzito'
+    ? ['#5500AA', '#7700CC', '#9933FF', '#BB66FF']
     : ['rgba(0,0,0,1)', 'rgba(18,18,18,1)', 'rgba(35,35,35,1)', 'rgba(52,52,52,1)'];
 
   const container = bg.querySelector('.tri-container');

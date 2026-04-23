@@ -4,16 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Zed — Vinicius Gallipim</title>
+  <title>Zed — Vinicius Galli Pim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="about.css" />
   <link rel="stylesheet" href="drawing-styles.css" />
+  <link rel="stylesheet" href="zed-styles.css" />
 </head>
 
 <body class="zed-page drawing-page">
-<div id="triangle-bg" data-tri-palette="home">
+<div id="triangle-bg" data-tri-palette="zed">
   <div class="tri-overlay"></div>
   <div class="tri-container"></div>
 </div>
@@ -84,18 +84,45 @@
           </svg>
         </button>
         <h1 class="main-title titleTypography">ZED</h1>
+        <p class="zed-subtitle">Shadow Reborn</p>
       </div>
       <div class="drawing-page-body">
-        <div class="drawing-showcase">
-          <img src="Assets/Zed%20shadow%20born/zed-shadow-born.jpg" alt="Zed - Drawing">
+        <p class="drawing-description bodyTypography">Zed, from League of Legends game.</p>
+        <div class="zed-showcase">
+          <div class="zed-img-wrapper" id="zedImgWrapper">
+            <img src="Assets/Zed%20shadow%20born/zed-shadow-born.jpg" alt="Zed - Drawing" id="zedImg" class="zed-preview-img">
+            <div class="zed-img-overlay">
+              <span class="zed-img-hint">Click to view full image</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Zed Lightbox -->
+  <div id="zedLightbox" class="zed-lightbox" role="dialog" aria-modal="true" aria-label="Zed fullscreen view">
+    <div class="zed-lightbox-inner">
+      <div class="zed-lightbox-toolbar">
+        <button class="zed-lightbox-close" id="zedClose" aria-label="Close fullscreen">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <img src="Assets/Zed%20shadow%20born/zed-shadow-born.jpg" alt="Zed - Drawing fullscreen" class="zed-lightbox-img">
+    </div>
+  </div>
+
+  <section class="drawing-other-projects">
+    <div class="drawing-other-projects-inner">
+      <h2 class="drawing-other-projects-title">Other Projects</h2>
+      <div class="drawing-projects-grid" data-drawing-mix="zed"></div>
+    </div>
+  </section>
+
   <footer class="footer">
-    <div class="footer-content">
-      <div class="fundo-footer"></div>
       <div class="footer-sections">
         <div class="footer-section">
           <h2 class="footer-title footerTitleTypography">GET IN TOUCH</h2>
@@ -122,5 +149,35 @@
 
 </section>
 <script src="scripts.js"></script>
+<script>
+  (function () {
+    var img      = document.getElementById('zedImg');
+    var wrapper  = document.getElementById('zedImgWrapper');
+    var lightbox = document.getElementById('zedLightbox');
+    var closeBtn = document.getElementById('zedClose');
+
+    function openLightbox() {
+      lightbox.classList.add('zed-lightbox--open');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('zed-lightbox--open');
+      document.body.classList.remove('no-scroll');
+    }
+
+    img.addEventListener('click', openLightbox);
+    wrapper.addEventListener('click', openLightbox);
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
+</script>
 </body>
 </html>

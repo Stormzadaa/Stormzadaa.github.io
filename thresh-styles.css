@@ -2,27 +2,290 @@
    THRESH DRAWING PAGE
    ============================================ */
 
-.drawing-page-body {
-  padding: 34px 89px 89px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 34px;
+/* Triangle background */
+.thresh-page #triangle-bg {
+  opacity: 0.15;
 }
 
-.drawing-showcase {
+/* Page background */
+body.thresh-page {
+  background: #000000;
+}
+
+.thresh-page .portfolio-section {
+  background: #000000;
+}
+
+/* Header — transitions to dark green on load */
+.thresh-page .header.thresh-active {
+  background-color: #0D5C2A;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease;
+}
+
+.thresh-page .header.thresh-active .nav-link {
+  color: #ffffff;
+}
+
+.thresh-page .header.thresh-active .logo,
+.thresh-page .header.thresh-active .menu-icon {
+  filter: brightness(0) invert(1);
+}
+
+.thresh-page .header.thresh-active .nav-underline.active {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Lock button */
+.thresh-page .tri-lock-btn {
+  color: #B6B0A0;
+}
+
+.thresh-page .header.thresh-active .tri-lock-btn {
+  color: #ffffff;
+}
+
+/* Footer — transitions to dark green on load */
+.thresh-page footer.thresh-active {
+  background-color: #0D5C2A;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.5);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease;
+}
+
+.thresh-page footer.thresh-active .footerTitleTypography,
+.thresh-page footer.thresh-active .footer-title {
+  color: #ffffff;
+}
+
+.thresh-page footer.thresh-active .footerTextTypography,
+.thresh-page footer.thresh-active a {
+  color: #ffffff;
+}
+
+/* Footer SVG — visible on dark green */
+.thresh-page .fundo-footer {
+  opacity: 45%;
+  filter: brightness(0) invert(1);
+}
+
+/* Hamburger menu — thresh initial state */
+.hamburger-menu.thresh-initial {
+  background: #2a2a2a;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.thresh-initial a {
+  color: #B6B0A0;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.thresh-initial .work-underline,
+.hamburger-menu.thresh-initial .about-underline,
+.hamburger-menu.thresh-initial .contact-underline {
+  background-color: #B6B0A0;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hamburger menu — thresh active state */
+.hamburger-menu.thresh-theme-active {
+  background: #0D5C2A;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.thresh-theme-active a {
+  color: #ffffff;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.thresh-theme-active .work-underline,
+.hamburger-menu.thresh-theme-active .about-underline,
+.hamburger-menu.thresh-theme-active .contact-underline {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Main content */
+.thresh-page .main-content {
+  min-height: 100vh;
+}
+
+.thresh-subtitle {
+  color: #ffffff;
+  font-family: var(--heading-font-family);
+  font-size: var(--h6-font-size);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* ============================================
+   THRESH IMAGE PREVIEW
+   ============================================ */
+
+.thresh-showcase {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
 }
 
-.drawing-showcase img {
+.thresh-img-wrapper {
+  position: relative;
   width: 100%;
-  height: auto;
-  display: block;
+  cursor: zoom-in;
   border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
 }
+
+.thresh-img-wrapper:hover {
+  box-shadow: 0 16px 60px rgba(13, 92, 42, 0.5);
+}
+
+.thresh-showcase .thresh-preview-img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.thresh-img-wrapper:hover .thresh-preview-img {
+  transform: scale(1.02);
+}
+
+.thresh-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.thresh-img-wrapper:hover .thresh-img-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.thresh-img-hint {
+  color: #ffffff;
+  font-family: var(--heading-font-family);
+  font-size: var(--h7-font-size);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.thresh-img-wrapper:hover .thresh-img-hint {
+  opacity: 0.85;
+}
+
+/* ============================================
+   THRESH LIGHTBOX
+   ============================================ */
+
+.thresh-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.thresh-lightbox.thresh-lightbox--open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.thresh-lightbox-img {
+  max-width: 92vw;
+  max-height: calc(92vh - 60px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+  transform: scale(0.85);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+}
+
+.thresh-lightbox.thresh-lightbox--open .thresh-lightbox-img {
+  transform: scale(1);
+}
+
+.thresh-lightbox-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 92vw;
+  max-height: 92vh;
+}
+
+.thresh-lightbox-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.thresh-lightbox-close {
+  position: static;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 100000;
+  flex-shrink: 0;
+}
+
+.thresh-lightbox-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.thresh-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.thresh-lightbox-close:active {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
 @media (max-width: 768px) {
   .drawing-page-body {

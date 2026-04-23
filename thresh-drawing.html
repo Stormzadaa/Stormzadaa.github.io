@@ -4,16 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Thresh — Vinicius Gallipim</title>
+  <title>Thresh — Vinicius Galli Pim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="about.css" />
   <link rel="stylesheet" href="drawing-styles.css" />
+  <link rel="stylesheet" href="thresh-styles.css" />
 </head>
 
 <body class="thresh-page drawing-page">
-<div id="triangle-bg" data-tri-palette="home">
+<div id="triangle-bg" data-tri-palette="thresh">
   <div class="tri-overlay"></div>
   <div class="tri-container"></div>
 </div>
@@ -84,18 +84,45 @@
           </svg>
         </button>
         <h1 class="main-title titleTypography">THRESH</h1>
+        <p class="thresh-subtitle">Grab it</p>
       </div>
       <div class="drawing-page-body">
-        <div class="drawing-showcase">
-          <img src="Assets/Thresh/thresh.jpg" alt="Thresh - Drawing">
+        <p class="drawing-description bodyTypography">Thresh Lantern, character from League of Legends game.</p>
+        <div class="thresh-showcase">
+          <div class="thresh-img-wrapper" id="threshImgWrapper">
+            <img src="Assets/Thresh/thresh.jpg" alt="Thresh - Drawing" id="threshImg" class="thresh-preview-img">
+            <div class="thresh-img-overlay">
+              <span class="thresh-img-hint">Click to view full image</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Thresh Lightbox -->
+  <div id="threshLightbox" class="thresh-lightbox" role="dialog" aria-modal="true" aria-label="Thresh fullscreen view">
+    <div class="thresh-lightbox-inner">
+      <div class="thresh-lightbox-toolbar">
+        <button class="thresh-lightbox-close" id="threshClose" aria-label="Close fullscreen">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <img src="Assets/Thresh/thresh.jpg" alt="Thresh - Drawing fullscreen" class="thresh-lightbox-img">
+    </div>
+  </div>
+
+  <section class="drawing-other-projects">
+    <div class="drawing-other-projects-inner">
+      <h2 class="drawing-other-projects-title">Other Projects</h2>
+      <div class="drawing-projects-grid" data-drawing-mix="thresh"></div>
+    </div>
+  </section>
+
   <footer class="footer">
-    <div class="footer-content">
-      <div class="fundo-footer"></div>
       <div class="footer-sections">
         <div class="footer-section">
           <h2 class="footer-title footerTitleTypography">GET IN TOUCH</h2>
@@ -122,5 +149,35 @@
 
 </section>
 <script src="scripts.js"></script>
+<script>
+  (function () {
+    var img      = document.getElementById('threshImg');
+    var wrapper  = document.getElementById('threshImgWrapper');
+    var lightbox = document.getElementById('threshLightbox');
+    var closeBtn = document.getElementById('threshClose');
+
+    function openLightbox() {
+      lightbox.classList.add('thresh-lightbox--open');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('thresh-lightbox--open');
+      document.body.classList.remove('no-scroll');
+    }
+
+    img.addEventListener('click', openLightbox);
+    wrapper.addEventListener('click', openLightbox);
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
+</script>
 </body>
 </html>

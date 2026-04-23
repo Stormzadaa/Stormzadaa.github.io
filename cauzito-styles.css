@@ -2,36 +2,334 @@
    CAUZITO LOGO PAGE
    ============================================ */
 
-.drawing-page-body {
-  padding: 34px 89px 89px;
+/* Triangle background */
+.cauzito-page #triangle-bg {
+  opacity: 0.15;
+}
+
+/* Page background */
+body.cauzito-page {
+  background: #000000;
+}
+
+.cauzito-page .portfolio-section {
+  background: #000000;
+}
+
+/* Header — transitions to dark purple on load */
+.cauzito-page .header.cauzito-active {
+  background-color: #3A006F;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease;
+}
+
+.cauzito-page .header.cauzito-active .nav-link {
+  color: #ffffff;
+}
+
+.cauzito-page .header.cauzito-active .logo,
+.cauzito-page .header.cauzito-active .menu-icon {
+  filter: brightness(0) invert(1);
+}
+
+.cauzito-page .header.cauzito-active .nav-underline.active {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Lock button */
+.cauzito-page .tri-lock-btn {
+  color: #B6B0A0;
+}
+
+.cauzito-page .header.cauzito-active .tri-lock-btn {
+  color: #ffffff;
+}
+
+/* Footer — transitions to dark purple on load */
+.cauzito-page footer.cauzito-active {
+  background-color: #3A006F;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.5);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease;
+}
+
+.cauzito-page footer.cauzito-active .footerTitleTypography,
+.cauzito-page footer.cauzito-active .footer-title {
+  color: #ffffff;
+}
+
+.cauzito-page footer.cauzito-active .footerTextTypography,
+.cauzito-page footer.cauzito-active a {
+  color: #ffffff;
+}
+
+/* Footer SVG — visible on dark background */
+.cauzito-page .fundo-footer {
+  opacity: 45%;
+  filter: brightness(0) invert(1);
+}
+
+/* Hamburger menu — cauzito initial state */
+.hamburger-menu.cauzito-initial {
+  background: #2a2a2a;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.cauzito-initial a {
+  color: #B6B0A0;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.cauzito-initial .work-underline,
+.hamburger-menu.cauzito-initial .about-underline,
+.hamburger-menu.cauzito-initial .contact-underline {
+  background-color: #B6B0A0;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hamburger menu — cauzito active state */
+.hamburger-menu.cauzito-theme-active {
+  background: #3A006F;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.cauzito-theme-active a {
+  color: #ffffff;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.cauzito-theme-active .work-underline,
+.hamburger-menu.cauzito-theme-active .about-underline,
+.hamburger-menu.cauzito-theme-active .contact-underline {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Main content */
+.cauzito-page .main-content {
+  min-height: 100vh;
+}
+
+.cauzito-subtitle {
+  color: #ffffff;
+  font-family: var(--heading-font-family);
+  font-size: var(--h6-font-size);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* ============================================
+   GALLERY GRID
+   ============================================ */
+
+.cauzito-gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.cauzito-thumb-wrapper {
+  position: relative;
+  cursor: zoom-in;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.cauzito-thumb-wrapper:hover {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
+  transform: scale(1.03);
+}
+
+.cauzito-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cauzito-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.cauzito-thumb-wrapper:hover .cauzito-thumb-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cauzito-thumb-icon {
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cauzito-thumb-wrapper:hover .cauzito-thumb-icon {
+  opacity: 1;
+}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+
+.cauzito-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.cauzito-lightbox.cauzito-lightbox--open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cauzito-lightbox-inner {
   display: flex;
   flex-direction: column;
+  width: 92vw;
+  max-width: 1200px;
+  max-height: 92vh;
+}
+
+.cauzito-lightbox-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.cauzito-lightbox-close {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
   align-items: center;
-  gap: 34px;
+  justify-content: center;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
-.drawing-showcase {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
+.cauzito-lightbox-close svg {
+  width: 20px;
+  height: 20px;
 }
 
-.drawing-showcase img {
-  width: 100%;
+.cauzito-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.cauzito-lightbox-close:active {
+  transform: scale(0.95);
+}
+
+.cauzito-lightbox-stage {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 0;
+  flex: 1;
+}
+
+.cauzito-lightbox-img {
+  flex: 1;
+  min-width: 0;
+  max-height: calc(92vh - 60px);
+  max-width: 100%;
+  width: auto;
   height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
   display: block;
-  border-radius: 8px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@media (max-width: 768px) {
-  .drawing-page-body {
-    padding: 21px 21px 55px;
+.cauzito-lightbox.cauzito-lightbox--open .cauzito-lightbox-img {
+  transform: scale(1);
+}
+
+.cauzito-arrow {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cauzito-arrow svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cauzito-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.cauzito-arrow:active {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet (769px–1279px) */
+@media (min-width: 769px) and (max-width: 1279px) {
+  .cauzito-gallery {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 480px) {
-  .drawing-page-body {
-    padding: 13px 13px 34px;
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  .cauzito-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .cauzito-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cauzito-arrow svg {
+    width: 18px;
+    height: 18px;
   }
 }

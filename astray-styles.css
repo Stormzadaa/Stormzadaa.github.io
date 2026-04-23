@@ -53,11 +53,54 @@
    ================================= */
 
 body.astray-page {
-  background: #000000;
+  background: #ffffff;
 }
 
 .astray-page .portfolio-section {
-  background: transparent;
+  background: #ffffff;
+}
+
+/* =================================
+   SHARED SECTION STYLES
+   ================================= */
+
+/* Header & hamburger menu — starts as default, transitions to #004C6C after loading */
+.astray-page .header.tarkov-active {
+  background-color: #004C6C;
+  border-bottom: 1px solid rgba(0, 76, 108, 0.6);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease;
+}
+
+.astray-page .header.tarkov-active .logo {
+  filter: brightness(0) invert(1);
+  transition: filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.astray-page .header.tarkov-active .nav-link {
+  color: #ffffff;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.astray-page .header.tarkov-active .menu-icon {
+  filter: brightness(0) invert(1);
+  transition: filter 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.astray-page .hamburger-menu.tarkov-theme-active {
+  background: #004C6C;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.astray-page .hamburger-menu.tarkov-theme-active a {
+  color: #ffffff;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.astray-page .hamburger-menu.tarkov-theme-active .work-underline,
+.astray-page .hamburger-menu.tarkov-theme-active .about-underline,
+.astray-page .hamburger-menu.tarkov-theme-active .contact-underline {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* =================================
@@ -65,7 +108,12 @@ body.astray-page {
    ================================= */
 
 .astray-section-title {
-  color: #ffffff;
+  color: #000000;
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--h2-font-size);
+  letter-spacing: 0.02em;
+  margin: 0 0 8px 0;
 }
 
 /* =================================
@@ -89,11 +137,11 @@ body.astray-page {
 }
 
 .astray-hero-title {
-  color: #ffffff;
+  color: #000000;
 }
 
 .astray-hero-tagline {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.6);
   max-width: 600px;
 }
 
@@ -106,10 +154,10 @@ body.astray-page {
 
 .astray-tag {
   padding: 6px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(0, 76, 108, 0.35);
   border-radius: 999px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
+  color: #004C6C;
+  font-size: var(--small-font-size);
 }
 
 .astray-hero-image {
@@ -152,18 +200,18 @@ body.astray-page {
 }
 
 .astray-overview-label {
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: var(--h10-font-size);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .astray-overview-value {
-  color: #ffffff;
+  color: #000000;
 }
 
 .astray-overview-description {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.7);
   max-width: 720px;
 }
 
@@ -183,13 +231,13 @@ body.astray-page {
 }
 
 .astray-problem-quote {
-  color: #ffffff;
-  font-size: 1.5rem;
+  color: #000000;
+  font-size: var(--h4-font-size);
   line-height: 1.4;
 }
 
 .astray-problem-body {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /* =================================
@@ -217,16 +265,16 @@ body.astray-page {
   flex-direction: column;
   gap: 12px;
   padding: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
 }
 
 .astray-method-item h3 {
-  color: #ffffff;
+  color: #000000;
 }
 
 .astray-method-item p {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .astray-research-findings {
@@ -240,19 +288,19 @@ body.astray-page {
   flex-direction: column;
   gap: 8px;
   padding: 28px 32px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   flex: 1;
   min-width: 180px;
 }
 
 .astray-finding-stat {
-  color: #ffffff;
-  font-size: 2.5rem;
+  color: #004C6C;
+  font-size: var(--h1-font-size);
 }
 
 .astray-finding-label {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 /* =================================
@@ -280,7 +328,7 @@ body.astray-page {
   flex-direction: column;
   gap: 16px;
   padding: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 16px;
 }
 
@@ -292,17 +340,17 @@ body.astray-page {
 }
 
 .astray-persona-name {
-  color: #ffffff;
+  color: #000000;
 }
 
 .astray-persona-bio {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .astray-persona-label {
   display: block;
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: var(--h10-font-size);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 6px;
@@ -311,7 +359,7 @@ body.astray-page {
 .astray-persona-goals ul,
 .astray-persona-pains ul {
   padding-left: 18px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /* =================================
@@ -329,7 +377,7 @@ body.astray-page {
 }
 
 .astray-ia-description {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
   max-width: 720px;
 }
 
@@ -369,20 +417,20 @@ body.astray-page {
 }
 
 .astray-version-badge--original {
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .astray-version-badge--redesign {
-  background: rgba(255, 255, 255, 0.1);
+  background: #004C6C;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #004C6C;
 }
 
 .astray-original-description,
 .astray-redesign-description {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
   max-width: 720px;
 }
 
@@ -404,12 +452,12 @@ body.astray-page {
   height: auto;
   display: block;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .astray-screen-caption {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: var(--small-font-size);
   text-align: center;
 }
 
@@ -425,16 +473,16 @@ body.astray-page {
   flex-direction: column;
   gap: 10px;
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
 }
 
 .astray-change-item h3 {
-  color: #ffffff;
+  color: #000000;
 }
 
 .astray-change-item p {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 /* =================================
@@ -452,7 +500,7 @@ body.astray-page {
 }
 
 .astray-testing-description {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
   max-width: 720px;
 }
 
@@ -467,16 +515,16 @@ body.astray-page {
   flex-direction: column;
   gap: 10px;
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
 }
 
 .astray-test-item h3 {
-  color: #ffffff;
+  color: #000000;
 }
 
 .astray-test-item p {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 /* =================================
@@ -495,24 +543,45 @@ body.astray-page {
 }
 
 .astray-reflection-body {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /* =================================
    11. OTHER PROJECTS
+   Override tarkov base for astray dark theme
    ================================= */
 
-.other-projects-section {
+.astray-page .other-projects-section {
   padding: 80px 89px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: transparent;
 }
 
-.other-projects-container {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+.astray-page .other-projects-title {
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+  color: #000000;
 }
 
-.other-projects-title {
+/* Footer — #004C6C theme */
+.astray-page footer.tarkov-active {
+  background-color: #004C6C;
+  border-top: 1px solid rgba(0, 76, 108, 0.6);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease;
+}
+
+.astray-page .footerTitleTypography {
+  color: #ffffff;
+}
+
+.astray-page .footerTextTypography {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.astray-page .footer a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.astray-page .footer a:hover {
   color: #ffffff;
 }
 
@@ -534,8 +603,11 @@ body.astray-page {
   .astray-original-section,
   .astray-redesign-section,
   .astray-testing-section,
-  .astray-reflection-section,
-  .other-projects-section {
+  .astray-reflection-section {
+    padding: 60px 55px;
+  }
+
+  .astray-page .other-projects-section {
     padding: 60px 55px;
   }
 
@@ -562,8 +634,11 @@ body.astray-page {
   .astray-original-section,
   .astray-redesign-section,
   .astray-testing-section,
-  .astray-reflection-section,
-  .other-projects-section {
+  .astray-reflection-section {
+    padding: 50px 30px;
+  }
+
+  .astray-page .other-projects-section {
     padding: 50px 30px;
   }
 
@@ -594,8 +669,11 @@ body.astray-page {
   .astray-original-section,
   .astray-redesign-section,
   .astray-testing-section,
-  .astray-reflection-section,
-  .other-projects-section {
+  .astray-reflection-section {
+    padding: 40px 21px;
+  }
+
+  .astray-page .other-projects-section {
     padding: 40px 21px;
   }
 
@@ -608,6 +686,6 @@ body.astray-page {
   }
 
   .astray-problem-quote {
-    font-size: 1.2rem;
+    font-size: var(--h5-font-size);
   }
 }

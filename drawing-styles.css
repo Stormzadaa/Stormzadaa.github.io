@@ -82,3 +82,144 @@
     padding: 21px 21px 55px;
   }
 }
+
+/* ============================================
+   OTHER PROJECTS — DRAWING PAGE VARIANT
+   ============================================ */
+
+.drawing-other-projects {
+  padding: 55px 89px 89px;
+  position: relative;
+  z-index: 1;
+  background: rgba(17, 17, 17, 0.9);
+}
+
+.drawing-other-projects-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.drawing-other-projects-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--h4-font-size);
+  color: #ffffff;
+  margin: 0 0 34px 0;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.drawing-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.drawing-project-item {
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.drawing-project-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.drawing-project-item .dp-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.drawing-project-item .dp-image {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.drawing-project-item .dp-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.drawing-project-item:hover .dp-image img {
+  transform: scale(1.06);
+}
+
+.drawing-project-item .dp-info {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.drawing-project-item .dp-title {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--h6-font-size);
+  color: #ffffff;
+  margin: 0;
+}
+
+.drawing-project-item .dp-description {
+  font-family: var(--body-font-family);
+  font-size: var(--small-font-size);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.drawing-project-item .dp-tag {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--small-font-size);
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* Responsive */
+@media (min-width: 769px) and (max-width: 1279px) {
+  .drawing-other-projects {
+    padding: 55px 55px 89px;
+  }
+  .drawing-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .drawing-other-projects {
+    padding: 34px 21px 55px;
+  }
+  .drawing-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .drawing-project-item .dp-image {
+    height: 120px;
+  }
+}
+
+@media (max-width: 430px) {
+  .drawing-projects-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}

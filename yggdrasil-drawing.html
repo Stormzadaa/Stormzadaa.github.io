@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Yggdrasil — Vinicius Gallipim</title>
+  <title>Yggdrasil — Vinicius Galli Pim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="about.css" />
   <link rel="stylesheet" href="drawing-styles.css" />
+  <link rel="stylesheet" href="yggdrasil-styles.css" />
 </head>
 
 <body class="yggdrasil-page drawing-page">
@@ -86,16 +86,27 @@
         <h1 class="main-title titleTypography">YGGDRASIL</h1>
       </div>
       <div class="drawing-page-body">
-        <div class="drawing-showcase">
-          <img src="Assets/Yggdrasil/yggdrasil.jpg" alt="Yggdrasil - Drawing">
+        <p class="drawing-description bodyTypography">The tree of live.</p>
+        <div class="yggdrasil-showcase">
+          <div class="yggdrasil-img-wrapper" id="yggdrasilImgWrapper">
+            <img src="Assets/Yggdrasil/yggdrasil.jpg" alt="Yggdrasil - Drawing" id="yggdrasilImg" class="yggdrasil-preview-img">
+            <div class="yggdrasil-img-overlay">
+              <span class="yggdrasil-img-hint">Click to view full image</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <section class="drawing-other-projects">
+    <div class="drawing-other-projects-inner">
+      <h2 class="drawing-other-projects-title">Other Projects</h2>
+      <div class="drawing-projects-grid" data-drawing-mix="yggdrasil"></div>
+    </div>
+  </section>
+
   <footer class="footer">
-    <div class="footer-content">
-      <div class="fundo-footer"></div>
       <div class="footer-sections">
         <div class="footer-section">
           <h2 class="footer-title footerTitleTypography">GET IN TOUCH</h2>
@@ -121,6 +132,51 @@
   </footer>
 
 </section>
+  <!-- Yggdrasil Lightbox -->
+  <div id="yggdrasilLightbox" class="yggdrasil-lightbox" role="dialog" aria-modal="true" aria-label="Yggdrasil fullscreen view">
+    <div class="yggdrasil-lightbox-inner">
+      <div class="yggdrasil-lightbox-toolbar">
+        <button class="yggdrasil-lightbox-close" id="yggdrasilClose" aria-label="Close fullscreen">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <img src="Assets/Yggdrasil/yggdrasil.jpg" alt="Yggdrasil - Drawing fullscreen" class="yggdrasil-lightbox-img">
+    </div>
+  </div>
+
 <script src="scripts.js"></script>
+<script>
+  (function () {
+    var img      = document.getElementById('yggdrasilImg');
+    var wrapper  = document.getElementById('yggdrasilImgWrapper');
+    var lightbox = document.getElementById('yggdrasilLightbox');
+    var closeBtn = document.getElementById('yggdrasilClose');
+
+    function openLightbox() {
+      lightbox.classList.add('yggdrasil-lightbox--open');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('yggdrasil-lightbox--open');
+      document.body.classList.remove('no-scroll');
+    }
+
+    img.addEventListener('click', openLightbox);
+    wrapper.addEventListener('click', openLightbox);
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
+</script>
 </body>
 </html>

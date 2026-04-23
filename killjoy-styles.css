@@ -7,13 +7,262 @@ body.killjoy-page {
   background: #000000 !important;
 }
 
-/* Hamburger menu — killjoy purple theme */
-.killjoy-page .hamburger-menu.about-theme-active a {
+/* Header — transitions to white/purple on load */
+.killjoy-page .header.killjoy-active {
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(136, 0, 204, 0.3);
+  box-shadow: 0 2px 20px rgba(136, 0, 204, 0.2);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-bottom 3.5s ease, box-shadow 3.5s ease;
+}
+
+.killjoy-page .header.killjoy-active .nav-link {
   color: #8800CC;
 }
 
-.killjoy-page .hamburger-menu.about-theme-active .work-underline,
-.killjoy-page .hamburger-menu.about-theme-active .about-underline,
-.killjoy-page .hamburger-menu.about-theme-active .contact-underline {
+.killjoy-page .header.killjoy-active .logo,
+.killjoy-page .header.killjoy-active .menu-icon {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(800%) hue-rotate(260deg) brightness(1.1);
+}
+
+.killjoy-page .header.killjoy-active .nav-underline.active {
   background-color: rgba(136, 0, 204, 0.5);
+  border-color: rgba(136, 0, 204, 0.5);
+}
+
+/* Lock button — starts at home-page default, goes purple */
+.killjoy-page .tri-lock-btn {
+  color: #B6B0A0;
+}
+
+.killjoy-page .header.killjoy-active .tri-lock-btn {
+  color: #8800CC;
+}
+
+/* Footer — transitions to white/purple on load */
+.killjoy-page footer.killjoy-active {
+  background-color: #ffffff;
+  border-top: 1px solid rgba(136, 0, 204, 0.3);
+  box-shadow: 0 -2px 20px rgba(136, 0, 204, 0.2);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-top 3.5s ease, box-shadow 3.5s ease;
+}
+
+.killjoy-page footer.killjoy-active .footerTitleTypography,
+.killjoy-page footer.killjoy-active .footer-title {
+  color: #8800CC;
+}
+
+.killjoy-page footer.killjoy-active .footerTextTypography,
+.killjoy-page footer.killjoy-active a {
+  color: #8800CC;
+}
+
+/* Hamburger menu — killjoy initial state (matches home page) */
+.hamburger-menu.killjoy-initial {
+  background: #2a2a2a;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.killjoy-initial a {
+  color: #B6B0A0;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.killjoy-initial .work-underline,
+.hamburger-menu.killjoy-initial .about-underline,
+.hamburger-menu.killjoy-initial .contact-underline {
+  background-color: #B6B0A0;
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hamburger menu — killjoy active state */
+.hamburger-menu.killjoy-theme-active {
+  background: #ffffff;
+  transition: background 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform var(--menu-transition-duration) ease;
+}
+
+.hamburger-menu.killjoy-theme-active a {
+  color: #8800CC;
+  transition: color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hamburger-menu.killjoy-theme-active .work-underline,
+.hamburger-menu.killjoy-theme-active .about-underline,
+.hamburger-menu.killjoy-theme-active .contact-underline {
+  background-color: rgba(136, 0, 204, 0.5);
+  transition: background-color 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Main content — full viewport height */
+.killjoy-page .main-content {
+  min-height: 100vh;
+}
+
+.killjoy-subtitle {
+  color: #ffffff;
+  font-family: var(--heading-font-family);
+  font-size: var(--h6-font-size);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 8px;
+  opacity: 0.85;
+}
+
+/* ============================================
+   KILLJOY IMAGE — 100vh PREVIEW
+   ============================================ */
+
+.killjoy-showcase {
+  width: 100%;
+}
+
+.killjoy-img-wrapper {
+  position: relative;
+  width: 100%;
+  cursor: zoom-in;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.killjoy-img-wrapper:hover {
+  box-shadow: 0 16px 60px rgba(136, 0, 204, 0.45);
+}
+
+.killjoy-showcase .killjoy-preview-img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.killjoy-img-wrapper:hover .killjoy-preview-img {
+  transform: scale(1.02);
+}
+
+/* Dark overlay */
+.killjoy-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.killjoy-img-wrapper:hover .killjoy-img-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.killjoy-img-hint {
+  color: #ffffff;
+  font-family: var(--heading-font-family);
+  font-size: var(--h7-font-size);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.killjoy-img-wrapper:hover .killjoy-img-hint {
+  opacity: 0.85;
+}
+
+/* ============================================
+   KILLJOY LIGHTBOX
+   ============================================ */
+
+.killjoy-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.killjoy-lightbox.killjoy-lightbox--open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.killjoy-lightbox-img {
+  max-width: 92vw;
+  max-height: calc(92vh - 60px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+  transform: scale(0.85);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+}
+
+.killjoy-lightbox.killjoy-lightbox--open .killjoy-lightbox-img {
+  transform: scale(1);
+}
+
+.killjoy-lightbox-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 92vw;
+  max-height: 92vh;
+}
+
+.killjoy-lightbox-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.killjoy-lightbox-close {
+  position: static;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 100000;
+  flex-shrink: 0;
+}
+
+.killjoy-lightbox-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.killjoy-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.killjoy-lightbox-close:active {
+  transform: scale(0.95);
 }

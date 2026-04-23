@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Skull — Vinicius Gallipim</title>
+  <title>Skull — Vinicius Galli Pim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="about.css" />
   <link rel="stylesheet" href="drawing-styles.css" />
+  <link rel="stylesheet" href="skull-styles.css" />
 </head>
 
 <body class="skull-page drawing-page">
@@ -86,16 +86,42 @@
         <h1 class="main-title titleTypography">SKULL</h1>
       </div>
       <div class="drawing-page-body">
-        <div class="drawing-showcase">
-          <img src="Assets/Skull/skull.jpg" alt="Skull - Drawing">
+        <p class="drawing-description bodyTypography">Skull using a pilot gear, made as sketch for tattoo as requested.</p>
+        <div class="skull-showcase">
+          <div class="skull-img-wrapper" id="skullImgWrapper">
+            <img src="Assets/Skull/skull.jpg" alt="Skull - Drawing" id="skullImg" class="skull-preview-img">
+            <div class="skull-img-overlay">
+              <span class="skull-img-hint">Click to view full image</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Skull Lightbox -->
+  <div id="skullLightbox" class="skull-lightbox" role="dialog" aria-modal="true" aria-label="Skull fullscreen view">
+    <div class="skull-lightbox-inner">
+      <div class="skull-lightbox-toolbar">
+        <button class="skull-lightbox-close" id="skullClose" aria-label="Close fullscreen">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <img src="Assets/Skull/skull.jpg" alt="Skull - Drawing fullscreen" class="skull-lightbox-img">
+    </div>
+  </div>
+
+  <section class="drawing-other-projects">
+    <div class="drawing-other-projects-inner">
+      <h2 class="drawing-other-projects-title">Other Projects</h2>
+      <div class="drawing-projects-grid" data-drawing-mix="skull"></div>
+    </div>
+  </section>
+
   <footer class="footer">
-    <div class="footer-content">
-      <div class="fundo-footer"></div>
       <div class="footer-sections">
         <div class="footer-section">
           <h2 class="footer-title footerTitleTypography">GET IN TOUCH</h2>
@@ -122,5 +148,33 @@
 
 </section>
 <script src="scripts.js"></script>
+<script>
+  (function () {
+    var wrapper  = document.getElementById('skullImgWrapper');
+    var lightbox = document.getElementById('skullLightbox');
+    var closeBtn = document.getElementById('skullClose');
+
+    function openLightbox() {
+      lightbox.classList.add('skull-lightbox--open');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('skull-lightbox--open');
+      document.body.classList.remove('no-scroll');
+    }
+
+    wrapper.addEventListener('click', openLightbox);
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
+</script>
 </body>
 </html>

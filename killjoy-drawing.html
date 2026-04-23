@@ -4,11 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Killjoy — Vinicius Gallipim</title>
+  <title>Killjoy — Vinicius Galli Pim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="about.css" />
   <link rel="stylesheet" href="drawing-styles.css" />
   <link rel="stylesheet" href="killjoy-styles.css" />
 </head>
@@ -84,20 +83,46 @@
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
         </button>
-        <h1 class="main-title titleTypography">Killjoy in da site</h1>
+        <h1 class="main-title titleTypography">Killjoy</h1>
+        <p class="killjoy-subtitle">in da site</p>
       </div>
       <div class="drawing-page-body">
         <p class="drawing-description bodyTypography">A digital illustration of Killjoy from Valorant — Humorous drawing based on an internet meme.</p>
-        <div class="drawing-showcase">
-          <img src="Assets/Killjoy%20in%20da%20site/killjoy-in-da-site.jpg" alt="Killjoy - Drawing">
+        <div class="killjoy-showcase">
+          <div class="killjoy-img-wrapper" id="killjoyImgWrapper">
+            <img src="Assets/Killjoy%20in%20da%20site/killjoy-in-da-site.jpg" alt="Killjoy - Drawing" id="killjoyImg" class="killjoy-preview-img">
+            <div class="killjoy-img-overlay">
+              <span class="killjoy-img-hint">Click to view full image</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Killjoy Lightbox -->
+  <div id="killjoyLightbox" class="killjoy-lightbox" role="dialog" aria-modal="true" aria-label="Killjoy fullscreen view">
+    <div class="killjoy-lightbox-inner">
+      <div class="killjoy-lightbox-toolbar">
+        <button class="killjoy-lightbox-close" id="killjoyClose" aria-label="Close fullscreen">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <img src="Assets/Killjoy%20in%20da%20site/killjoy-in-da-site.jpg" alt="Killjoy - Drawing fullscreen" class="killjoy-lightbox-img">
+    </div>
+  </div>
+
+  <section class="drawing-other-projects">
+    <div class="drawing-other-projects-inner">
+      <h2 class="drawing-other-projects-title">Other Projects</h2>
+      <div class="drawing-projects-grid" data-drawing-mix="killjoy"></div>
+    </div>
+  </section>
+
   <footer class="footer">
-    <div class="footer-content">
-      <div class="fundo-footer"></div>
       <div class="footer-sections">
         <div class="footer-section">
           <h2 class="footer-title footerTitleTypography">GET IN TOUCH</h2>
@@ -124,5 +149,37 @@
 
 </section>
 <script src="scripts.js"></script>
+<script>
+  (function () {
+    var img       = document.getElementById('killjoyImg');
+    var wrapper   = document.getElementById('killjoyImgWrapper');
+    var lightbox  = document.getElementById('killjoyLightbox');
+    var closeBtn  = document.getElementById('killjoyClose');
+
+    function openLightbox() {
+      lightbox.classList.add('killjoy-lightbox--open');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('killjoy-lightbox--open');
+      document.body.classList.remove('no-scroll');
+    }
+
+    img.addEventListener('click', openLightbox);
+    wrapper.addEventListener('click', openLightbox);
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Close on backdrop click (not on image itself)
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
+</script>
 </body>
 </html>
